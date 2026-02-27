@@ -10,7 +10,21 @@ book:
   date: last-modified
   chapters:
     - index.qmd
-    - intro.qmd
+    - definitions.qmd
+    - data-lifecycle.qmd
+    - part: "THE HOLY TRINITY OF RDM"
+      chapters:
+      - data-object.qmd
+      - files.qmd
+      - metadata.qmd
+      - pids.qmd
+    - part: "COMPONENTS OF RDM INFRASTRUCTURE"
+      chapters:
+      - metadata-portals.qmd
+      - pid-services.qmd
+      - data-repositories.qmd
+      - rdm-platform.qmd
+    - infrastructure-design.qmd
     - summary.qmd
     - references.qmd
 
@@ -18,9 +32,8 @@ bibliography: references.bib
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
+    number-sections: false
 
 
 
