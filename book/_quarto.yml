@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "Fundamentals of Research Data Management"
+  author: "Christine Staiger, Neha Moopen"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+
+
+
