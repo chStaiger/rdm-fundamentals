@@ -133,36 +133,57 @@ Minting a PID is therefore not only about creating an identifier—it also invol
 
 **Note**: The metadata of a PID is always publicly accessible!
 
+### PID Profiles and PID Information Types
+
+To make Persistent Identifiers truly useful in digital infrastructures, it is not enough to simply create the identifier itself. Systems also need a clear way to define **what information is associated with a PID and how that information should be structured and interpreted**. This is where **PID profiles** and **PID information types** play an important role.
+
+---
+
 ### PID Profiles
 
-A **PID profile** defines **how a specific type of persistent identifier should be used in practice**. It describes the expected **metadata, relationships, and technical requirements** associated with that PID.
-You can think of those profiles like a metadata schema for PIDs.
+A **PID profile** defines **how a specific type of PID should be implemented and used within a community or infrastructure**. It describes the expected structure, metadata, and relationships associated with identifiers for a particular type of object.
 
-While a PID system provides the **technical infrastructure for identifiers**, a PID profile provides **community guidelines and standards for implementation**.
+PID profiles help ensure that identifiers are used **consistently and interoperably across systems**.
 
-#### What a PID Profile Typically Defines
+A PID profile typically specifies:
 
-A PID profile may specify:
-
-* **The object type** the PID represents (e.g., dataset, person, organization)
+* **The type of object** the PID represents (e.g., dataset, person, organization, instrument)
 * **Required and optional metadata fields**
-* **Relationships to other PIDs** (for example linking a dataset to its authors or related publications)
-* **Best practices for updating and maintaining records**
-* **Resolution behavior and access expectations**
+* **Relationships to other identifiers**
+* **Rules for updating and maintaining the PID record**
+* **Resolution expectations**
 
-For example, a dataset registered with a DOI through DataCite will typically follow a metadata profile describing fields such as creator, title, publisher, publication year, and resource type.
+For example, a dataset registered through DataCite using a Digital Object Identifier (DOI) follows a defined metadata profile that includes fields such as title, creator, publisher, publication year, and resource type.
 
-#### Why PID Profiles Are Important
+PID profiles therefore provide **guidance for implementers**, ensuring that identifiers are not only unique but also **meaningful and usable across systems**.
 
-PID profiles help ensure that identifiers are used **consistently across systems and communities**. This improves:
+---
 
-* **Interoperability** between repositories, publishers, and research infrastructures
-* **Machine readability** and automated data exchange
-* **Reliable linking between research entities**
+### PID Information Types
 
-For example, a research dataset may have a DOI, its authors may have ORCID iD identifiers, and the institutions involved may have identifiers from Research Organization Registry (ROR). PID profiles help define how these identifiers connect and interact.
+**PID information types** define the **individual pieces of information stored in a PID record** and how they are represented in the PID infrastructure. They describe the structure and semantics of the data associated with a PID.
 
-Together, **PID minting** and **PID profiles** form the foundation of a robust identifier ecosystem that enables persistent, trustworthy connections between research outputs, people, and organizations.
+In systems such as the Handle System, a PID record consists of a set of **typed values**, where each value has a specific meaning.
+
+Examples of information types include:
+
+* **Location information** – the URL where the resource or its landing page can be accessed
+* **Administrative information** – ownership or management of the PID
+* **Checksum or integrity information** – verifying the authenticity of the resource
+* **Metadata references** – links to detailed metadata records
+* **Relationships** – links to other identifiers such as people, organizations, or related datasets
+
+Each information type has a **defined structure and meaning**, allowing machines and services to interpret the information consistently.
+
+### How PID Profiles and Information Types Work Together
+
+PID profiles and PID information types complement each other:
+
+* **PID profiles** define **what information should exist for a particular type of object**.
+* **PID information types** define **how that information is stored and structured within the PID record**.
+
+Together, they enable PID infrastructures to support **reliable identification, rich metadata, and automated linking between research entities**, forming the basis for interoperable research data ecosystems.
+
 
 ### Using Persistent Identifiers (PIDs) for Non-Resolvable or Sensitive Data 
 
