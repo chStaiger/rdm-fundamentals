@@ -1,1 +1,100 @@
 # Persistent Identifier Services
+
+Several Persistent Identifier (PID) services exist to uniquely identify different entities in the research ecosystem (datasets, publications, researchers, institutions, grants, etc.). These services are usually operated by international organizations and are widely integrated into Research Data Management (RDM) infrastructures.
+
+## When to assign a PID
+
+When implementing a RDM service or infrastructure component PIDs fill in the FAIR principle:
+
+**F1. (Meta)data are assigned a globally unique and persistent identifier**
+
+Along the RDM life cycle arguably not every data object or collection needs a Persistent Identifier from the beginning. 
+Data should be assigned a Persistent Identifier (PID) when it reaches a stage where it needs to be reliably identified, cited, shared, or preserved:
+
+- Data Publication
+- Data Archiving
+- Creating gold standard data sets or reference data sets
+- When data is shared in a larger context than a research team
+
+## Which systems exist and what are they used for?
+
+### DOI (Digital Object Identifier)
+- Managed by the DOI Foundation
+- Used for identifying digital research outputs.
+- Commonly assigned to:
+  - datasets
+  - journal articles
+  - software
+  - reports
+- Based on the Handle system as resolving technology
+- Major DOI registration agencies include:
+  - DataCite – mainly for datasets and research data
+  - Crossref – mainly for scholarly publications
+
+Example:
+10.5281/zenodo.123456
+
+### EPIC (European Persistent Identifier Consortium)
+- Provided by the European Persistent Identifier Consortium
+- Provides persistent identifiers based on the Handle System
+- Used for:
+  - identifying digital objects in research infrastructures
+  - supporting long-term access to research data
+  - linking datasets and other research resources
+- Often used by
+  - European research infrastructures
+  - data repositories
+  - e-science services
+
+Example:
+21.T11998/0000-001A-3905-F
+
+### ORCID (Researcher Identifier)
+- Provided by ORCID
+- Uniquely identifies researchers and contributors
+- Distinguishes researchers with similar names
+- Links researchers to their publications, datasets, and grants
+
+Example:
+0000-0002-1825-0097
+
+### ROR (Research Organization Registry)
+- Managed by the Research Organization Registry
+- uniquely identifies research institutions and organizations
+- Used by:
+  - publishers
+  - funders
+  - repositories
+
+Example:
+Universities, research institutes, and laboratories each receive a unique ROR ID.
+
+4. Handle System
+- Developed by the Corporation for National Research Initiatives
+- Purpose:
+  - general infrastructure for persistent identifiers
+  - the DOI system and EPIC system is built on the Handle System
+- Used by:
+  - repositories
+  - digital libraries
+  - research infrastructures
+
+5. ARK (Archival Resource Key)
+- Developed by the California Digital Library
+- Identifying archival and digital objects
+- Commonly used by:
+  - libraries
+  - archives
+  - cultural heritage institutions
+
+Example:
+ark:/12345/x54
+
+### RAiD (Research Activity Identifier)
+- Managed by Australian Research Data Commons
+- Identifies research projects or activities
+- Allows linking:
+  - people (ORCID)
+  - outputs (DOI)
+  - institutions (ROR)
+
