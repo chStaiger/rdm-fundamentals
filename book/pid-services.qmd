@@ -356,8 +356,8 @@ To find Handles by metadata or URL, a search-enabled client can be instantiated:
 
 ```python
 search_client = PyHandleClient("rest").instantiate_for_read_and_search(
-    handle_server_url="https://epic-pid.storage.surfsara.nl:8003",
-    reverselookup_password="fe6f5c231aee4dcc42e9015fe9e7a56a",
+    handle_server_url="https://your.local.handle.server",
+    reverselookup_password="your_password",
     reverselookup_username="21.T12996"
 )
 result = search_client.search_handle(URL="/myfile/here/local.txt")
