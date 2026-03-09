@@ -1,166 +1,260 @@
 # Persistent Identifier Services
 
-Several Persistent Identifier (PID) services exist to uniquely identify different entities in the research ecosystem (datasets, publications, researchers, institutions, grants, etc.). These services are usually operated by international organizations and are widely integrated into Research Data Management (RDM) infrastructures.
+Persistent Identifier (PID) services are a fundamental component of modern research infrastructures and **Research Data Management (RDM)** systems. They provide stable, globally unique identifiers for digital and organizational entities within the research ecosystem. These entities include datasets, publications, software, researchers, institutions, research projects, and funding information.
 
-## When to assign a PID
+A persistent identifier ensures that a digital object can be **reliably referenced, discovered, and accessed over time**, even if its physical location changes. PID services are typically operated by international organizations and integrated into repositories, publishing platforms, and research infrastructure services. By assigning persistent identifiers to research objects and actors, these systems enable reliable citation, linking between resources, and automated machine processing.
 
-When implementing a RDM service or infrastructure component PIDs fill in the FAIR principle:
+Persistent identifiers also play a central role in enabling interoperable and FAIR-compliant research infrastructures.
 
-**F1. (Meta)data are assigned a globally unique and persistent identifier**
+---
 
-Along the RDM life cycle arguably not every data object or collection needs a Persistent Identifier from the beginning. 
-Data should be assigned a Persistent Identifier (PID) when it reaches a stage where it needs to be reliably identified, cited, shared, or preserved:
+## When to Assign a Persistent Identifier
 
-- Data Publication
-- Data Archiving
-- Creating gold standard data sets or reference data sets
-- When data is shared in a larger context than a research team
+When implementing an RDM service or infrastructure component, persistent identifiers directly support the **FAIR Data Principles**, particularly the first principle:
 
-## Which systems exist and what are they used for?
+**F1. (Meta)data are assigned a globally unique and persistent identifier.**
+
+However, not every piece of data produced during research requires a PID immediately. During early stages of the research lifecycle, datasets may still be experimental, incomplete, or subject to frequent changes. Assigning persistent identifiers too early can lead to unnecessary versioning and administrative overhead.
+
+A PID should typically be assigned once data becomes a **stable and shareable research object**. Common situations in which a persistent identifier should be assigned include:
+
+* **Data publication** in a repository
+* **Long-term data archiving**
+* Creation of **gold-standard datasets** or **reference datasets**
+* When data is **shared beyond the boundaries of a single research team**
+* When datasets are **cited in scientific publications**
+
+At this stage the dataset becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.
+
+---
+
+## Persistent Identifier Systems in the Research Ecosystem
+
+Different PID systems exist for identifying various entities within the research ecosystem. Some focus on research outputs such as datasets and publications, while others identify people, institutions, or research activities.
 
 ### DOI (Digital Object Identifier)
-- Managed by the DOI Foundation
-- Used for identifying digital research outputs.
-- Commonly assigned to:
-  - datasets
-  - journal articles
-  - software
-  - reports
-- Based on the Handle system as resolving technology
-- Major DOI registration agencies include:
-  - DataCite – mainly for datasets and research data
-  - Crossref – mainly for scholarly publications
 
-Example:
+The **DOI Foundation** manages the **Digital Object Identifier (DOI)** system, one of the most widely used persistent identifier schemes in scholarly communication.
+
+DOIs are primarily used to identify **digital research outputs**, including:
+
+* datasets
+* journal articles
+* software
+* reports
+
+The DOI system is built on the **Handle System**, which provides the underlying resolution infrastructure.
+
+Two major DOI registration agencies are widely used in research data management:
+
+* **DataCite** – primarily assigns DOIs to datasets and research data
+* **Crossref** – primarily assigns DOIs to scholarly publications
+
+Example DOI:
+
+```
 10.5281/zenodo.123456
+```
+
+---
 
 ### EPIC (European Persistent Identifier Consortium)
-- Provided by the European Persistent Identifier Consortium
-- Provides persistent identifiers based on the Handle System
-- Used for:
-  - identifying digital objects in research infrastructures
-  - supporting long-term access to research data
-  - linking datasets and other research resources
-- Often used by
-  - European research infrastructures
-  - data repositories
-  - e-science services
 
-Example:
+The **European Persistent Identifier Consortium (EPIC)** provides persistent identifier services based on the Handle infrastructure. EPIC is widely used in **European research infrastructures and data services**.
+
+EPIC identifiers are typically used for:
+
+* identifying digital objects in research infrastructures
+* supporting long-term access to research data
+* linking datasets and research resources within distributed infrastructures
+
+The service is commonly used by:
+
+* European research infrastructures
+* research data repositories
+* e-science services
+
+Example EPIC Handle:
+
+```
 21.T11998/0000-001A-3905-F
+```
+
+---
 
 ### ORCID (Researcher Identifier)
-- Provided by ORCID
-- Uniquely identifies researchers and contributors
-- Distinguishes researchers with similar names
-- Links researchers to their publications, datasets, and grants
 
-Example:
+The **ORCID** system provides persistent identifiers for **individual researchers and contributors**.
+
+An ORCID identifier allows researchers to be uniquely distinguished from others with similar names and enables automated linking between individuals and their scholarly outputs.
+
+ORCID identifiers help connect researchers with:
+
+* publications
+* datasets
+* software
+* grants
+* institutional affiliations
+
+Example ORCID:
+
+```
 0000-0002-1825-0097
+```
+
+---
 
 ### ROR (Research Organization Registry)
-- Managed by the Research Organization Registry
-- uniquely identifies research institutions and organizations
-- Used by:
-  - publishers
-  - funders
-  - repositories
 
-Example:
-Universities, research institutes, and laboratories each receive a unique ROR ID.
+The **Research Organization Registry (ROR)** provides identifiers for **research organizations and institutions**.
 
-4. Handle System
-- Developed by the Corporation for National Research Initiatives
-- Purpose:
-  - general infrastructure for persistent identifiers
-  - the DOI system and EPIC system is built on the Handle System
-- Used by:
-  - repositories
-  - digital libraries
-  - research infrastructures
+ROR identifiers are used by publishers, funding agencies, and repositories to uniquely identify institutional affiliations.
 
-5. ARK (Archival Resource Key)
-- Developed by the California Digital Library
-- Identifying archival and digital objects
-- Commonly used by:
-  - libraries
-  - archives
-  - cultural heritage institutions
+Typical use cases include:
 
-Example:
+* identifying institutional affiliations in publications
+* linking funding information
+* improving metadata interoperability between research systems
+
+Universities, research institutes, and laboratories each receive a unique ROR identifier.
+
+---
+
+### Handle System
+
+The **Handle System** provides the **technical infrastructure** used by several persistent identifier systems. It was developed by the **Corporation for National Research Initiatives**.
+
+The Handle system functions as a **distributed resolution infrastructure** that maps persistent identifiers to information about digital objects.
+
+Many PID services rely on the Handle system, including:
+
+* the DOI system
+* the EPIC PID service
+
+The infrastructure is widely used by:
+
+* repositories
+* digital libraries
+* research infrastructures
+
+---
+
+### ARK (Archival Resource Key)
+
+The **Archival Resource Key (ARK)** identifier scheme was developed by the **California Digital Library**.
+
+ARK identifiers are commonly used in **libraries, archives, and cultural heritage institutions** for identifying digital and archival resources.
+
+Typical use cases include:
+
+* digital collections
+* archival objects
+* digitized cultural heritage material
+
+Example ARK identifier:
+
+```
 ark:/12345/x54
+```
+
+---
 
 ### RAiD (Research Activity Identifier)
-- Managed by Australian Research Data Commons
-- Identifies research projects or activities
-- Allows linking:
-  - people (ORCID)
-  - outputs (DOI)
-  - institutions (ROR)
 
-## The resolution of a PID
+The **Research Activity Identifier (RAiD)** system is managed by the **Australian Research Data Commons**.
 
-At the example of the Handle system we will explain how the resolution of a PID works.
+RAiD identifiers are used to identify **research projects or research activities** rather than individual outputs.
 
-The Handle System resolves a persistent identifier by translating the identifier into the current location and metadata of a digital object. When a user enters a Handle (for example 21.T11998/0000-001A-3905-F) into a resolver or clicks a link, the request is sent to the global Handle infrastructure operated by the Corporation for National Research Initiatives.
+They enable linking of multiple entities within a research project, including:
 
-The resolution process typically works as follows:
+* researchers (via ORCID)
+* research outputs (via DOI)
+* institutions (via ROR)
 
-1. Request submission – A user or application sends the Handle identifier to a Handle resolver.
+This allows the creation of structured relationships between project components within research information systems.
 
-2. Prefix lookup – The resolver first checks the prefix of the Handle (the part before the slash) to determine which Handle server manages that identifier.
+---
 
-3. Local Handle lookup – The resolver then queries the responsible Handle server for the full identifier record.
+## Resolution of Persistent Identifiers
 
-4. Retrieval of stored information – The Handle record returns metadata associated with the identifier, usually including the current URL of the digital object.
+Persistent identifiers are useful only if they can be **resolved** to meaningful information. Resolution refers to the process of translating an identifier into the current location or metadata of a digital object.
 
-5. Redirection – The resolver redirects the user or application to the stored location of the resource.
+Using the **Handle system** as an example, the resolution process works as follows.
 
-Because the Handle record can be updated when the resource location changes, the identifier itself remains stable and continues to provide reliable access to the object.
+When a user enters a Handle identifier (for example `21.T11998/0000-001A-3905-F`) into a resolver or clicks a Handle-based link, the request is sent to the global Handle infrastructure operated by the **Corporation for National Research Initiatives**.
+
+The resolution process consists of several steps:
+
+1. **Request submission**
+   A user or application sends the Handle identifier to a Handle resolver.
+
+2. **Prefix lookup**
+   The resolver examines the **prefix** of the Handle (the part before the slash) to determine which Handle server is responsible for that identifier.
+
+3. **Local Handle lookup**
+   The resolver contacts the responsible Handle server and requests the full Handle record.
+
+4. **Retrieval of stored information**
+   The Handle record returns the metadata associated with the identifier, usually including the current location (URL) of the digital object.
+
+5. **Redirection**
+   The resolver redirects the user or application to the stored resource location.
+
+Because the Handle record can be updated when the resource location changes, the identifier itself remains stable and continues to provide reliable access over time.
+
+---
 
 ## Minting Handles and the Handle Record
 
-### Minting Handles and the Handle Record
+Within the Handle system, two important concepts are **minting a Handle** and **maintaining the Handle record**.
 
-In the **Handle System**, two important concepts are **minting a Handle** and **maintaining the Handle record**.
+### Minting Handles
 
-#### Minting Handles
+Minting a Handle refers to the process of **creating and registering a new persistent identifier** for a digital object.
 
-*Minting* a Handle means **creating and registering a new persistent identifier** for a digital object. Organizations that are registered with the Handle infrastructure operated by the **Corporation for National Research Initiatives** receive a **prefix**. They can then generate unique identifiers by combining this prefix with a locally created **suffix**.
+Organizations participating in the Handle infrastructure receive a **prefix** from the Handle system, administered by the **Corporation for National Research Initiatives**. The organization can then create unique identifiers by adding locally generated **suffixes**.
 
-A Handle therefore has the general structure:
+The general structure of a Handle identifier is:
 
 ```
 prefix/suffix
 ```
 
 * **Prefix** – identifies the organization responsible for the identifier
-* **Suffix** – uniquely identifies the specific digital object within that organization
+* **Suffix** – uniquely identifies the object within that organization
 
-For example:
+Example:
 
 ```
 21.T11998/0000-001A-3905-F
 ```
 
-The organization mints the suffix and registers the new Handle in the Handle system.
+The suffix is created locally by the organization and registered within the Handle system.
 
-#### The Handle Record
+---
 
-When a Handle is minted, a **Handle record** is created. This record stores the **information associated with the identifier**.
+### The Handle Record
+
+When a Handle is minted, a **Handle record** is created. This record stores the information associated with the identifier.
 
 A Handle record typically contains:
 
 * the **URL or location** of the digital object
-* **administrative information** (such as permissions or responsible organization)
-* sometimes additional **metadata or service endpoints**
+* **administrative information**, such as permissions or managing organization
+* additional **metadata or service endpoints**
 
-When a user resolves a Handle, the Handle system retrieves this record and returns the stored information, usually redirecting the user to the object's current location.
+When a Handle is resolved, the Handle system retrieves this record and returns the stored information, typically redirecting the user to the object’s current location.
 
-A key advantage is that **the Handle identifier itself never changes**. If the location of the object changes, only the **Handle record needs to be updated**, ensuring long-term persistence and reliable access.
+A major advantage of this architecture is that **the identifier itself never changes**. If the location of the resource changes, only the **Handle record needs to be updated**, preserving long-term persistence.
+
+---
 
 ## Example: Minting a Handle
 
-For the showcase we use a test prefeix from the EPIC system. We will create a resolution to a data file which is not retrievable through HTTP. We will leave information in the Handle entry how to retrieve the data file. Subsequently we will update the Handle entry to resolve to itself.
+For demonstration purposes, a **test prefix from the EPIC system** can be used to mint a new Handle identifier.
 
+In this example scenario, a Handle is created that initially points to a data file that is not directly accessible through HTTP. Instead of linking directly to the file, the Handle record can store information describing how the data can be retrieved.
 
+Later, the Handle record can be updated to point to another location or even resolve to its own metadata entry. This illustrates how Handle records can be modified without changing the identifier itself, demonstrating the flexibility and persistence of the system.
+
+Such examples are often used in training environments to demonstrate how persistent identifiers can be created, updated, and resolved within real research infrastructures.
