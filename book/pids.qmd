@@ -9,7 +9,9 @@ By providing stable, machine-readable references, Persistent Identifiers help en
 
 ::: {.callout-note title="Examples"}
 Published data and paper: Digital Object Identifiers (DOI)
+
 People: ORCID iD
+
 Institutions: Research OrganisationRegistry (ROR)
 :::
 
