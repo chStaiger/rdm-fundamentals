@@ -42,7 +42,7 @@ For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies 
 * **URL → current location of the object**
 * **Resolver → connects the identifier to the location**
 
-This separation is what makes PIDs persistent. If the resource moves to a different website, the **URL can be updated in the PID record**, while the **identifier itself remains the same**, ensuring that citations and references continue to work over time. 🔗📚
+This separation is what makes PIDs persistent. If the resource moves to a different website, the **URL can be updated in the PID record**, while the **identifier itself remains the same**, ensuring that citations and references continue to work over time.
 
 ## How do we ensure in the world that a PID like a DOI is unique?
 To reliably identify objects, the PID needs to be globally unique>
