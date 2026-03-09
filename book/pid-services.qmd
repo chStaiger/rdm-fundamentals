@@ -202,19 +202,15 @@ The resolution process consists of several steps:
 
 Because the Handle record can be updated when the resource location changes, the identifier itself remains stable and continues to provide reliable access over time.
 
----
-
 ## Minting Handles and the Handle Record
 
-Within the Handle system, two important concepts are **minting a Handle** and **maintaining the Handle record**.
+Persistent identifiers are only useful if they can be **created, stored, and updated reliably**. In the **Handle System**, two central concepts enable this: **minting a Handle** and **maintaining the Handle record**.
 
 ### Minting Handles
 
-Minting a Handle refers to the process of **creating and registering a new persistent identifier** for a digital object.
+*Minting* a Handle refers to the process of **creating and registering a new persistent identifier** for a digital object. Organizations participating in the Handle infrastructure receive a **prefix** from the Handle authority (such as EPIC). They can then generate unique identifiers by adding a locally generated **suffix**, which ensures each Handle is globally unique.
 
-Organizations participating in the Handle infrastructure receive a **prefix** from the Handle system, administered by the **Corporation for National Research Initiatives**. The organization can then create unique identifiers by adding locally generated **suffixes**.
-
-The general structure of a Handle identifier is:
+The general structure of a Handle is:
 
 ```
 prefix/suffix
@@ -229,32 +225,145 @@ Example:
 21.T11998/0000-001A-3905-F
 ```
 
-The suffix is created locally by the organization and registered within the Handle system.
+Once a Handle is minted, it is registered in the global Handle system and can be resolved to the object or metadata associated with it.
 
 ---
 
 ### The Handle Record
 
-When a Handle is minted, a **Handle record** is created. This record stores the information associated with the identifier.
-
-A Handle record typically contains:
+Every Handle has an associated **Handle record**, which stores the information linked to that identifier. A typical Handle record contains:
 
 * the **URL or location** of the digital object
-* **administrative information**, such as permissions or managing organization
-* additional **metadata or service endpoints**
+* **administrative information**, such as managing organization or access permissions
+* optional **metadata or service endpoints**, e.g., checksums, protocol types
 
-When a Handle is resolved, the Handle system retrieves this record and returns the stored information, typically redirecting the user to the object’s current location.
-
-A major advantage of this architecture is that **the identifier itself never changes**. If the location of the resource changes, only the **Handle record needs to be updated**, preserving long-term persistence.
+When the location of a resource changes, only the Handle record needs to be updated. The identifier itself remains unchanged, ensuring **persistent and reliable access**.
 
 ---
 
-## Example: Minting a Handle
+## Practical Example: Creating a Handle and Managing Its Metadata
 
-For demonstration purposes, a **test prefix from the EPIC system** can be used to mint a new Handle identifier.
+The following example demonstrates **minting a Handle, adding metadata, updating its target location, and managing non-HTTP resources** using Python and the **pyhandle** library.
 
-In this example scenario, a Handle is created that initially points to a data file that is not directly accessible through HTTP. Instead of linking directly to the file, the Handle record can store information describing how the data can be retrieved.
+---
 
-Later, the Handle record can be updated to point to another location or even resolve to its own metadata entry. This illustrates how Handle records can be modified without changing the identifier itself, demonstrating the flexibility and persistence of the system.
+### 1. Install the Python Library
 
-Such examples are often used in training environments to demonstrate how persistent identifiers can be created, updated, and resolved within real research infrastructures.
+```python
+!pip install pyhandle
+```
+
+---
+
+### 2. Imports
+
+```python
+from pyhandle.clientcredentials import PIDClientCredentials
+from pyhandle.handleclient import PyHandleClient
+```
+
+---
+
+### 3. Connect to the Handle Server
+
+Load your credentials and instantiate a Handle client:
+
+```python
+cred = PIDClientCredentials.load_from_JSON("credentials.json")
+client = PyHandleClient('rest').instantiate_with_credentials(cred)
+```
+
+---
+
+### 4. Minting a Handle
+
+Generate a unique Handle using your prefix:
+
+```python
+handle = client.generate_PID_name(cred.get_prefix())
+print(handle)
+```
+
+Example output:
+
+```
+21.T12996/a70da9ee-1202-451f-89ba-37d907fea470
+```
+
+---
+
+### 5. Adding Metadata
+
+Handles can store metadata for verification or special access. For example, a checksum:
+
+```python
+meta = {"checksum": "blablabla"}
+```
+
+To create and register the Handle with a URL and metadata:
+
+```python
+meta["URL"] = "http://google.com"
+client.register_handle_kv(handle, **meta, overwrite=False)
+```
+
+The Handle is now minted and publicly resolvable via the global resolver [https://hdl.handle.net/](https://hdl.handle.net/).
+
+---
+
+### 6. Updating Handle Metadata
+
+If the resource moves or changes, the metadata can be updated. For instance, pointing to a WebDAV collection:
+
+```python
+yoda_data_loc = "https://data.yoda.uu.nl/research-christine/my_books/"
+meta["data_type"] = "collection"
+meta["protocol"] = "webdav"
+meta["URL"] = yoda_data_loc
+client.modify_or_add_handle_value(handle, **meta)
+```
+
+Unneeded metadata can also be deleted:
+
+```python
+client.delete_handle_value(handle, "checksum")
+```
+
+---
+
+### 7. Minting EPIC Handles for Non-HTTP Resources
+
+Handles can reference non-HTTP-accessible resources (e.g., iRODS storage):
+
+```python
+handle2 = client.generate_PID_name(cred.get_prefix())
+meta2 = {
+    "protocol": "iRODS",
+    "irods_path": "/uu/home/research-christine/my_books",
+    "irods_server": "data.yoda.uu.nl",
+    "URL": f"https://hdl.handle.net/{handle2}?noredirect"
+}
+client.register_handle_kv(handle2, **meta2, overwrite=False)
+```
+
+This enables persistent identification of resources that require specialized protocols or authentication.
+
+---
+
+### 8. Searching and Managing Handles
+
+To find Handles by metadata or URL, a search-enabled client can be instantiated:
+
+```python
+search_client = PyHandleClient("rest").instantiate_for_read_and_search(
+    handle_server_url="https://epic-pid.storage.surfsara.nl:8003",
+    reverselookup_password="fe6f5c231aee4dcc42e9015fe9e7a56a",
+    reverselookup_username="21.T12996"
+)
+result = search_client.search_handle(URL="/myfile/here/local.txt")
+print(result)
+```
+
+---
+
+
