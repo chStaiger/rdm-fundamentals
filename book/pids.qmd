@@ -86,11 +86,11 @@ These agencies ensure that:
 Once an organization receives a prefix, it is responsible for ensuring that the **suffixes it creates are unique within its prefix**. For example:
 
 ```
-10.5281/zenodo.123456
-10.5281/zenodo.654321
+10.5281/zenodo.3238330
+10.5281/zenodo.3257173
 ```
 
-Both belong to the same prefix (`10.5281`) but identify different objects.
+Both belong to the same prefix (`10.5281`, which is owned by Zenodo) but identify different objects.
 
 #### 4. Registry Validation
 
