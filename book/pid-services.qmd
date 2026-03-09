@@ -53,7 +53,7 @@ Two major DOI registration agencies are widely used in research data management:
 Example DOI:
 
 ```
-10.5281/zenodo.123456
+10.5281/zenodo.3238330
 ```
 
 ---
@@ -347,6 +347,12 @@ client.register_handle_kv(handle2, **meta2, overwrite=False)
 ```
 
 This enables persistent identification of resources that require specialized protocols or authentication.
+
+Example:
+
+```
+21.T12996/24c4010d-1527-409b-953b-8c8548d3330a
+```
 
 ---
 
