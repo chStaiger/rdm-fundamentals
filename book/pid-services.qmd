@@ -106,15 +106,61 @@ The Handle System resolves a persistent identifier by translating the identifier
 
 The resolution process typically works as follows:
 
-Request submission – A user or application sends the Handle identifier to a Handle resolver.
+1. Request submission – A user or application sends the Handle identifier to a Handle resolver.
 
-Prefix lookup – The resolver first checks the prefix of the Handle (the part before the slash) to determine which Handle server manages that identifier.
+2. Prefix lookup – The resolver first checks the prefix of the Handle (the part before the slash) to determine which Handle server manages that identifier.
 
-Local Handle lookup – The resolver then queries the responsible Handle server for the full identifier record.
+3. Local Handle lookup – The resolver then queries the responsible Handle server for the full identifier record.
 
-Retrieval of stored information – The Handle record returns metadata associated with the identifier, usually including the current URL of the digital object.
+4. Retrieval of stored information – The Handle record returns metadata associated with the identifier, usually including the current URL of the digital object.
 
-Redirection – The resolver redirects the user or application to the stored location of the resource.
+5. Redirection – The resolver redirects the user or application to the stored location of the resource.
 
 Because the Handle record can be updated when the resource location changes, the identifier itself remains stable and continues to provide reliable access to the object.
+
+## Minting Handles and the Handle Record
+
+### Minting Handles and the Handle Record
+
+In the **Handle System**, two important concepts are **minting a Handle** and **maintaining the Handle record**.
+
+#### Minting Handles
+
+*Minting* a Handle means **creating and registering a new persistent identifier** for a digital object. Organizations that are registered with the Handle infrastructure operated by the **Corporation for National Research Initiatives** receive a **prefix**. They can then generate unique identifiers by combining this prefix with a locally created **suffix**.
+
+A Handle therefore has the general structure:
+
+```
+prefix/suffix
+```
+
+* **Prefix** – identifies the organization responsible for the identifier
+* **Suffix** – uniquely identifies the specific digital object within that organization
+
+For example:
+
+```
+21.T11998/0000-001A-3905-F
+```
+
+The organization mints the suffix and registers the new Handle in the Handle system.
+
+#### The Handle Record
+
+When a Handle is minted, a **Handle record** is created. This record stores the **information associated with the identifier**.
+
+A Handle record typically contains:
+
+* the **URL or location** of the digital object
+* **administrative information** (such as permissions or responsible organization)
+* sometimes additional **metadata or service endpoints**
+
+When a user resolves a Handle, the Handle system retrieves this record and returns the stored information, usually redirecting the user to the object's current location.
+
+A key advantage is that **the Handle identifier itself never changes**. If the location of the object changes, only the **Handle record needs to be updated**, ensuring long-term persistence and reliable access.
+
+## Example: Minting a Handle
+
+For the showcase we use a test prefeix from the EPIC system. We will create a resolution to a data file which is not retrievable through HTTP. We will leave information in the Handle entry how to retrieve the data file. Subsequently we will update the Handle entry to resolve to itself.
+
 
