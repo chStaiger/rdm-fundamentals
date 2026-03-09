@@ -98,3 +98,23 @@ ark:/12345/x54
   - outputs (DOI)
   - institutions (ROR)
 
+## The resolution of a PID
+
+At the example of the Handle system we will explain how the resolution of a PID works.
+
+The Handle System resolves a persistent identifier by translating the identifier into the current location and metadata of a digital object. When a user enters a Handle (for example 21.T11998/0000-001A-3905-F) into a resolver or clicks a link, the request is sent to the global Handle infrastructure operated by the Corporation for National Research Initiatives.
+
+The resolution process typically works as follows:
+
+Request submission – A user or application sends the Handle identifier to a Handle resolver.
+
+Prefix lookup – The resolver first checks the prefix of the Handle (the part before the slash) to determine which Handle server manages that identifier.
+
+Local Handle lookup – The resolver then queries the responsible Handle server for the full identifier record.
+
+Retrieval of stored information – The Handle record returns metadata associated with the identifier, usually including the current URL of the digital object.
+
+Redirection – The resolver redirects the user or application to the stored location of the resource.
+
+Because the Handle record can be updated when the resource location changes, the identifier itself remains stable and continues to provide reliable access to the object.
+
