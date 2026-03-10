@@ -30,6 +30,10 @@ A **URL (Uniform Resource Locator)** is a specific kind of URI that points to th
 | **PID (Persistent Identifier)**       | `10.1038/nphys1170` (a Digital Object Identifier (DOI)) | A **long-lasting identifier** for a digital object such as a research article. It stays the same even if the location of the object changes. |
 | **URL (Uniform Resource Locator)**    | `https://www.nature.com/articles/nphys1170`             | The **actual web address** where the resource is currently located.                                                                          |
 
+::: {.callout-note title="PIDs in a nutshell"}
+The *persistent* of a PID is the identifier, it **MUST NOT** change. The location even the content of the object it identifies can change over time. Also when the object is deleted, the PID continues to exist.
+:::
+
 ## How does a PID work?
 
 A PID typically works through a **resolution system**:
@@ -46,8 +50,10 @@ For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies 
 
 This separation is what makes PIDs persistent. If the resource moves to a different website, the **URL can be updated in the PID record**, while the **identifier itself remains the same**, ensuring that citations and references continue to work over time.
 
+A notable update of the location is the so-called tombstone. If the object an identifier points to is deleted, the identifier still continues to exist and should be redirected to a [tombstone page](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/102827225/PIDs+Setting+up+your+PID+structure#PIDs%3ASettingupyourPIDstructure-Tombstoning).
+
 ## How do we ensure in the world that a PID like a DOI is unique?
-To reliably identify objects, the PID needs to be globally unique>
+To reliably identify objects, the PID needs to be globally unique. 
 Persistent Identifiers are designed with **structured namespaces and controlled registration systems** to guarantee this global uniqueness. A good example is the Digital Object Identifier (DOI).
 
 #### 1. Structured Identifier Format
@@ -96,9 +102,8 @@ Both belong to the same prefix (`10.5281`, which is owned by Zenodo) but identif
 
 When a DOI is registered, the system checks the central registry to ensure that **the full identifier has not already been assigned**.
 
----
 
-**In summary**
+### Summary
 
 Global uniqueness is ensured through:
 
@@ -135,11 +140,9 @@ Minting a PID is therefore not only about creating an identifier—it also invol
 
 **Note**: The metadata of a PID is always publicly accessible!
 
-### PID Profiles and PID Information Types
+## PID Profiles and PID Information Types
 
 To make Persistent Identifiers truly useful in digital infrastructures, it is not enough to simply create the identifier itself. Systems also need a clear way to define **what information is associated with a PID and how that information should be structured and interpreted**. This is where **PID profiles** and **PID information types** play an important role.
-
----
 
 ### PID Profiles
 
@@ -159,13 +162,11 @@ For example, a dataset registered through DataCite using a Digital Object Identi
 
 PID profiles therefore provide **guidance for implementers**, ensuring that identifiers are not only unique but also **meaningful and usable across systems**.
 
----
-
 ### PID Information Types
 
 **PID information types** define the **individual pieces of information stored in a PID record** and how they are represented in the PID infrastructure. They describe the structure and semantics of the data associated with a PID.
 
-In systems such as the Handle System, a PID record consists of a set of **typed values**, where each value has a specific meaning.
+In systems such as the Handle System, [see PID services](pid-services.qmd), a PID record consists of a set of **typed values**, where each value has a specific meaning.
 
 Examples of information types include:
 
@@ -186,10 +187,15 @@ PID profiles and PID information types complement each other:
 
 Together, they enable PID infrastructures to support **reliable identification, rich metadata, and automated linking between research entities**, forming the basis for interoperable research data ecosystems.
 
+Both together can be seen as a sort metadata schema for PIDs.
 
-### Using Persistent Identifiers (PIDs) for Non-Resolvable or Sensitive Data 
 
-Persistent Identifiers are often accessed through web resolvers (for example `https://doi.org/...`), but they can also be used for **resources that cannot be directly accessed via HTTP**. This includes offline data, restricted datasets, physical samples, or resources stored in systems without web access.
+## Using Persistent Identifiers (PIDs) for Non-Resolvable or Sensitive Data 
+
+Persistent Identifiers are often accessed through web resolvers (for example `https://doi.org/...`), directing to a resource which can be accessed through http.
+However, some resources in the internet are not accessible through http, or are sensitive and only accessible after a successful authorisation. This includes offline data, restricted datasets, physical samples, or resources stored in systems without web access. In those cases the resolver will not be able to serve the resource.  
+
+In those cases it is advised to create a landing page with information for users and machines how to access the data. In the chapter [PID services](pid-services.qmd#practical-example-creating-a-handle-and-managing-its-metadata) we show how the PID entry itself can serve as a landing page.
 
 The key principle is that a PID **identifies the object, not necessarily its downloadable location**.
 
@@ -248,6 +254,9 @@ A PID does not require the underlying object to be directly accessible online. I
 ## References
 ### General
 - https://projects.tib.eu/pid-service/en/persistent-identifiers/persistent-identifiers-pids/
-### PID profiles
+- https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/102827225/PIDs+Setting+up+your+PID+structure
+
+### PID profiles and Information types
 - https://www.rd-alliance.org/wp-content/uploads/2015/01/PIT20final20report.pdf
+
 - @misc{Weigel_Plale_Parsons_Zhou_Luo_Schwardmann_Quick_Hellström_Kurakawa_2018, title={RDA Recommendation on PID Kernel Information}, DOI={10.15497/rda00031}, publisher={Research Data Alliance}, author={Weigel, Tobias and Plale, Beth and Parsons, Mark and Zhou, Gabriel and Luo, Yu and Schwardmann, Ulrich and Quick, Robert and Hellström, Margareta and Kurakawa, Kei}, year={2018} } 
