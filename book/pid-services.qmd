@@ -6,7 +6,6 @@ A persistent identifier ensures that a digital object can be **reliably referenc
 
 Persistent identifiers also play a central role in enabling interoperable and FAIR-compliant research infrastructures.
 
----
 
 ## When to Assign a Persistent Identifier
 
@@ -22,11 +21,10 @@ A PID should typically be assigned once data becomes a **stable and shareable re
 * **Long-term data archiving**
 * Creation of **gold-standard datasets** or **reference datasets**
 * When data is **shared beyond the boundaries of a single research team**
-* When datasets are **cited in scientific publications**
+
 
 At this stage the dataset becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.
 
----
 
 ## Persistent Identifier Systems in the Research Ecosystem
 
@@ -173,7 +171,128 @@ They enable linking of multiple entities within a research project, including:
 
 This allows the creation of structured relationships between project components within research information systems.
 
+## Spotlight on Handles, EPICs, DOIs
+
+Persistent identifier (PID) infrastructures for digital resources are built on layered technical and governance frameworks. Systems such as the **Digital Object Identifier (DOI)**, the **Handle System**, and services provided by **EPIC** operate within the broader conceptual framework of the **Digital Object Network Architecture (DONA)**. Together they form an ecosystem that enables stable identification, management, and resolution of digital objects on the internet.
+
+**The Handle System provides the underlying technical infrastructure for persistent identifiers.** It enables globally unique identifiers, known as *handles*, to be assigned to digital objects and resolved through a distributed network of handle servers. When a handle is queried, the system returns associated metadata, such as the current URL of the resource. This separation between the identifier and the object's location ensures persistence even when the resource moves.
+
+Built on top of the Handle System is the Digital Object Identifier (DOI) system, a widely used persistent identifier scheme for scholarly publications, datasets, and other research outputs. **DOIs use the handle protocol for resolution but add additional governance, metadata standards, and registration workflows tailored to scholarly communication.** Organizations such as International DOI Foundation oversee the DOI framework and coordinate registration agencies that assign DOIs to digital objects.
+
+The European Persistent Identifier Consortium (EPIC) is another major provider of persistent identifiers based on the Handle System. EPIC operates a handle registration service primarily aimed at research institutions, data infrastructures, and e-science projects in Europe. Unlike the DOI system, which focuses heavily on scholarly publishing workflows, **EPIC provides a more general handle-based PID service that can be used for datasets, research infrastructures, software, and other digital assets.**
+
+At the architectural level, both DOI and EPIC-based handles operate within the principles of the Digital Object Network Architecture (DONA). **DONA defines a global infrastructure for digital object management, including the assignment of identifier prefixes, governance of the handle registry, and operation of root resolution services.** Through DONA, different identifier communities—such as DOI registration agencies and EPIC handle services—can coexist while sharing the same global resolution infrastructure.
+
+In summary, DONA provides the overarching framework for managing digital object identifiers. The Handle System supplies the technical resolution mechanism within this framework. DOI represents a specialized, widely adopted identifier scheme built on handles, while EPIC operates as a consortium that provides handle-based persistent identifier services, particularly for European research infrastructures. This layered ecosystem enables long-term, interoperable identification and access to digital resources across diverse domains.
+
+Good question—this is a key conceptual difference between **EPIC handles** and **DOIs**, even though both rely on the same technical infrastructure.
+
 ---
+
+## Different Use of the Handle System: EPIC vs DOI
+
+Although both European Persistent Identifier Consortium (EPIC) and the Digital Object Identifier (DOI) system use the Handle System for identifier resolution, they **use the Handle record in different ways**.
+
+### EPIC: Metadata in the Handle Record
+
+EPIC uses the Handle System **as a full PID infrastructure**, meaning that the **Handle record itself stores meaningful metadata** about the object. EPIC follows the **PID Information Types** model, which standardizes how information is encoded in Handle records.
+
+Example Handle:
+
+```
+21.T11998/0000-001A-3905-F
+```
+
+A Handle record in EPIC may include multiple typed entries such as:
+
+| Type             | Example Content                     | Purpose                        |
+| ---------------- | ----------------------------------- | ------------------------------ |
+| `URL`            | `https://repository.org/object/123` | Current location of the object |
+| `CHECKSUM`       | `sha256:...`                        | Data integrity verification    |
+| `EMAIL`          | `contact@repository.org`            | Administrative contact         |
+| `10320/LOC`      | Multiple URLs                       | Location-aware resolution      |
+| `PID_INFO_TYPES` | Reference schema                    | Declares metadata structure    |
+
+In this model, the **Handle record itself functions as a lightweight metadata container**, enabling machines to retrieve essential information directly from the Handle infrastructure.
+
+---
+
+### DOI: Metadata Outside the Handle Record
+
+In contrast, the DOI system uses the Handle System **primarily for resolution**, not for storing descriptive metadata.
+
+A DOI such as:
+
+```
+10.1000/182
+```
+
+is technically implemented as a Handle, but the Handle record typically contains only minimal information, most importantly:
+
+| Type  | Content                      |
+| ----- | ---------------------------- |
+| `URL` | Landing page of the resource |
+
+The **actual metadata** for the DOI (title, authors, publication date, publisher, etc.) is **stored in external metadata registries** managed by DOI Registration Agencies such as Crossref or DataCite.
+
+These agencies maintain **large metadata databases** that can be queried through APIs. For example:
+
+* Crossref metadata API
+* DataCite metadata store
+
+When someone resolves a DOI through `doi.org`, the Handle system simply redirects the user to a **landing page**, while the rich metadata is retrieved from the registration agency's infrastructure rather than from the Handle record itself.
+
+
+The difference can be understood as two architectural approaches:
+
+| Feature           | EPIC Handles                | DOIs                         |
+| ----------------- | --------------------------- | ---------------------------- |
+| Infrastructure    | Handle System               | Handle System                |
+| Metadata location | Inside the Handle record    | External metadata registries |
+| Metadata model    | PID Information Types       | DOI metadata schemas         |
+| Resolution        | Directly from Handle record | Redirect to landing page     |
+| Example prefix    | `21.*`                      | `10.*`                       |
+
+Thus, EPIC uses the Handle System as a **metadata-aware PID infrastructure**, while the DOI system treats the Handle System mainly as a **resolution layer**, with descriptive metadata maintained in separate domain-specific services.
+
+Schematic: Transfer to image
+
+```
+
+                     Digital Object Network Architecture (DONA)
+                                   │
+                                   │
+                          Global Handle Registry
+                                   │
+                                   │
+                             Handle System
+                    (Identifier resolution infrastructure)
+                                   │
+              ┌────────────────────┴────────────────────┐
+              │                                         │
+              │                                         │
+      EPIC Handle Services                        DOI System
+              │                                         │
+              │                                         │
+   Handle Record contains:                     Handle Record contains:
+   - URL                                        - URL
+   - PID Information Types                      (minimal metadata)
+   - checksums
+   - admin data
+   - service endpoints                                   │
+              │                                           │
+              │                                           │
+      Metadata retrieved directly                Metadata stored externally
+      from the Handle record                     in DOI Registration Agencies
+              │                                           │
+              │                                  ┌────────┴────────┐
+              │                                  │                 │
+              │                        :contentReference[oaicite:1]{index=1}     :contentReference[oaicite:2]{index=2}
+              │                                  │                 │
+              │                                  │                 │
+      Machine-actionable PID metadata      DOI metadata databases
+      stored in Handle infrastructure      (title, authors, etc.)
+```
 
 ## Resolution of Persistent Identifiers
 
@@ -227,7 +346,6 @@ Example:
 
 Once a Handle is minted, it is registered in the global Handle system and can be resolved to the object or metadata associated with it.
 
----
 
 ### The Handle Record
 
@@ -239,13 +357,11 @@ Every Handle has an associated **Handle record**, which stores the information l
 
 When the location of a resource changes, only the Handle record needs to be updated. The identifier itself remains unchanged, ensuring **persistent and reliable access**.
 
----
 
-## Practical Example: Creating a Handle and Managing Its Metadata
+## Practical Example: Creating an EPIC Handle and Managing Its Metadata
 
 The following example demonstrates **minting a Handle, adding metadata, updating its target location, and managing non-HTTP resources** using Python and the **pyhandle** library.
 
----
 
 ### 1. Install the Python Library
 
