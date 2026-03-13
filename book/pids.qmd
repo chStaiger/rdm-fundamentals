@@ -3,25 +3,24 @@
 Persistent Identifiers (PIDs) are long-lasting references used to uniquely identify digital objects such as research papers, datasets, software, or even researchers. Unlike regular web links that may break or change over time, PIDs are designed to remain stable and consistently point to the correct resource location, even if its location on the internet changes.
 
 A PID works by assigning a unique identifier to an object and linking it to a record that stores important information (metadata) about that object, such as its title, creator, and most importantly its  current location.  You can think of the so-called PID entry as an ID card or at least an address book for the object.
-Like with your own ID card, you need to update that metadata. E.g. if the object moves to a different website or repository, the metadata behind the PID needs to be updated so that the identifier continues to point to the correct place.
+Like with your own ID card, you need to update that metadata. For example, if the object moves to a different website or repository, the metadata behind the PID needs to be updated so that the identifier continues to point to the correct place.
 
-By providing stable, machine-readable references, Persistent Identifiers help ensure that digital resources remain accessible, traceable, and properly attributed over time.
+By providing stable, machine-readable references, PIDs help ensure that digital resources remain accessible, traceable, and properly attributed over time.
 
 ::: {.callout-note title="Examples"}
-Published data and paper: Digital Object Identifiers (DOI)
+Published articles and datasets: Digital Object Identifiers (DOI)
 
 People: ORCID iD
 
-Institutions: Research OrganisationRegistry (ROR)
+Institutions: Research Organisation Registry (ROR)
 :::
 
 ## Why not simply use Uniform Resource Locations (URLs)?
 
-In the context of **Persistent Identifiers (PIDs)**, the distinction between **URIs** and **URLs** becomes important because PIDs are designed to **identify** digital objects in a stable way, even if their **location changes**.
+In the context of **Persistent Identifiers (PIDs)**, the distinction between **URLs** and **URIs** becomes important because PIDs are designed to **identify** digital objects in a stable way, even if their **location changes**.
 
-A **URI (Uniform Resource Identifier)** is the broader concept: it is any identifier used to uniquely identify a resource. Many PIDs are implemented as URIs because they provide a **stable identity** for an object without tying it permanently to a specific location.
+A **URL (Uniform Resource Locator)** is a specific kind of URI that points to the **current location** of a resource on the web. The **URI (Uniform Resource Identifier)** is a broader concept: it is any identifier used to uniquely identify a resource. Many PIDs are implemented as URIs because they provide a **stable identity** for an object without tying it permanently to a specific location.
 
-A **URL (Uniform Resource Locator)** is a specific kind of URI that points to the **current location** of a resource on the web.
 
 
 | Type                                  | Example                                                 | What it does                                                                                                                                 |
@@ -31,7 +30,7 @@ A **URL (Uniform Resource Locator)** is a specific kind of URI that points to th
 | **URL (Uniform Resource Locator)**    | `https://www.nature.com/articles/nphys1170`             | The **actual web address** where the resource is currently located.                                                                          |
 
 ::: {.callout-note title="PIDs in a nutshell"}
-The *persistent* of a PID is the identifier, it **MUST NOT** change. The location even the content of the object it identifies can change over time. Also when the object is deleted, the PID continues to exist.
+The *persistent* aspect of a PID is the identifier, it **MUST NOT** change. The location even the content of the object it identifies can change over time. Also when the object is deleted, the PID continues to exist.
 :::
 
 ## How does a PID work?
@@ -42,7 +41,7 @@ A PID typically works through a **resolution system**:
 2. The PID resolves through an infrastructure service.
 3. The service redirects the user to the **current URL** where the object is located or, if the object itself is not reachable through the __http__, a metadata entry that provides more information like  the landing page of a data repository.
 
-For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies a publication. When you access it via `https://doi.org/10.1000/182`, the DOI system resolves the identifier and redirects you to the **current URL** of the article on a publisher or repository website.
+For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies a publication. When you access it via `https://doi.org/10.1000/182`, the DOI system resolves the identifier and redirects you to the **current URL** of the article on a publisher or repository website. In this example, the DOI is an identifier for The DOI Handbook. The DOI service resolves the identifier to the current URL which, as of writing this, is <https://www.doi.org/the-identifier/resources/handbook/> 
 
 * **PID / URI → stable identifier for the object**
 * **URL → current location of the object**
@@ -193,7 +192,7 @@ Both together can be seen as a sort metadata schema for PIDs.
 ## Using Persistent Identifiers (PIDs) for Non-Resolvable or Sensitive Data 
 
 Persistent Identifiers are often accessed through web resolvers (for example `https://doi.org/...`), directing to a resource which can be accessed through http.
-However, some resources in the internet are not accessible through http, or are sensitive and only accessible after a successful authorisation. This includes offline data, restricted datasets, physical samples, or resources stored in systems without web access. In those cases the resolver will not be able to serve the resource.  
+However, some resources on the internet are not accessible through http, or are sensitive and only accessible after a successful authorisation. This includes offline data, restricted datasets, physical samples, or resources stored in systems without web access. In those cases the resolver will not be able to serve the resource.  
 
 In those cases it is advised to create a landing page with information for users and machines how to access the data. In the chapter [PID services](pid-services.qmd#practical-example-creating-a-handle-and-managing-its-metadata) we show how the PID entry itself can serve as a landing page.
 
