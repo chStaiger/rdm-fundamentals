@@ -26,7 +26,7 @@ A **URL (Uniform Resource Locator)** is a specific kind of URI that points to th
 | Type                                  | Example                                                 | What it does                                                                                                                                 |
 | ------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **URL (Uniform Resource Locator)**    | `https://www.nature.com/articles/nphys1170`             | The **actual web address** where the resource is currently located.                                                                          |
-|**URI (Uniform Resource Identifier)** | `urn:isbn:9780131101630`                                | Identifies a resource (in this case a book by its ISBN) but does **not necessarily tell you where to find it online**.                       |
+| **URI (Uniform Resource Identifier)** | `urn:isbn:9780131101630`                                | Identifies a resource (in this case a book by its ISBN) but does **not necessarily tell you where to find it online**.                       |
 | **PID (Persistent Identifier)**       | `10.1038/nphys1170` (a Digital Object Identifier (DOI)) | A **long-lasting identifier** for a digital object such as a research article. It stays the same even if the location of the object changes. |
 
 
