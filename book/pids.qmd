@@ -62,40 +62,57 @@ A notable update of the location is the so-called tombstone. If the object an id
 PIDs help to prevent **Link Rot**.
 
 ```{mermaid}
-%%| label: fig-2
-%%| fig-cap: Full PID Lifecycle vs. No‑PID Link Rot
+%%| label: fig-nopid
+%%| fig-cap: No‑PID Lifecycle (Direct URL → Link Rot)
 %%| fig-align: center
 %%{init: {
   "look": "handDrawn",
   "flowchart": { "htmlLabels": false }
 }}%%
 
-flowchart TB
+flowchart LR
 
-    %% PID Lifecycle (left)
-    subgraph PID["With Persistent Identifier"]
-        MINT["Mint PID"]
-        STORE["Store Handle record"]
-        RESOLVE["Resolve PID"]
-        ACCESS["Access resource"]
-        MOVE_PID["Resource moves"]
-        UPDATE["Update record"]
-        MINT --> STORE --> RESOLVE --> ACCESS --> MOVE_PID --> UPDATE --> RESOLVE
-    end
+    LINK["Create direct URL"]
+    USE["Users access URL"]
+    MOVE["Resource moves"]
+    BREAK["URL breaks 404"]
 
-    %% No-PID Lifecycle (right)
-    subgraph NOPID["Without Persistent Identifier"]
-        LINK["Create direct URL"]
-        USE["Users access URL"]
-        MOVE["Resource moves"]
-        BREAK["URL breaks<br>404 Not Found"]
-        LINK --> USE --> MOVE --> BREAK
-    end
+    LINK --> USE --> MOVE --> BREAK
 
-    %% Visual separation
-    PID --- NOPID
-
+    %% Style for the 404 node
+    style BREAK fill:#ffcccc,stroke:#cc0000,color:#000000
+    style MOVE fill:#e0f7e9,stroke:#2e8b57,color:#000000
 ```
+
+```{mermaid}
+%%| label: fig-pid
+%%| fig-cap: PID Lifecycle (Mint → Store → Resolve → Update)
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "themeVariables": {
+      "fontSize": "22px",
+      "fontSizeSection": "28px"
+  },
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart LR
+
+    MINT["Mint PID"]
+    STORE["Store Handle record"]
+    RESOLVE["Resolve PID"]
+    ACCESS["Access resource"]
+    MOVE_PID["Resource moves"]
+    UPDATE["Update record"]
+
+    MINT --> STORE --> RESOLVE --> ACCESS --> MOVE_PID --> UPDATE --> RESOLVE
+    
+    %% Highlight the two nodes
+    style MOVE_PID fill:#e0f7e9,stroke:#2e8b57,color:#000000
+    style UPDATE fill:#e0f7e9,stroke:#2e8b57,color:#000000
+```
+
 
 
 
