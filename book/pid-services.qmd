@@ -2,20 +2,23 @@
 
 Persistent Identifier (PID) services are a fundamental component of modern research infrastructures and **Research Data Management (RDM)** systems. They provide stable, globally unique identifiers for digital and organizational entities within the research ecosystem. These entities include datasets, publications, software, researchers, institutions, research projects, and funding information.
 
-A persistent identifier ensures that a digital object can be **reliably referenced, discovered, and accessed over time**, even if its physical location changes. PID services are typically operated by international organizations and integrated into repositories, publishing platforms, and research infrastructure services. By assigning persistent identifiers to research objects and actors, these systems enable reliable citation, linking between resources, and automated machine processing.
+A persistent identifier ensures that a digital object can be **reliably referenced, discovered, and accessed over time**, even if its physical location changes. PID services are typically operated by international organizations and integrated into repositories, publishing platforms, and research infrastructure services. By assigning persistent identifiers to digital objects and actors, these systems enable reliable citation, linking between resources, and automated machine processing.
 
 Persistent identifiers also play a central role in enabling interoperable and FAIR-compliant research infrastructures.
+
+In this chapter we will focus on PIDs and PID services for digital objects, i.e. data. A general overview over PIDs can be found in the chapter [Persistent Identifiers](pids.qmd).
 
 
 ## When to Assign a Persistent Identifier
 
 When implementing an RDM service or infrastructure component, persistent identifiers directly support the **FAIR Data Principles**, particularly the first principle:
 
-**F1. (Meta)data are assigned a globally unique and persistent identifier.**
+**[F1](https://www.go-fair.org/fair-principles/f1-meta-data-assigned-globally-unique-persistent-identifiers/). (Meta)data are assigned a globally unique and persistent identifier.**
+"Principle F1 is arguably the most important because it will be hard to achieve other aspects of FAIR without globally unique and persistent identifiers."
 
-However, not every piece of data produced during research requires a PID immediately. During early stages of the research lifecycle, datasets may still be experimental, incomplete, or subject to frequent changes. Assigning persistent identifiers too early can lead to unnecessary versioning and administrative overhead.
+However, not every piece of data produced during research requires a PID immediately. During early stages of the research data lifecycle, datasets may still be experimental, incomplete, or subject to frequent changes. Assigning persistent identifiers too early can lead to unnecessary versioning and administrative overhead.
 
-A PID should typically be assigned once data becomes a **stable and shareable research object**. Common situations in which a persistent identifier should be assigned include:
+A PID should typically be assigned once data becomes a **stable and shareable digital object**. Common situations in which a persistent identifier should be assigned include:
 
 * **Data publication** in a repository
 * **Long-term data archiving**
@@ -26,9 +29,9 @@ A PID should typically be assigned once data becomes a **stable and shareable re
 At this stage the dataset becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.
 
 
-## Persistent Identifier Systems in the Research Ecosystem
+## Persistent Identifier Systems and Srevices in the Research Ecosystem
 
-Different PID systems exist for identifying various entities within the research ecosystem. Some focus on research outputs such as datasets and publications, while others identify people, institutions, or research activities.
+Different PID systems exist for identifying various entities within the research ecosystem. Some focus on research outputs such as datasets and publications, while others identify people, institutions, or research activities. Here we mention some which are commonly used to reference datasets.
 
 ### DOI (Digital Object Identifier)
 
@@ -80,44 +83,6 @@ Example EPIC Handle:
 
 ---
 
-### ORCID (Researcher Identifier)
-
-The **ORCID** system provides persistent identifiers for **individual researchers and contributors**.
-
-An ORCID identifier allows researchers to be uniquely distinguished from others with similar names and enables automated linking between individuals and their scholarly outputs.
-
-ORCID identifiers help connect researchers with:
-
-* publications
-* datasets
-* software
-* grants
-* institutional affiliations
-
-Example ORCID:
-
-```
-0000-0002-1825-0097
-```
-
----
-
-### ROR (Research Organization Registry)
-
-The **Research Organization Registry (ROR)** provides identifiers for **research organizations and institutions**.
-
-ROR identifiers are used by publishers, funding agencies, and repositories to uniquely identify institutional affiliations.
-
-Typical use cases include:
-
-* identifying institutional affiliations in publications
-* linking funding information
-* improving metadata interoperability between research systems
-
-Universities, research institutes, and laboratories each receive a unique ROR identifier.
-
----
-
 ### Handle System
 
 The **Handle System** provides the **technical infrastructure** used by several persistent identifier systems. It was developed by the **Corporation for National Research Initiatives**.
@@ -155,22 +120,6 @@ Example ARK identifier:
 ark:/12345/x54
 ```
 
----
-
-### RAiD (Research Activity Identifier)
-
-The **Research Activity Identifier (RAiD)** system is managed by the **Australian Research Data Commons**.
-
-RAiD identifiers are used to identify **research projects or research activities** rather than individual outputs.
-
-They enable linking of multiple entities within a research project, including:
-
-* researchers (via ORCID)
-* research outputs (via DOI)
-* institutions (via ROR)
-
-This allows the creation of structured relationships between project components within research information systems.
-
 ## Spotlight on Handles, EPICs, DOIs
 
 Persistent identifier (PID) infrastructures for digital resources are built on layered technical and governance frameworks. Systems such as the **Digital Object Identifier (DOI)**, the **Handle System**, and services provided by **EPIC** operate within the broader conceptual framework of the **Digital Object Network Architecture (DONA)**. Together they form an ecosystem that enables stable identification, management, and resolution of digital objects on the internet.
@@ -185,9 +134,41 @@ At the architectural level, both DOI and EPIC-based handles operate within the p
 
 In summary, DONA provides the overarching framework for managing digital object identifiers. The Handle System supplies the technical resolution mechanism within this framework. DOI represents a specialized, widely adopted identifier scheme built on handles, while EPIC operates as a consortium that provides handle-based persistent identifier services, particularly for European research infrastructures. This layered ecosystem enables long-term, interoperable identification and access to digital resources across diverse domains.
 
-Good question—this is a key conceptual difference between **EPIC handles** and **DOIs**, even though both rely on the same technical infrastructure.
 
----
+```{mermaid}
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false}
+}}%%
+
+flowchart LR
+
+    subgraph Technical_Infrastructure["Technical Infrastructure"]
+        HANDLE["Handle System<br>(Global identifier system)"]
+    end
+
+    subgraph DOI_Framework["DOI Framework"]
+        DOI["DOI<br>(Specialized identifier for scholarly outputs)"]
+    end
+
+    subgraph EPIC_Framework["EPIC Framework"]
+        EPIC["EPIC<br>(Persistent identifiers for European research)"]
+    end
+
+    subgraph Global_Framework["Global Framework"]
+        DONA["DONA<br>(Global management of digital objects)"]
+    end
+
+    HANDLE -->|Used by| DOI
+    HANDLE -->|Used by| EPIC
+    DOI -->|Part of| DONA
+    EPIC -->|Part of| DONA
+
+    linkStyle 0 labelPosition:0.5, align:top;
+    linkStyle 1 labelPosition:0.5, align:top;
+    linkStyle 2 labelPosition:0.5, align:top;
+    linkStyle 3 labelPosition:0.5, align:top;
+```
 
 ## Different Use of the Handle System: EPIC vs DOI
 
@@ -487,5 +468,9 @@ print(result)
 ```
 
 ---
+
+## References
+- https://www.go-fair.org/fair-principles/
+- 
 
 
