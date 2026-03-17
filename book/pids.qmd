@@ -59,6 +59,46 @@ This separation is what makes PIDs persistent. If the resource moves to a differ
 
 A notable update of the location is the so-called tombstone. If the object an identifier points to is deleted, the identifier still continues to exist and should be redirected to a [tombstone page](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/102827225/PIDs+Setting+up+your+PID+structure#PIDs%3ASettingupyourPIDstructure-Tombstoning).
 
+PIDs help to prevent **Link Rot**.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: Full PID Lifecycle vs. No‑PID Link Rot
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TB
+
+    %% PID Lifecycle (left)
+    subgraph PID["With Persistent Identifier"]
+        MINT["Mint PID"]
+        STORE["Store Handle record"]
+        RESOLVE["Resolve PID"]
+        ACCESS["Access resource"]
+        MOVE_PID["Resource moves"]
+        UPDATE["Update record"]
+        MINT --> STORE --> RESOLVE --> ACCESS --> MOVE_PID --> UPDATE --> RESOLVE
+    end
+
+    %% No-PID Lifecycle (right)
+    subgraph NOPID["Without Persistent Identifier"]
+        LINK["Create direct URL"]
+        USE["Users access URL"]
+        MOVE["Resource moves"]
+        BREAK["URL breaks<br>404 Not Found"]
+        LINK --> USE --> MOVE --> BREAK
+    end
+
+    %% Visual separation
+    PID --- NOPID
+
+```
+
+
+
 We explain the resolving mechanism in detail in [Resolution of Persistent Identifiers](pid-services.qmd#resolution-of-persistent-identifiers).
 
 ## How do we ensure that PIDs are globally unique?

@@ -29,7 +29,7 @@ A PID should typically be assigned once data becomes a **stable and shareable di
 At this stage the dataset becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.
 
 
-## Persistent Identifier Systems and Srevices in the Research Ecosystem
+## Persistent Identifier Systems and Services in the Research Ecosystem
 
 Different PID systems exist for identifying various entities within the research ecosystem. Some focus on research outputs such as datasets and publications, while others identify people, institutions, or research activities. Here we mention some which are commonly used to reference datasets.
 
@@ -136,6 +136,9 @@ In summary, DONA provides the overarching framework for managing digital object 
 
 
 ```{mermaid}
+%%| label: fig-2
+%%| fig-cap: The main organisations DONA, EPIC and DOI
+%%| fig-align: center
 %%{init: {
   "look": "handDrawn",
   "flowchart": { "htmlLabels": false}
@@ -236,71 +239,129 @@ The difference can be understood as two architectural approaches:
 
 Thus, EPIC uses the Handle System as a **metadata-aware PID infrastructure**, while the DOI system treats the Handle System mainly as a **resolution layer**, with descriptive metadata maintained in separate domain-specific services.
 
-Schematic: Transfer to image
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: Deeper look into the technologies and organisations
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false}
+}}%%
+flowchart TB
+
+    %% Top-level
+    DONA["Digital Object Network Architecture (DONA)"]
+    GHR["Global Handle Registry"]
+    HANDLE["Handle System<br>(Identifier resolution infrastructure)"]
+
+    %% Branches
+    EPIC["EPIC Handle Services"]
+    DOI["DOI System"]
+
+    %% Handle record contents
+    EPIC_REC["Handle Record contains:<br>• URL<br>• PID Information Types<br>• checksums<br>• admin data<br>• service endpoints"]
+
+    DOI_REC["Handle Record contains:<br>• URL<br>• minimal metadata"]
+
+    %% Metadata flows
+    EPIC_META["Machine‑actionable PID metadata<br>stored in Handle infrastructure"]
+
+    DOI_META_SRC["Metadata stored externally<br>in DOI Registration Agencies"]
+
+    DOI_META_DB1["DOI metadata databases"]
+    DOI_META_DB2["DOI metadata databases"]
+
+    %% Structure
+    DONA --> GHR --> HANDLE
+
+    HANDLE --> EPIC
+    HANDLE --> DOI
+
+    EPIC --> EPIC_REC --> EPIC_META
+
+    DOI --> DOI_REC --> DOI_META_SRC
+    DOI_META_SRC --> DOI_META_DB1
+    DOI_META_SRC --> DOI_META_DB2
 
 ```
 
-                     Digital Object Network Architecture (DONA)
-                                   │
-                                   │
-                          Global Handle Registry
-                                   │
-                                   │
-                             Handle System
-                    (Identifier resolution infrastructure)
-                                   │
-              ┌────────────────────┴────────────────────┐
-              │                                         │
-              │                                         │
-      EPIC Handle Services                        DOI System
-              │                                         │
-              │                                         │
-   Handle Record contains:                     Handle Record contains:
-   - URL                                        - URL
-   - PID Information Types                      (minimal metadata)
-   - checksums
-   - admin data
-   - service endpoints                                   │
-              │                                           │
-              │                                           │
-      Metadata retrieved directly                Metadata stored externally
-      from the Handle record                     in DOI Registration Agencies
-              │                                           │
-              │                                  ┌────────┴────────┐
-              │                                  │                 │
-              │                        :contentReference[oaicite:1]{index=1}     :contentReference[oaicite:2]{index=2}
-              │                                  │                 │
-              │                                  │                 │
-      Machine-actionable PID metadata      DOI metadata databases
-      stored in Handle infrastructure      (title, authors, etc.)
-```
+We can see how the Handle System is used differently in practice by comparing two PIDs: `10.5281/zenodo.3238330` and `11304/3185a834-5178-41bf-a849-b9ddbe4c5638`.
+
+The first identifier is a DOI. If we resolve it through the Handle System using https://hdl.handle.net/10.5281/zenodo.3238330?noredirect we can inspect the metadata stored directly in the Handle record.
+
+![Example DOI](img/pid-services/handle_entry_doi.png){fig-align="center"}
+
+This record contains two standard fields:
+
+- HS_ADMIN — an administrative entry that defines 
+	- which Handle identity (usually the prefix administrator) controls the handle
+	- what permissions that identity has
+	- which operations they are allowed to perform. This entry is part of every Handle record, whether it belongs to EPIC, DOI, or another service.
+	- URL — the target location the resolver redirects to when the handle is used.
+
+Every Handle record includes at least these two entries.
+
+Now let’s look at an EPIC example:
+
+![Example EPIC](img/pid-services/handle_entry_epic.png)
+
+Here we again see the mandatory HS_ADMIN and URL fields. In addition, the organisation responsible for this prefix has added extra information. These additional fields come from a custom PID profile used by [EUDAT](https://eudat.eu) for their B2SHARE data publishing service.
+
+In this case, the PID points directly to a file and includes useful details such as the file’s checksum. This allows users or systems to verify the file’s integrity, for example during data migration or when downloading the file.
+
+
+Here’s a smoother, more connected version that flows naturally from your previous discussion about Handle records and their fields:
+
+---
 
 ## Resolution of Persistent Identifiers
 
-Persistent identifiers are useful only if they can be **resolved** to meaningful information. Resolution refers to the process of translating an identifier into the current location or metadata of a digital object.
+Understanding what is stored inside a Handle record also helps explain **how persistent identifiers are resolved in practice**. After all, a PID is only useful if it can lead users or systems to meaningful information. *Resolution* is the process of turning an identifier into the current location or metadata of the digital object it represents.
 
-Using the **Handle system** as an example, the resolution process works as follows.
+Using the **Handle System** as an example, the resolution process works like this:
 
-When a user enters a Handle identifier (for example `21.T11998/0000-001A-3905-F`) into a resolver or clicks a Handle-based link, the request is sent to the global Handle infrastructure operated by the **Corporation for National Research Initiatives**.
+When a user enters a Handle such as `21.T11998/0000-001A-3905-F` into a resolver—or clicks a link based on a Handle—the request is sent to the global Handle infrastructure operated by the **Corporation for National Research Initiatives (CNRI)**.
 
-The resolution process consists of several steps:
+The resolver then performs several steps:
 
-1. **Request submission**
-   A user or application sends the Handle identifier to a Handle resolver.
+1. **Request submission**  
+   The user or application sends the Handle to a Handle resolver.
 
-2. **Prefix lookup**
-   The resolver examines the **prefix** of the Handle (the part before the slash) to determine which Handle server is responsible for that identifier.
+2. **Prefix lookup**  
+   The resolver inspects the prefix (the part before the slash) to determine which Handle server is responsible for managing that identifier.
 
-3. **Local Handle lookup**
-   The resolver contacts the responsible Handle server and requests the full Handle record.
+3. **Local Handle lookup**  
+   The resolver contacts the appropriate Handle server and requests the full Handle record.
 
-4. **Retrieval of stored information**
-   The Handle record returns the metadata associated with the identifier, usually including the current location (URL) of the digital object.
+4. **Retrieval of stored information**  
+   The server returns the Handle record, including entries such as the `URL` (where the object currently lives) and administrative information like `HS_ADMIN`.
 
-5. **Redirection**
-   The resolver redirects the user or application to the stored resource location.
+5. **Redirection**  
+   Based on the `URL` entry, the resolver redirects the user or application to the resource’s current location.
 
-Because the Handle record can be updated when the resource location changes, the identifier itself remains stable and continues to provide reliable access over time.
+Because the Handle record can be updated whenever the underlying resource moves, the identifier itself remains stable. This ensures long‑term, reliable access even as storage systems, services, or URLs change over time.
+
+```{mermaid}
+%%| label: fig-4
+%%| fig-cap: The Handle resolution
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TB
+
+    REQ[Browser: Send request<br>10.5281/zenodo.3238330]
+    PREFIX[Lookup prefix 10.5281 at global Handle server]
+    LOCAL[Contact local server<br>which hosts all PIDs for 10.5281]
+    RECORD[Get handle record]
+    REDIR[Redirect to resource in URL field]
+
+    REQ --> PREFIX --> LOCAL --> RECORD --> REDIR
+
+```
+
 
 ## Minting Handles and the Handle Record
 
@@ -339,10 +400,56 @@ Every Handle has an associated **Handle record**, which stores the information l
 When the location of a resource changes, only the Handle record needs to be updated. The identifier itself remains unchanged, ensuring **persistent and reliable access**.
 
 
+## Minting Handles and the Handle Record
+
+After looking at how different organisations use the Handle System and how a Handle is resolved, we can now turn to **how Handles are actually created and maintained**. Two core concepts are essential here: **minting a Handle** and **managing the Handle record**.
+
+### Minting Handles
+
+*Minting* a Handle means **creating a new persistent identifier** and registering it in the Handle infrastructure.  
+Organisations that participate in the Handle System receive a **prefix** (for example from EPIC), and they generate a unique **suffix** for each object they want to identify. Together, these form a globally unique Handle:
+
+```
+prefix/suffix
+```
+
+- **Prefix** – identifies the organisation responsible for the PID  
+- **Suffix** – uniquely identifies the object within that organisation  
+
+Example:
+
+```
+21.T11998/0000-001A-3905-F
+```
+
+Once minted, the Handle becomes part of the global Handle System and can be resolved using the process described earlier.
+
+### The Handle Record
+
+Every Handle points to a **Handle record**, which stores the information needed for resolution.  
+As we saw in the DOI and EPIC examples, every record contains at least:
+
+- an **`HS_ADMIN` entry**, defining who controls the Handle and what permissions they have  
+- a **`URL` entry**, indicating where the resolver should redirect the user  
+
+Beyond these mandatory fields, organisations can add additional entries.  
+For example, EPIC handles often include:
+
+- checksums  
+- protocol information  
+- service endpoints  
+- machine‑actionable metadata  
+
+This flexibility allows Handles to describe not only web resources but also files, collections, or non‑HTTP services.
+
+When the location of a resource changes, only the **Handle record** needs to be updated.  
+The identifier itself remains stable, ensuring **persistent and reliable access** over time.
+
+---
+
 ## Practical Example: Creating an EPIC Handle and Managing Its Metadata
 
-The following example demonstrates **minting a Handle, adding metadata, updating its target location, and managing non-HTTP resources** using Python and the **pyhandle** library.
-
+The following example shows how to mint a Handle, add metadata, update its target location, and manage non‑HTTP resources using Python and the **pyhandle** library.
 
 ### 1. Install the Python Library
 
@@ -363,8 +470,6 @@ from pyhandle.handleclient import PyHandleClient
 
 ### 3. Connect to the Handle Server
 
-Load your credentials and instantiate a Handle client:
-
 ```python
 cred = PIDClientCredentials.load_from_JSON("credentials.json")
 client = PyHandleClient('rest').instantiate_with_credentials(cred)
@@ -373,8 +478,6 @@ client = PyHandleClient('rest').instantiate_with_credentials(cred)
 ---
 
 ### 4. Minting a Handle
-
-Generate a unique Handle using your prefix:
 
 ```python
 handle = client.generate_PID_name(cred.get_prefix())
@@ -391,26 +494,15 @@ Example output:
 
 ### 5. Adding Metadata
 
-Handles can store metadata for verification or special access. For example, a checksum:
-
 ```python
 meta = {"checksum": "blablabla"}
-```
-
-To create and register the Handle with a URL and metadata:
-
-```python
 meta["URL"] = "http://google.com"
 client.register_handle_kv(handle, **meta, overwrite=False)
 ```
 
-The Handle is now minted and publicly resolvable via the global resolver [https://hdl.handle.net/](https://hdl.handle.net/).
-
 ---
 
 ### 6. Updating Handle Metadata
-
-If the resource moves or changes, the metadata can be updated. For instance, pointing to a WebDAV collection:
 
 ```python
 yoda_data_loc = "https://data.yoda.uu.nl/research-christine/my_books/"
@@ -420,7 +512,7 @@ meta["URL"] = yoda_data_loc
 client.modify_or_add_handle_value(handle, **meta)
 ```
 
-Unneeded metadata can also be deleted:
+Delete metadata:
 
 ```python
 client.delete_handle_value(handle, "checksum")
@@ -428,9 +520,7 @@ client.delete_handle_value(handle, "checksum")
 
 ---
 
-### 7. Minting EPIC Handles for Non-HTTP Resources
-
-Handles can reference non-HTTP-accessible resources (e.g., iRODS storage):
+### 7. Minting EPIC Handles for Non‑HTTP Resources
 
 ```python
 handle2 = client.generate_PID_name(cred.get_prefix())
@@ -443,8 +533,6 @@ meta2 = {
 client.register_handle_kv(handle2, **meta2, overwrite=False)
 ```
 
-This enables persistent identification of resources that require specialized protocols or authentication.
-
 Example:
 
 ```
@@ -454,8 +542,6 @@ Example:
 ---
 
 ### 8. Searching and Managing Handles
-
-To find Handles by metadata or URL, a search-enabled client can be instantiated:
 
 ```python
 search_client = PyHandleClient("rest").instantiate_for_read_and_search(
@@ -467,10 +553,9 @@ result = search_client.search_handle(URL="/myfile/here/local.txt")
 print(result)
 ```
 
----
+
 
 ## References
 - https://www.go-fair.org/fair-principles/
-- 
 
 
