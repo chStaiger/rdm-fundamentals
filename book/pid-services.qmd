@@ -297,7 +297,7 @@ This record contains two standard fields:
 	- which Handle identity (usually the prefix administrator) controls the handle
 	- what permissions that identity has
 	- which operations they are allowed to perform. This entry is part of every Handle record, whether it belongs to EPIC, DOI, or another service.
-	- URL — the target location the resolver redirects to when the handle is used.
+- URL — the target location the resolver redirects to when the handle is used.
 
 Every Handle record includes at least these two entries.
 
@@ -308,11 +308,6 @@ Now let’s look at an EPIC example:
 Here we again see the mandatory HS_ADMIN and URL fields. In addition, the organisation responsible for this prefix has added extra information. These additional fields come from a custom PID profile used by [EUDAT](https://eudat.eu) for their B2SHARE data publishing service.
 
 In this case, the PID points directly to a file and includes useful details such as the file’s checksum. This allows users or systems to verify the file’s integrity, for example during data migration or when downloading the file.
-
-
-Here’s a smoother, more connected version that flows naturally from your previous discussion about Handle records and their fields:
-
----
 
 ## Resolution of Persistent Identifiers
 
@@ -445,7 +440,6 @@ This flexibility allows Handles to describe not only web resources but also file
 When the location of a resource changes, only the **Handle record** needs to be updated.  
 The identifier itself remains stable, ensuring **persistent and reliable access** over time.
 
----
 
 ## Practical Example: Creating an EPIC Handle and Managing Its Metadata
 
