@@ -1,1 +1,9 @@
 # Metadata
+
+## What is metadata
+
+## Ontologies and fixed vocabularies
+
+## Linked data versus key-value based metadata
+
+## Metadata schemas
