@@ -15,12 +15,43 @@ Metadata typically captures:
 In short, metadata provides the context needed to interpret and reuse data beyond its original purpose.
 
 
-## Example: Metadata for a Published Dataset
+## A fictive example for a published dataset
 
+| Field / Layer           | Example Value                                                                                                                          |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Title**               | Soil Moisture Dataset 2020–2023                                                                                                        |
+| **Creator**             | Anna Vermeer                                                                                                                           |
+| **Affiliation**         | Utrecht University                                                                                                                     |
+| **Publication Year**    | 2024                                                                                                                                   |
+| **Description**         | Measurements of soil moisture across multiple sites in the Netherlands over three years.                                               |
+| **Keywords / Subject**  | soil moisture, hydrology, climate                                                                                                      |
+| **License**             | CC BY 4.0                                                                                                                              |
+| **Provenance**          | Collected using sensor network; cleaned and validated by research team; processed using R scripts version 4.2                          |
+| **Dataset DOI**         | 10.5281/zenodo.1234567                                                                                                                 |
+| **Domain Detail (DDI)** | Variable-level metadata: `soil_moisture`, `temperature`, `precipitation`; measurement units, missing values, coding scheme documented. |
+| **Domain Detail (ISA)** | Assay-level metadata for soil sensors: sensor type, calibration protocol, data logger model, measurement frequency.                    |
 
+## A fictive example for accompanying software
+Here’s a clear, structured example for **metadata for code or software scripts**, matching the style of your dataset example:
 
-## Example: Metadata for Code or Software Scripts
+---
 
+## 💻 Example: Metadata for Code or Software Scripts
+
+| Field / Layer                | Example Value                                                                                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Title**                    | Soil Moisture Data Cleaning Script                                                                                                                       |
+| **Creator / Author**         | Anna Vermeer                                                                                                                                             |
+| **Affiliation**              | Utrecht University                                                                                                                                       |
+| **Version**                  | 1.0.2                                                                                                                                                    |
+| **Programming Language**     | R                                                                                                                                                        |
+| **Description**              | Script to clean and standardize soil moisture measurements from multiple sensor networks, including missing value imputation and unit conversions.       |
+| **License**                  | MIT License                                                                                                                                              |
+| **Repository / DOI**         | [https://github.com/soil-data/cleaning-script](https://github.com/soil-data/cleaning-script) or DOI: 10.5281/zenodo.7654321                              |
+| **Dependencies**             | R packages: tidyverse 1.4.3, lubridate 1.9.0                                                                                                             |
+| **Provenance**               | Developed as part of Soil Moisture Project 2020–2023; tested on dataset version 3; last updated March 2024                                               |
+| **Domain Detail (CodeMeta)** | `softwareRequirements`: R 4.2; `programmingLanguage`: R; `codeRepository`: GitHub; `maintainer`: Anna Vermeer                                            |
+| **Domain Detail (ISA)**      | If linked to experimental workflows: script applied to **assay-level data** (sensor readings), preserving measurement protocols and calibration details. |
 
 
 ## Ontologies, Controlled Vocabularies, Metadata Schemas, and Templates
