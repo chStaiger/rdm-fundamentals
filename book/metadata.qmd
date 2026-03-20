@@ -268,7 +268,7 @@ This format reflects how metadata typically appears in spreadsheets, repository 
 * Relationships (e.g., between creator and affiliation) are **implicit**
 * Values are plain text, with no global identifiers
 
-The image below the *same metadata* expressed as a network of relationships, also known as knowledge Graph.
+In the image below the *same metadata* is expressed as a network of relationships, also known as knowledge Graph.
 
 ```{mermaid}
 %%| label: fig-1
@@ -290,6 +290,39 @@ flowchart TD
 
     P -->|schema:affiliation| O[Organisation: Utrecht University]
 ```
+
+To serialise the graoh we use the format `turtle` in this example:
+
+```
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix ex:     <http://example.org/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+# Dataset node
+ex:dataset1
+    dc:title "Soil Moisture Dataset 2020–2023" ;
+    dc:issued "2024"^^xsd:gYear ;
+    dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dc:creator ex:personAnna ;
+    dc:subject ex:conceptSoilMoisture .
+
+# Person node
+ex:personAnna
+    schema:name "Anna Vermeer" ;
+    schema:affiliation ex:orgUtrecht .
+
+# Organisation node
+ex:orgUtrecht
+    schema:name "Utrecht University" .
+
+# Concept node
+ex:conceptSoilMoisture
+    rdfs:label "Soil Moisture" .
+```
+
+We go more into detail into metadata serialisation and infrastructure in the Chapter [Metadata Infrastructure](metadata-portals.qmd).
 
 * The **table** presents metadata as a **flat structure**
 * The **graph** represents metadata as **connected entities**
