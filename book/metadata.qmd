@@ -146,3 +146,101 @@ flowchart TD
     B -. provide semantic structure .-> D
 
 ```
+
+## 🌐 Linked Data, Key–Value Metadata, and Their Relationship to Metadata Structures
+
+Metadata can be expressed in many forms, from simple spreadsheets to fully machine‑interpretable semantic graphs. Two important concepts in this spectrum are **key–value metadata** and **Linked Data**. They sit at different levels of complexity and interoperability, but both connect directly to the metadata structures we discussed earlier.
+
+## 🔑 Key–Value Metadata  
+Key–value metadata is the simplest and most common form of metadata. It consists of **pairs**:
+
+- **Key** → the field name  
+- **Value** → the content entered by the researcher  
+
+### Examples  
+- `title: Soil Moisture Dataset 2020–2023`  
+- `creator: Anna Vermeer`  
+- `license: CC BY 4.0`  
+
+### Characteristics  
+- Easy to create and understand  
+- Works well in spreadsheets, JSON, YAML, or repository forms  
+- Human‑readable, but not always machine‑interpretable beyond basic parsing  
+
+### Relationship to other concepts  
+- **Metadata schemas** define *which keys* exist and what type of values they should contain.  
+- **Controlled vocabularies** constrain the *values* for certain keys (e.g., keywords).  
+- **Templates** present key–value pairs in a structured form for researchers to fill in.  
+
+Key–value metadata is the foundation of most practical metadata creation.
+
+
+## 🔗 Linked Data  
+Linked Data is a more advanced, semantic approach to metadata. It uses **URIs**, **triples**, and **ontologies** to create machine‑interpretable connections between concepts and digital objects.
+
+### Core idea  
+Linked Data represents information as **subject–predicate–object** triples:
+
+- *Dataset* — **hasCreator** → *Anna Vermeer*  
+- *Dataset* — **hasSubject** → *Soil Moisture*  
+- *Soil Moisture* — **isA** → *Hydrological Variable*  
+
+Each element is identified by a **URI**, making it globally unambiguous.
+
+### Characteristics  
+- Highly interoperable  
+- Enables automated reasoning  
+- Connects datasets across repositories and domains  
+- Used in RDF, SPARQL, schema.org, PROV‑O, and many research infrastructures  
+
+### Relationship to other concepts  
+- **Ontologies** provide the predicates and conceptual structure (e.g., `prov:wasGeneratedBy`).  
+- **Controlled vocabularies** supply stable URIs for terms (e.g., MeSH IDs).  
+- **Metadata schemas** can be expressed as Linked Data models (e.g., Dublin Core in RDF).  
+- **Templates** may generate Linked Data behind the scenes (e.g., Dataverse, FAIR Data Points).
+
+Linked Data is essentially *metadata with meaning*, enabling machines to understand relationships, not just read values.
+
+
+## 🔗 How Key–Value Metadata and Linked Data Fit Into the Bigger Picture
+
+Here’s how everything connects:
+
+| Concept | What it provides | How it relates |
+|--------|------------------|----------------|
+| **Controlled vocabularies** | Standard terms | Used as values in key–value metadata; provide URIs in Linked Data |
+| **Ontologies** | Concepts + relationships | Define predicates and semantic structure for Linked Data |
+| **Metadata schemas** | Field definitions | Define keys for key–value metadata; can be expressed as RDF schemas |
+| **Metadata templates** | Practical forms | Collect key–value metadata; may enforce vocabularies or generate Linked Data |
+| **Key–value metadata** | Simple field–value pairs | Basic implementation of a schema; human‑friendly |
+| **Linked Data** | Semantic triples with URIs | Machine‑interpretable metadata using vocabularies and ontologies |
+
+---
+
+## 🧠 A Simple Analogy  
+Imagine describing a book:
+
+- **Key–value metadata** is like filling out a library card:  
+  - `title: The Hobbit`  
+  - `author: J.R.R. Tolkien`  
+
+- **Controlled vocabularies** ensure you use the correct subject term:  
+  - `subject: Fantasy Fiction`  
+
+- **Ontologies** explain relationships:  
+  - *Fantasy Fiction* → is a → *Fiction Genre*  
+
+- **Metadata schema** defines the fields on the card.  
+- **Metadata template** is the form you fill in.  
+- **Linked Data** turns the whole thing into a web of machine‑readable connections:  
+  - *The Hobbit* — **hasAuthor** → *Tolkien*  
+  - *Tolkien* — **hasBirthPlace** → *Bloemfontein*  
+
+
+## 🧩 Bringing It All Together  
+Key–value metadata is the **practical starting point**.  
+Linked Data is the **semantic, interoperable future**.  
+Ontologies and vocabularies provide the **meaning**.  
+Schemas and templates provide the **structure**.
+
+Together, they form the backbone of FAIR, reusable research metadata.
