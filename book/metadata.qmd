@@ -1,7 +1,3 @@
-This is already strong and well-structured—you mainly need smoother transitions, slightly tighter phrasing, and a more consistent tone. I’ve edited your text for flow, readability, and cohesion while preserving your meaning and structure.
-
----
-
 # Metadata
 
 ## What Is Metadata in Research Data Management?
