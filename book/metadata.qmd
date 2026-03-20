@@ -15,72 +15,134 @@ Metadata typically captures details such as:
 
 ## 🗂️ Example: Metadata for a Published Dataset
 
-Below is a simplified example of metadata describing a dataset deposited in a public repository:
-
-**Dataset title:**  
-*Soil Moisture Measurements in the Rhine Delta, 2020–2023*
-
-**Creators:**  
-Dr. Anna Vermeer (Utrecht University), Dr. Jonas Richter (WUR)
-
-**Description:**  
-This dataset contains weekly soil moisture measurements collected from 15 monitoring stations across the Rhine Delta between January 2020 and December 2023. Measurements were taken using standardized TDR probes and include temperature, soil type, and GPS coordinates.
-
-**Keywords:**  
-soil moisture, hydrology, Rhine Delta, environmental monitoring, TDR
-
-**Methodology / Provenance:**  
-Data collected in situ using Campbell Scientific TDR100 probes; calibration performed quarterly following manufacturer guidelines.
-
-**File formats:**  
-CSV files (UTF‑8), README (TXT), station metadata (JSON)
-
-**Related outputs:**  
-Linked to publication: *Hydrological Dynamics of the Rhine Delta Under Climate Variability* (2024)
-
-**License:**  
-CC BY 4.0
-
-**Persistent identifier:**  
-DOI: 10.12345/rhinedelta.soilmoisture.2023
 
 ## 💻 Example: Metadata for Code or Software Scripts
 
-Metadata for code focuses on **functionality**, **dependencies**, **versioning**, and **execution context**, ensuring that others can understand and rerun the analysis.
 
-**Code title:**  
-*Soil Moisture Data Cleaning and Visualization Scripts*
+# 🧩 Ontologies, Controlled Vocabularies, Metadata Schemas, and Templates  
+### Understanding the Building Blocks of Structured Research Metadata
 
-**Author:**  
-Dr. Anna Vermeer
+In Research Data Management, we often talk about *ontologies*, *controlled vocabularies*, *metadata schemas*, and *metadata templates*. These concepts are related but serve different purposes. Together, they help ensure that research outputs are described in a consistent, machine‑readable, and interoperable way.
 
-**Description:**  
-A set of R scripts used to clean, validate, and visualize soil moisture data collected in the Rhine Delta study. Includes functions for outlier detection, interpolation of missing values, and generation of time‑series plots.
+## 🗂️ Controlled Vocabularies  
+**Controlled vocabularies** are curated lists of approved terms used to describe data consistently.
 
-**Programming language and version:**  
-R 4.3.1
+### What they do
+- Provide **standardised words or phrases** for describing concepts  
+- Reduce ambiguity (e.g., “soil moisture” vs. “soil humidity”)  
+- Improve searchability and interoperability  
 
-**Dependencies:**  
-`tidyverse`, `lubridate`, `ggplot2`, `sf`
+### Examples
+- **AGROVOC** for agriculture  
+- **MeSH** for biomedical terms  
+- **GCMD keywords** for Earth science  
 
-**Repository / location:**  
-GitHub: github.com/avermeer/rhine‑soil‑moisture‑scripts
+### In practice  
+If a metadata field asks for a *subject keyword*, a controlled vocabulary ensures everyone uses the same term for the same concept.
 
-**Execution environment:**  
-Tested on macOS Ventura 13.5; RStudio 2023.06
+---
 
-**License:**  
-MIT License
+## 🧠 Ontologies  
+**Ontologies** go a step further than controlled vocabularies. They not only define terms but also describe **relationships** between them.
 
-**Related objects:**  
-Designed to process dataset DOI: 10.12345/rhinedelta.soilmoisture.2023
+### What they do
+- Provide a **formal, machine‑readable model** of concepts  
+- Define **hierarchies** (e.g., “soil moisture” is a type of “hydrological variable”)  
+- Enable reasoning and automated linking between datasets  
 
-**Version:**  
-v1.2.0 (released March 2024)
+### Examples
+- **Gene Ontology (GO)**  
+- **ENVO** (Environment Ontology)  
+- **PROV‑O** (Provenance Ontology)
+
+### In practice  
+Ontologies help machines understand that “precipitation” and “rainfall” are related concepts, enabling smarter search and integration across datasets.
+
+---
+
+## 🧱 Metadata Schemas  
+A **metadata schema** defines *which fields* should be used to describe a digital object and *how* those fields should be structured.
+
+### What they do
+- Specify required and optional metadata fields  
+- Define field types (text, date, identifier, etc.)  
+- Ensure metadata is consistent across repositories and disciplines  
+
+### Examples
+- **Dublin Core** (general-purpose)  
+- **DataCite** (datasets and research outputs)  
+- **DDI** (social sciences)  
+- **CodeMeta** (software)
+
+### In practice  
+A metadata schema tells you *what information to provide*—for example:  
+- Title  
+- Creator  
+- Description  
+- Keywords  
+- License  
+- Persistent Identifier  
+
+It does **not** tell you which words to use—that’s the job of controlled vocabularies.
+
+---
+
+## 📝 Metadata Templates  
+A **metadata template** is a practical, user‑friendly implementation of a metadata schema.
+
+### What they do
+- Provide a **form or structured document** researchers can fill in  
+- Translate schema fields into prompts  
+- Often include guidance text or examples  
+- May embed controlled vocabularies (dropdown menus, autocomplete)
+
+### Examples
+- A Zenodo upload form  
+- A Dataverse dataset description form  
+- A lab‑specific metadata spreadsheet  
+- A README template aligned with DataCite
+
+### In practice  
+A template is what researchers actually interact with. It operationalises the schema and may enforce controlled vocabulary use.
 
 
-## Ontologies and fixed vocabularies
+# 🔗 How They Fit Together  
+Here’s the relationship in a nutshell:
 
-## Linked data versus key-value based metadata
+| Concept | Purpose | Relationship to Others |
+|--------|----------|------------------------|
+| **Controlled vocabularies** | Standardised terms | Provide the *words* used in metadata fields |
+| **Ontologies** | Structured concepts + relationships | Extend vocabularies with meaning and machine reasoning |
+| **Metadata schemas** | Define *which fields* exist and how they are structured | Fields may require terms from vocabularies or ontologies |
+| **Metadata templates** | Practical forms based on schemas | Implement schemas and often embed vocabularies |
 
-## Metadata schemas
+### A simple analogy  
+- **Controlled vocabularies** = the dictionary  
+- **Ontologies** = the dictionary + grammar + relationships  
+- **Metadata schemas** = the blueprint for what information must be captured  
+- **Metadata templates** = the actual form you fill in  
+
+### A real‑world example  
+When uploading a dataset to Zenodo:
+
+1. **DataCite schema** defines the fields (title, creator, description, etc.).  
+2. Zenodo’s **template** presents these fields in a web form.  
+3. The “keywords” field may suggest terms from a **controlled vocabulary**.  
+4. If the repository uses an **ontology**, it can automatically link your dataset to related concepts or datasets.
+
+```{mermaid}
+flowchart TD
+
+    A[Controlled Vocabularies<br>• Standardised terms<br>• Fixed lists] 
+        --> B[Ontologies<br>• Terms + relationships<br>• Machine‑readable structure]
+
+    A --> C[Metadata Schemas<br>• Define fields<br>• Specify structure]
+
+    B --> C
+
+    C --> D[Metadata Templates<br>• Practical forms<br>• Implement schema<br>• Often embed vocabularies]
+
+    A -. provide terms .-> D
+    B -. provide semantic structure .-> D
+
+```
