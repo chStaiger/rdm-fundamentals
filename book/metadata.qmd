@@ -15,7 +15,7 @@ Metadata typically captures:
 In short, metadata provides the context needed to interpret and reuse data beyond its original purpose.
 
 
-## A fictive example for a published dataset
+##### A fictive example for a published dataset
 
 | Field            | Example Value                                                                                                                          |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -31,7 +31,7 @@ In short, metadata provides the context needed to interpret and reuse data beyon
 | **Domain Detail (DDI)** | Variable-level metadata: `soil_moisture`, `temperature`, `precipitation`; measurement units, missing values, coding scheme documented. |
 | **Domain Detail (ISA)** | Assay-level metadata for soil sensors: sensor type, calibration protocol, data logger model, measurement frequency.                    |
 
-## A fictive example for accompanying software
+##### A fictive example for accompanying software
 
 | Field             | Example Value                                                                                                                                            |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -55,44 +55,39 @@ In short, metadata provides the context needed to interpret and reuse data beyon
 
 In Research Data Management, terms such as *ontologies*, *controlled vocabularies*, *metadata schemas*, and *metadata templates* are often used together. While closely related, they serve distinct roles. Together, they ensure that research outputs are described in a consistent, machine-readable, and interoperable way.
 
-## Controlled Vocabularies
+### Controlled Vocabularies
 
 **Controlled vocabularies** are curated lists of approved terms used to describe data consistently.
 
-### What they do
+They:
 
 * Provide **standardised terms** for describing concepts
 * Reduce ambiguity (e.g., “soil moisture” vs. “soil humidity”)
 * Improve searchability and interoperability
 
-### Examples
+#### Examples
 
-* AGROVOC (agriculture)
-* MeSH (biomedical terms)
-* GCMD keywords (Earth science)
-
-### In practice
+* [AGROVOC](https://agrovoc.fao.org/browse/agrovoc/en/) (agriculture)
+* [MeSH](https://www.nlm.nih.gov/mesh/meshhome.html) (biomedical terms)
+* [GCMD keywords](https://www.earthdata.nasa.gov/data/tools/gcmd-keyword-viewer) (Earth science)
 
 When a metadata field requires a *subject keyword*, a controlled vocabulary ensures that everyone uses the same term for the same concept.
-
 
 ##  Ontologies
 
 **Ontologies** extend controlled vocabularies by not only defining terms, but also specifying the **relationships between them**.
 
-### What they do
+They:
 
 * Provide a **formal, machine-readable model** of concepts
 * Define **hierarchies** (e.g., “soil moisture” is a type of “hydrological variable”)
 * Enable reasoning and automated linking between datasets
 
-### Examples
+#### Examples
 
-* Gene Ontology (GO)
-* ENVO (Environment Ontology)
-* PROV-O (Provenance Ontology)
-
-### In practice
+* [Gene Ontology](https://geneontology.org/docs/ontology-documentation/) (GO)
+* [ENVO](https://sites.google.com/site/environmentontology/home) (Environment Ontology)
+* [PROV-O](https://www.w3.org/TR/prov-o/) (Provenance Ontology)
 
 Ontologies allow machines to understand that terms like “precipitation” and “rainfall” are related, enabling more intelligent search and data integration.
 
@@ -100,20 +95,18 @@ Ontologies allow machines to understand that terms like “precipitation” and 
 
 A **metadata schema** defines *which fields* are used to describe a digital object and *how* those fields should be structured.
 
-### What they do
+They:
 
 * Specify required and optional fields
 * Define field types (e.g., text, date, identifier)
 * Ensure consistency across repositories and disciplines
 
-### Examples
+#### Examples
 
-* Dublin Core (general-purpose)
-* DataCite (research outputs)
-* DDI (social sciences)
-* CodeMeta (software)
-
-### In practice
+* [Dublin Core](https://www.dcc.ac.uk/resources/metadata-standards/dublin-core) (general-purpose)
+* [DataCite](https://schema.datacite.org) (research outputs)
+* [DDI](https://ddialliance.org/) (social sciences)
+* [CodeMeta](https://codemeta.github.io/terms/) (software)
 
 A metadata schema tells you *what information to provide*, such as:
 
@@ -130,21 +123,19 @@ Importantly, it does **not** define which terms to use—that is the role of con
 
 A **metadata template** is a practical, user-friendly implementation of a metadata schema.
 
-### What they do
+They:
 
 * Provide **forms or structured documents** for data entry
 * Translate schema fields into prompts
 * Include guidance or examples
 * Often embed controlled vocabularies (e.g., dropdowns or autocomplete)
 
-### Examples
+#### Examples
 
 * A Zenodo upload form
 * A Dataverse dataset form
 * A lab-specific metadata spreadsheet
 * A README template aligned with DataCite
-
-### In practice
 
 Templates are what researchers actually interact with. They operationalise schemas and often help enforce consistency.
 
@@ -159,14 +150,14 @@ These components work together as complementary layers:
 | **Metadata schemas**        | Field definitions        | Specify *what* metadata to capture    |
 | **Metadata templates**      | Practical tools          | Implement schemas for users           |
 
-### A simple analogy
+##### A simple analogy
 
 * **Controlled vocabularies** → the dictionary
 * **Ontologies** → the dictionary plus relationships
 * **Metadata schemas** → the blueprint
 * **Metadata templates** → the form you fill in
 
-### A real-world example
+##### A real-world example
 
 When uploading a dataset to Zenodo:
 
@@ -186,13 +177,13 @@ Key–value metadata is the simplest and most widely used format. It consists of
 * **Key** → the field name
 * **Value** → the content
 
-### Examples
+##### Examples
 
 * `title: Soil Moisture Dataset 2020–2023`
 * `creator: Anna Vermeer`
 * `license: CC BY 4.0`
 
-### Characteristics
+##### Characteristics
 
 * Easy to create and understand
 * Common in spreadsheets, JSON, YAML, and repository forms
@@ -220,7 +211,7 @@ Information is expressed as **subject–predicate–object** triples:
 
 Each element is identified by a **URI**, ensuring global uniqueness.
 
-### Characteristics
+###### Characteristics
 
 * Highly interoperable
 * Machine-interpretable
@@ -259,7 +250,7 @@ Describing a book:
 
 * **Linked Data** → a connected network (knowledge graph) of relationships
 
-### Example
+### Key-value pairs versus Linked Data
 
 Below we are capturing the following metadata as key-value pairs.
 This format reflects how metadata typically appears in spreadsheets, repository forms, or simple JSON/YAML files.
@@ -277,9 +268,16 @@ This format reflects how metadata typically appears in spreadsheets, repository 
 * Relationships (e.g., between creator and affiliation) are **implicit**
 * Values are plain text, with no global identifiers
 
-The image below the *same metadata* expressed as a network of relationships.
+The image below the *same metadata* expressed as a network of relationships, also known as knowledge Graph.
 
-```mermaid
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: Knowledge Graph
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
 flowchart TD
 
     D[Dataset]
@@ -312,7 +310,7 @@ This is the key shift: from *fields with values* to *entities with relationships
 Together, they form the foundation of **FAIR, reusable research metadata**.
 
 
-## Dublin Core, PROV-O, and Discipline-Specific Schemas
+## Understanding and Combining Metadata Standards
 
 Metadata standards vary in scope—from general to highly specialised. Understanding how they complement each other helps in selecting the right approach.
 
@@ -320,37 +318,33 @@ Metadata standards vary in scope—from general to highly specialised. Understan
 
 A **general-purpose, lightweight metadata schema**.
 
-### What it provides
+It provides:
 
 * 15 core elements (e.g., Title, Creator, Subject, Date)
 * Broad applicability across domains
 
-### Why it’s useful
+Why it’s useful:
 
 * Simple and widely supported
 * Suitable for discovery and basic description
 
-### Role
-
-Provides **baseline descriptive metadata**.
+Role: Provides **baseline descriptive metadata**.
 
 ## PROV-O
 
 A **provenance ontology** describing how data was created.
 
-### What it provides
+Tt provides
 
 * Entities, activities, and agents
 * Relationships such as `wasGeneratedBy` and `used`
 
-### Why it’s useful
+Why it’s useful:
 
 * Supports reproducibility
 * Captures workflows and processes
 
-### Role
-
-Adds **semantic provenance and process context**.
+Role: Adds **semantic provenance and process context**.
 
 
 ## Discipline-Specific Schema (Example: [Data Documentation Initiative](https://ddialliance.org/))
@@ -365,19 +359,19 @@ Data Documentation Initiative (DDI) organises metadata into three main levels:
 
 The **variable level** is what makes DDI especially powerful.
 
-### Study level
+Study level
 
 * Title: European Social Survey 2022
 * Method: Survey
 * Sample: Random sample of EU residents
 
-### Dataset level
+Dataset level
 
 * File: `ess2022.csv`
 * Cases: 30,000 respondents
 * Variables: 250
 
-### Variable level
+Variable level
 
 * Variable: `trust_gov`
 * Question: “How much do you trust the national government?”
@@ -392,20 +386,16 @@ DDI enables researchers to understand:
 * **how** it was collected (methodology), and
 * **how to reuse it correctly**.
 
-### What it provides
+It provides:
 
 * Detailed methodological and variable-level metadata
 * Support for complex datasets
 
-### Why it’s useful
+Why it’s useful:
 
 * Captures domain knowledge essential for reuse
 
-### Role
-
-Provides **deep, field-specific context**.
-
-Here’s a parallel, concise section for **ISA**, matching the style and level of detail of your DDI piece.
+Role: Provides **deep, field-specific context**.
 
 ## ISA (Investigation–Study–Assay)
 
@@ -419,20 +409,20 @@ ISA organises metadata into three hierarchical levels:
 | **Study**         | A specific experiment or dataset         | Study design, subjects, sample characteristics |
 | **Assay**         | Analytical measurements and technologies | Sequencing, mass spectrometry, protocols       |
 
-👉 The **assay level** captures how data was actually generated.
+The **assay level** captures how data was actually generated.
 
-### Investigation level
+Investigation level
 
 * Title: Gut Microbiome and Diet Study
 * Objective: Analyse microbiome changes under different diets
 
-### Study level
+Study level
 
 * Subjects: 100 participants
 * Design: Controlled dietary intervention
 * Samples: Stool samples collected weekly
 
-### Assay level
+Assay level
 
 * Technology: DNA sequencing
 * Platform: Illumina
@@ -444,9 +434,19 @@ ISA enables researchers to understand:
 * **how experiments were conducted**, and
 * **how measurements were generated**.
 
+It provides:
+
+* Detailed methodological and variable-level metadata
+* Support for complex datasets
+
+Why it’s useful:
+
+* Captures domain knowledge essential for reuse
+
+Role: Provides **deep, field-specific context**.
 
 
-## How They Work Together
+### How They Work Together
 
 | Layer               | Purpose                       | Example                                    |
 | ------------------- | ----------------------------- | ------------------------------------------ |
