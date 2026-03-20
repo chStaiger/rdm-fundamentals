@@ -17,7 +17,7 @@ In short, metadata provides the context needed to interpret and reuse data beyon
 
 ## A fictive example for a published dataset
 
-| Field / Layer           | Example Value                                                                                                                          |
+| Field            | Example Value                                                                                                                          |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **Title**               | Soil Moisture Dataset 2020–2023                                                                                                        |
 | **Creator**             | Anna Vermeer                                                                                                                           |
@@ -32,13 +32,8 @@ In short, metadata provides the context needed to interpret and reuse data beyon
 | **Domain Detail (ISA)** | Assay-level metadata for soil sensors: sensor type, calibration protocol, data logger model, measurement frequency.                    |
 
 ## A fictive example for accompanying software
-Here’s a clear, structured example for **metadata for code or software scripts**, matching the style of your dataset example:
 
----
-
-## 💻 Example: Metadata for Code or Software Scripts
-
-| Field / Layer                | Example Value                                                                                                                                            |
+| Field             | Example Value                                                                                                                                            |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Title**                    | Soil Moisture Data Cleaning Script                                                                                                                       |
 | **Creator / Author**         | Anna Vermeer                                                                                                                                             |
