@@ -1,6 +1,83 @@
 # Metadata
 
-## What is metadata
+## What Is Metadata in Research Data Management?
+
+In the context of Research Data Management, **metadata** refers to the structured information that describes, explains, and contextualizes a digital object—such as a dataset, document, image, or software file. It acts as a layer of documentation that makes a digital object **findable, understandable, and reusable** both now and in the future.
+
+Metadata typically captures details such as:
+
+- **Content information** (what the object contains)  
+- **Provenance** (how, when, and by whom it was created)  
+- **Technical characteristics** (formats, file types, software requirements)  
+- **Administrative information** (rights, licenses, access conditions)  
+- **Relationships** to other digital objects (versions, related datasets, publications)
+
+
+## 🗂️ Example: Metadata for a Published Dataset
+
+Below is a simplified example of metadata describing a dataset deposited in a public repository:
+
+**Dataset title:**  
+*Soil Moisture Measurements in the Rhine Delta, 2020–2023*
+
+**Creators:**  
+Dr. Anna Vermeer (Utrecht University), Dr. Jonas Richter (WUR)
+
+**Description:**  
+This dataset contains weekly soil moisture measurements collected from 15 monitoring stations across the Rhine Delta between January 2020 and December 2023. Measurements were taken using standardized TDR probes and include temperature, soil type, and GPS coordinates.
+
+**Keywords:**  
+soil moisture, hydrology, Rhine Delta, environmental monitoring, TDR
+
+**Methodology / Provenance:**  
+Data collected in situ using Campbell Scientific TDR100 probes; calibration performed quarterly following manufacturer guidelines.
+
+**File formats:**  
+CSV files (UTF‑8), README (TXT), station metadata (JSON)
+
+**Related outputs:**  
+Linked to publication: *Hydrological Dynamics of the Rhine Delta Under Climate Variability* (2024)
+
+**License:**  
+CC BY 4.0
+
+**Persistent identifier:**  
+DOI: 10.12345/rhinedelta.soilmoisture.2023
+
+## 💻 Example: Metadata for Code or Software Scripts
+
+Metadata for code focuses on **functionality**, **dependencies**, **versioning**, and **execution context**, ensuring that others can understand and rerun the analysis.
+
+**Code title:**  
+*Soil Moisture Data Cleaning and Visualization Scripts*
+
+**Author:**  
+Dr. Anna Vermeer
+
+**Description:**  
+A set of R scripts used to clean, validate, and visualize soil moisture data collected in the Rhine Delta study. Includes functions for outlier detection, interpolation of missing values, and generation of time‑series plots.
+
+**Programming language and version:**  
+R 4.3.1
+
+**Dependencies:**  
+`tidyverse`, `lubridate`, `ggplot2`, `sf`
+
+**Repository / location:**  
+GitHub: github.com/avermeer/rhine‑soil‑moisture‑scripts
+
+**Execution environment:**  
+Tested on macOS Ventura 13.5; RStudio 2023.06
+
+**License:**  
+MIT License
+
+**Related objects:**  
+Designed to process dataset DOI: 10.12345/rhinedelta.soilmoisture.2023
+
+**Version:**  
+v1.2.0 (released March 2024)
+
 
 ## Ontologies and fixed vocabularies
 
