@@ -244,3 +244,133 @@ Ontologies and vocabularies provide the **meaning**.
 Schemas and templates provide the **structure**.
 
 Together, they form the backbone of FAIR, reusable research metadata.
+
+## Examples
+
+Here’s an educational, well‑structured section introducing **Dublin Core**, **PROV‑O**, and a **discipline‑specific metadata schema**, with a focus on how they fit into the broader metadata ecosystem you’ve been building. I’ll keep it clear, engaging, and suitable for RDM training materials or documentation.
+
+---
+
+# 🧭 Dublin Core, PROV‑O, and Discipline‑Specific Metadata Schemas  
+### How They Work and Why They Matter in Research Data Management
+
+Metadata standards come in many shapes and sizes. Some are intentionally broad and simple, while others are highly specialised for particular research communities. Understanding how these standards differ—and how they complement each other—helps researchers choose the right tools for describing their data.
+
+Below, we explore three important types of metadata standards: **Dublin Core**, **PROV‑O**, and a **discipline‑specific schema**.
+
+## 📘 Dublin Core  
+### A general‑purpose, lightweight metadata standard
+
+**Dublin Core** is one of the most widely used metadata schemas in the world. It was designed to be simple, flexible, and applicable across disciplines.
+
+### What it provides  
+- A set of **15 core elements** (e.g., Title, Creator, Subject, Date, Format)  
+- A broader set of **qualified elements** for more detail  
+- A standard way to describe *any* digital object: datasets, images, documents, software, etc.
+
+### Why it’s useful  
+- Easy for researchers to understand  
+- Supported by most repositories (Zenodo, Dataverse, institutional repositories)  
+- Works well for discovery and basic description  
+- Can be expressed as **Linked Data** (RDF), making it interoperable
+
+### How it fits into the bigger picture  
+Dublin Core provides the **baseline descriptive metadata**. It tells you *what the object is*, *who created it*, and *how it can be accessed*. It does not describe methods, provenance, or discipline‑specific details—that’s where other schemas come in.
+
+## 🔗 PROV‑O (W3C Provenance Ontology)  
+### A semantic model for describing how data was created
+
+**PROV‑O** is an ontology developed by the W3C to represent **provenance**—the history of how a digital object came to be.
+
+### What it provides  
+- A formal model for describing:  
+  - **Entities** (datasets, files, models)  
+  - **Activities** (data collection, analysis, cleaning)  
+  - **Agents** (researchers, instruments, software)  
+- Relationships such as:  
+  - `prov:wasGeneratedBy`  
+  - `prov:used`  
+  - `prov:wasAttributedTo`
+
+### Why it’s useful  
+- Enables **reproducibility** by documenting workflows 
+- Connects data and software
+- Supports **Linked Data** and machine reasoning  
+- Integrates with other ontologies (e.g., CodeMeta, schema.org)
+
+### How it fits into the bigger picture  
+PROV‑O adds **semantic depth** to metadata.  
+Where Dublin Core says *“This dataset was created by Anna Vermeer”*, PROV‑O can say:
+
+- *This dataset* **wasGeneratedBy** *a data‑cleaning activity*  
+- *That activity* **used** *raw sensor files*  
+- *The activity* **wasAssociatedWith** *Anna Vermeer*  
+
+It turns metadata into a **rich, interconnected provenance graph**.
+
+## 🧪 Example of a Discipline‑Specific Metadata Schema: DDI (Social Sciences)  
+### A detailed schema tailored to a specific research community
+
+Discipline‑specific schemas capture the **domain knowledge** that general schemas cannot. One strong example is **DDI (Data Documentation Initiative)**, widely used in the social sciences.
+
+### What it provides  
+- Detailed fields for:  
+  - Study design  
+  - Sampling methods  
+  - Variables and codebooks  
+  - Survey instruments  
+  - Data collection protocols  
+  - Statistical processing steps  
+- Machine‑readable XML and RDF formats  
+- Support for longitudinal and complex survey data
+
+### Why it’s useful  
+- Captures the **context and methodology** essential for reusing social science data  
+- Standardised across major archives (e.g., ICPSR, CESSDA)  
+- Enables automated documentation and variable‑level metadata
+
+### How it fits into the bigger picture  
+DDI provides **deep, discipline‑specific metadata** that Dublin Core cannot express.  
+A repository might use:
+
+- **Dublin Core** for general description  
+- **DDI** for methodological detail  
+- **PROV‑O** for provenance and workflow information  
+
+Together, they create a **multi‑layered metadata record** that is both human‑friendly and machine‑actionable.
+
+### 🧩 How These Standards Work Together  
+Here’s the relationship in simple terms:
+
+- **Dublin Core** → broad, descriptive metadata  
+- **PROV‑O** → semantic provenance and workflow metadata  
+- **Discipline‑specific schemas (e.g., DDI)** → deep, contextual metadata tailored to a field  
+
+Most repositories and FAIR data infrastructures combine these layers:
+
+| Layer | Purpose | Example Standard |
+|-------|----------|------------------|
+| **General description** | What is the object? Who created it? | Dublin Core |
+| **Provenance** | How was it created? What processes were involved? | PROV‑O |
+| **Domain detail** | Field‑specific context and structure | DDI (social sciences), ISO 19115 (geospatial), MIAME (genomics) |
+
+This layered approach ensures that metadata is both **FAIR** and **fit for purpose**.
+
+```{mermaid}
+flowchart TD
+
+    A[Dublin Core<br>General descriptive metadata<br>• Title<br>• Creator<br>• Subject<br>• Date]
+        --> D[Complete Metadata Record]
+
+    B[PROV‑O<br>Provenance ontology<br>• Entities<br>• Activities<br>• Agents<br>• Workflow relations]
+        --> D
+
+    C[Discipline‑Specific Schema (e.g., DDI)<br>Domain detail<br>• Study design<br>• Variables<br>• Sampling<br>• Instruments]
+        --> D
+
+    D --> E[FAIR, Interoperable Metadata<br>• Findable<br>• Accessible<br>• Interoperable<br>• Reusable]
+
+    A -. provides core description .-> C
+    B -. adds semantic provenance .-> C
+
+```
