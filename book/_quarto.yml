@@ -20,9 +20,10 @@ book:
       - pids.qmd
     - part: "COMPONENTS OF RDM INFRASTRUCTURE"
       chapters:
+      - rdm-infra-intro.qmd
+      - data-repositories.qmd
       - metadata-portals.qmd
       - pid-services.qmd
-      - data-repositories.qmd
       - rdm-platform.qmd
     - infrastructure-design.qmd
     - summary.qmd
