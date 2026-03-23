@@ -8,11 +8,11 @@ Like with your own ID card, you need to update that metadata. For example, if th
 By providing stable, machine-readable references, PIDs help ensure that digital resources remain accessible, traceable, and properly attributed over time.
 
 ::: {.callout-note title="Examples"}
-Published articles and datasets: Digital Object Identifiers (DOI)
+Articles & Datasets: [Digital Object Identifiers (DOI)](https://www.doi.org/the-identifier/what-is-a-doi/)
 
-People: ORCID iD
+People: [ORCID iD](https://orcid.org/)
 
-Institutions: Research Organisation Registry (ROR)
+Institutions: [Research Organisation Registry (ROR)](https://ror.org/)
 :::
 
 ## Why not simply use Uniform Resource Locations (URLs)?
@@ -38,11 +38,11 @@ The *persistent* aspect of a PID is the identifier, it **MUST NOT** change. The 
 
 A PID typically works through a **resolution system or resolver**:
 
-1. The **PID (identifier)** uniquely identifies the object.
+1. The PID uniquely identifies the object.
 2. The PID resolves through an infrastructure service.
 3. The service redirects the user to the **current URL** where the object is located or, if the object itself is not reachable through the __http__, a metadata entry that provides more information like  the landing page of a data repository.
 
-For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies a publication. When you access it via `https://doi.org/10.1000/182`, the DOI system resolves the identifier and redirects you to the **current URL** of the article on a publisher or repository website. In this example, the DOI is an identifier for The DOI Handbook. The DOI service resolves the identifier to the current URL which, as of writing this, is <https://www.doi.org/the-identifier/resources/handbook/>.
+For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies a publication. When you access it via `https://doi.org/10.1000/182`, the DOI service resolves the identifier and redirects you to the **current URL** of the article on a publisher or repository website. In this example, the DOI is an identifier for The DOI Handbook. The DOI service resolves the identifier to the current URL which, as of writing this, is <https://www.doi.org/the-identifier/resources/handbook/>.
 
 ```{mermaid}
 %%| label: fig-1

@@ -26,7 +26,7 @@ A PID should typically be assigned once data becomes a **stable and shareable di
 * When data is **shared beyond the boundaries of a single research team**
 
 
-At this stage the dataset becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.
+At this stage the digital object becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.
 
 
 ## Persistent Identifier Systems and Services in the Research Ecosystem
@@ -287,7 +287,7 @@ flowchart TB
 
 We can see how the Handle System is used differently in practice by comparing two PIDs: `10.5281/zenodo.3238330` and `11304/3185a834-5178-41bf-a849-b9ddbe4c5638`.
 
-The first identifier is a DOI. If we resolve it through the Handle System using https://hdl.handle.net/10.5281/zenodo.3238330?noredirect we can inspect the metadata stored directly in the Handle record.
+The first identifier is a DOI. If we resolve it through the Handle System using `https://hdl.handle.net/10.5281/zenodo.3238330?noredirect` we can inspect the metadata stored directly in the Handle record.
 
 ![Example DOI](img/pid-services/handle_entry_doi.png){fig-align="center"}
 
@@ -301,7 +301,7 @@ This record contains two standard fields:
 
 Every Handle record includes at least these two entries.
 
-Now let’s look at an EPIC example:
+Now let’s look at `11304/3185a834-5178-41bf-a849-b9ddbe4c5638` - an EPIC example:
 
 ![Example EPIC](img/pid-services/handle_entry_epic.png)
 
