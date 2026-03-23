@@ -1,0 +1,4 @@
+# RDM Infrastructure Introduction and Overview
+
+- highlevel overview over the big RDM infra components
+- Explained by e.g. https://www.dona.net/digitalobjectarchitecture
