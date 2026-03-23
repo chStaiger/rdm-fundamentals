@@ -113,9 +113,6 @@ flowchart LR
     style UPDATE fill:#e0f7e9,stroke:#2e8b57,color:#000000
 ```
 
-
-
-
 We explain the resolving mechanism in detail in [Resolution of Persistent Identifiers](pid-services.qmd#resolution-of-persistent-identifiers).
 
 ## How do we ensure that PIDs are globally unique?
@@ -295,7 +292,11 @@ Many repositories using services such as DataCite follow this pattern.
 
 Example:
 
-```
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: PIDs for non-resolvable resources.
+%%| fig-align: center
+%%{init: {"look": "handDrawn"}}%%
 PID → Landing page → Instructions for accessing the data
 ```
 
@@ -320,6 +321,8 @@ Some identifier schemes are designed primarily for **identification rather than 
 ::: {.callout-note}
 A PID does not require the underlying object to be directly accessible online. Instead, the PID provides a **stable identifier and a metadata record**, ensuring that the object can still be **found, cited, and described**, even if access requires special permissions or occurs outside the web.
 :::
+
+Assigning a PID marks the moment when a dataset enters the scholarly record. From here, the responsibility shifts to the systems that keep that identifier usable over time. In the following chapter, we look at the [**PID services**](pid-services.qmd) that mint identifiers, store their metadata, and ensure that they continue to resolve even as data and infrastructures evolve.
 
 ## References
 ### General
