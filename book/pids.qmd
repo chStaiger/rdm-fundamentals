@@ -296,8 +296,13 @@ Example:
 %%| label: fig-2
 %%| fig-cap: PIDs for non-resolvable resources.
 %%| fig-align: center
-%%{init: {"look": "handDrawn"}}%%
-PID → Landing page → Instructions for accessing the data
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+flowchart LR
+  A(PID) --> B(Landing page)
+  B --> C(Instructions for accessing the data)
 ```
 
 This ensures the identifier remains useful even when the data cannot be openly retrieved.
