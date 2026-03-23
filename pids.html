@@ -584,8 +584,13 @@ Figure&nbsp;7.3: PID Lifecycle (Mint → Store → Resolve → Update)
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-2">%%{init: {"look": "handDrawn"}}%%
-PID → Landing page → Instructions for accessing the data
+<pre class="mermaid mermaid-js" data-label="fig-2">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+flowchart LR
+  A(PID) --&gt; B(Landing page)
+  B --&gt; C(Instructions for accessing the data)
 </pre>
 </div>
 </div>
