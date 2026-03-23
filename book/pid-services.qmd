@@ -525,5 +525,13 @@ print(result)
 
 ## References
 - https://www.go-fair.org/fair-principles/
+- https://www.doi.org/
+- https://www.pidconsortium.net/
+- https://www.handle.net/
+- https://www.dona.net/
+- https://arks.org/about/
+- https://doi.org/10.17487%2FRFC3650, handle system, technical overview
+- https://doi.org/10.17487%2FRFC3651
+- https://www.cnri.reston.va.us/k-w.html, distributed digital objects services, overview
 
 
