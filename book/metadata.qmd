@@ -139,8 +139,6 @@ They:
 
 Templates are what researchers actually interact with. They operationalise schemas and often help enforce consistency.
 
-## How They Fit Together
-
 These components work together as complementary layers:
 
 | Concept                     | Purpose                  | Relationship                          |
@@ -221,13 +219,13 @@ Each element is identified by a **URI**, ensuring global uniqueness.
 ### How it fits
 
 * Ontologies define relationships
-* Controlled vocabularies provide stable identifiers
+* Controlled vocabularies provide globally unique identifiers for the concepts and terms used
 * Schemas can be expressed in machine-readable relationships (triples) using globally unique identifiers
 * Templates may generate Linked Data automatically
 
 Linked Data turns metadata into a **network of meaning**, rather than a collection of fields.
 
-## A Simple Analogy
+## A Simple Comparison
 
 Describing a book:
 
@@ -252,7 +250,7 @@ Describing a book:
 
 ### Key-value pairs versus Linked Data
 
-Below we are capturing the following metadata as key-value pairs.
+Below we are capturing some fictive metadata as key-value pairs.
 This format reflects how metadata typically appears in spreadsheets, repository forms, or simple JSON/YAML files.
 
 | **Field (Key)**  | **Value**                       |
@@ -268,7 +266,7 @@ This format reflects how metadata typically appears in spreadsheets, repository 
 * Relationships (e.g., between creator and affiliation) are **implicit**
 * Values are plain text, with no global identifiers
 
-In the image below the *same metadata* is expressed as a network of relationships, also known as knowledge Graph.
+In the image below the *same metadata* is expressed as a network of relationships, also known as Knowledge Graph.
 
 ```{mermaid}
 %%| label: fig-1
@@ -291,7 +289,7 @@ flowchart TD
     P -->|schema:affiliation| O[Organisation: Utrecht University]
 ```
 
-To serialise the graoh we use the format `turtle` in this example:
+To serialise the graph we use the format `turtle` in this example:
 
 ```
 @prefix dc:     <http://purl.org/dc/elements/1.1/> .
@@ -337,7 +335,7 @@ This is the key shift: from *fields with values* to *entities with relationships
 
 * Key–value metadata is the **practical starting point**
 * Linked Data is the **semantic, interoperable extension**
-* Controlled vocabularies and ontologies provide **meaning**
+* Controlled vocabularies and ontologies provide **meaning** and **standardisation** of terms
 * Schemas and templates provide **structure**
 
 Together, they form the foundation of **FAIR, reusable research metadata**.
@@ -347,7 +345,7 @@ Together, they form the foundation of **FAIR, reusable research metadata**.
 
 Metadata standards vary in scope—from general to highly specialised. Understanding how they complement each other helps in selecting the right approach.
 
-## Dublin Core
+### Dublin Core
 
 A **general-purpose, lightweight metadata schema**.
 
@@ -363,11 +361,11 @@ Why it’s useful:
 
 Role: Provides **baseline descriptive metadata**.
 
-## PROV-O
+### PROV-O
 
 A **provenance ontology** describing how data was created.
 
-Tt provides
+It provides
 
 * Entities, activities, and agents
 * Relationships such as `wasGeneratedBy` and `used`
@@ -380,7 +378,7 @@ Why it’s useful:
 Role: Adds **semantic provenance and process context**.
 
 
-## Discipline-Specific Schema (Example: [Data Documentation Initiative](https://ddialliance.org/))
+### Discipline-Specific Schema - [Data Documentation Initiative](https://ddialliance.org/)
 
 Data Documentation Initiative (DDI) organises metadata into three main levels:
 
@@ -430,9 +428,9 @@ Why it’s useful:
 
 Role: Provides **deep, field-specific context**.
 
-## ISA (Investigation–Study–Assay)
+### Discipline-Specific Schema - Investigation–Study–Assay (ISA)
 
-[ISA](https://isa-specs.readthedocs.io/en/latest/) is a **discipline-specific metadata framework** used in life sciences to describe experimental workflows, especially in genomics, proteomics, and other omics research.
+[ISA](https://isa-specs.readthedocs.io/en/latest/) is a **discipline-specific metadata framework** used in the life sciences to describe experimental workflows, especially in genomics, proteomics, and other omics research.
 
 ISA organises metadata into three hierarchical levels:
 
