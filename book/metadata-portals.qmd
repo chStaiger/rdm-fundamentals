@@ -1,4 +1,5 @@
-# Metadata Infrastructure: Portals, Harvesters, Indexers, and Serialisation
+# Metadata Infrastructure
+### Portals, Harvesters, Indexers, and Serialisation
 
 Metadata becomes truly powerful only when it can be **shared, discovered, aggregated, and reused** across systems. For this to work, research infrastructures rely on a set of services that collect, expose, and standardise metadata at scale. These services form the **metadata infrastructure** that underpins FAIR data ecosystems.
 
