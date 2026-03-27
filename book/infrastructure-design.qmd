@@ -1,1 +1,318 @@
 # RDM Infrastructure Design
+
+## FAIR for IT Infrastructure in short
+
+### F — Findable
+Infrastructure must:
+
+- Provide global identifiers (DOI/Handle)
+- Maintain searchable indexes
+- Expose metadata via APIs
+- Support harvesting and cross-repository discovery
+
+### A — Accessible
+Infrastructure must:
+
+- Support open protocols (HTTPS, S3, WebDAV)
+- Provide fine-grained access control (ACLs, policies)
+- Support federated identity
+- Keep metadata accessible even if data is removed
+
+### I — Interoperable
+Infrastructure must:
+
+- Support machine-actionable formats (RDF, JSON-LD)
+- Use FAIR vocabularies and ontologies
+- Provide APIs for integration with HPC, workflow engines, repositories
+
+### R — Reusable
+Infrastructure must:
+
+- Support community metadata schemas
+- Capture provenance and workflow metadata
+- Require licenses
+- Provide stable, versioned metadata
+
+## F — Findable → Infrastructure Requirements
+
+### F1. Persistent Identifiers (PIDs)
+Infrastructure must:
+
+- Support global, resolvable identifiers (e.g., DOI, Handle, ARK)
+- Maintain PID → landing page resolution even if data moves
+- Provide PID minting APIs for automation
+
+### F2. Rich Metadata
+Infrastructure must:
+
+- Support structured metadata schemas (JSON, XML, RDF, domain standards)
+- Allow schema extension and versioning
+- Validate metadata on ingest
+
+### F3. Metadata links to data
+Infrastructure must:
+
+- Bind metadata records to their data objects via stable identifiers
+- Maintain referential integrity even if files move between storage systems
+
+### F4. Searchable registration
+Infrastructure must:
+
+- Provide a searchable index (Elasticsearch, Solr, graph DB)
+- Expose metadata via APIs (OAI-PMH, REST, SPARQL)
+- Support harvesting by external services
+
+**In short:**  
+➡️ *A FAIR platform must make data discoverable through persistent identifiers, rich metadata, and searchable indexes.*
+
+
+## A — Accessible → Infrastructure Requirements
+
+### A1. Standard protocols
+Infrastructure must:
+- Serve data and metadata via open protocols (HTTPS, S3, WebDAV, OAI-PMH)
+- Avoid proprietary-only access paths
+
+### A1.1 Open, free, universally implementable
+Infrastructure must:
+- Use open standards (HTTP, OAuth2, OIDC, S3-compatible APIs)
+- Provide documentation and SDKs
+
+### A1.2 Authentication & authorization
+Infrastructure must:
+- Support federated identity (eduGAIN, SURFconext)
+- Provide fine-grained access control (ACLs, policies)
+- Log access for auditing
+
+### A2. Metadata remains accessible
+Infrastructure must:
+- Preserve metadata even if data is deleted or embargoed
+- Provide landing pages for “tombstone” records
+
+**In short:**  
+➡️ *A FAIR platform must provide open, secure, standards-based access to data and metadata.*
+
+
+## I — Interoperable → Infrastructure Requirements
+
+### I1. Formal, shared languages
+Infrastructure must:
+- Support RDF, JSON-LD, XML, or other machine-actionable formats
+- Provide APIs for exporting metadata in these formats
+
+### I2. FAIR vocabularies
+Infrastructure must:
+- Support controlled vocabularies, ontologies (SKOS, OBO, schema.org)
+- Allow mapping between vocabularies
+- Validate vocabulary terms on ingest
+
+### I3. Qualified references
+Infrastructure must:
+- Support linking datasets, software, instruments, projects, grants
+- Store relationships as typed links (e.g., PROV-O, RO-Crate)
+- Maintain resolvable references
+
+**In short:**  
+➡️ *A FAIR platform must speak machine-actionable languages and use shared vocabularies so data can integrate with other systems.*
+
+
+## R — Reusable → Infrastructure Requirements
+
+### R1. Rich descriptions
+Infrastructure must:
+- Support domain-specific metadata schemas (MIxS, MIAPPE, DDI, etc.)
+- Allow multiple metadata profiles per community
+
+### R1.1 Usage licenses
+Infrastructure must:
+- Require a license field (e.g., CC-BY, CC0)
+- Provide controlled vocabularies for licenses
+
+### R1.2 Provenance
+Infrastructure must:
+- Capture provenance automatically (timestamps, actors, workflows)
+- Support standards like PROV-O, RO-Crate
+- Store workflow metadata (Nextflow, Snakemake, Galaxy)
+
+### R1.3 Community standards
+Infrastructure must:
+- Allow communities to define and enforce their own metadata templates
+- Support schema evolution and versioning
+
+**In short:**  
+➡️ *A FAIR platform must support rich, domain-specific metadata, licensing, and provenance to enable reuse.*
+
+## If we took FAIR seriously, how would an RDM infrastructure look like?
+
+
+A FAIR data platform isn’t a single tool—it’s a stack addressing:
+
+- Active research & collaboration
+- Metadata & FAIRification
+- Storage & orchestration
+- Publication & discovery
+- Integration & access (APIs, identity, policies)
+
+Each layer contributes to F, A, I, or R in a specific way.
+
+### High-level picture
+
+A FAIR data platform isn’t a single tool—it’s a **stack**:
+
+1. **Active research & collaboration**  
+2. **Metadata & FAIRification**  
+3. **Storage & orchestration**  
+4. **Publication & discovery**  
+5. **Integration & access (APIs, identity, policies)**  
+
+Each layer contributes to F, A, I, or R in a specific way.
+
+### Example FAIR platform stack (with concrete technologies)
+
+Here’s one realistic combination (very close to what you could run at SURF or a university):
+
+- **Active research & collaboration**
+  - **Nextcloud / ResearchDrive** for file sharing and team collaboration  
+  - **MetaVox** for schema-based metadata on folders/files
+
+- **Metadata & FAIRification**
+  - **FAIR Data Station** for structured, domain-specific, machine-actionable metadata (ISA, RDF)  
+  - **CKAN** as a central metadata registry / catalog across systems
+
+- **Storage & orchestration**
+  - **Object Store + dCache + HPC filesystems** as raw storage backends  
+  - **iRODS** as the policy engine and data management middleware  
+  - **Globus** for high-performance data transfer between sites
+
+- **Publication & discovery**
+  - **Dataverse** (e.g., DANS Data Station) as the main research data repository  
+  - **Invenio-based SURF Data Repository / Zenodo / 4TU (Djehuty)** as additional or domain repositories  
+  - **Search/portal** via Dataverse UI + CKAN portal + possibly a knowledge graph index
+
+- **Integration & access**
+  - **SURF Research Data Connector** to publish from active storage (Nextcloud/iRODS) into repositories  
+  - **Federated identity** (e.g., SURFconext/eduGAIN) for AAI  
+  - **APIs** (REST, OAI-PMH, S3, WebDAV, SPARQL) for machine access
+
+This stack gives you:
+
+- PIDs + rich metadata + search → **Findable**  
+- Open protocols + AAI + policy-based access → **Accessible**  
+- RDF/JSON-LD + ontologies + APIs → **Interoperable**  
+- Community schemas + provenance + licenses → **Reusable**
+
+### Blueprint: layered architecture
+
+Here’s a conceptual blueprint in layers.
+
+```{mermaid}
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+flowchart TD
+
+    %% Users
+    subgraph Users["Users"]
+        R["Researchers"]
+        DS["Data Stewards"]
+        M["Machines / Workflows"]
+    end
+
+    %% Layer 1
+    subgraph L1["Active Research"]
+        NC["Nextcloud / ResearchDrive"]
+        MV["MetaVox"]
+    end
+
+    %% Layer 2
+    subgraph L2["FAIR Metadata"]
+        FDS["FAIR Data Station"]
+        CKAN["CKAN Registry"]
+    end
+
+    %% Layer 3
+    subgraph L3["Storage and Orchestration"]
+        IRODS["iRODS"]
+        OBJ["Object Store"]
+        DC["dCache"]
+        GLOB["Globus"]
+    end
+
+    %% Layer 4
+    subgraph L4["Publication and Discovery"]
+        DV["Dataverse"]
+        INV["Invenio / SDR"]
+        DJE["4TU / Djehuty"]
+        PORTAL["Discovery Portal"]
+    end
+
+    %% Layer 5
+    subgraph L5["AAI and Integration"]
+        RDC["Research Data Connector"]
+        AAI["Federated Identity"]
+        API["APIs"]
+    end
+
+    %% Simplified flows
+    R --> NC
+    R --> FDS
+    NC --> OBJ
+    NC --> DC
+    MV --> CKAN
+    FDS --> CKAN
+    CKAN --> PORTAL
+
+    OBJ --> IRODS
+    DC --> IRODS
+    IRODS --> GLOB
+
+    IRODS --> RDC
+    RDC --> DV
+    RDC --> INV
+    RDC --> DJE
+
+    DV --> API
+    INV --> API
+    DJE --> API
+    API --> PORTAL
+
+    R --> AAI
+    DS --> AAI
+    AAI --> NC
+    AAI --> DV
+    AAI --> IRODS
+
+    %% Highlight key nodes
+    style DV fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style FDS fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style IRODS fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style CKAN fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style NC fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style PORTAL fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+```
+
+Why this is a *FAIR* platform, not just “some tools”
+
+- **Findable:** PIDs in Dataverse/Invenio, CKAN index, searchable portal, APIs.  
+- **Accessible:** HTTPS/S3/WebDAV, AAI, fine-grained policies in iRODS and repositories.  
+- **Interoperable:** FAIR Data Station + RDF, CKAN + vocabularies, APIs + workflow integration.  
+- **Reusable:** Community schemas, licenses, provenance (workflows + iRODS rules), curated repositories.
+
+## Coordinating Technologies Through Integration and Policy
+
+Building a FAIR data platform is not simply a matter of assembling individual services; it requires **well‑defined integrations** and a **policy engine** capable of steering how data moves, transforms, and becomes enriched across the entire data lifecycle. Each component—storage, metadata services, workflow engines, and repositories—must interoperate through stable interfaces and shared standards so that data and metadata remain coherent as they transition between systems.
+
+A FAIR‑aligned platform therefore needs:
+
+- **Clear integration contracts** between services (APIs, event streams, metadata mappings, PID handling)  
+- **Consistent metadata models** that travel with the data from active research to publication  
+- **Automated workflows** that enforce rules for validation, provenance capture, versioning, and access control  
+- **A central policy engine** (e.g., iRODS rules, workflow orchestrators, or event‑driven automation) to coordinate transitions such as:  
+  - ingesting data from active storage  
+  - enriching metadata through FAIRification tools  
+  - triggering transformations or quality checks  
+  - publishing curated datasets to repositories  
+  - synchronizing metadata across catalogs and indexes  
+
+Without this orchestration layer, a platform becomes a loose collection of tools rather than a coherent ecosystem. With it, the platform can guarantee that data flows are **predictable**, **auditable**, and **FAIR by design**, regardless of which technologies are used underneath.
