@@ -10,6 +10,149 @@
     ]
   },
   {
+    "objectID": "metadata.html",
+    "href": "metadata.html",
+    "title": "Metadata",
+    "section": "",
+    "text": "What Is Metadata in Research Data Management?\nIn the context of Research Data Management (RDM), metadata is structured information that describes, explains, and contextualises a digital object—such as a dataset, document, image, or software file. It acts as a layer of documentation that makes a digital object findable, understandable, and reusable, both now and in the future.\nMetadata typically captures:\nIn short, metadata provides the context needed to interpret and reuse data beyond its original purpose.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#what-is-metadata-in-research-data-management",
+    "href": "metadata.html#what-is-metadata-in-research-data-management",
+    "title": "Metadata",
+    "section": "",
+    "text": "Content information — what the object contains\nProvenance — how, when, and by whom it was created\nTechnical characteristics — file formats, structures, and software requirements\nAdministrative information — rights, licences, and access conditions\nRelationships — links to other versions, datasets, or publications\n\n\n\n\n\n\nA fictive example for a published dataset\n\n\n\n\n\n\n\n\n\n\nField\nExample Value\n\n\n\n\nTitle\nSoil Moisture Dataset 2020–2023\n\n\nCreator\nAnna Vermeer\n\n\nAffiliation\nUtrecht University\n\n\nPublication Year\n2024\n\n\nDescription\nMeasurements of soil moisture across multiple sites in the Netherlands over three years.\n\n\nKeywords / Subject\nsoil moisture, hydrology, climate\n\n\nLicense\nCC BY 4.0\n\n\nProvenance\nCollected using sensor network; cleaned and validated by research team; processed using R scripts version 4.2\n\n\nDataset DOI\n10.5281/zenodo.1234567\n\n\nDomain Detail (DDI)\nVariable-level metadata: soil_moisture, temperature, precipitation; measurement units, missing values, coding scheme documented.\n\n\nDomain Detail (ISA)\nAssay-level metadata for soil sensors: sensor type, calibration protocol, data logger model, measurement frequency.\n\n\n\n\n\n\n\n\nA fictive example for accompanying software\n\n\n\n\n\n\nField\nExample Value\n\n\n\n\nTitle\nSoil Moisture Data Cleaning Script\n\n\nCreator / Author\nAnna Vermeer\n\n\nAffiliation\nUtrecht University\n\n\nVersion\n1.0.2\n\n\nProgramming Language\nR\n\n\nDescription\nScript to clean and standardize soil moisture measurements from multiple sensor networks, including missing value imputation and unit conversions.\n\n\nLicense\nMIT License\n\n\nRepository / DOI\nhttps://github.com/soil-data/cleaning-script or DOI: 10.5281/zenodo.7654321\n\n\nDependencies\nR packages: tidyverse 1.4.3, lubridate 1.9.0\n\n\nProvenance\nDeveloped as part of Soil Moisture Project 2020–2023; tested on dataset version 3; last updated March 2024\n\n\nDomain Detail (CodeMeta)\nsoftwareRequirements: R 4.2; programmingLanguage: R; codeRepository: GitHub; maintainer: Anna Vermeer\n\n\nDomain Detail (ISA)\nIf linked to experimental workflows: script applied to assay-level data (sensor readings), preserving measurement protocols and calibration details.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#ontologies-controlled-vocabularies-metadata-schemas-and-templates",
+    "href": "metadata.html#ontologies-controlled-vocabularies-metadata-schemas-and-templates",
+    "title": "Metadata",
+    "section": "Ontologies, Controlled Vocabularies, Metadata Schemas, and Templates",
+    "text": "Ontologies, Controlled Vocabularies, Metadata Schemas, and Templates\nUnderstanding the Building Blocks of Structured Research Metadata\nIn Research Data Management, terms such as ontologies, controlled vocabularies, metadata schemas, and metadata templates are often used together. While closely related, they serve distinct roles. Together, they ensure that research outputs are described in a consistent, machine-readable, and interoperable way.\n\nControlled Vocabularies\nControlled vocabularies are curated lists of approved terms used to describe data consistently.\nThey:\n\nProvide standardised terms for describing concepts\nReduce ambiguity (e.g., “soil moisture” vs. “soil humidity”)\nImprove searchability and interoperability\n\n\nExamples\n\nAGROVOC (agriculture)\nMeSH (biomedical terms)\nGCMD keywords (Earth science)\n\nWhen a metadata field requires a subject keyword, a controlled vocabulary ensures that everyone uses the same term for the same concept.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#ontologies",
+    "href": "metadata.html#ontologies",
+    "title": "Metadata",
+    "section": "Ontologies",
+    "text": "Ontologies\nOntologies extend controlled vocabularies by not only defining terms, but also specifying the relationships between them.\nThey:\n\nProvide a formal, machine-readable model of concepts\nDefine hierarchies (e.g., “soil moisture” is a type of “hydrological variable”)\nEnable reasoning and automated linking between datasets\n\n\nExamples\n\nGene Ontology (GO)\nENVO (Environment Ontology)\nPROV-O (Provenance Ontology)\n\nOntologies allow machines to understand that terms like “precipitation” and “rainfall” are related, enabling more intelligent search and data integration.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#metadata-schemas",
+    "href": "metadata.html#metadata-schemas",
+    "title": "Metadata",
+    "section": "Metadata Schemas",
+    "text": "Metadata Schemas\nA metadata schema defines which fields are used to describe a digital object and how those fields should be structured.\nThey:\n\nSpecify required and optional fields\nDefine field types (e.g., text, date, identifier)\nEnsure consistency across repositories and disciplines\n\n\nExamples\n\nDublin Core (general-purpose)\nDataCite (research outputs)\nDDI (social sciences)\nCodeMeta (software)\n\nA metadata schema tells you what information to provide, such as:\n\nTitle\nCreator\nDescription\nKeywords\nLicense\nPersistent identifier\n\nImportantly, it does not define which terms to use—that is the role of controlled vocabularies.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#metadata-templates",
+    "href": "metadata.html#metadata-templates",
+    "title": "Metadata",
+    "section": "Metadata Templates",
+    "text": "Metadata Templates\nA metadata template is a practical, user-friendly implementation of a metadata schema.\nThey:\n\nProvide forms or structured documents for data entry\nTranslate schema fields into prompts\nInclude guidance or examples\nOften embed controlled vocabularies (e.g., dropdowns or autocomplete)\n\n\nExamples\n\nA Zenodo upload form\nA Dataverse dataset form\nA lab-specific metadata spreadsheet\nA README template aligned with DataCite\n\nTemplates are what researchers actually interact with. They operationalise schemas and often help enforce consistency.\nThese components work together as complementary layers:\n\n\n\n\n\n\n\n\nConcept\nPurpose\nRelationship\n\n\n\n\nControlled vocabularies\nStandardised terms\nProvide the values used in metadata\n\n\nOntologies\nConcepts + relationships\nAdd semantic meaning and structure\n\n\nMetadata schemas\nField definitions\nSpecify what metadata to capture\n\n\nMetadata templates\nPractical tools\nImplement schemas for users\n\n\n\n\nA simple analogy\n\nControlled vocabularies → the dictionary\nOntologies → the dictionary plus relationships\nMetadata schemas → the blueprint\nMetadata templates → the form you fill in\n\n\n\nA real-world example\nWhen uploading a dataset to Zenodo:\n\nA schema (e.g., DataCite) defines the required fields.\nThe platform presents these fields through a template (web form).\nControlled vocabularies may guide keyword selection.\nOntologies may link your dataset to related concepts behind the scenes.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#linked-data-and-keyvalue-metadata",
+    "href": "metadata.html#linked-data-and-keyvalue-metadata",
+    "title": "Metadata",
+    "section": "Linked Data and Key–Value Metadata",
+    "text": "Linked Data and Key–Value Metadata\nMetadata can range from simple structures to fully semantic representations. Two key approaches are key–value metadata and Linked Data.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#keyvalue-metadata",
+    "href": "metadata.html#keyvalue-metadata",
+    "title": "Metadata",
+    "section": "Key–Value Metadata",
+    "text": "Key–Value Metadata\nKey–value metadata is the simplest and most widely used format. It consists of pairs:\n\nKey → the field name\nValue → the content\n\n\nExamples\n\ntitle: Soil Moisture Dataset 2020–2023\ncreator: Anna Vermeer\nlicense: CC BY 4.0\n\n\n\nCharacteristics\n\nEasy to create and understand\nCommon in spreadsheets, JSON, YAML, and repository forms\nHuman-readable, but limited in machine interpretation\n\n\n\nHow it fits\n\nSchemas define the keys\nControlled vocabularies constrain the values\nTemplates present both to the user\n\nKey–value metadata forms the foundation of most metadata practices.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#linked-data",
+    "href": "metadata.html#linked-data",
+    "title": "Metadata",
+    "section": "Linked Data",
+    "text": "Linked Data\nLinked Data is a more advanced, semantic approach that represents metadata as interconnected statements.\n\nCore idea\nInformation is expressed as subject–predicate–object triples:\n\nDataset — hasCreator → Anna Vermeer\nDataset — hasSubject → Soil Moisture\nSoil Moisture — is a → Hydrological Variable\n\nEach element is identified by a URI, ensuring global uniqueness.\n\nCharacteristics\n\nHighly interoperable\nMachine-interpretable\nEnables automated reasoning\nConnects datasets across systems\n\n\n\n\nHow it fits\n\nOntologies define relationships\nControlled vocabularies provide globally unique identifiers for the concepts and terms used\nSchemas can be expressed in machine-readable relationships (triples) using globally unique identifiers\nTemplates may generate Linked Data automatically\n\nLinked Data turns metadata into a network of meaning, rather than a collection of fields.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#a-simple-comparison",
+    "href": "metadata.html#a-simple-comparison",
+    "title": "Metadata",
+    "section": "A Simple Comparison",
+    "text": "A Simple Comparison\nDescribing a book:\n\nKey–value metadata\n\ntitle: The Hobbit\nauthor: J.R.R. Tolkien\n\nControlled vocabulary\n\nsubject: Fantasy Fiction\n\nOntology\n\nFantasy Fiction → is a → Fiction Genre\n\nSchema → defines the fields\nTemplate → the form\nLinked Data → a connected network (knowledge graph) of relationships\n\n\nKey–value pairs versus Linked Data\nMetadata often begins its life as a simple list of key–value pairs. This is the format most researchers encounter in spreadsheets, repository submission forms, or lightweight JSON/YAML files.\n\n\n\nField (Key)\nValue\n\n\n\n\nTitle\nSoil Moisture Dataset 2020–2023\n\n\nCreator\nAnna Vermeer\n\n\nAffiliation\nUtrecht University\n\n\nPublication Year\n2024\n\n\nSubject\nSoil moisture\n\n\nLicense\nCC BY 4.0\n\n\n\nIn this representation:\n\nEach row stands alone as an independent field–value pair\n\nRelationships (e.g., that Anna Vermeer is affiliated with Utrecht University) are implicit\n\nValues are plain text, without global identifiers or machine‑interpretable meaning\n\nSuch metadata is typically serialised as CSV or TSV files: simple, familiar, and easy to edit, but limited in how much structure or semantics they can express.\nIn the diagram below, the same metadata is expressed as a small knowledge graph. Instead of isolated fields, we now have entities (dataset, person, organisation, concept) connected by explicit relationships.\n\n\n\n\n\n\n%%{init: {\n  \"look\": \"handDrawn\",\n  \"flowchart\": { \"htmlLabels\": false }\n}}%%\nflowchart TD\n\n    D[Dataset]\n\n    D --&gt;|dc:title| T[\"Soil Moisture Dataset 2020–2023\"]\n    D --&gt;|dc:issued| Y[\"2024\"]\n    D --&gt;|dc:license| L[\"CC BY 4.0 (URI)\"]\n    D --&gt;|dc:creator| P[Person: Anna Vermeer]\n    D --&gt;|dc:subject| S[Concept: Soil Moisture]\n\n    P --&gt;|schema:affiliation| O[Organisation: Utrecht University]\n\n\n\n\nFigure 6.1: Knowledge Graph\n\n\n\n\n\nCompared to the table:\n\nThe table presents metadata as a flat list of fields\n\nThe graph presents metadata as a network of connected entities\n\nThe person, organisation, and subject become first‑class nodes\n\nRelationships such as creator and affiliation are explicit and machine‑interpretable\n\nThis is the essential shift: from fields with values to entities with relationships.\nTo serialise such a graph, we use a Linked Data format such as Turtle:\n@prefix dc:     &lt;http://purl.org/dc/elements/1.1/&gt; .\n@prefix dct:    &lt;http://purl.org/dc/terms/&gt; .\n@prefix schema: &lt;http://schema.org/&gt; .\n@prefix foaf:   &lt;http://xmlns.com/foaf/0.1/&gt; .\n@prefix skos:   &lt;http://www.w3.org/2004/02/skos/core#&gt; .\n@prefix rdfs:   &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n@prefix xsd:    &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n\n# Dataset node (using schema:Dataset)\n&lt;https://data.example.org/dataset/soil-moisture-2020-2023&gt;\n    a schema:Dataset ;\n    dc:title \"Soil Moisture Dataset 2020–2023\" ;\n    dct:issued \"2024\"^^xsd:gYear ;\n    dct:license &lt;https://creativecommons.org/licenses/by/4.0/&gt; ;\n    dct:creator &lt;https://data.example.org/person/anna-vermeer&gt; ;\n    dct:subject &lt;https://vocab.example.org/concept/soil-moisture&gt; .\n\n# Person node (FOAF)\n&lt;https://data.example.org/person/anna-vermeer&gt;\n    a foaf:Person ;\n    foaf:name \"Anna Vermeer\" ;\n    foaf:member &lt;https://data.example.org/org/utrecht-university&gt; .\n\n# Organisation node (FOAF)\n&lt;https://data.example.org/org/utrecht-university&gt;\n    a foaf:Organization ;\n    foaf:name \"Utrecht University\" .\n\n# Concept node (SKOS)\n&lt;https://vocab.example.org/concept/soil-moisture&gt;\n    a skos:Concept ;\n    skos:prefLabel \"Soil Moisture\"@en ;\n    skos:definition \"The amount of water contained in soil, typically expressed as a percentage.\"@en .\nIn this Turtle serialisation, the RDF graph not only describes the dataset, the creator, and the organisation, but also provides a stable identifier for the subject concept (“Soil Moisture”). This makes the metadata interoperable: other datasets can refer to the same concept, and machines can follow the URI to retrieve its meaning.\nAt the top of the file, we declare the ontologies and vocabularies we use. For example:\n@prefix dc:     &lt;http://purl.org/dc/elements/1.1/&gt; .\nThis tells us that dc:title is shorthand for the full URI\nhttp://purl.org/dc/elements/1.1/title,\nwhich is the authoritative definition of the Dublin Core title property.\nBy giving each entity, i.e. dataset, person, organisation and concept its own URI, the graph becomes a reusable and extensible structure. Machines can infer relationships, merge graphs, or enrich them with external knowledge. While it is technically possible to use URIs as keys in key–value metadata, such formats lack the semantics and inference capabilities that RDF provides.\nWe explore metadata serialisation and metadata infrastructure in more detail in the chapter Metadata Infrastructure.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#bringing-it-all-together",
+    "href": "metadata.html#bringing-it-all-together",
+    "title": "Metadata",
+    "section": "Bringing It All Together",
+    "text": "Bringing It All Together\n\nKey–value metadata is the practical starting point\nLinked Data is the semantic, interoperable extension\nControlled vocabularies and ontologies provide meaning and standardisation of terms\nSchemas and templates provide structure\n\nTogether, they form the foundation of FAIR, reusable research metadata.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#understanding-and-combining-metadata-standards",
+    "href": "metadata.html#understanding-and-combining-metadata-standards",
+    "title": "Metadata",
+    "section": "Understanding and Combining Metadata Standards",
+    "text": "Understanding and Combining Metadata Standards\nMetadata standards vary in scope—from general to highly specialised. Understanding how they complement each other helps in selecting the right approach.\n\nDublin Core\nA general-purpose, lightweight metadata schema.\nIt provides:\n\n15 core elements (e.g., Title, Creator, Subject, Date)\nBroad applicability across domains\n\nWhy it’s useful:\n\nSimple and widely supported\nSuitable for discovery and basic description\n\nRole: Provides baseline descriptive metadata.\n\n\nPROV-O\nA provenance ontology describing how data was created.\nIt provides\n\nEntities, activities, and agents\nRelationships such as wasGeneratedBy and used\n\nWhy it’s useful:\n\nSupports reproducibility\nCaptures workflows and processes\n\nRole: Adds semantic provenance and process context.\n\n\nDiscipline-Specific Schema - Data Documentation Initiative\nData Documentation Initiative (DDI) organises metadata into three main levels:\n\n\n\n\n\n\n\n\nLevel\nWhat it describes\nExamples\n\n\n\n\nStudy level\nThe overall research project\nTitle, investigators, methodology, sampling\n\n\nDataset level\nThe data files\nFile format, number of variables, version\n\n\nVariable level\nIndividual variables\nQuestion text, response categories, coding\n\n\n\nThe variable level is what makes DDI especially powerful.\nStudy level\n\nTitle: European Social Survey 2022\nMethod: Survey\nSample: Random sample of EU residents\n\nDataset level\n\nFile: ess2022.csv\nCases: 30,000 respondents\nVariables: 250\n\nVariable level\n\nVariable: trust_gov\nQuestion: “How much do you trust the national government?”\nValues:\n\n0 = No trust\n10 = Complete trust\n\n\nDDI enables researchers to understand:\n\nwhat the data contains (variables),\nhow it was collected (methodology), and\nhow to reuse it correctly.\n\nIt provides:\n\nDetailed methodological and variable-level metadata\nSupport for complex datasets\n\nWhy it’s useful:\n\nCaptures domain knowledge essential for reuse\n\nRole: Provides deep, field-specific context.\n\n\nDiscipline-Specific Schema - Investigation–Study–Assay (ISA)\nISA is a discipline-specific metadata framework used in the life sciences to describe experimental workflows, especially in genomics, proteomics, and other omics research.\nISA organises metadata into three hierarchical levels:\n\n\n\n\n\n\n\n\nLevel\nWhat it describes\nExamples\n\n\n\n\nInvestigation\nThe overall research context\nProject title, researchers, objectives\n\n\nStudy\nA specific experiment or dataset\nStudy design, subjects, sample characteristics\n\n\nAssay\nAnalytical measurements and technologies\nSequencing, mass spectrometry, protocols\n\n\n\nThe assay level captures how data was actually generated.\nInvestigation level\n\nTitle: Gut Microbiome and Diet Study\nObjective: Analyse microbiome changes under different diets\n\nStudy level\n\nSubjects: 100 participants\nDesign: Controlled dietary intervention\nSamples: Stool samples collected weekly\n\nAssay level\n\nTechnology: DNA sequencing\nPlatform: Illumina\nOutput: Microbial abundance profiles\n\nISA enables researchers to understand:\n\nwhat was studied (samples and subjects),\nhow experiments were conducted, and\nhow measurements were generated.\n\nIt provides:\n\nDetailed methodological and variable-level metadata\nSupport for complex datasets\n\nWhy it’s useful:\n\nCaptures domain knowledge essential for reuse\n\nRole: Provides deep, field-specific context.\n\n\nHow They Work Together\n\n\n\n\n\n\n\n\nLayer\nPurpose\nExample\n\n\n\n\nGeneral description\nWhat is it?\nDublin Core\n\n\nProvenance\nHow was it created?\nPROV-O\n\n\nDomain detail\nWhat does it mean in context?\nDDI (social sciences), ISA (life sciences)\n\n\n\nTogether, these layers create rich, FAIR, and interoperable metadata.",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
+    "objectID": "metadata.html#references",
+    "href": "metadata.html#references",
+    "title": "Metadata",
+    "section": "References",
+    "text": "References\n\nhttps://www.w3.org/wiki/LinkedData\nhttps://www.w3.org/DesignIssues/LinkedData\nhttps://www.rd-alliance.org/group_output/rda-tdwg-attribution-metadata-working-group-final-recommendations/\nhttps://ddialliance.org/\nhttps://isa-tools.org/format/specification.html",
+    "crumbs": [
+      "THE HOLY TRINITY OF RDM",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Metadata</span>"
+    ]
+  },
+  {
     "objectID": "pids.html",
     "href": "pids.html",
     "title": "Persistent Identifiers",
@@ -106,6 +249,105 @@
     "crumbs": [
       "COMPONENTS OF RDM INFRASTRUCTURE",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>RDM Infrastructure Introduction and Overview</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html",
+    "href": "metadata-portals.html",
+    "title": "Metadata Infrastructure",
+    "section": "",
+    "text": "Portals, Harvesters, Indexers, and Serialisation\nMetadata becomes truly powerful only when it can be shared, discovered, aggregated, and reused across systems. For this to work, research infrastructures rely on a set of services that collect, expose, and standardise metadata at scale. These services form the metadata infrastructure that underpins FAIR data ecosystems.\nThis chapter introduces the main components of that infrastructure: metadata portals, metadata harvesters, indexing services, and the serialisation formats that allow metadata to move between systems.",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#why-local-metadata-alone-is-not-enough",
+    "href": "metadata-portals.html#why-local-metadata-alone-is-not-enough",
+    "title": "Metadata Infrastructure",
+    "section": "Why Local Metadata Alone Is Not Enough",
+    "text": "Why Local Metadata Alone Is Not Enough\nCreating a metadata record inside a repository is essential, but metadata that stays inside a single system remains effectively invisible to the wider research ecosystem. A dataset may be perfectly documented, but if its metadata is not exposed in standardised, machine‑readable ways, it cannot be:\n\ndiscovered by search engines\n\nharvested by aggregators\n\nindexed by disciplinary or cross‑disciplinary portals\n\nlinked to related datasets, publications, or software\n\nintegrated into knowledge graphs\n\nfound by researchers outside the hosting institution\n\nIn other words, metadata is only as useful as the infrastructure that distributes it.\nSeveral factors limit the findability of “local‑only” metadata:\n\nSiloing — each repository stores metadata in its own database, often with its own schema\n\nLack of standardisation — metadata may not follow common schemas or vocabularies\n\nNo machine‑readable exposure — metadata may be visible on a webpage but not accessible via APIs or harvesting protocols\n\nNo cross‑repository search — users must know the repository exists before they can find the data\n\nNo integration with PID services — identifiers may not be resolvable or linked to global discovery systems\n\nThis is why FAIR emphasises that metadata must be findable and accessible, not merely present.\nTo achieve this, repositories must expose metadata through standard protocols (e.g., OAI‑PMH, ResourceSync, REST APIs) so that external services can collect and index it.\nThe Figure below shows the architecture to make metadata actionable for researchers and machines. The nodes in light green denote the components that directly interact with users and machines and which you might have already used.\n\n\n\n\n\n\n%%{init: {\n  \"look\": \"handDrawn\",\n  \"flowchart\": { \"htmlLabels\": false }\n}}%%\n\nflowchart TD\n\n    %% Consumer at the top\n    subgraph Consumer[\"Consumer\"]\n        USER[\"Researchers and Machines\"]\n    end\n\n    %% Repository\n    subgraph Repository[\"Repository\"]\n        DATA[\"Data Files\"]\n        META[\"Local Metadata&lt;br&gt;(JSON, XML, RDF)\"]\n        API[\"Expose Metadata&lt;br&gt;via OAI-PMH / REST API\"]\n        META --&gt;|\"offered through\"| API\n    end\n\n    %% Metadata Service\n    subgraph MetadataService[\"Metadata Service\"]\n        HARV[\"Harvester&lt;br&gt;Collect and Normalise\"]\n        INDEX[\"Indexer&lt;br&gt;Search Index / Knowledge Graph\"]\n        PORTAL[\"Metadata Portal&lt;br&gt;Discovery Interface\"]\n        HARV --&gt;|\"provide harvested metadata\"| INDEX\n        INDEX --&gt;|\"serve indexed metadata\"| PORTAL\n    end\n\n    %% --- Anchor the layout ---\n    %% These edges ensure Consumer stays ABOVE the two subgraphs\n    USER --&gt; |\"search / explore\"| PORTAL\n    USER --&gt; |\"access and download\"| DATA\n\n    %% Metadata flow (Repository → Metadata Service)\n    API --&gt;|\"offer metadata\"| HARV\n\n\n    %% Highlight nodes (light green fill, dark green text)\n    style USER fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style DATA fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style PORTAL fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n\n    %% Link styles\n    linkStyle 0 labelPosition:0.5, align:top;\n    linkStyle 1 labelPosition:0.5, align:top;\n    linkStyle 2 labelPosition:0.5, align:top;\n    linkStyle 3 labelPosition:0.5, align:top;\n    linkStyle 4 labelPosition:0.5, align:top;\n\n\n\n\n\nFigure 10.1: From Local Metadata to Discovery and Data Access\n\n\n\n\n\nWe will now go through the single aspects of the metadata infrastructure.",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#metadata-portals",
+    "href": "metadata-portals.html#metadata-portals",
+    "title": "Metadata Infrastructure",
+    "section": "Metadata Portals",
+    "text": "Metadata Portals\nMetadata portals are platforms that provide human‑ and machine‑readable access to metadata records. They act as central entry points for discovering datasets, publications, software, and other research outputs.\nPortals typically:\n\nexpose metadata through search interfaces\n\nprovide landing pages for datasets\n\noffer APIs for programmatic access\n\nintegrate controlled vocabularies and ontologies\n\nlink metadata to identifiers such as DOIs, ORCID iDs, and ROR IDs (see Chapter Persistent Identifiers)\n\n\nExamples\n\nDataCite Commons — aggregates metadata for DOIs assigned to datasets, software, and publications\n\nOpenAIRE Explore — integrates metadata from repositories across Europe\n\nFAIRsharing — registry of metadata standards, databases, and policies\n\nDiscipline‑specific portals (e.g., PANGAEA, GBIF, ICPSR)\n\nPortals are the public face of metadata: they make research outputs discoverable and provide the context needed for reuse.",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#metadata-harvesters",
+    "href": "metadata-portals.html#metadata-harvesters",
+    "title": "Metadata Infrastructure",
+    "section": "Metadata Harvesters",
+    "text": "Metadata Harvesters\nMetadata harvesters solve the visibility problem by collecting metadata from many repositories and bringing it together into a unified index. They ensure that metadata created locally becomes part of a broader, interoperable ecosystem.\nHarvesters typically:\n\npoll repositories at regular intervals\n\nretrieve metadata records using standard protocols\n\nnormalise or enrich metadata\n\ndetect updates, deletions, and new versions\n\nfeed metadata into search indexes or knowledge graphs\n\n\nCommon harvesting protocols\n\nOAI‑PMH (Open Archives Initiative Protocol for Metadata Harvesting)\nWidely used in repositories; supports incremental harvesting and multiple metadata formats.\nResourceSync\nA modern protocol for synchronising large collections of metadata and content.\nREST APIs\nMany repositories expose metadata through JSON‑based APIs.\n\n\n\nExamples of harvesters\n\nOpenAIRE Harvester — collects metadata from thousands of repositories\n\nDataCite OAI‑PMH service — exposes DOI metadata for harvesting\n\nEuropeana Harvester — aggregates cultural heritage metadata\n\nHarvesters are the connective tissue of metadata infrastructure: they ensure that metadata does not remain siloed.",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#what-is-a-metadata-indexer",
+    "href": "metadata-portals.html#what-is-a-metadata-indexer",
+    "title": "Metadata Infrastructure",
+    "section": "What Is a Metadata Indexer?",
+    "text": "What Is a Metadata Indexer?\nA metadata indexer is a service that takes harvested metadata and organises it into a searchable, structured index.\nIndexers:\n\nparse metadata into fields\n\nnormalise identifiers (e.g., DOI, ORCID, ROR)\n\nenrich metadata with external information\n\nbuild search indexes (e.g., Elasticsearch, Solr)\n\nsupport faceted search, filtering, and ranking\n\nmay generate knowledge graphs or entity‑resolution layers\n\nIn short:\nHarvesters collect metadata; indexers make it findable.\n\nExamples\n\nOpenAIRE Graph — a large‑scale scholarly knowledge graph integrating publications, datasets, software, and projects\n\nDataCite Search Index — supports DOI discovery and metadata enrichment\n\nGoogle Dataset Search — indexes structured metadata exposed on the web\n\nSemantic indexes built on RDF triple stores (e.g., Blazegraph, GraphDB)\n\nIndexers turn metadata into actionable information, enabling discovery, analytics, and automated linking.",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#comparison-of-metadata-portals-harvesters-and-indexers",
+    "href": "metadata-portals.html#comparison-of-metadata-portals-harvesters-and-indexers",
+    "title": "Metadata Infrastructure",
+    "section": "Comparison of Metadata Portals, Harvesters, and Indexers",
+    "text": "Comparison of Metadata Portals, Harvesters, and Indexers\n\n\n\n\n\n\n\n\n\n\nComponent\nPurpose\nOperates On\nKey Functions\nExamples\n\n\n\n\nMetadata Portal\nHuman‑ and machine‑friendly discovery\nIndexed metadata\nSearch, landing pages, APIs, PID linking\nDataCite Commons, OpenAIRE Explore\n\n\nMetadata Harvester\nCollect metadata from multiple sources\nOAI‑PMH, APIs, ResourceSync\nHarvest, normalise, deduplicate, enrich\nOpenAIRE Harvester, Europeana Harvester\n\n\nMetadata Indexer\nMake metadata searchable\nHarvested metadata\nParse, extract fields, build index/graph\nOpenAIRE Graph, DataCite Index",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#metadata-serialisation-formats",
+    "href": "metadata-portals.html#metadata-serialisation-formats",
+    "title": "Metadata Infrastructure",
+    "section": "Metadata Serialisation Formats",
+    "text": "Metadata Serialisation Formats\nTo move metadata between systems, it must be expressed in serialisation formats that machines can read. These formats encode metadata according to schemas, ontologies, and controlled vocabularies.\nSerialisation formats fall into two broad categories:\n\n1. Key–Value and Document‑Oriented Formats\nThese formats are widely used in repositories, APIs, and metadata templates.\n\nJSON — common for REST APIs; flexible and human‑readable\n\nXML — used in OAI‑PMH, DataCite XML, Dublin Core XML\n\nYAML — popular in research workflows and documentation\n\nCSV / TSV — often used for simple metadata templates or variable‑level metadata\n\nThese formats are easy to generate and consume, but relationships between entities are implicit.\n\n\n2. Semantic Web and Linked Data Formats\nThese formats express metadata as graphs, enabling interoperability and machine reasoning.\n\nRDF/XML\n\nTurtle (TTL)\n\nJSON‑LD\n\nN‑Triples / N‑Quads\n\nThese formats encode metadata as subject–predicate–object triples, using URIs to identify entities. They are used in:\n\nknowledge graphs\n\nontology‑driven metadata\n\nschema.org markup for dataset discovery\n\nprovenance tracking (e.g., PROV‑O)\n\n\n\nWhy serialisation matters\nSerialisation determines:\n\nhow metadata is exchanged between systems\n\nhow easily it can be validated\n\nwhether it supports Linked Data\n\nhow well it integrates with harvesters and indexers\n\nIn practice, repositories often support multiple serialisations to serve different use cases.\nBelow we give an example of the same metadata expressed in different formats.\n\n\nExample: The Same Metadata in JSON, XML, and Turtle\nBelow we describe a fictive dataset using three common serialisation formats.\nThe metadata fields are:\n\ntitle: Soil Moisture Dataset 2020–2023\n\ncreator: Anna Vermeer\n\nlicense: CC BY 4.0\n\nissued: 2024\n\nsubject: Soil Moisture\n\n\nJSON (Key–Value Metadata)\n{\n  \"title\": \"Soil Moisture Dataset 2020–2023\",\n  \"creator\": \"Anna Vermeer\",\n  \"license\": \"CC BY 4.0\",\n  \"issued\": \"2024\",\n  \"subject\": \"Soil Moisture\"\n}\nCharacteristics:\n- Simple, human‑readable\n- No explicit semantics\n- Relationships are implicit\n\n\n\nXML (Structured, Schema‑Driven Metadata)\n&lt;resource&gt;\n  &lt;title&gt;Soil Moisture Dataset 2020–2023&lt;/title&gt;\n  &lt;creator&gt;Anna Vermeer&lt;/creator&gt;\n  &lt;license&gt;CC BY 4.0&lt;/license&gt;\n  &lt;issued&gt;2024&lt;/issued&gt;\n  &lt;subject&gt;Soil Moisture&lt;/subject&gt;\n&lt;/resource&gt;\nCharacteristics:\n- Hierarchical structure\n- Often validated with schemas (e.g., XSD)\n- Still no explicit semantics unless combined with namespaces\n\n\nTurtle (RDF / Linked Data)\n@prefix dc:     &lt;http://purl.org/dc/elements/1.1/&gt; .\n@prefix ex:     &lt;http://example.org/&gt; .\n@prefix xsd:    &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n\nex:dataset1\n    dc:title \"Soil Moisture Dataset 2020–2023\" ;\n    dc:creator \"Anna Vermeer\" ;\n    dc:license &lt;https://creativecommons.org/licenses/by/4.0/&gt; ;\n    dc:issued \"2024\"^^xsd:gYear ;\n    dc:subject \"Soil Moisture\" .\nCharacteristics:\n- Fully semantic\n- Uses URIs for identifiers\n- Machine‑interpretable relationships\n- Suitable for knowledge graphs and FAIR Linked Data\n\n\n\n\n\n\n\n\n\n\nFormat\nHuman‑Readable\nMachine‑Readable\nSupports Semantics\nBest For\n\n\n\n\nJSON\n✔\n✔\n✖\nAPIs, lightweight metadata\n\n\nXML\n✔\n✔\n◑ (with namespaces)\nOAI‑PMH, schema‑driven metadata\n\n\nTurtle (RDF)\n◑\n✔✔\n✔✔\nLinked Data, knowledge graphs, FAIR metadata\n\n\n\n\n\n\nWhen to Choose Which Serialisation Format?\nDifferent serialisation formats serve different purposes, and the right choice depends on how the metadata will be used.\nJSON is ideal when metadata needs to be exchanged quickly and flexibly between systems. It is the natural choice for REST APIs, lightweight services, and modern repositories because it is easy to generate, easy to parse, and widely supported by programming languages.\nXML is preferred when metadata must follow a strict schema and be validated against a formal structure. Many harvesting protocols (such as OAI‑PMH) and long‑standing metadata standards (like Dublin Core XML or DataCite XML) rely on XML because of its predictability and strong validation capabilities.\nYAML works well for human‑authored metadata, such as workflow descriptions, lab templates, or configuration files. It is readable and concise, but less suitable for large‑scale automated processing.\nCSV/TSV is the simplest option for tabular or variable‑level metadata. It is easy to create and edit, especially for researchers working in spreadsheets, but it cannot express hierarchical or semantic relationships.\nRDF serialisations such as Turtle, JSON‑LD, and RDF/XML are the best choice when metadata needs to be interoperable, machine‑interpretable, and semantically rich. They allow metadata to be integrated into knowledge graphs, linked to ontologies, and connected across systems using globally unique identifiers. JSON‑LD is particularly useful for embedding semantic metadata on the web, while Turtle is preferred for human‑readable Linked Data.\nIn practice, many repositories support multiple serialisations: a simple JSON or XML representation for APIs and harvesting, and a semantic RDF representation for Linked Data and FAIR interoperability. The choice depends on whether the priority is ease of use, strict validation, or semantic richness.\n\n\n\n\n\n\n\n\n\n\nFormat\nType\nStrengths\nLimitations\nCommon Uses\n\n\n\n\nJSON\nDocument / key–value\nSimple, flexible, API‑friendly\nLimited semantics\nREST APIs, lightweight metadata\n\n\nXML\nDocument\nSchema validation, structured\nVerbose, rigid\nOAI‑PMH, schema‑based standards\n\n\nYAML\nHuman‑friendly key–value\nVery readable, good for configs\nIndentation‑sensitive, not ideal for automation\nWorkflow files, templates\n\n\nCSV/TSV\nTabular\nSimple, spreadsheet‑friendly\nNo hierarchy or semantics\nVariable‑level metadata, tables\n\n\nRDF/XML\nSemantic graph\nExpressive, ontology‑driven\nVerbose, harder to read\nLinked Data, semantic repos\n\n\nTurtle (TTL)\nSemantic graph\nCompact, readable\nRequires RDF knowledge\nKnowledge graphs, ontologies\n\n\nJSON‑LD\nSemantic graph\nWeb‑friendly, schema.org\nNeeds context definitions\nDataset discovery, web embedding\n\n\nN‑Triples\nSemantic graph\nSimple, line‑based\nNot human‑friendly\nLarge RDF dumps, streaming",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#summary",
+    "href": "metadata-portals.html#summary",
+    "title": "Metadata Infrastructure",
+    "section": "Summary",
+    "text": "Summary\nA typical metadata flow looks like this:\n\nRepository stores metadata (JSON, XML, or RDF)\n\nPID service assigns identifiers and links metadata to PIDs\n\nMetadata portal exposes metadata to users and APIs\n\nHarvester collects metadata from many repositories\n\nIndexer builds a searchable, enriched metadata graph\n\nDiscovery services make metadata findable across domains\n\nTogether, these components form the metadata infrastructure that enables FAIR, interoperable, and reusable research data.",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
+    ]
+  },
+  {
+    "objectID": "metadata-portals.html#a-note-on-linked-data-triple-stores-and-combining-knowledge-graphs",
+    "href": "metadata-portals.html#a-note-on-linked-data-triple-stores-and-combining-knowledge-graphs",
+    "title": "Metadata Infrastructure",
+    "section": "A Note on Linked Data, Triple Stores, and Combining Knowledge Graphs",
+    "text": "A Note on Linked Data, Triple Stores, and Combining Knowledge Graphs\nLinked Data changes how metadata is shared and connected across research infrastructures. Instead of exchanging whole records through harvesting protocols, repositories can publish their metadata directly as RDF using persistent identifiers (DOIs, ORCID iDs, ROR IDs) and shared vocabularies. This allows metadata to be expressed as a graph, where entities are nodes and their relationships are edges.\nRepositories can expose RDF in several ways:\n\nStatic RDF files (e.g., Turtle or JSON‑LD generated on demand or published as dumps)\n\nContent negotiation (e.g., returning RDF when a client requests text/turtle or application/ld+json)\n\nAPI endpoints that output RDF serialisations\n\nSPARQL or Linked Data endpoints when the repository uses a graph‑based backend\n\nOnly the last option requires a triple store; the others simply generate RDF from the repository’s internal metadata model.\nA triple store is a specialised database designed to store and query RDF triples—statements in the form subject–predicate–object. It supports SPARQL queries, reasoning, and graph traversal, and can automatically merge graphs from different sources when they use the same identifiers. If two repositories describe the same dataset, person, or organisation using the same URI, a triple store treats them as the same node. No custom mapping or harmonisation layer is required; the semantics are embedded directly in the data model.\nThis makes combining knowledge graphs remarkably straightforward. Multiple RDF sources can be loaded into the same triple store, and shared identifiers cause the graphs to interlink automatically. The infrastructure does not need to normalise formats, deduplicate records, or align schemas—the graph model handles this naturally.\nBecause of this, Linked Data reduces the need for traditional metadata harvesters. A harvester normally collects XML or JSON from many repositories, normalises it, deduplicates it, and prepares it for indexing. In a Linked Data environment, much of this work disappears: repositories publish RDF, and the triple store ingests it directly. The infrastructure no longer needs to “fix” metadata during harvesting.\nHowever, this convenience for infrastructures shifts responsibility upstream. For Linked Data to work well, researchers and data stewards must provide clean identifiers, consistent vocabularies, and well‑structured RDF. Instead of the infrastructure harmonising metadata after the fact, the quality and interoperability of the combined graph depend on the metadata producers themselves.\nIn short: triple stores make integration easier for infrastructures, but require more discipline and modelling effort from researchers. When done well, the result is a metadata ecosystem that is inherently connected, machine‑interpretable, and ready for reuse across systems.\n\n\n\n\n\n\n%%{init: {\n  \"look\": \"handDrawn\",\n  \"flowchart\": { \"htmlLabels\": false }\n}}%%\n\nflowchart TD\n\n    %% Consumer at the top\n    subgraph Consumer[\"Consumer\"]\n        USER[\"Researchers and Machines\"]\n    end\n\n    %% Repository\n    subgraph Repository[\"Repository\"]\n        DATA[\"Data Files\"]\n        RDF[\"RDF Metadata&lt;br&gt;(Turtle, JSON-LD, RDF/XML)\"]\n        ENDPOINT[\"Expose RDF&lt;br&gt;via Content Negotiation / API\"]\n        RDF --&gt;|\"published as RDF\"| ENDPOINT\n    end\n\n    %% Linked Data Service\n    subgraph LinkedDataService[\"Linked Data Service\"]\n        TRIPLE[\"Triple Store&lt;br&gt;(GraphDB, Blazegraph, Fuseki)\"]\n        SPARQL[\"SPARQL Endpoint&lt;br&gt;Query Interface\"]\n        TRIPLE --&gt;|\"query graph\"| SPARQL\n    end\n\n    %% Metadata flow (Repository → Triple Store)\n    ENDPOINT --&gt;|\"load RDF graphs\"| TRIPLE\n\n    %% Consumer interactions\n    USER --&gt;|\"query / explore\"| SPARQL\n    USER --&gt;|\"access and download\"| DATA\n\n    %% Highlight nodes (light green fill, dark green text)\n    style USER fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style DATA fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style SPARQL fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n\n    %% Link styles\n    linkStyle 0 labelPosition:0.5, align:top;\n    linkStyle 1 labelPosition:0.5, align:top;\n    linkStyle 2 labelPosition:0.5, align:top;\n    linkStyle 3 labelPosition:0.5, align:top;\n\n\n\n\nFigure 10.2: Linked Data Architecture Without Harvesters",
+    "crumbs": [
+      "COMPONENTS OF RDM INFRASTRUCTURE",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Metadata Infrastructure</span>"
     ]
   },
   {
@@ -216,6 +458,56 @@
     "crumbs": [
       "COMPONENTS OF RDM INFRASTRUCTURE",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Persistent Identifier Services</span>"
+    ]
+  },
+  {
+    "objectID": "infrastructure-design.html",
+    "href": "infrastructure-design.html",
+    "title": "RDM Infrastructure Design",
+    "section": "",
+    "text": "What FAIR Means for Infrastructure\nDesigning a modern Research Data Management (RDM) infrastructure means taking the FAIR principles seriously. FAIR is often described as a set of guidelines for researchers or a description of how the data should look like at the end of its life cycle. However, in practice it places equally strong requirements on the systems that store, move, describe, and publish research outputs. A FAIR‑aligned platform is therefore not a single tool but a coordinated ecosystem of services that together make data Findable, Accessible, Interoperable, and Reusable.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>RDM Infrastructure Design</span>"
+    ]
+  },
+  {
+    "objectID": "infrastructure-design.html#what-fair-means-for-infrastructure",
+    "href": "infrastructure-design.html#what-fair-means-for-infrastructure",
+    "title": "RDM Infrastructure Design",
+    "section": "",
+    "text": "Findable (F1–F4)\nTo make data findable, infrastructure must support persistent identifiers (F1) such as DOIs or Handles, ensuring that datasets remain citable and identifiable even as they move across storage systems. These identifiers must be accompanied by rich metadata (F2) that describes the dataset in a structured, machine‑readable way. Metadata must explicitly link back to the dataset it describes (F3), and both data and metadata must be registered in searchable indexes (F4) that can be harvested by external services.\nIn practice, this means PID services, metadata registries, search engines, and APIs that expose metadata for discovery.\n\n\nAccessible (A1–A2)\nAccessibility requires that data and metadata be retrievable through open, standardised protocols (A1), such as HTTPS, S3, WebDAV, or OAI‑PMH. These protocols must be free to implement (A1.1) and support authentication and authorisation where needed (A1.2). Even if data becomes restricted or removed, its metadata must remain accessible (A2), ensuring that the scholarly record is preserved.\nThis translates into federated identity, fine‑grained access control, and stable landing pages for metadata.\n\n\nInteroperable (I1–I3)\nInteroperability is achieved when infrastructure supports formal, shared languages (I1) such as RDF, JSON‑LD, or XML, enabling machines to understand and combine metadata from different sources. Metadata must rely on FAIR vocabularies and ontologies (I2), which include both generic, cross‑domain vocabularies such as Dublin Core, SKOS, or schema.org, and domain‑specific FAIR ontologies from communities like the OBO Foundry. These vocabularies provide stable identifiers and shared semantics, allowing metadata to be interpreted consistently across systems. Interoperability also requires qualified references (I3) that link datasets to related entities such as software, instruments, or grants.\nTogether, these elements require APIs, ontology support, and metadata models capable of expressing rich, typed relationships rather than flat fields.\n\n\nReusable (R1–R1.3)\nFinally, reuse depends on rich descriptions (R1) that capture domain‑specific details using community standards such as ISA, MIAPPE, or DDI. Metadata must include a clear usage license (R1.1), detailed provenance (R1.2), and conform to community expectations (R1.3).\nInfrastructure must therefore support schema versioning, provenance capture, workflow integration, and controlled vocabularies for licensing.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>RDM Infrastructure Design</span>"
+    ]
+  },
+  {
+    "objectID": "infrastructure-design.html#what-a-fairaligned-rdm-infrastructure-looks-like",
+    "href": "infrastructure-design.html#what-a-fairaligned-rdm-infrastructure-looks-like",
+    "title": "RDM Infrastructure Design",
+    "section": "What a FAIR‑Aligned RDM Infrastructure Looks Like",
+    "text": "What a FAIR‑Aligned RDM Infrastructure Looks Like\nA FAIR platform is best understood as a stack of coordinated services, each addressing a different phase of the research data lifecycle. No single system can satisfy all FAIR requirements. Instead, FAIR emerges from the interplay between systems.\nA typical FAIR‑aligned architecture includes:\n\nActive research & collaboration\nWhere data is created, shared, and iterated on. E.g.:\n\nNextcloud / ResearchDrive for collaborative storage\n\nMetaVox for early, schema‑based metadata\n\n\n\nMetadata creation & FAIRification\nWhere metadata becomes structured, validated, and machine‑actionable. E.g.:\n\nFAIR Data Station for domain‑specific metadata (ISA, RDF)\n\nCKAN as a central metadata registry and search portal\n\n\n\nStorage & orchestration\nWhere data is stored, moved, and governed. E.g.:\n\nObject Store, dCache, HPC filesystems as storage backends\n\niRODS as the policy engine and metadata layer\n\nGlobus for high‑performance transfers\n\n\n\nPublication & discovery\nWhere curated datasets become part of the scholarly record. E.g.:\n\nDataverse (e.g., DANS Data Stations)\n\nInvenio‑based repositories (SURF Data Repository, Zenodo)\n\n4TU.ResearchData (Djehuty)\n\nDiscovery portals combining repository search with metadata registries\n\n\n\nIntegration, identity & policy\nWhere the ecosystem becomes coherent. E.g.:\n\nSURF Research Data Connector for publishing workflows\n\nFederated identity (SURFconext, SRAM, eduGAIN)\n\nAPIs (REST, OAI‑PMH, SPARQL, S3) for machine access\n\nTogether, these layers support all FAIR principles:\n\nFindable: PIDs, indexes, registries, APIs\n\nAccessible: Open protocols, AAI, policy‑based access\n\nInteroperable: RDF/JSON‑LD, ontologies, typed links\n\nReusable: Community schemas, provenance, licensing, versioning",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>RDM Infrastructure Design</span>"
+    ]
+  },
+  {
+    "objectID": "infrastructure-design.html#a-layered-fair-architecture",
+    "href": "infrastructure-design.html#a-layered-fair-architecture",
+    "title": "RDM Infrastructure Design",
+    "section": "A Layered FAIR Architecture",
+    "text": "A Layered FAIR Architecture\n\n\n\n\n\n%%{init: {\n  \"look\": \"handDrawn\",\n  \"flowchart\": { \"htmlLabels\": false }\n}}%%\n\nflowchart TD\n\n    %% Users\n    subgraph Users[\"Users\"]\n        R[\"Researchers\"]\n        DS[\"Data Stewards\"]\n        M[\"Machines / Workflows\"]\n    end\n\n    %% Layer 1\n    subgraph L1[\"Active Research\"]\n        NC[\"Nextcloud / ResearchDrive\"]\n        MV[\"MetaVox\"]\n    end\n\n    %% Layer 2\n    subgraph L2[\"FAIR Metadata\"]\n        FDS[\"FAIR Data Station\"]\n        CKAN[\"CKAN Registry\"]\n    end\n\n    %% Layer 3\n    subgraph L3[\"Storage and Orchestration\"]\n        IRODS[\"iRODS\"]\n        OBJ[\"Object Store\"]\n        DC[\"dCache\"]\n        GLOB[\"Globus\"]\n    end\n\n    %% Layer 4\n    subgraph L4[\"Publication and Discovery\"]\n        DV[\"Dataverse\"]\n        INV[\"Invenio / SDR\"]\n        DJE[\"4TU / Djehuty\"]\n        PORTAL[\"Discovery Portal\"]\n    end\n\n    %% Layer 5\n    subgraph L5[\"AAI and Integration\"]\n        RDC[\"Research Data Connector\"]\n        AAI[\"Federated Identity\"]\n        API[\"APIs\"]\n    end\n\n    %% Simplified flows\n    R --&gt; NC\n    R --&gt; FDS\n    NC --&gt; OBJ\n    NC --&gt; DC\n    MV --&gt; CKAN\n    FDS --&gt; CKAN\n    CKAN --&gt; PORTAL\n\n    OBJ --&gt; IRODS\n    DC --&gt; IRODS\n    IRODS --&gt; GLOB\n\n    IRODS --&gt; RDC\n    RDC --&gt; DV\n    RDC --&gt; INV\n    RDC --&gt; DJE\n\n    DV --&gt; API\n    INV --&gt; API\n    DJE --&gt; API\n    API --&gt; PORTAL\n\n    R --&gt; AAI\n    DS --&gt; AAI\n    AAI --&gt; NC\n    AAI --&gt; DV\n    AAI --&gt; IRODS\n\n    %% Highlight key nodes\n    style DV fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style FDS fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style IRODS fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style CKAN fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style NC fill:#d8f3dc,stroke:#1b4332,color:#1b4332\n    style PORTAL fill:#d8f3dc,stroke:#1b4332,color:#1b4332",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>RDM Infrastructure Design</span>"
+    ]
+  },
+  {
+    "objectID": "infrastructure-design.html#integration-and-policy-the-glue-that-makes-fair-work",
+    "href": "infrastructure-design.html#integration-and-policy-the-glue-that-makes-fair-work",
+    "title": "RDM Infrastructure Design",
+    "section": "Integration and Policy: The Glue That Makes FAIR Work",
+    "text": "Integration and Policy: The Glue That Makes FAIR Work\nA FAIR platform is only FAIR if its components work together. This requires well‑defined integrations and a policy engine that governs how data and metadata move across the lifecycle. Storage, metadata services, workflow engines, and repositories must interoperate through stable interfaces and shared standards so that data remains coherent as it transitions between systems.\nA FAIR‑aligned infrastructure therefore needs:\n\nClear integration contracts (APIs, event streams, metadata mappings, PID handling)\n\nConsistent metadata models across all layers\n\nAutomated workflows for validation, provenance, versioning, and access control\n\nA central policy engine (e.g., iRODS rules, workflow orchestrators) to coordinate:\n\ningest from active storage\n\nmetadata enrichment\n\ntransformations and quality checks\n\npublication to repositories\n\nsynchronisation across catalogs and indexes\n\n\nWithout this orchestration layer, the platform becomes a loose collection of tools. With it, the platform becomes a coherent, predictable, auditable, FAIR‑by‑design ecosystem.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>RDM Infrastructure Design</span>"
     ]
   },
   {
