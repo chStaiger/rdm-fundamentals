@@ -114,7 +114,7 @@ A metadata schema tells you *what information to provide*, such as:
 * Creator
 * Description
 * Keywords
-* Licence
+* License
 * Persistent identifier
 
 Importantly, it does **not** define which terms to use—that is the role of controlled vocabularies.
