@@ -35,6 +35,7 @@ format:
   html:
     theme: cosmo
     number-sections: false
-
+    mermaid:
+      theme: forest
 
 
