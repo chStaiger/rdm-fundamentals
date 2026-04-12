@@ -67,6 +67,7 @@ Where the ecosystem becomes coherent. E.g.:
 - APIs (REST, OAI‑PMH, SPARQL, S3) for machine access
 
 Together, these layers support all FAIR principles:  
+
 - **Findable:** PIDs, indexes, registries, APIs  
 - **Accessible:** Open protocols, AAI, policy‑based access  
 - **Interoperable:** RDF/JSON‑LD, ontologies, typed links  
@@ -173,6 +174,7 @@ A FAIR‑aligned infrastructure therefore needs:
 - Consistent metadata models across all layers  
 - Automated workflows for validation, provenance, versioning, and access control  
 - A central policy engine (e.g., iRODS rules, workflow orchestrators) to coordinate:  
+
   - ingest from active storage  
   - metadata enrichment  
   - transformations and quality checks  
