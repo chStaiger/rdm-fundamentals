@@ -248,10 +248,9 @@ Describing a book:
 
 * **Linked Data** → a connected network (knowledge graph) of relationships
 
-### Key-value pairs versus Linked Data
+### Key–value pairs versus Linked Data
 
-Below we are capturing some fictive metadata as key-value pairs.
-This format reflects how metadata typically appears in spreadsheets, repository forms, or simple JSON/YAML files.
+Metadata often begins its life as a simple list of key–value pairs. This is the format most researchers encounter in spreadsheets, repository submission forms, or lightweight JSON/YAML files.
 
 | **Field (Key)**  | **Value**                       |
 | ---------------- | ------------------------------- |
@@ -262,11 +261,15 @@ This format reflects how metadata typically appears in spreadsheets, repository 
 | Subject          | Soil moisture                   |
 | License          | CC BY 4.0                       |
 
-* Each row is an independent field–value pair
-* Relationships (e.g., between creator and affiliation) are **implicit**
-* Values are plain text, with no global identifiers
+In this representation:
 
-In the image below the *same metadata* is expressed as a network of relationships, also known as Knowledge Graph.
+- Each row stands alone as an independent field–value pair  
+- Relationships (e.g., that *Anna Vermeer* is affiliated with *Utrecht University*) are **implicit**  
+- Values are plain text, without global identifiers or machine‑interpretable meaning  
+
+Such metadata is typically serialised as CSV or TSV files: simple, familiar, and easy to edit, but limited in how much structure or semantics they can express.
+
+In the diagram below, the *same metadata* is expressed as a small knowledge graph. Instead of isolated fields, we now have **entities** (dataset, person, organisation, concept) connected by **explicit relationships**.
 
 ```{mermaid}
 %%| label: fig-1
@@ -289,47 +292,70 @@ flowchart TD
     P -->|schema:affiliation| O[Organisation: Utrecht University]
 ```
 
-To serialise the graph we use the format `turtle` in this example:
+Compared to the table:
 
-```
+- The **table** presents metadata as a flat list of fields  
+- The **graph** presents metadata as a network of connected entities  
+- The person, organisation, and subject become **first‑class nodes**  
+- Relationships such as `creator` and `affiliation` are **explicit and machine‑interpretable**
+
+This is the essential shift: from *fields with values* to *entities with relationships*.
+
+
+To serialise such a graph, we use a Linked Data format such as Turtle:
+
+```turtle
 @prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
-@prefix ex:     <http://example.org/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 
-# Dataset node
-ex:dataset1
+# Dataset node (using schema:Dataset)
+<https://data.example.org/dataset/soil-moisture-2020-2023>
+    a schema:Dataset ;
     dc:title "Soil Moisture Dataset 2020–2023" ;
-    dc:issued "2024"^^xsd:gYear ;
-    dc:license <https://creativecommons.org/licenses/by/4.0/> ;
-    dc:creator ex:personAnna ;
-    dc:subject ex:conceptSoilMoisture .
+    dct:issued "2024"^^xsd:gYear ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:creator <https://data.example.org/person/anna-vermeer> ;
+    dct:subject <https://vocab.example.org/concept/soil-moisture> .
 
-# Person node
-ex:personAnna
-    schema:name "Anna Vermeer" ;
-    schema:affiliation ex:orgUtrecht .
+# Person node (FOAF)
+<https://data.example.org/person/anna-vermeer>
+    a foaf:Person ;
+    foaf:name "Anna Vermeer" ;
+    foaf:member <https://data.example.org/org/utrecht-university> .
 
-# Organisation node
-ex:orgUtrecht
-    schema:name "Utrecht University" .
+# Organisation node (FOAF)
+<https://data.example.org/org/utrecht-university>
+    a foaf:Organization ;
+    foaf:name "Utrecht University" .
 
-# Concept node
-ex:conceptSoilMoisture
-    rdfs:label "Soil Moisture" .
+# Concept node (SKOS)
+<https://vocab.example.org/concept/soil-moisture>
+    a skos:Concept ;
+    skos:prefLabel "Soil Moisture"@en ;
+    skos:definition "The amount of water contained in soil, typically expressed as a percentage."@en .
 ```
 
-We go more into detail into metadata serialisation and infrastructure in the Chapter [Metadata Infrastructure](metadata-portals.qmd).
+In this Turtle serialisation, the RDF graph not only describes the dataset, the creator, and the organisation, but also provides a **stable identifier** for the subject concept (“Soil Moisture”). This makes the metadata interoperable: other datasets can refer to the same concept, and machines can follow the URI to retrieve its meaning.
 
-* The **table** presents metadata as a **flat structure**
-* The **graph** represents metadata as **connected entities**
-* In the graph:
+At the top of the file, we declare the ontologies and vocabularies we use. For example:
 
-  * The *person*, *organisation*, and *subject* become **nodes**
-  * Relationships (e.g., `creator`, `affiliation`) are **explicitly defined**
+```
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+```
 
-This is the key shift: from *fields with values* to *entities with relationships*.
+This tells us that `dc:title` is shorthand for the full URI  
+`http://purl.org/dc/elements/1.1/title`,  
+which is the authoritative definition of the Dublin Core *title* property.
+
+By giving each entity, i.e. dataset, person, organisation and concept its own URI, the graph becomes a reusable and extensible structure. Machines can infer relationships, merge graphs, or enrich them with external knowledge. While it is technically possible to use URIs as keys in key–value metadata, such formats lack the semantics and inference capabilities that RDF provides.
+
+We explore metadata serialisation and metadata infrastructure in more detail in the chapter [Metadata Infrastructure](metadata-portals.qmd).
+
 
 ## Bringing It All Together
 
