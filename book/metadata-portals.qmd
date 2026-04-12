@@ -169,7 +169,6 @@ In short:
 
 Indexers turn metadata into **actionable information**, enabling discovery, analytics, and automated linking.
 
-Here’s a clean, structured **comparison table** that fits perfectly into your chapter. It highlights the distinct roles of **metadata portals**, **harvesters**, and **indexers** in a FAIR‑aligned metadata infrastructure.
 
 
 ## Comparison of Metadata Portals, Harvesters, and Indexers
