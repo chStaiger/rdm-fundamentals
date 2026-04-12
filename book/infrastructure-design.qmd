@@ -164,7 +164,7 @@ flowchart TD
     style PORTAL fill:#d8f3dc,stroke:#1b4332,color:#1b4332
 ```
 
-## 4. Integration and Policy: The Glue That Makes FAIR Work
+## Integration and Policy: The Glue That Makes FAIR Work
 
 A FAIR platform is only FAIR if its components work together. This requires **well‑defined integrations** and a **policy engine** that governs how data and metadata move across the lifecycle. Storage, metadata services, workflow engines, and repositories must interoperate through stable interfaces and shared standards so that data remains coherent as it transitions between systems.
 
