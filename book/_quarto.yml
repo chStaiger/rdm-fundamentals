@@ -8,6 +8,14 @@ book:
   title: "Fundamentals of Research Data Management"
   author: "Christine Staiger, Neha Moopen"
   date: last-modified
+  sidebar:
+    tools:
+      - icon: github
+        menu:
+          - text: Source code
+            url:  https://github.com/chStaiger/rdm-fundamentals
+          - text: Report an issue
+            url:  https://github.com/chStaiger/rdm-fundamentals/issues
   chapters:
     - index.qmd
     - definitions.qmd
