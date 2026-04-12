@@ -226,7 +226,6 @@ Serialisation determines:
 
 In practice, repositories often support **multiple serialisations** to serve different use cases.
 
-Here’s a clear, structured **comparison table of metadata serialisation formats** that fits seamlessly into your chapter. It mirrors the style of your portals/harvesters/indexers table and highlights the practical differences researchers and infrastructure providers care about.
 
 Below we give an example of the same metadata expressed in different formats.
 
