@@ -101,13 +101,13 @@ Portals typically:
 - provide landing pages for datasets  
 - offer APIs for programmatic access  
 - integrate controlled vocabularies and ontologies  
-- link metadata to identifiers such as DOIs, ORCID iDs, and ROR IDs (see Chapter *Persistent Identifiers*)  
+- link metadata to identifiers such as DOIs, ORCID iDs, and ROR IDs (see Chapter [Persistent Identifiers](pids.qmd))  
 
 ### Examples
 
-- **DataCite Commons** — aggregates metadata for DOIs assigned to datasets, software, and publications  
-- **OpenAIRE Explore** — integrates metadata from repositories across Europe  
-- **FAIRsharing** — registry of metadata standards, databases, and policies  
+- [**DataCite Commons**](https://support.datacite.org/docs/datacite-commons) — aggregates metadata for DOIs assigned to datasets, software, and publications  
+- [**OpenAIRE Explore**](https://explore.openaire.eu/) — integrates metadata from repositories across Europe  
+- [**FAIRsharing**](https://fairsharing.org/) — registry of metadata standards, databases, and policies  
 - **Discipline‑specific portals** (e.g., PANGAEA, GBIF, ICPSR)
 
 Portals are the *public face* of metadata: they make research outputs discoverable and provide the context needed for reuse.

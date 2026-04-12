@@ -14,8 +14,14 @@ Metadata typically captures:
 
 In short, metadata provides the context needed to interpret and reuse data beyond its original purpose.
 
+::: {.blank}
+:::
 
-##### A fictive example for a published dataset
+#### A fictive example for a published dataset  
+
+::: {.blank}
+:::
+
 
 | Field            | Example Value                                                                                                                          |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -31,7 +37,15 @@ In short, metadata provides the context needed to interpret and reuse data beyon
 | **Domain Detail (DDI)** | Variable-level metadata: `soil_moisture`, `temperature`, `precipitation`; measurement units, missing values, coding scheme documented. |
 | **Domain Detail (ISA)** | Assay-level metadata for soil sensors: sensor type, calibration protocol, data logger model, measurement frequency.                    |
 
-##### A fictive example for accompanying software
+::: {.blank}
+:::
+
+#### A fictive example for accompanying software  
+
+
+::: {.blank}
+:::
+
 
 | Field             | Example Value                                                                                                                                            |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -349,8 +363,8 @@ At the top of the file, we declare the ontologies and vocabularies we use. For e
 ```
 
 This tells us that `dc:title` is shorthand for the full URI  
-`http://purl.org/dc/elements/1.1/title`,  
-which is the authoritative definition of the Dublin Core *title* property.
+<http://purl.org/dc/elements/1.1/title>,  
+which is the authoritative definition of the Dublin Core `title` property.
 
 By giving each entity, i.e. dataset, person, organisation and concept its own URI, the graph becomes a reusable and extensible structure. Machines can infer relationships, merge graphs, or enrich them with external knowledge. While it is technically possible to use URIs as keys in key–value metadata, such formats lack the semantics and inference capabilities that RDF provides.
 
