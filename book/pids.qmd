@@ -193,15 +193,10 @@ The process of minting a PID typically involves several steps:
 2. **Register the PID with a registration authority**
    The new PID is registered with an official infrastructure provider or registration agency, such as DataCite or Crossref. This ensures the identifier is globally unique and recorded in a central registry.
 
-3. **Attach metadata**
-   Metadata describing the object is submitted along with the identifier. This may include information such as the title, creator, publication year, and the URL where the object is located.
-
-4. **Link the PID to a resolvable location**
-   The PID is associated with a **URL where the object can be accessed**. When someone uses the PID (for example through a resolver), they are redirected to this location.
+3. **Submit metadata and link the PID to a resolvable location**
+   Metadata describing the object is submitted together with the identifier. This must include the **URL or landing page** where the digital object can currently be accessed. Additional elements may be added to the PID record, such as the title, checksum, or other information needed to reliably identify and manage the object.
 
 Minting a PID is therefore not only about creating an identifier—it also involves **registering and maintaining the information that allows the identifier to function over time**.
-
-**Note**: The metadata of a PID is always publicly accessible!
 
 ## PID Profiles and PID Information Types
 
