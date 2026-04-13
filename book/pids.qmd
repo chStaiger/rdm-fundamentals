@@ -100,9 +100,9 @@ flowchart LR
 flowchart LR
 
     MINT["Mint PID"]
-    STORE["Store Handle record"]
-    RESOLVE["Resolve PID"]
-    ACCESS["Access resource"]
+    STORE["Store PID record"]
+    RESOLVE["Users access PID"]
+    ACCESS["PID resolves to resource"]
     MOVE_PID["Resource moves"]
     UPDATE["Update record"]
 
