@@ -11,29 +11,23 @@ At its core, a digital object consists of **three interdependent components**:
 - **Persistent Identifier (PID)** — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be idenitifed, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.
 
 ```{mermaid}
-%%| label: fig-metadata-flow
-%%| fig-cap: From Local Metadata to Discovery and Data Access
+%%| label: digital-object
+%%| fig-cap: The Digital Object
 %%| fig-align: center
 %%{init: {
   "look": "handDrawn",
   "flowchart": { "htmlLabels": false }
 }}%%
 
-graph TD
+flowchart TD
+    A["Digital Object"]
+    B["Files"]
+    C["Metadata"]
+    D["Persistent Identifier"]
 
-    A[Digital Object] --- B[Files<br/>Digital content]
-    A --- C[Metadata<br/>Descriptive, structural, technical]
-    A --- D[Persistent Identifier (PID)<br/>Stable, global reference]
-
-    B --> E[Content]
-    C --> F[Context]
-    D --> G[Identity]
-
-    E -.-> A
-    F -.-> A
-    G -.-> A
-
-
+    A --> B
+    A --> C
+    A --> D
 ```
 
 ### How These Components Work Together
@@ -45,6 +39,45 @@ These three parts form a **single functional entity**:
 - The **persistent identifier** ensures the object can always be located and referenced.
 
 If any one of these components is missing, the digital object becomes incomplete. Files without metadata are uninterpretable; metadata without files is empty description; and neither files nor metadata are useful if they cannot be reliably identified through a persistent identifier just as a PID without content or metadata is merely a label pointing to nothing.
+
+```{mermaid}
+%%| label: parts
+%%| fig-cap: The Digital Object
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TD
+
+    %% Top row grouped together
+    subgraph TOP[ ]
+        direction LR
+        F["Files"]
+        M["Metadata"]
+    end
+
+    %% Metadata subnodes (placed to the right of M)
+    MD["Descriptive Metadata"]
+    MT["Technical Metadata"]
+    MP["Provenance Metadata"]
+    MR["Rights & Access Metadata"]
+
+    %% Bottom node
+    P["Persistent Identifier (PID)"]
+
+    %% Triangle edges
+    F --- P
+    M --- P
+
+    %% Metadata connections (top-down ordering)
+    M --- MD
+    M --- MT
+    M --- MP
+    M --- MR
+
+```
 
 ### Why Digital Objects Matter
 
@@ -59,3 +92,10 @@ Digital objects are the building blocks of modern information systems. Their str
 
 A digital object is **content + context + identity**.  
 The bitstreams provide the content, the metadata provides the meaning, and the persistent identifier provides the stable identity. Together, they make digital information portable, interpretable, and durable across platforms and time.
+
+## References
+
+- https://www.lisedunetwork.com/what-is-a-digital-object/?utm_source=copilot.com
+- https://wiki.dpconline.org/index.php?title=4.2.1.3.1_Representation_Information_Types&utm_source=copilot.com
+- https://archive.rd-alliance.org/sites/default/files/2-kahn-do-talk.pdf?utm_source=copilot.com
+- DOI 10.1007/s00799-005-0128-x
