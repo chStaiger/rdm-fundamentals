@@ -1,14 +1,14 @@
-# What is a Digital or Data Object
+# **What is a Digital or Data Object**
 
 A **digital (or data) object** is a self‑contained, structured unit of information that exists in electronic form. It is more than just raw bits: it is a combination of **content**, **context**, and **identity** that allows computers and humans to store, interpret, preserve, and reuse information reliably.
 
 At its core, a digital object consists of **three interdependent components**:
 
-- **Bitstream(s) or File(s)** the actual digital content, stored as one or more files. These may be documents, images, audio recordings, videos, datasets, software packages, or any other digital material. On their own, files are just encoded data; they need context to be meaningful.
+- **Bitstream(s) or File(s)** — the actual digital content, stored as one or more files. These may be documents, images, audio recordings, videos, datasets, software packages, or any other digital material. On their own, files are simply encoded data; they require context to be meaningful.
 
 - **Metadata** — the descriptive, structural, and technical information that explains how to interpret the files and how the object should be managed. Metadata identifies what the object is, how it is organized, who created it, when it was produced, and how it can be rendered or preserved. It provides the essential context that turns raw bits into understandable content.
 
-- **Persistent Identifier (PID)** — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be idenitifed, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.
+- **Persistent Identifier (PID)** — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be identified, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.
 
 ```{mermaid}
 %%| label: digital-object
@@ -30,7 +30,7 @@ flowchart TD
     A --> D
 ```
 
-### How These Components Work Together
+### **How These Components Work Together**
 
 These three parts form a **single functional entity**:
 
@@ -38,60 +38,121 @@ These three parts form a **single functional entity**:
 - The **metadata** explains the content and enables interpretation.  
 - The **persistent identifier** ensures the object can always be located and referenced.
 
-If any one of these components is missing, the digital object becomes incomplete. Files without metadata are uninterpretable; metadata without files is empty description; and neither files nor metadata are useful if they cannot be reliably identified through a persistent identifier just as a PID without content or metadata is merely a label pointing to nothing.
+If any one of these components is missing, the digital object becomes incomplete. Files without metadata are uninterpretable; metadata without files is empty description; and neither files nor metadata are useful if they cannot be reliably identified.
+
+The diagrams below illustrate two common patterns for connecting a PID, the underlying files, and their metadata.  
+In the first pattern, the PID resolves directly to a file, which then contains or links to the relevant metadata.  
+In the second pattern, the PID resolves to a metadata record or landing page, which provides the information needed to locate and access the file(s).  
+Both approaches are widely used; the choice depends on repository design and access requirements.
 
 ```{mermaid}
-%%| label: parts
-%%| fig-cap: The Digital Object
+%%| label: implementation1
+%%| fig-cap: PID points to a file which contains or points to the metadata.
 %%| fig-align: center
 %%{init: {
   "look": "handDrawn",
   "flowchart": { "htmlLabels": false }
 }}%%
 
-flowchart TD
+flowchart LR
 
-    %% Top row grouped together
-    subgraph TOP[ ]
-        direction LR
-        F["Files"]
-        M["Metadata"]
-    end
-
-    %% Metadata subnodes (placed to the right of M)
-    MD["Descriptive Metadata"]
-    MT["Technical Metadata"]
-    MP["Provenance Metadata"]
-    MR["Rights & Access Metadata"]
-
-    %% Bottom node
+   	 F["Files"]
+     M["Metadata"]
+    
     P["Persistent Identifier (PID)"]
 
-    %% Triangle edges
-    F --- P
-    M --- P
-
-    %% Metadata connections (top-down ordering)
-    M --- MD
-    M --- MT
-    M --- MP
-    M --- MR
-
+    P --- |"points to"| F
+    F --- |"points to"| M
+    M --- |"contains"| P
 ```
 
-### Why Digital Objects Matter
+```{mermaid}
+%%| label: implementation2
+%%| fig-cap: PID points to metadata or a landing page that contains information on how to access the file(s).
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
 
-Digital objects are the building blocks of modern information systems. Their structured nature allows:
+flowchart LR
 
-- **Preservation** — ensuring knowledge remains accessible over time  
-- **Interoperability** — enabling systems to exchange and interpret information consistently  
-- **Reusability and sharing** — supporting research, education, and collaboration  
-- **Reliable citation and tracking** — through persistent identifiers  
+    F["Files"]
+    M["Metadata"]
+    P["Persistent Identifier (PID)"]
 
-### In essence
+    M --- |"contains"| P
+    P --- |"points to"| M
+    M --- |"has access info to"| F
+```
+
+### **Why Digital Objects Matter**
+
+Digital objects are the foundation of modern research data management systems. Their structured nature enables:
+
+- **Preservation** — keeping knowledge accessible as formats, platforms, and storage systems evolve.  
+  Files can be migrated, metadata enriched, and storage reorganized without breaking the object’s identity.
+
+- **Interoperability** — ensuring different tools and repositories can exchange and interpret the object consistently.  
+  Content, metadata, and identifiers travel together, preserving meaning across systems.
+
+- **Reusability and sharing** — supporting research, education, and collaboration.  
+  Clear metadata, stable identifiers, and standardized structures make digital objects easy to understand and integrate into new workflows.
+
+- **Reliable citation and tracking** — through persistent identifiers that remain valid even as files move or metadata changes.  
+  PIDs support accurate citation, versioning, provenance tracking, and automated linking.
+
+- **Robust storage strategies** — enabling multiple replicas across diverse storage environments while maintaining a single, consistent identity.  
+  Replicas of files on different storage systems improve resilience and performance without compromising citation or access.
+
+Additional lifecycle functions include:
+
+- **Versioning** — recording updates or corrections while keeping earlier states accessible and citable.  
+- **Fixity** — verifying file integrity through checksums or hashes to detect corruption or tampering.  
+- **Provenance** — documenting how data came to be, including transformations and dependencies.  
+  This includes relationships such as *raw data → processed data → analysed data*, making the object’s history transparent and reproducible.
+
+```{mermaid}
+%%| label: data-lineage
+%%| fig-cap: Data lineage represented as a chain of Digital Objects (raw → processed → analysed).
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart RL
+
+    subgraph RAW["Raw Data Object"]
+        direction TB
+        R_F["Files"]
+        R_M["Metadata"]
+        R_P["PID"]
+    end
+
+    subgraph PROC["Processed Data Object"]
+        direction TB
+        P_F["Files"]
+        P_M["Metadata"]
+        P_P["PID"]
+    end
+    
+    subgraph ANAL["Analysed Data Object"]
+        direction TB
+        A_F["Files"]
+        A_M["Metadata"]
+        A_P["PID"]
+    end
+
+    P_M --- |"created from"| R_P
+    A_M --- |"created from"| P_P
+```
+
+### **In essence**
 
 A digital object is **content + context + identity**.  
-The bitstreams provide the content, the metadata provides the meaning, and the persistent identifier provides the stable identity. Together, they make digital information portable, interpretable, and durable across platforms and time.
+The bitstreams provide the content, the metadata provides the meaning, and the persistent identifier provides the stable identity.  
+Together, they make digital information portable, interpretable, and durable across platforms and time.
 
 ## References
 
