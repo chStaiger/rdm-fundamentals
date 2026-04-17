@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pid-services – Fundamentals of Research Data Management</title>
+<title>Persistent Identifier Services – Fundamentals of Research Data Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-repositories.html" rel="next">
+<link href="./rdm-platform.html" rel="next">
 <link href="./metadata-portals.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -68,11 +102,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./metadata-portals.html">Components of RDM Infrastructure</a></li><li class="breadcrumb-item"><a href="./pid-services.html"><span class="chapter-title">Persistent Identifier Services</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdm-infra-intro.html">COMPONENTS OF RDM INFRASTRUCTURE</a></li><li class="breadcrumb-item"><a href="./pid-services.html"><span class="chapter-title">Persistent Identifier Services</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,8 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -125,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">The Holy Trinity of RDM</span></a>
+ <span class="menu-text">THE HOLY TRINITY OF RDM</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -156,12 +192,22 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Components of RDM Infrastructure</span></a>
+ <span class="menu-text">COMPONENTS OF RDM INFRASTRUCTURE</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rdm-infra-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">RDM Infrastructure Introduction and Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-repositories.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Repositories</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./metadata-portals.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Metadata Portals</span></a>
@@ -174,19 +220,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-repositories.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">data-repositories.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./rdm-platform.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">rdm-platform.html</span></a>
+  <a href="./rdm-platform.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">RDM Platform</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./infrastructure-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">infrastructure-design.html</span></a>
+  <a href="./infrastructure-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">RDM Infrastructure Design</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,15 +246,628 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#when-to-assign-a-persistent-identifier" id="toc-when-to-assign-a-persistent-identifier" class="nav-link active" data-scroll-target="#when-to-assign-a-persistent-identifier">When to Assign a Persistent Identifier</a></li>
+  <li><a href="#persistent-identifier-systems-and-services-in-the-research-ecosystem" id="toc-persistent-identifier-systems-and-services-in-the-research-ecosystem" class="nav-link" data-scroll-target="#persistent-identifier-systems-and-services-in-the-research-ecosystem">Persistent Identifier Systems and Services in the Research Ecosystem</a>
+  <ul class="collapse">
+  <li><a href="#doi-digital-object-identifier" id="toc-doi-digital-object-identifier" class="nav-link" data-scroll-target="#doi-digital-object-identifier">DOI (Digital Object Identifier)</a></li>
+  <li><a href="#epic-european-persistent-identifier-consortium" id="toc-epic-european-persistent-identifier-consortium" class="nav-link" data-scroll-target="#epic-european-persistent-identifier-consortium">EPIC (European Persistent Identifier Consortium)</a></li>
+  <li><a href="#handle-system" id="toc-handle-system" class="nav-link" data-scroll-target="#handle-system">Handle System</a></li>
+  <li><a href="#ark-archival-resource-key" id="toc-ark-archival-resource-key" class="nav-link" data-scroll-target="#ark-archival-resource-key">ARK (Archival Resource Key)</a></li>
+  </ul></li>
+  <li><a href="#spotlight-on-handles-epics-dois" id="toc-spotlight-on-handles-epics-dois" class="nav-link" data-scroll-target="#spotlight-on-handles-epics-dois">Spotlight on Handles, EPICs, DOIs</a></li>
+  <li><a href="#different-use-of-the-handle-system-epic-vs-doi" id="toc-different-use-of-the-handle-system-epic-vs-doi" class="nav-link" data-scroll-target="#different-use-of-the-handle-system-epic-vs-doi">Different Use of the Handle System: EPIC vs DOI</a>
+  <ul class="collapse">
+  <li><a href="#epic-metadata-in-the-handle-record" id="toc-epic-metadata-in-the-handle-record" class="nav-link" data-scroll-target="#epic-metadata-in-the-handle-record">EPIC: Metadata in the Handle Record</a></li>
+  <li><a href="#doi-metadata-outside-the-handle-record" id="toc-doi-metadata-outside-the-handle-record" class="nav-link" data-scroll-target="#doi-metadata-outside-the-handle-record">DOI: Metadata Outside the Handle Record</a></li>
+  </ul></li>
+  <li><a href="#resolution-of-persistent-identifiers" id="toc-resolution-of-persistent-identifiers" class="nav-link" data-scroll-target="#resolution-of-persistent-identifiers">Resolution of Persistent Identifiers</a></li>
+  <li><a href="#minting-handles-and-the-handle-record" id="toc-minting-handles-and-the-handle-record" class="nav-link" data-scroll-target="#minting-handles-and-the-handle-record">Minting Handles and the Handle Record</a>
+  <ul class="collapse">
+  <li><a href="#minting-handles" id="toc-minting-handles" class="nav-link" data-scroll-target="#minting-handles">Minting Handles</a></li>
+  <li><a href="#the-handle-record" id="toc-the-handle-record" class="nav-link" data-scroll-target="#the-handle-record">The Handle Record</a></li>
+  <li><a href="#practical-example-creating-an-epic-handle-and-managing-its-metadata" id="toc-practical-example-creating-an-epic-handle-and-managing-its-metadata" class="nav-link" data-scroll-target="#practical-example-creating-an-epic-handle-and-managing-its-metadata">Practical Example: Creating an EPIC Handle and Managing Its Metadata</a>
+  <ul class="collapse">
+  <li><a href="#install-the-python-library" id="toc-install-the-python-library" class="nav-link" data-scroll-target="#install-the-python-library">1. Install the Python Library</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">2. Imports</a></li>
+  <li><a href="#connect-to-the-handle-server" id="toc-connect-to-the-handle-server" class="nav-link" data-scroll-target="#connect-to-the-handle-server">3. Connect to the Handle Server</a></li>
+  <li><a href="#minting-a-handle" id="toc-minting-a-handle" class="nav-link" data-scroll-target="#minting-a-handle">4. Minting a Handle</a></li>
+  <li><a href="#adding-metadata" id="toc-adding-metadata" class="nav-link" data-scroll-target="#adding-metadata">5. Adding Metadata</a></li>
+  <li><a href="#updating-handle-metadata" id="toc-updating-handle-metadata" class="nav-link" data-scroll-target="#updating-handle-metadata">6. Updating Handle Metadata</a></li>
+  <li><a href="#minting-epic-handles-for-nonhttp-resources" id="toc-minting-epic-handles-for-nonhttp-resources" class="nav-link" data-scroll-target="#minting-epic-handles-for-nonhttp-resources">7. Minting EPIC Handles for Non‑HTTP Resources</a></li>
+  <li><a href="#searching-and-managing-handles" id="toc-searching-and-managing-handles" class="nav-link" data-scroll-target="#searching-and-managing-handles">8. Searching and Managing Handles</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./metadata-portals.html">Components of RDM Infrastructure</a></li><li class="breadcrumb-item"><a href="./pid-services.html"><span class="chapter-title">Persistent Identifier Services</span></a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdm-infra-intro.html">COMPONENTS OF RDM INFRASTRUCTURE</a></li><li class="breadcrumb-item"><a href="./pid-services.html"><span class="chapter-title">Persistent Identifier Services</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Persistent Identifier Services</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Persistent Identifier (PID) services are a fundamental component of modern research infrastructures and Research Data Management (RDM) systems. They provide stable, globally unique identifiers for digital and organizational entities within the research ecosystem. These entities include datasets, publications, software, researchers, institutions, research projects, and funding information.</p>
+<p>A persistent identifier ensures that a digital object can be reliably referenced, discovered, and accessed over time, even if its physical location changes. PID services are typically operated by international organizations and integrated into repositories, publishing platforms, and research infrastructure services. By assigning persistent identifiers to digital objects and actors, these systems enable reliable citation, linking between resources, and automated machine processing.</p>
+<p>Persistent identifiers also play a central role in enabling interoperable and FAIR‑compliant research infrastructures.</p>
+<p>In this chapter we will focus on PIDs and PID services for digital objects, i.e.&nbsp;data. A general overview over PIDs can be found in the chapter <a href="./pids.html">Persistent Identifiers</a>.</p>
+<section id="when-to-assign-a-persistent-identifier" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-assign-a-persistent-identifier">When to Assign a Persistent Identifier</h2>
+<p>When implementing an RDM service or infrastructure component, persistent identifiers directly support the <strong>FAIR Data Principles</strong>, particularly the first principle:</p>
+<p><strong><a href="https://www.go-fair.org/fair-principles/f1-meta-data-assigned-globally-unique-persistent-identifiers/">F1</a>. (Meta)data are assigned a globally unique and persistent identifier.</strong> “Principle F1 is arguably the most important because it will be hard to achieve other aspects of FAIR without globally unique and persistent identifiers.”</p>
+<p>However, not every piece of data produced during research requires a PID immediately. During early stages of the research data lifecycle, datasets may still be experimental, incomplete, or subject to frequent changes. Assigning persistent identifiers too early can lead to unnecessary versioning and administrative overhead.</p>
+<p>A PID should typically be assigned once data becomes a <strong>stable digital object</strong>. Common situations in which a persistent identifier should be assigned include:</p>
+<ul>
+<li><strong>Data publication</strong> in a repository</li>
+<li><strong>Long-term data archiving</strong></li>
+<li>Creation of <strong>gold-standard datasets</strong> or <strong>reference datasets</strong></li>
+<li>When data is <strong>shared beyond the boundaries of a single research team</strong></li>
+</ul>
+<p>At this stage the digital object becomes part of the scholarly record and benefits from stable identification, discoverability, and citation.</p>
+</section>
+<section id="persistent-identifier-systems-and-services-in-the-research-ecosystem" class="level2">
+<h2 class="anchored" data-anchor-id="persistent-identifier-systems-and-services-in-the-research-ecosystem">Persistent Identifier Systems and Services in the Research Ecosystem</h2>
+<p>Multiple persistent identifier (PID) systems exist to uniquely identify entities within the research ecosystem. Some focus on research outputs such as datasets and publications, while others identify people, institutions, or research activities. Below we list several PID systems commonly used for referencing datasets and digital objects.</p>
+<section id="doi-digital-object-identifier" class="level3">
+<h3 class="anchored" data-anchor-id="doi-digital-object-identifier">DOI (Digital Object Identifier)</h3>
+<p>The <strong>Digital Object Identifier (DOI)</strong> system, managed by the <strong>DOI Foundation</strong>, is one of the most widely used PID schemes in scholarly communication.</p>
+<p>DOIs are primarily used to identify <strong>digital research outputs</strong>, including:</p>
+<ul>
+<li>datasets<br>
+</li>
+<li>journal articles<br>
+</li>
+<li>software<br>
+</li>
+<li>reports</li>
+</ul>
+<p>The DOI system is built on top of the <strong>Handle System</strong>, which provides the underlying resolution infrastructure.</p>
+<p>Two major DOI registration agencies are widely used in research data management:</p>
+<ul>
+<li><strong>DataCite</strong> – primarily assigns DOIs to datasets and research data<br>
+</li>
+<li><strong>Crossref</strong> – primarily assigns DOIs to scholarly publications</li>
+</ul>
+<p><strong>Example DOI:</strong></p>
+<pre><code>10.5281/zenodo.3238330</code></pre>
+</section>
+<section id="epic-european-persistent-identifier-consortium" class="level3">
+<h3 class="anchored" data-anchor-id="epic-european-persistent-identifier-consortium">EPIC (European Persistent Identifier Consortium)</h3>
+<p>The <strong>European Persistent Identifier Consortium (EPIC)</strong> provides PID services <strong>based on the Handle System infrastructure</strong>. EPIC is widely used in <strong>European research infrastructures and data services</strong>.</p>
+<p>EPIC identifiers are typically used for:</p>
+<ul>
+<li>identifying digital objects in research infrastructures<br>
+</li>
+<li>supporting long-term access to research data<br>
+</li>
+<li>linking datasets and research resources across distributed infrastructures</li>
+</ul>
+<p>Common users include:</p>
+<ul>
+<li>European research infrastructures<br>
+</li>
+<li>research data repositories<br>
+</li>
+<li>e-science services</li>
+</ul>
+<p><strong>Example EPIC Handle:</strong></p>
+<pre><code>21.T11998/0000-001A-3905-F</code></pre>
+</section>
+<section id="handle-system" class="level3">
+<h3 class="anchored" data-anchor-id="handle-system">Handle System</h3>
+<p>The <strong>Handle System</strong> is a <strong>technical resolution infrastructure</strong> developed by the <strong>Corporation for National Research Initiatives (CNRI)</strong>. It provides the distributed, persistent lookup mechanism used by several PID schemes.</p>
+<p>The Handle System underpins:</p>
+<ul>
+<li>the DOI system<br>
+</li>
+<li>the EPIC PID service</li>
+</ul>
+<p>It is widely used by:</p>
+<ul>
+<li>repositories<br>
+</li>
+<li>digital libraries<br>
+</li>
+<li>research infrastructures</li>
+</ul>
+</section>
+<section id="ark-archival-resource-key" class="level3">
+<h3 class="anchored" data-anchor-id="ark-archival-resource-key">ARK (Archival Resource Key)</h3>
+<p>The <strong>Archival Resource Key (ARK)</strong> is a <strong>separate PID system</strong>, distinct from the Handle System. It was developed by the <strong>California Digital Library</strong> and is widely adopted in <strong>libraries, archives, and cultural heritage institutions</strong>.</p>
+<p>ARKs are commonly used for identifying:</p>
+<ul>
+<li>digital collections<br>
+</li>
+<li>archival objects<br>
+</li>
+<li>digitized cultural heritage materials</li>
+</ul>
+<p>Unlike DOIs and EPIC identifiers, <strong>ARKs do not rely on the Handle System</strong>. They use their own resolution approach, typically through ARK-enabled service providers.</p>
+<p><strong>Example ARK:</strong></p>
+<pre><code>ark:/12345/x54</code></pre>
+</section>
+</section>
+<section id="spotlight-on-handles-epics-dois" class="level2">
+<h2 class="anchored" data-anchor-id="spotlight-on-handles-epics-dois">Spotlight on Handles, EPICs, DOIs</h2>
+<p>Persistent identifier (PID) infrastructures for digital resources are built on layered technical and governance frameworks. Systems such as the <strong>Digital Object Identifier (DOI)</strong>, the <strong>Handle System</strong>, and services provided by <strong>EPIC</strong> operate within the broader conceptual framework of the <strong>Digital Object Network Architecture (DONA)</strong>. Together they form an ecosystem that enables stable identification, management, and resolution of digital objects on the internet.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false}
+}}%%
+
+flowchart LR
+
+    subgraph Technical_Infrastructure["Technical Infrastructure"]
+        HANDLE["Handle System&lt;br&gt;(Global identifier system)"]
+    end
+
+    subgraph DOI_Framework["DOI Framework"]
+        DOI["DOI&lt;br&gt;(Specialized identifier for scholarly outputs)"]
+    end
+
+    subgraph EPIC_Framework["EPIC Framework"]
+        EPIC["EPIC&lt;br&gt;(Persistent identifiers for European research)"]
+    end
+
+    subgraph Global_Framework["Global Framework"]
+        DONA["DONA&lt;br&gt;(Global management of digital objects)"]
+    end
+
+    HANDLE --&gt;|Used by| DOI
+    HANDLE --&gt;|Used by| EPIC
+    DOI --&gt;|Part of| DONA
+    EPIC --&gt;|Part of| DONA
+
+    linkStyle 0 labelPosition:0.5, align:top;
+    linkStyle 1 labelPosition:0.5, align:top;
+    linkStyle 2 labelPosition:0.5, align:top;
+    linkStyle 3 labelPosition:0.5, align:top;
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: The main organisations DONA, EPIC and DOI
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>The Handle System provides the underlying technical infrastructure for persistent identifiers.</strong> It enables globally unique identifiers, known as <em>handles</em>, to be assigned to digital objects and resolved through a distributed network of handle servers. When a handle is queried, the system returns associated metadata, such as the current URL of the resource. This separation between the identifier and the object’s location ensures persistence even when the resource moves.</p>
+<p>Built on top of the Handle System is the Digital Object Identifier (DOI) system, a widely used persistent identifier scheme for scholarly publications, datasets, and other research outputs. <strong>DOIs use the handle protocol for resolution but add additional governance, metadata standards, and registration workflows tailored to scholarly communication.</strong> Organizations such as International DOI Foundation oversee the DOI framework and coordinate registration agencies that assign DOIs to digital objects.</p>
+<p>The European Persistent Identifier Consortium (EPIC) is another major provider of persistent identifiers based on the Handle System. EPIC operates a handle registration service primarily aimed at research institutions, data infrastructures, and e-science projects in Europe. Unlike the DOI system, which focuses heavily on scholarly publishing workflows, <strong>EPIC provides a more general handle-based PID service that can be used for datasets, research infrastructures, software, and other digital assets.</strong></p>
+<p>At the architectural level, both DOI and EPIC-based handles operate within the principles of the Digital Object Network Architecture (DONA). <strong>DONA defines a global infrastructure for digital object management, including the assignment of identifier prefixes, governance of the handle registry, and operation of root resolution services.</strong> Through DONA, different identifier communities—such as DOI registration agencies and EPIC handle services—can coexist while sharing the same global resolution infrastructure.</p>
+<p>In summary, DONA provides the overarching framework for managing digital object identifiers. The Handle System supplies the technical resolution mechanism within this framework. DOI represents a specialized, widely adopted identifier scheme built on handles, while EPIC operates as a consortium that provides handle-based persistent identifier services, particularly for European research infrastructures. This layered ecosystem enables long-term, interoperable identification and access to digital resources across diverse domains.</p>
+</section>
+<section id="different-use-of-the-handle-system-epic-vs-doi" class="level2">
+<h2 class="anchored" data-anchor-id="different-use-of-the-handle-system-epic-vs-doi">Different Use of the Handle System: EPIC vs DOI</h2>
+<p>Although both European Persistent Identifier Consortium (EPIC) and the Digital Object Identifier (DOI) system use the Handle System for identifier resolution, they <strong>use the Handle record in different ways</strong>.</p>
+<section id="epic-metadata-in-the-handle-record" class="level3">
+<h3 class="anchored" data-anchor-id="epic-metadata-in-the-handle-record">EPIC: Metadata in the Handle Record</h3>
+<p>EPIC uses the Handle System <strong>as a full PID infrastructure</strong>, meaning that the <strong>Handle record itself stores meaningful metadata</strong> about the object. EPIC follows the <strong>PID Information Types</strong> model, which standardizes how information is encoded in Handle records.</p>
+<p>Example Handle:</p>
+<pre><code>21.T11998/0000-001A-3905-F</code></pre>
+<p>A Handle record in EPIC may include multiple typed entries such as:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 43%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Example Content</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>URL</code></td>
+<td><code>https://repository.org/object/123</code></td>
+<td>Current location of the object</td>
+</tr>
+<tr class="even">
+<td><code>CHECKSUM</code></td>
+<td><code>sha256:...</code></td>
+<td>Data integrity verification</td>
+</tr>
+<tr class="odd">
+<td><code>EMAIL</code></td>
+<td><code>contact@repository.org</code></td>
+<td>Administrative contact</td>
+</tr>
+<tr class="even">
+<td><code>10320/LOC</code></td>
+<td>Multiple URLs</td>
+<td>Location-aware resolution</td>
+</tr>
+<tr class="odd">
+<td><code>PID_INFO_TYPES</code></td>
+<td>Reference schema</td>
+<td>Declares metadata structure</td>
+</tr>
+</tbody>
+</table>
+<p>In this model, the <strong>Handle record itself functions as a lightweight metadata container</strong>, enabling machines to retrieve essential information directly from the Handle infrastructure.</p>
+</section>
+<section id="doi-metadata-outside-the-handle-record" class="level3">
+<h3 class="anchored" data-anchor-id="doi-metadata-outside-the-handle-record">DOI: Metadata Outside the Handle Record</h3>
+<p>In contrast, the DOI system uses the Handle System <strong>primarily for resolution</strong>, not for storing descriptive metadata.</p>
+<p>A DOI such as:</p>
+<pre><code>10.1000/182</code></pre>
+<p>is technically implemented as a Handle, but the Handle record typically contains only minimal information, most importantly:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>URL</code></td>
+<td>Landing page of the resource</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>actual metadata</strong> for the DOI (title, authors, publication date, publisher, etc.) is <strong>stored in external metadata registries</strong> managed by DOI Registration Agencies such as Crossref or DataCite.</p>
+<p>These agencies maintain <strong>large metadata databases</strong> that can be queried through APIs. For example:</p>
+<ul>
+<li>Crossref metadata API</li>
+<li>DataCite metadata store</li>
+</ul>
+<p>When someone resolves a DOI through <code>doi.org</code>, the Handle system simply redirects the user to a <strong>landing page</strong>, while the rich metadata is retrieved from the registration agency’s infrastructure rather than from the Handle record itself.</p>
+<p>The difference can be understood as two architectural approaches:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 37%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>EPIC Handles</th>
+<th>DOIs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Infrastructure</td>
+<td>Handle System</td>
+<td>Handle System</td>
+</tr>
+<tr class="even">
+<td>Metadata location</td>
+<td>Inside the Handle record</td>
+<td>External metadata registries</td>
+</tr>
+<tr class="odd">
+<td>Metadata model</td>
+<td>PID Information Types</td>
+<td>DOI metadata schemas</td>
+</tr>
+<tr class="even">
+<td>Resolution</td>
+<td>Directly from Handle record</td>
+<td>Redirect to landing page</td>
+</tr>
+<tr class="odd">
+<td>Example prefix</td>
+<td><code>21.*</code></td>
+<td><code>10.*</code></td>
+</tr>
+</tbody>
+</table>
+<p>Thus, EPIC uses the Handle System as a metadata‑aware PID infrastructure, designed to support interoperability across research infrastructures and to maintain actionable links between data objects, services, and workflows. In contrast, the DOI system uses the Handle System primarily as a resolution layer, while the descriptive metadata and publication‑oriented services are maintained in separate, domain‑specific registries such as DataCite and Crossref.</p>
+<p>Whereas DOIs are embedded in the scholarly publishing ecosystem—complete with citation metadata, indexing in bibliographic databases, and integration with publication workflows—EPIC identifiers are optimized for technical interoperability, enabling research infrastructures to reference, connect, and manage data objects across distributed systems. In other words, DOI focuses on publication, discoverability, and metadata indexing, while EPIC focuses on infrastructure‑level persistence, machine‑actionable metadata, and cross‑system integration.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-3">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false}
+}}%%
+flowchart TB
+
+    %% Top-level
+    DONA["Digital Object Network Architecture (DONA)"]
+    GHR["Global Handle Registry"]
+    HANDLE["Handle System&lt;br&gt;(Identifier resolution infrastructure)"]
+
+    %% Branches
+    EPIC["EPIC Handle Services"]
+    DOI["DOI System"]
+
+    %% Handle record contents
+    EPIC_REC["Handle Record contains:&lt;br&gt;• URL&lt;br&gt;• PID Information Types&lt;br&gt;• checksums&lt;br&gt;• admin data&lt;br&gt;• service endpoints"]
+
+    DOI_REC["Handle Record contains:&lt;br&gt;• URL&lt;br&gt;• minimal metadata"]
+
+    %% Metadata flows
+    EPIC_META["Machine‑actionable PID metadata&lt;br&gt;stored in Handle infrastructure"]
+
+    DOI_META_SRC["Metadata stored externally&lt;br&gt;in DOI Registration Agencies"]
+
+    DOI_META_DB1["DOI metadata databases"]
+    DOI_META_DB2["DOI metadata databases"]
+
+    %% Structure
+    DONA --&gt; GHR --&gt; HANDLE
+
+    HANDLE --&gt; EPIC
+    HANDLE --&gt; DOI
+
+    EPIC --&gt; EPIC_REC --&gt; EPIC_META
+
+    DOI --&gt; DOI_REC --&gt; DOI_META_SRC
+    DOI_META_SRC --&gt; DOI_META_DB1
+    DOI_META_SRC --&gt; DOI_META_DB2
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Deeper look into the technologies and organisations
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see how the Handle System is used differently in practice by comparing two PIDs: <code>10.5281/zenodo.3238330</code> and <code>11304/3185a834-5178-41bf-a849-b9ddbe4c5638</code>.</p>
+<p>The first identifier is a DOI. If we resolve it through the Handle System using <code>https://hdl.handle.net/10.5281/zenodo.3238330?noredirect</code> we can inspect the metadata stored directly in the Handle record.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/pid-services/handle_entry_doi.png" class="img-fluid figure-img"></p>
+<figcaption>Example DOI</figcaption>
+</figure>
+</div>
+<p>This record contains two standard fields:</p>
+<ul>
+<li>HS_ADMIN — an administrative entry that defines
+<ul>
+<li>which Handle identity (usually the prefix administrator) controls the handle</li>
+<li>what permissions that identity has</li>
+<li>which operations they are allowed to perform. This entry is part of every Handle record, whether it belongs to EPIC, DOI, or another service.</li>
+</ul></li>
+<li>URL — the target location the resolver redirects to when the handle is used.</li>
+</ul>
+<p>Every Handle record includes at least these two entries.</p>
+<p>Now let’s look at <code>11304/3185a834-5178-41bf-a849-b9ddbe4c5638</code> - an EPIC example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/pid-services/handle_entry_epic.png" class="img-fluid figure-img"></p>
+<figcaption>Example EPIC</figcaption>
+</figure>
+</div>
+<p>Here we again see the mandatory HS_ADMIN and URL fields. In addition, the organisation responsible for this prefix has added extra information. These additional fields come from a custom PID profile used by <a href="https://eudat.eu">EUDAT</a> for their B2SHARE data publishing service.</p>
+<p>In this case, the PID points directly to a file and includes useful details such as the file’s checksum. This allows users or systems to verify the file’s integrity, for example during data migration or when downloading the file.</p>
+</section>
+</section>
+<section id="resolution-of-persistent-identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="resolution-of-persistent-identifiers">Resolution of Persistent Identifiers</h2>
+<p>To understand how persistent identifiers function behind the scenes, it helps to look at <strong>how a resolver retrieves the information stored in a Handle record</strong>. Resolution is simply the process of turning an identifier into the current location or metadata of the object it represents.</p>
+<p>Using the <strong>Handle System</strong> as an example, the process works like this:</p>
+<p>When a user enters a Handle such as <code>21.T11998/0000-001A-3905-F</code> into a resolver—or clicks a link containing it—the request is sent to the global Handle infrastructure operated by the <strong>Corporation for National Research Initiatives (CNRI)</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-4">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TB
+
+    REQ[Browser: Send request&lt;br&gt;10.5281/zenodo.3238330]
+    PREFIX[Lookup prefix 10.5281 at global Handle server]
+    LOCAL[Contact local server&lt;br&gt;which hosts all PIDs for 10.5281]
+    RECORD[Get handle record]
+    REDIR[Redirect to resource in URL field]
+
+    REQ --&gt; PREFIX --&gt; LOCAL --&gt; RECORD --&gt; REDIR
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: The Handle resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The resolver then performs a series of steps:</p>
+<ol type="1">
+<li><strong>Request submission</strong><br>
+The user or application sends the Handle to a resolver service.</li>
+<li><strong>Prefix lookup </strong> The resolver checks the prefix (the part before the slash) to determine which Handle server is responsible for that identifier.</li>
+<li><strong>Local server query </strong> The resolver contacts the appropriate server and requests the Handle record.</li>
+<li><strong>Record retrieval</strong><br>
+The server returns the stored entries—typically including a URL pointing to the current location of the object, along with administrative fields such as HS_ADMIN.</li>
+<li><strong>Redirection</strong><br>
+Using the URL entry, the resolver redirects the user or system to the resource’s current location.</li>
+</ol>
+<p>Because the Handle record can be updated whenever the underlying resource moves, the identifier itself remains stable. This is the same principle described in the previous chapter: the PID stays the same, only the target information changes, ensuring long‑term access even as systems evolve.</p>
+<p>Understanding resolution tells us how a PID behaves once it exists. The next step is to look at how such identifiers come into being. This brings us to the two core building blocks of the Handle System: <strong>minting a Handle</strong> and <strong>managing the Handle record</strong>.</p>
+</section>
+<section id="minting-handles-and-the-handle-record" class="level1">
+<h1>Minting Handles and the Handle Record</h1>
+<p>Persistent identifiers are only useful if they can be <strong>created, stored, and updated reliably</strong>. In the <strong>Handle System</strong>, this is achieved through two core concepts: <strong>minting a Handle</strong> and <strong>maintaining the Handle record</strong>.</p>
+<section id="minting-handles" class="level2">
+<h2 class="anchored" data-anchor-id="minting-handles">Minting Handles</h2>
+<p><em>Minting</em> a Handle means <strong>creating and registering a new persistent identifier</strong> for a digital object.</p>
+<p>Organisations participating in the Handle System receive a <strong>prefix</strong> (for example from EPIC). They then generate a unique <strong>suffix</strong> for each object they want to identify. Together, these form a globally unique Handle:</p>
+<pre><code>prefix/suffix</code></pre>
+<ul>
+<li><strong>Prefix</strong> – identifies the organisation responsible for the identifier<br>
+</li>
+<li><strong>Suffix</strong> – uniquely identifies the object within that organisation</li>
+</ul>
+<p>Example:</p>
+<pre><code>21.T11998/0000-001A-3905-F</code></pre>
+<p>Once minted, the Handle is registered in the global Handle infrastructure and can be resolved using the mechanism described in the previous chapter.</p>
+</section>
+<section id="the-handle-record" class="level2">
+<h2 class="anchored" data-anchor-id="the-handle-record">The Handle Record</h2>
+<p>Every Handle points to a <strong>Handle record</strong>, which stores the information needed for resolution. At minimum, a record contains:</p>
+<ul>
+<li>a <strong><code>URL</code> entry</strong>, indicating where the resolver should redirect the user<br>
+</li>
+<li>an <strong><code>HS_ADMIN</code> entry</strong>, defining who controls the Handle and what permissions they have</li>
+</ul>
+<p>Depending on the use case, additional entries may be included.<br>
+For example, EPIC Handles often store:</p>
+<ul>
+<li>checksums<br>
+</li>
+<li>protocol information<br>
+</li>
+<li>service endpoints<br>
+</li>
+<li>machine‑actionable metadata</li>
+</ul>
+<p>This flexibility allows Handles to describe not only web resources but also files, collections, workflows, or non‑HTTP services.</p>
+<p>When the location of a digital object changes, only the <strong>Handle record</strong> needs to be updated.<br>
+The identifier itself remains stable, ensuring <strong>persistent and reliable access</strong> over time. The same is actually also true for all other information which is captured in the PID metadata.</p>
+</section>
+<section id="practical-example-creating-an-epic-handle-and-managing-its-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example-creating-an-epic-handle-and-managing-its-metadata">Practical Example: Creating an EPIC Handle and Managing Its Metadata</h2>
+<p>To demonstrate how Handle‑based PIDs are created and managed in practice, this example uses <strong>pyhandle</strong>, a Python library developed by <strong>EUDAT</strong>.<br>
+EUDAT maintains large‑scale European research data services, and <code>pyhandle</code> is their official client library for interacting with <strong>EPIC Handle services</strong> through the Handle REST API.</p>
+<p>Before you can mint Handles, you need <strong>credentials</strong> issued by your Handle service provider (for example, EPIC or a local institutional Handle server). These credentials typically include:</p>
+<ul>
+<li>the <strong>Handle prefix</strong> assigned to your organisation<br>
+</li>
+<li>a <strong>username</strong> associated with that prefix<br>
+</li>
+<li>a <strong>private key</strong> or password for authentication<br>
+</li>
+<li>optional permissions for reverse lookup or administrative actions</li>
+</ul>
+<p>They are usually delivered as a small JSON file (often named <code>credentials.json</code>) that <code>pyhandle</code> can read directly.</p>
+<p>With that context in place, the following steps show how to mint a Handle, add metadata, update its target location, and manage non‑HTTP resources.</p>
+<section id="install-the-python-library" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-python-library">1. Install the Python Library</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pyhandle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="imports" class="level3">
+<h3 class="anchored" data-anchor-id="imports">2. Imports</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyhandle.clientcredentials <span class="im">import</span> PIDClientCredentials</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyhandle.handleclient <span class="im">import</span> PyHandleClient</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="connect-to-the-handle-server" class="level3">
+<h3 class="anchored" data-anchor-id="connect-to-the-handle-server">3. Connect to the Handle Server</h3>
+<p>Here we load the credential file provided by EPIC (or your institutional Handle service) and create a client authenticated for minting and updating Handles.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cred <span class="op">=</span> PIDClientCredentials.load_from_JSON(<span class="st">"credentials.json"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> PyHandleClient(<span class="st">'rest'</span>).instantiate_with_credentials(cred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="minting-a-handle" class="level3">
+<h3 class="anchored" data-anchor-id="minting-a-handle">4. Minting a Handle</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>handle <span class="op">=</span> client.generate_PID_name(cred.get_prefix())</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(handle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example output:</p>
+<pre><code>21.T12996/a70da9ee-1202-451f-89ba-37d907fea470</code></pre>
+<hr>
+</section>
+<section id="adding-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="adding-metadata">5. Adding Metadata</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>meta <span class="op">=</span> {<span class="st">"checksum"</span>: <span class="st">"blablabla"</span>}</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>meta[<span class="st">"URL"</span>] <span class="op">=</span> <span class="st">"http://google.com"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>client.register_handle_kv(handle, <span class="op">**</span>meta, overwrite<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="updating-handle-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="updating-handle-metadata">6. Updating Handle Metadata</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>yoda_data_loc <span class="op">=</span> <span class="st">"https://data.yoda.uu.nl/research-christine/my_books/"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>meta[<span class="st">"data_type"</span>] <span class="op">=</span> <span class="st">"collection"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>meta[<span class="st">"protocol"</span>] <span class="op">=</span> <span class="st">"webdav"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>meta[<span class="st">"URL"</span>] <span class="op">=</span> yoda_data_loc</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>client.modify_or_add_handle_value(handle, <span class="op">**</span>meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Delete metadata:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>client.delete_handle_value(handle, <span class="st">"checksum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="minting-epic-handles-for-nonhttp-resources" class="level3">
+<h3 class="anchored" data-anchor-id="minting-epic-handles-for-nonhttp-resources">7. Minting EPIC Handles for Non‑HTTP Resources</h3>
+<p>EPIC allows Handles to describe resources that are not directly accessible via HTTP, such as iRODS paths or WebDAV collections. In such cases, the Handle may include protocol‑specific metadata and a <code>URL</code> that points to a resolver landing page rather than the resource itself.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>handle2 <span class="op">=</span> client.generate_PID_name(cred.get_prefix())</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>meta2 <span class="op">=</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"protocol"</span>: <span class="st">"iRODS"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"irods_path"</span>: <span class="st">"/uu/home/research-christine/my_books"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"irods_server"</span>: <span class="st">"data.yoda.uu.nl"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"URL"</span>: <span class="ss">f"https://hdl.handle.net/</span><span class="sc">{</span>handle2<span class="sc">}</span><span class="ss">?noredirect"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>client.register_handle_kv(handle2, <span class="op">**</span>meta2, overwrite<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example:</p>
+<pre><code>21.T12996/24c4010d-1527-409b-953b-8c8548d3330a</code></pre>
+<hr>
+</section>
+<section id="searching-and-managing-handles" class="level3">
+<h3 class="anchored" data-anchor-id="searching-and-managing-handles">8. Searching and Managing Handles</h3>
+<p>Some Handle services allow <strong>reverse lookup</strong>, meaning you can search for Handles based on metadata values (e.g., a URL or checksum). This requires additional credentials with search permissions.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>search_client <span class="op">=</span> PyHandleClient(<span class="st">"rest"</span>).instantiate_for_read_and_search(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    handle_server_url<span class="op">=</span><span class="st">"https://your.local.handle.server"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    reverselookup_password<span class="op">=</span><span class="st">"your_password"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    reverselookup_username<span class="op">=</span><span class="st">"21.T12996"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> search_client.search_handle(URL<span class="op">=</span><span class="st">"/myfile/here/local.txt"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>https://www.go-fair.org/fair-principles/</li>
+<li>https://www.doi.org/</li>
+<li>https://www.pidconsortium.net/</li>
+<li>https://www.handle.net/</li>
+<li>https://www.dona.net/</li>
+<li>https://arks.org/about/</li>
+<li>https://doi.org/10.17487%2FRFC3650, handle system, technical overview</li>
+<li>https://doi.org/10.17487%2FRFC3651</li>
+<li>https://www.cnri.reston.va.us/k-w.html, distributed digital objects services, overview</li>
+</ul>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -640,8 +1294,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-repositories.html" class="pagination-link" aria-label="data-repositories.html">
-        <span class="nav-page-text"><span class="chapter-title">data-repositories.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rdm-platform.html" class="pagination-link" aria-label="RDM Platform">
+        <span class="nav-page-text"><span class="chapter-title">RDM Platform</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
