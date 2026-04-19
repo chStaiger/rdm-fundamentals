@@ -38,7 +38,7 @@ These three parts form a **single functional entity**:
 - The **metadata** explains the content and enables interpretation.  
 - The **persistent identifier** ensures the object can always be located and referenced.
 
-If any one of these components is missing, the digital object becomes incomplete. Files without metadata are uninterpretable; metadata without files is empty description; and neither files nor metadata are useful if they cannot be reliably identified.
+If any one of these components is missing, the digital object becomes incomplete. Files without metadata are uninterpretable; metadata without files is empty description; and neither files nor metadata are useful if they cannot be reliably identified and located.
 
 The diagrams below illustrate two common patterns for connecting a PID, the underlying files, and their metadata.  
 In the first pattern, the PID resolves directly to a file, which then contains or links to the relevant metadata.  
