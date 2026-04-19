@@ -11,7 +11,7 @@ At its core, a digital object consists of **three interdependent components**:
 - [**Persistent Identifier (PID)**](pids.qmd) — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be identified, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.
 
 ```{mermaid}
-%%| label: digital-object
+%%| label: fig-1
 %%| fig-cap: The Digital Object
 %%| fig-align: center
 %%{init: {
@@ -43,7 +43,7 @@ If any one of these components is missing, the digital object becomes incomplete
 The diagrams below illustrate two common patterns for connecting a PID, the underlying files, and their metadata.  
 
 ```{mermaid}
-%%| label: implementation1
+%%| label: fig-2
 %%| fig-cap: PID points to a file which contains or points to the metadata.
 %%| fig-align: center
 %%{init: {
@@ -66,7 +66,7 @@ flowchart LR
 In the first pattern, the PID resolves directly to a file, which then contains or links to the relevant metadata.  
 
 ```{mermaid}
-%%| label: implementation2
+%%| label: fig-3
 %%| fig-cap: PID points to metadata or a landing page that contains information on how to access the file(s).
 %%| fig-align: center
 %%{init: {
@@ -115,7 +115,7 @@ Additional lifecycle functions include:
   This includes relationships such as *raw data → processed data → analysed data*, making the object’s history transparent and reproducible.
 
 ```{mermaid}
-%%| label: data-lineage
+%%| label: fig-4
 %%| fig-cap: Data lineage represented as a chain of Digital Objects (raw → processed → analysed).
 %%| fig-align: center
 %%{init: {
