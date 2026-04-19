@@ -185,18 +185,22 @@ Minting a PID ensures that the object can be **consistently identified, cited, a
 
 #### How PID Minting Works
 
-The process of minting a PID typically involves several steps:
+The process of minting a PID typically involves four steps:
 
-1. **Create the identifier**
-   A unique identifier is generated according to the structure of the PID system. For example, in the Digital Object Identifier (DOI) system this means creating a **prefix and suffix combination**.
+1. **Create the identifier**  
+   A unique identifier is generated according to the rules of the PID system. In the DOI system, for example, this involves creating a **prefix–suffix combination**.
 
-2. **Register the PID with a registration authority**
-   The new PID is registered with an official infrastructure provider or registration agency, such as DataCite or Crossref. This ensures the identifier is globally unique and recorded in a central registry.
+2. **Register the PID with a registration authority**  
+   The identifier is registered with an official infrastructure provider or registration agency, such as DataCite or Crossref. This ensures global uniqueness and records the PID in a trusted registry.
 
-3. **Submit metadata and link the PID to a resolvable location**
-   Metadata describing the object is submitted together with the identifier. This must include the **URL or landing page** where the digital object can currently be accessed. Additional elements may be added to the PID record, such as the title, checksum, or other information needed to reliably identify and manage the object.
+3. **Submit metadata describing the object**  
+   Metadata is provided together with the identifier. This typically includes elements such as the title, creator, checksum, and other information needed to reliably identify and manage the object.
 
-Minting a PID is therefore not only about creating an identifier—it also involves **registering and maintaining the information that allows the identifier to function over time**.
+4. **Link the PID to a resolvable location**  
+   The PID record must include a **URL or landing page** where the digital object can currently be accessed. This location is what enables PID resolvers to redirect users to the object. Without a valid, maintained URL, the PID cannot function as a persistent, actionable reference.
+
+
+Minting a PID is therefore not only about creating an identifier, it also involves **registering and maintaining the information that allows the identifier to function over time**.
 
 ## PID Profiles and PID Information Types
 
