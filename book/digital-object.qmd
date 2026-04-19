@@ -1,14 +1,14 @@
-# **What is a Digital or Data Object**
+# The Digital Object
 
 A **digital (or data) object** is a self‑contained, structured unit of information that exists in electronic form. It is more than just raw bits: it is a combination of **content**, **context**, and **identity** that allows computers and humans to store, interpret, preserve, and reuse information reliably.
 
 At its core, a digital object consists of **three interdependent components**:
 
-- **Bitstream(s) or File(s)** — the actual digital content, stored as one or more files. These may be documents, images, audio recordings, videos, datasets, software packages, or any other digital material. On their own, files are simply encoded data; they require context to be meaningful.
+- [**Bitstream(s) or File(s)**](files.qmd) — the actual digital content, stored as one or more files. These may be documents, images, audio recordings, videos, datasets, software packages, or any other digital material. On their own, files are simply encoded data; they require context to be meaningful. 
 
-- **Metadata** — the descriptive, structural, and technical information that explains how to interpret the files and how the object should be managed. Metadata identifies what the object is, how it is organized, who created it, when it was produced, and how it can be rendered or preserved. It provides the essential context that turns raw bits into understandable content.
+- [**Metadata**](metadata.qmd) — the descriptive, structural, and technical information that explains how to interpret the files and how the object should be managed. Metadata identifies what the object is, how it is organized, who created it, when it was produced, and how it can be rendered or preserved. It provides the essential context that turns raw bits into understandable content.
 
-- **Persistent Identifier (PID)** — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be identified, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.
+- [**Persistent Identifier (PID)**](pids.qmd) — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be identified, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.
 
 ```{mermaid}
 %%| label: digital-object
