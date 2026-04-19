@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Object – Fundamentals of Research Data Management</title>
+<title>The Digital Object – Fundamentals of Research Data Management</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,6 +72,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="forest">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -85,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-object.html">THE HOLY TRINITY OF RDM</a></li><li class="breadcrumb-item"><a href="./data-object.html"><span class="chapter-title">Data Object</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./digital-object.html">THE HOLY TRINITY OF RDM</a></li><li class="breadcrumb-item"><a href="./digital-object.html"><span class="chapter-title">The Digital Object</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-object.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Object</span></a>
+  <a href="./digital-object.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">The Digital Object</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -230,15 +234,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-these-components-work-together" id="toc-how-these-components-work-together" class="nav-link active" data-scroll-target="#how-these-components-work-together"><strong>How These Components Work Together</strong></a></li>
+  <li><a href="#why-digital-objects-matter" id="toc-why-digital-objects-matter" class="nav-link" data-scroll-target="#why-digital-objects-matter"><strong>Why Digital Objects Matter</strong></a></li>
+  <li><a href="#in-essence" id="toc-in-essence" class="nav-link" data-scroll-target="#in-essence"><strong>In essence</strong></a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-object.html">THE HOLY TRINITY OF RDM</a></li><li class="breadcrumb-item"><a href="./data-object.html"><span class="chapter-title">Data Object</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./digital-object.html">THE HOLY TRINITY OF RDM</a></li><li class="breadcrumb-item"><a href="./digital-object.html"><span class="chapter-title">The Digital Object</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Data Object</span></h1>
+<h1 class="title"><span class="chapter-title">The Digital Object</span></h1>
 </div>
 
 
@@ -255,8 +268,183 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>A <strong>digital (or data) object</strong> is a self‑contained, structured unit of information that exists in electronic form. It is more than just raw bits: it is a combination of <strong>content</strong>, <strong>context</strong>, and <strong>identity</strong> that allows computers and humans to store, interpret, preserve, and reuse information reliably.</p>
+<p>At its core, a digital object consists of <strong>three interdependent components</strong>:</p>
+<ul>
+<li><p><a href="./files.html"><strong>Bitstream(s) or File(s)</strong></a> — the actual digital content, stored as one or more files. These may be documents, images, audio recordings, videos, datasets, software packages, or any other digital material. On their own, files are simply encoded data; they require context to be meaningful.</p></li>
+<li><p><a href="./metadata.html"><strong>Metadata</strong></a> — the descriptive, structural, and technical information that explains how to interpret the files and how the object should be managed. Metadata identifies what the object is, how it is organized, who created it, when it was produced, and how it can be rendered or preserved. It provides the essential context that turns raw bits into understandable content.</p></li>
+<li><p><a href="./pids.html"><strong>Persistent Identifier (PID)</strong></a> — a stable, globally unique reference (such as a DOI, Handle, or ARK) that ensures the object can be identified, found, cited, and linked over time, even if its storage location changes. The PID anchors the object’s identity in a durable way.</p></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="digital-object">
+<div>
+<pre class="mermaid mermaid-js" data-label="digital-object">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TD
+    A["Digital Object"]
+    B["Files"]
+    C["Metadata"]
+    D["Persistent Identifier"]
+
+    A --&gt; B
+    A --&gt; C
+    A --&gt; D
+</pre>
+</div>
+<p>The Digital Object</p>
+</div>
+</div>
+</div>
+<section id="how-these-components-work-together" class="level3">
+<h3 class="anchored" data-anchor-id="how-these-components-work-together"><strong>How These Components Work Together</strong></h3>
+<p>These three parts form a <strong>single functional entity</strong>:</p>
+<ul>
+<li>The <strong>files</strong> hold the content.<br>
+</li>
+<li>The <strong>metadata</strong> explains the content and enables interpretation.<br>
+</li>
+<li>The <strong>persistent identifier</strong> ensures the object can always be located and referenced.</li>
+</ul>
+<p>If any one of these components is missing, the digital object becomes incomplete. Files without metadata are uninterpretable; metadata without files is empty description; and neither files nor metadata are useful if they cannot be reliably identified and located.</p>
+<p>The diagrams below illustrate two common patterns for connecting a PID, the underlying files, and their metadata.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="implementation1">
+<div>
+<pre class="mermaid mermaid-js" data-label="implementation1">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart LR
+
+     F["Files"]
+     M["Metadata"]
+    
+    P["Persistent Identifier (PID)"]
+
+    P --- |"points to"| F
+    F --- |"points to"| M
+    M --- |"contains"| P
+</pre>
+</div>
+<p>PID points to a file which contains or points to the metadata.</p>
+</div>
+</div>
+</div>
+<p>In the first pattern, the PID resolves directly to a file, which then contains or links to the relevant metadata.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="implementation2">
+<div>
+<pre class="mermaid mermaid-js" data-label="implementation2">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart LR
+
+    F["Files"]
+    M["Metadata"]
+    P["Persistent Identifier (PID)"]
+
+    M --- |"contains"| P
+    P --- |"points to"| M
+    M --- |"has access info to"| F
+</pre>
+</div>
+<p>PID points to metadata or a landing page that contains information on how to access the file(s).</p>
+</div>
+</div>
+</div>
+<p>In the second pattern, the PID resolves to a metadata record or landing page, which provides the information needed to locate and access the file(s).<br>
+Both approaches are widely used; the choice depends on repository design and access requirements.</p>
+</section>
+<section id="why-digital-objects-matter" class="level3">
+<h3 class="anchored" data-anchor-id="why-digital-objects-matter"><strong>Why Digital Objects Matter</strong></h3>
+<p>Digital objects are the foundation of modern research data management systems. Their structured nature enables:</p>
+<ul>
+<li><p><strong>Preservation</strong> — keeping knowledge accessible as formats, platforms, and storage systems evolve.<br>
+Files can be migrated, metadata enriched, and storage reorganized without breaking the object’s identity.</p></li>
+<li><p><strong>Interoperability</strong> — ensuring different tools and repositories can exchange and interpret the object consistently.<br>
+Content, metadata, and identifiers travel together, preserving meaning across systems.</p></li>
+<li><p><strong>Reusability and sharing</strong> — supporting research, education, and collaboration.<br>
+Clear metadata, stable identifiers, and standardized structures make digital objects easy to understand and integrate into new workflows.</p></li>
+<li><p><strong>Reliable citation and tracking</strong> — through persistent identifiers that remain valid even as files move or metadata changes.<br>
+PIDs support accurate citation, versioning, provenance tracking, and automated linking.</p></li>
+<li><p><strong>Robust storage strategies</strong> — enabling multiple replicas across diverse storage environments while maintaining a single, consistent identity.<br>
+Replicas of files on different storage systems improve resilience and performance without compromising citation or access.</p></li>
+</ul>
+<p>Additional lifecycle functions include:</p>
+<ul>
+<li><strong>Versioning</strong> — recording updates or corrections while keeping earlier states accessible and citable.<br>
+</li>
+<li><strong>Fixity</strong> — verifying file integrity through checksums or hashes to detect corruption or tampering.<br>
+</li>
+<li><strong>Provenance</strong> — documenting how data came to be, including transformations and dependencies.<br>
+This includes relationships such as <em>raw data → processed data → analysed data</em>, making the object’s history transparent and reproducible.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="data-lineage">
+<div>
+<pre class="mermaid mermaid-js" data-label="data-lineage">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart RL
+
+    subgraph RAW["Raw Data Object"]
+        direction TB
+        R_F["Files"]
+        R_M["Metadata"]
+        R_P["PID"]
+    end
+
+    subgraph PROC["Processed Data Object"]
+        direction TB
+        P_F["Files"]
+        P_M["Metadata"]
+        P_P["PID"]
+    end
+    
+    subgraph ANAL["Analysed Data Object"]
+        direction TB
+        A_F["Files"]
+        A_M["Metadata"]
+        A_P["PID"]
+    end
+
+    P_M --- |"created from"| R_P
+    A_M --- |"created from"| P_P
+</pre>
+</div>
+<p>Data lineage represented as a chain of Digital Objects (raw → processed → analysed).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="in-essence" class="level3">
+<h3 class="anchored" data-anchor-id="in-essence"><strong>In essence</strong></h3>
+<p>A digital object is <strong>content + context + identity</strong>.<br>
+The bitstreams supply the content, the metadata provides the meaning needed to interpret and manage that content, and the persistent identifier anchors a stable, durable identity. Together, these components make digital information portable across systems, understandable over time, and resilient to changes in storage or technology. The chapters that follow examine each of these elements in depth, along with the infrastructure that enables them to function as a coherent whole.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>https://www.lisedunetwork.com/what-is-a-digital-object/?utm_source=copilot.com</li>
+<li>https://wiki.dpconline.org/index.php?title=4.2.1.3.1_Representation_Information_Types&amp;utm_source=copilot.com</li>
+<li>https://archive.rd-alliance.org/sites/default/files/2-kahn-do-talk.pdf?utm_source=copilot.com</li>
+<li>DOI 10.1007/s00799-005-0128-x</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
