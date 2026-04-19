@@ -2,7 +2,7 @@
 
 Persistent Identifiers (PIDs) are long-lasting references used to uniquely identify digital objects such as research papers, datasets, software, or even researchers. Unlike regular web links that may break or change over time, PIDs are designed to remain stable and consistently point to the correct resource location, even if its location on the internet changes.
 
-A PID works by assigning a unique identifier to an object and linking it to a record that stores important information (metadata) about that object, such as its title, creator, and most importantly its  current location.  You can think of the so-called PID entry as an ID card or at least an address book for the object.
+A PID works by assigning a unique identifier to an object and linking it to a record that stores important information about that object, such as its title, creator, and **most importantly its  current location**. You can think of the so-called PID entry as an ID card or at least an address book for the object.
 Like with your own ID card, you need to update that metadata. For example, if the object moves to a different website or repository, the metadata behind the PID needs to be updated so that the identifier continues to point to the correct place.
 
 By providing stable, machine-readable references, PIDs help ensure that digital resources remain accessible, traceable, and properly attributed over time.
@@ -42,7 +42,7 @@ A PID typically works through a **resolution system or resolver**:
 2. The PID resolves through an infrastructure service.
 3. The service redirects the user to the **current URL** where the object is located or, if the object itself is not reachable through the __http__, a metadata entry that provides more information like  the landing page of a data repository.
 
-For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies a publication. When you access it via `https://doi.org/10.1000/182`, the DOI service resolves the identifier and redirects you to the **current URL** of the article on a publisher or repository website. In this example, the DOI is an identifier for The DOI Handbook. The DOI service resolves the identifier to the current URL which, as of writing this, is <https://www.doi.org/the-identifier/resources/handbook/>.
+For example, a Digital Object Identifier (DOI) such as `10.1000/182` identifies a publication. When you access it via <https://doi.org/10.1000/182>, the DOI service resolves the identifier and redirects you to the **current URL** of the article on a publisher or repository website. In this example, the DOI is an identifier for The DOI Handbook. The DOI service resolves the identifier to the current URL which, as of writing this, is <https://www.doi.org/the-identifier/resources/handbook/>.
 
 ```{mermaid}
 %%| label: fig-1
@@ -100,9 +100,9 @@ flowchart LR
 flowchart LR
 
     MINT["Mint PID"]
-    STORE["Store Handle record"]
-    RESOLVE["Resolve PID"]
-    ACCESS["Access resource"]
+    STORE["Store PID record"]
+    RESOLVE["Users access PID"]
+    ACCESS["PID resolves to resource"]
     MOVE_PID["Resource moves"]
     UPDATE["Update record"]
 
@@ -185,23 +185,22 @@ Minting a PID ensures that the object can be **consistently identified, cited, a
 
 #### How PID Minting Works
 
-The process of minting a PID typically involves several steps:
+The process of minting a PID typically involves four steps:
 
-1. **Create the identifier**
-   A unique identifier is generated according to the structure of the PID system. For example, in the Digital Object Identifier (DOI) system this means creating a **prefix and suffix combination**.
+1. **Create the identifier**  
+   A unique identifier is generated according to the rules of the PID system. In the DOI system, for example, this involves creating a **prefix–suffix combination**.
 
-2. **Register the PID with a registration authority**
-   The new PID is registered with an official infrastructure provider or registration agency, such as DataCite or Crossref. This ensures the identifier is globally unique and recorded in a central registry.
+2. **Register the PID with a registration authority**  
+   The identifier is registered with an official infrastructure provider or registration agency, such as DataCite or Crossref. This ensures global uniqueness and records the PID in a trusted registry.
 
-3. **Attach metadata**
-   Metadata describing the object is submitted along with the identifier. This may include information such as the title, creator, publication year, and the URL where the object is located.
+3. **Submit metadata describing the object**  
+   Metadata is provided together with the identifier. This typically includes elements such as the title, creator, checksum, and other information needed to reliably identify and manage the object.
 
-4. **Link the PID to a resolvable location**
-   The PID is associated with a **URL where the object can be accessed**. When someone uses the PID (for example through a resolver), they are redirected to this location.
+4. **Link the PID to a resolvable location**  
+   The PID record must include a **URL or landing page** where the digital object can currently be accessed. This location is what enables PID resolvers to redirect users to the object. Without a valid, maintained URL, the PID cannot function as a persistent, actionable reference.
 
-Minting a PID is therefore not only about creating an identifier—it also involves **registering and maintaining the information that allows the identifier to function over time**.
 
-**Note**: The metadata of a PID is always publicly accessible!
+Minting a PID is therefore not only about creating an identifier, it also involves **registering and maintaining the information that allows the identifier to function over time**.
 
 ## PID Profiles and PID Information Types
 
@@ -320,7 +319,7 @@ In these cases, the PID identifies the object and resolves to **documentation ab
 
 #### 4. Use Persistent Identifier Schemes That Do Not Depend on HTTP
 
-Some identifier schemes are designed primarily for **identification rather than web resolution**, such as identifiers based on the Handle System or URN-based schemes. These identifiers can still be stored and exchanged in metadata systems even when direct web access is not possible. We will give some examples in the hands-on section [PID services](pid-services.qmd).
+Some identifier schemes are designed primarily for **identification rather than web resolution**, such as identifiers based on the Handle System or URN-based schemes. These identifiers can still be stored and exchanged in metadata systems even when direct web access is not possible. We will give some examples in the section [PID services](pid-services.qmd).
 
 
 ::: {.callout-note}
@@ -328,6 +327,13 @@ A PID does not require the underlying object to be directly accessible online. I
 :::
 
 Assigning a PID marks the moment when a dataset enters the scholarly record. From here, the responsibility shifts to the systems that keep that identifier usable over time. In the following chapter, we look at the [**PID services**](pid-services.qmd) that mint identifiers, store their metadata, and ensure that they continue to resolve even as data and infrastructures evolve.
+
+
+## How PIDs and Metadata Complement Each Other
+
+Persistent Identifiers and metadata serve different but tightly connected purposes. A **PID identifies a digital object**, while **metadata describes it**. The PID is the stable, globally unique reference that allows systems to point to the same digital object over time, even as its location or access conditions change. The metadata stored inside a **PID record is intentionally minimal**: it contains only the information needed for the PID infrastructure to function, such as the current URL, administrative details, checksums, or links to richer metadata. This is sometimes called PID kernel information. In contrast, the **full descriptive metadata of a digital object lives outside the PID system in repositories**, catalogs, or metadata stores.  In practice, the two are inseparable: a PID without metadata is meaningless, and metadata without a PID is difficult to track or reference reliably. 
+
+The PID anchors the digital object in a stable identity, and the metadata builds the descriptive structure around that identity. Only when the two are linked do we get a reliable, machine‑actionable scholarly record.
 
 ## References
 ### General
