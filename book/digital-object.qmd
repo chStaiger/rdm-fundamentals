@@ -58,9 +58,9 @@ flowchart LR
     
     P["Persistent Identifier (PID)"]
 
-    P --- |"points to"| F
-    F --- |"points to"| M
-    M --- |"contains"| P
+    P --> |"points to"| F
+    F --> |"points to"| M
+    M --> |"contains"| P
 ```
 
 In the first pattern, the PID resolves directly to a file, which then contains or links to the relevant metadata.  
@@ -80,9 +80,9 @@ flowchart LR
     M["Metadata"]
     P["Persistent Identifier (PID)"]
 
-    M --- |"contains"| P
-    P --- |"points to"| M
-    M --- |"has access info to"| F
+    M --> |"contains"| P
+    P --> |"points to"| M
+    M --> |"has access info to"| F
 ```
 
 In the second pattern, the PID resolves to a metadata record or landing page, which provides the information needed to locate and access the file(s).  
