@@ -114,7 +114,7 @@ To describe this progression in a practical way it is helpful to think of the fo
 4. **Archived / Preserved**  
 5. **Published / Preserved**
 
-These states align with the RDM life cycle and clarify which services are appropriate at each point.
+These states align with the RDM life cycle and clarify which access, metadata and storage services are appropriate at each point.
 
 
 ### **RDM Data States and Their Characteristics**
@@ -145,6 +145,20 @@ The five data states correspond directly to the conceptual stages of the RDM lif
 
 This mapping shows that the RDM life cycle is not only conceptual, it needs to be implemented through concrete metadata and RDM services and storage systems.
 
+
+## FAIR Across the RDM Life Cycle
+
+FAIR is often associated with published datasets, but in practice:
+
+> **FAIR applies at every stage — the audience simply changes.**
+
+We can distinguish three scopes of FAIR:
+
+- **FAIR‑for‑Teams** (internal collaboration)  
+- **FAIR‑for‑Stewardship** (institutional management)  
+- **FAIR‑for‑Reuse** (global research community)
+
+The diagram below shows how these scopes align with the RDM life cycle and the five data states.
 
 ```{mermaid}
 %%| label: fig-data-states
@@ -216,76 +230,6 @@ flowchart TB
     R --- FS2
     P --- FR1
 ```
-
-
-## FAIR Across the RDM Life Cycle
-
-FAIR is often associated with published datasets, but in practice:
-
-> **FAIR applies at every stage — the audience simply changes.**
-
-We can distinguish three scopes of FAIR:
-
-- **FAIR‑for‑Teams** (internal collaboration)  
-- **FAIR‑for‑Stewardship** (institutional management)  
-- **FAIR‑for‑Reuse** (global research community)
-
-The diagram below shows how these scopes align with the RDM life cycle and the five data states.
-
-```{mermaid}
-%%| label: fig-rdm-fair
-%%| fig-cap: Combined RDM Life Cycle × Data States × FAIR Scopes.
-%%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
-
-flowchart TB
-
-    %% RDM Life Cycle Stages
-    subgraph LC1["Process"]
-        A["Active"]
-    end
-
-    subgraph LC2["Analyse"]
-        C["Closed"]
-    end
-
-    subgraph LC3["Transition"]
-        L["Locked"]
-    end
-
-    subgraph LC4["Archived"]
-        R["Archived / Preserved"]
-    end
-
-    subgraph LC5["Published"]
-        P["Published / Preserved"]
-    end
-
-    %% FAIR Scopes
-    subgraph F1["FAIR‑for‑Teams"]
-        direction TB
-        A
-        C
-    end
-
-    subgraph F2["FAIR‑for‑Stewardship"]
-        direction TB
-        L
-        R
-    end
-
-    subgraph F3["FAIR‑for‑Reuse"]
-        direction TB
-        P
-    end
-
-    %% Flow of Data States
-    A --> C --> L --> R --> P
-```
-
 
 ## FAIR Responsibilities at Each Data State
 
@@ -431,13 +375,29 @@ This is **FAIR‑for‑Reuse**, where data is prepared not just for preservation
 **Goal:** enable discovery, citation, and reuse through high‑quality metadata, clear licensing, and well‑documented provenance
 
 
-## **Summary: How RDM Services and FAIR Work Together**
+Here is an expanded, smoother, and more forward‑looking **Summary** that naturally introduces the idea that *files alone are no longer sufficient* and that the next chapter will focus on **digital objects**.
 
-- The **RDM life cycle** describes how data evolves.  
-- **RDM services** provide the infrastructure for each stage.  
-- **FAIR principles** guide how data should behave — but the *scope* changes:  
-  - **FAIR‑for‑Teams** in Active and Closed  
-  - **FAIR‑for‑Stewardship** in Locked and Archived  
-  - **FAIR‑for‑Reuse** in Published  
+
+## Summary: How RDM Services and FAIR Work Together
+
+- The **RDM life cycle** describes how data evolves from volatile working files to curated, citable outputs.  
+- **RDM services** provide the storage, tools, and governance needed at each stage.  
+- The **FAIR principles** guide how data should behave — but the *scope* of FAIR changes as the data matures:  
+  - **FAIR‑for‑Teams** in the Active and Closed stages  
+  - **FAIR‑for‑Stewardship** in the Locked and Archived stages  
+  - **FAIR‑for‑Reuse** in the Published stage  
 
 Together, these elements form a coherent framework for managing data from creation to long‑term reuse.
+
+As data progresses through the life cycle, it becomes increasingly clear that **we can no longer think of files in isolation**. A file without context is difficult to interpret, impossible to trust, and often unusable. To be managed, preserved, and reused, data needs:
+
+- **metadata** that describes what it is,  
+- **provenance** that explains how it came to be,  
+- **identifiers** that allow it to be referenced,  
+- **relationships** that connect it to other data, code, and publications.
+
+In other words, data must be packaged and understood as a **digital object**, not just a collection of files.  
+This shift from files to digital objects is essential for FAIR stewardship and long‑term preservation.
+
+The next chapter [The Digital Object](digital-objects.qmd) explores this concept in depth:  
+**what digital objects are, how they are constructed, and why they are the foundation of modern research data management.**
