@@ -146,8 +146,8 @@ flowchart RL
         A_P["PID"]
     end
 
-    P_M --- |"created from"| R_P
-    A_M --- |"created from"| P_P
+    P_M --> |"created from"| R_P
+    A_M --> |"created from"| P_P
 ```
 
 ### **In essence**
