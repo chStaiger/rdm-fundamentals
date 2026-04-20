@@ -335,9 +335,9 @@ flowchart LR
     
     P["Persistent Identifier (PID)"]
 
-    P --- |"points to"| F
-    F --- |"points to"| M
-    M --- |"contains"| P
+    P --&gt; |"points to"| F
+    F --&gt; |"points to"| M
+    M --&gt; |"contains"| P
 </pre>
 </div>
 </div>
@@ -366,9 +366,9 @@ flowchart LR
     M["Metadata"]
     P["Persistent Identifier (PID)"]
 
-    M --- |"contains"| P
-    P --- |"points to"| M
-    M --- |"has access info to"| F
+    M --&gt; |"contains"| P
+    P --&gt; |"points to"| M
+    M --&gt; |"has access info to"| F
 </pre>
 </div>
 </div>
