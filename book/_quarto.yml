@@ -6,9 +6,17 @@ execute:
 
 book:
   title: "Fundamentals of Research Data Management"
-  author: "Christine Staiger, Neha Moopen"
+  author:
+    - name: Christine Staiger
+      orcid: 0000-0002-6754-7647
+    - name: Neha Moopen
+      orcid: 0000-0003-1412-4402
   date: last-modified
+
   sidebar:
+    style: "docked"
+    background: "#CDE498"
+    search: true
     tools:
       - icon: github
         menu:
@@ -16,6 +24,7 @@ book:
             url:  https://github.com/chStaiger/rdm-fundamentals
           - text: Report an issue
             url:  https://github.com/chStaiger/rdm-fundamentals/issues
+
   chapters:
     - index.qmd
     - definitions.qmd
@@ -36,13 +45,18 @@ book:
     - infrastructure-design.qmd
     - summary.qmd
     - references.qmd
-
+  
+  page-footer:
+    left: "©️ [Creative Commons Attribution 4.0 International](https://github.com/chStaiger/rdm-fundamentals/blob/main/LICENSE.md)"
+    right: "Built with [Quarto](https://quarto.org/) & [GitHub](https://github.com/)<br>Maintained with 🍵 & ☕"
+  
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
     number-sections: false
+    linkcolor: "#548641"
     mermaid:
       theme: forest
 
