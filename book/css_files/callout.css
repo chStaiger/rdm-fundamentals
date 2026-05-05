@@ -1,0 +1,16 @@
+.callout-header {
+  background-color: #CDE498 !important;
+}
+
+.callout-note {
+  border-left-color: #548641 !important;
+}
+
+.callout-warning {
+  border-left-color: #E67E22 !important;
+}
+
+.callout-tip {
+  border-left-color: #548641 !important;
+}
+

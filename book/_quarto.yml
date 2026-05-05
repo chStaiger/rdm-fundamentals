@@ -55,6 +55,8 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    css: 
+      - css_files/callout.css
     number-sections: false
     linkcolor: "#548641"
     mermaid:
