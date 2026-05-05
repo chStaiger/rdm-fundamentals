@@ -21,7 +21,7 @@ Together, these stages form the **structural backbone** for understanding how da
 
 ## The FAIR Data Principles
 
-The **FAIR principles**, Findable, Accessible, Interoperable, and Reusable, provide a framework for ensuring that research data can be discovered, understood, and reused by humans and machines. They are not a standard or a technology, but a set of **guiding principles** for good data stewardship.
+The **FAIR principles** - Findability, Accessibility, Interoperability, and Reusability - provide a framework for ensuring that research data can be discovered, understood, and reused by humans and machines. They are not a standard or a technology, but a set of **guiding principles** for good data stewardship.
 
 ### **Findable**  
 Data should be described with rich metadata and assigned a persistent identifier so it can be located by humans and machines.
