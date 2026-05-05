@@ -8,7 +8,7 @@ The definitions below provide the foundation for that discussion. They establish
 **Research Data Management (RDM)** refers to the coordinated activities that support the creation, organisation, documentation, storage, preservation, and sharing of digital research data.  
 It ensures that data remains **usable, trustworthy, and well‑governed** throughout its evolution, from volatile working files to curated, citable digital objects.
 
-**In this book** we align the with the idea that data moves through **distinct operational states** (Active, Closed, Locked, Archived, Published), each requiring different services, metadata, and governance.
+**In this book** we align Research Data Management with the idea that data moves through **distinct operational states** (Active, Closed, Locked, Archived, Published), each requiring different services, metadata, and governance.
 
 ### Data Governance
 **Data Governance** is the organisational framework that defines how data is managed across its lifecycle.  
@@ -46,7 +46,7 @@ Stewardship becomes increasingly important as data moves from **Active** to **Cl
 
 ### RDM Life Cycle
 The **RDM Life Cycle** describes how data evolves from volatile working files to curated, citable outputs.  
-Although models vary, the lifecycle can be understood through the four conceptual stages used in the next chapter:
+Although models vary, the lifecycle can be understood through the four conceptual stages used in this book:
 
 1. **Process** — active research, working files, rapid iteration  
 2. **Analyse** — stabilising results, consolidating provenance  
@@ -124,6 +124,9 @@ It is protected through:
 
 Integrity is essential for both stewardship and reuse.
 
+*References*
+
+- <https://en.wikipedia.org/wiki/Data_integrity>
 
 ### Reproducible Research
 **Reproducible Research** is research where results can be recreated using the same data, code, and methods.  
