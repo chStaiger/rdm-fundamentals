@@ -4,16 +4,16 @@
 
 The **Research Data Management (RDM) life cycle** describes how research data develops from its initial creation to its long‑term preservation and potential reuse. It emphasises that data is not static: it moves through stages of increasing stability, documentation, and governance. Although different models use slightly different terminology, four core stages are widely recognised.
 
-### **1. Process (Active Research and Working Files)**  
+### 1. Process
 In the early phase of a project, data is created, cleaned, and transformed. Files exist as **working copies** on local machines or compute systems. They are volatile, frequently modified, and organised primarily for workflow convenience rather than long‑term stewardship.
 
-### **2. Analyse (Derivation and Modelling)**  
+### 2. Analyse 
 As the project progresses, files begin to stabilise. Cleaned datasets, model outputs, calibration files, and canonical scripts emerge. At this point, some files start to gain **scientific identity** and become candidates for long‑term retention.
 
-### **3. Archived (Digital Objects in Preservation)**  
+### 3. Archived 
 Once results stabilise, selected files are combined with metadata and persistent identifiers to form **digital objects**. These objects are stored in preservation‑oriented environments and protected through fixity checks, replication, and retention policies. They may remain internal or restricted, depending on the project’s needs.
 
-### **4. Published (Citable, FAIR Outputs)**  
+### 4. Published  
 A subset of digital objects are curated for dissemination. These objects are enriched with descriptive metadata, assigned globally resolvable identifiers (such as DOIs), and made available for discovery and reuse. This is the point where data becomes part of the scholarly record.
 
 Together, these stages form the **structural backbone** for understanding how data moves from working files to curated, citable digital objects.
@@ -35,8 +35,7 @@ Data should use well‑defined formats, vocabularies, and standards so it can be
 ### **Reusable**  
 Data should be richly described, licensed, and documented so it can be reused in new contexts. Provenance and quality information are essential.
 
-The FAIR Principles are about **maximising the value and usability of data**, not necessarily making it open.  
-It applies to all data, regardless of access level.
+The FAIR Principles are about **maximising the value and usability of data**, not necessarily making it open. It applies to all data, regardless of access level.
 
 
 ## How FAIR and the RDM Life Cycle Fit Together
@@ -47,66 +46,20 @@ FAIR describes **how data should behave**.
 A key insight is that **the scope of FAIR changes as data moves through the life cycle**.  
 FAIR is not something that “switches on” only at publication. Instead, it applies throughout, but for **different audiences and purposes**.
 
-### Process & Analyse → FAIR for the research team
-
-In the early stages, FAIR supports internal collaboration:
-
-- **Findable** within the project  
-  (clear folder structures, meaningful filenames, internal identifiers)  
-- **Accessible** to the research group  
-  (shared drives, permissions, compute environments)  
-- **Interoperable** for tools and collaborators  
-  (open formats, consistent units, standard vocabularies)  
-- **Reusable** by the team itself  
-  (documentation, notebooks, provenance)
-
-This is **FAIR‑for‑Teams**, focused on efficient collaboration and reproducibility rather than public dissemination.
-
-### Archived → FAIR for institutional stewardship
-
-Once files become digital objects:
-
-- metadata becomes richer,  
-- identifiers become persistent,  
-- provenance becomes formalised,  
-- storage becomes preservation‑oriented.
-
-FAIR now supports **institutional preservation and long‑term governance**.  
-This is **FAIR‑for‑Stewardship**.
-
-### Published → FAIR for the global research community
-
-At publication, FAIR reaches its full scope:
-
-- globally resolvable PIDs (e.g., DOIs)  
-- rich descriptive metadata  
-- standardised access protocols  
-- community vocabularies  
-- licensing and reuse conditions  
-- explicit relationships between digital objects
-
-This is **FAIR‑for‑Reuse**, the version of FAIR most people think of.
-
-
-## In Summary
-
-- The **RDM life cycle** describes how data moves from working files to curated digital objects.  
-- The **FAIR principles** describe how data should behave to support discovery, access, interoperability, and reuse.  
-- **The scope of FAIR expands as data progresses through the life cycle**:  
-  - **Process/Analyse** → FAIR for the research team  
-  - **Archived** → FAIR for institutional stewardship  
-  - **Published** → FAIR for the global community  
-
-Together, the RDM life cycle and FAIR principles provide a coherent framework for managing data from creation to long‑term reuse.
+> **FAIR applies at every stage — the audience simply changes.**
 
 
 ## Research Data Management Services Across the Life Cycle and How FAIR Evolves
 
-As research data progresses from initial creation to long‑term preservation and eventual publication, it passes through several distinct stages. Each stage is supported by different **RDM services**, **storage environments**, and **governance mechanisms**. Understanding these services helps researchers make informed decisions about where their data should live and how it should be managed.
+How can we map FAIR to the different stages of the Research Data Life Cycle?
 
-A key point is that the **FAIR principles** apply throughout the life cycle. However, the *scope* and *audience* of FAIR change as the data matures. Early in a project, FAIR supports the research team; later, it supports institutional stewardship; and finally, it supports the global research community.
+And how can data infrastructure and services support these shifting interpretations of FAIR?
 
-To describe this progression in a practical way it is helpful to think of the following five operational **data states**:
+As research data progresses from initial creation to long‑term preservation and eventual publication, it passes through **distinct data states**. Each state is supported by different **RDM services**, **storage environments**, and **governance mechanisms**. Understanding these states helps determine which service is appropriate at each point and how data should be managed.
+
+The FAIR principles apply throughout the life cycle, but their *scope* and *audience* evolve. Early in a project, FAIR supports the research team; later, it supports institutional stewardship; and finally, it supports the global research community.
+
+To describe this progression in practical terms, we can distinguish five operational **data states**:
 
 1. **Active**  
 2. **Closed**  
@@ -117,7 +70,7 @@ To describe this progression in a practical way it is helpful to think of the fo
 These states align with the RDM life cycle and clarify which access, metadata and storage services are appropriate at each point.
 
 
-### **RDM Data States and Their Characteristics**
+### RDM Data States and Their Characteristics
 
 The table below summarises how storage, permissions, and metadata evolve as data moves through these states.
 
@@ -129,11 +82,9 @@ The table below summarises how storage, permissions, and metadata evolve as data
 |  | Scientist: can grant ad hoc access for peers | Scientist: can grant ad hoc read access | Scientist: can grant ad hoc read access | Data stewards: can grant access to scientists | Embargoes and controlled release |
 | **Metadata** to be captured| Provenance<br> Descriptive | Provenance<br> Descriptive |  Provenance<br> Descriptive |  Collections<br> Limited descriptive |  Publication metadata |
 
-This table shows that as data becomes more stable, the services supporting it shift from environments granting quick access to the data to preservation‑oriented systems, and the metadata becomes increasingly structured and externally meaningful.
+As data becomes more stable, the supporting services shift from fast‑access environments to preservation systems, and metadata becomes increasingly structured and externally meaningful.
 
 ### How These Data States Map to the RDM Life Cycle
-
-The five data states correspond directly to the conceptual stages of the RDM life cycle:
 
 | **RDM Stage** | **Data State(s)** | **Purpose** |
 |---------------|-------------------|-------------|
@@ -143,22 +94,70 @@ The five data states correspond directly to the conceptual stages of the RDM lif
 | **Archived** | Archived / Preserved | Manage digital objects under stewardship |
 | **Published** | Published / Preserved | Disseminate curated digital objects |
 
-This mapping shows that the RDM life cycle is not only conceptual, it needs to be implemented through concrete metadata and RDM services and storage systems.
-
+This mapping shows how conceptual stages translate into concrete metadata, services, and storage systems.
 
 ## FAIR Across the RDM Life Cycle
 
-FAIR is often associated with published datasets, but in practice:
+*Putting it all together*
 
-> **FAIR applies at every stage — the audience simply changes.**
+The following sections describe how FAIR plays out in each data state and hoe that relates to each stage of the RDM Life Cycle.
 
-We can distinguish three scopes of FAIR:
+### Active — Process Stage — FAIR‑for‑Teams
 
-- **FAIR‑for‑Teams** (internal collaboration)  
-- **FAIR‑for‑Stewardship** (institutional management)  
-- **FAIR‑for‑Reuse** (global research community)
+**Typical services**: HPC scratch, project storage, ELNs, version control.
 
-The diagram below shows how these scopes align with the RDM life cycle and the five data states.
+This stage supports rapid iteration and collaborative work. Files change frequently, so the priority is capturing **provenance**, i.e. records of how data was collected, processed, and transformed. At this point, provenance is often the only reliable account of *what happened, when, and why*.
+
+FFAIR here is practical and internal: clear naming, shared access points, open formats, and well‑maintained notebooks that help the team work reproducibly.
+
+**Audience**: research team
+**Focus**: efficient collaboration and early capture of provenance
+
+### Closed — Analyse Stage — FAIR‑for‑Teams transitioning to FAIR‑for‑Stewardship
+
+**Typical services**: project storage with lifecycle rules, workflow engines, metadata templates.
+
+The emphasis shifts from exploration to **stabilisation**. Cleaned datasets, canonical scripts and derived outputs emerge, and the provenance captured earlier is consolidated into structured forms. Workflow engines help standardise processes and record parameters, software versions, and transformation steps.
+
+FAIR now begins to serve both researchers and stewards: files become easier to locate, access is controlled, and formats and vocabularies are standardised in preparation for long‑term retention.
+
+**Audience**: research team + institutional stewards
+**Focus**: stabilising data and consolidating provenance
+
+### Locked — Transition Stage —FAIR‑for‑Stewardship (Light)
+
+**Typical services**: tape libraries, cold storage, retention systems.
+
+The Locked stage acts as a **buffer**. Data is frozen in a read‑only state to prevent accidental modification while decisions about long‑term retention are made. Because the data no longer changes, provenance becomes especially valuable for appraisal and assessment.
+
+FAIR here is minimal but essential: stable locations, read‑only access, and preservation‑friendly formats.
+
+**Audience**: research team + institutional stewards
+**Focus**: safeguarding inactive data and supporting appraisal
+
+### Archived / Preserved — Archived Stage — FAIR‑for‑Stewardship
+
+**Typical services**: institutional repositories, preservation systems.
+
+At this stage, data becomes a **managed digital object**. Files are packaged with structured metadata, assigned persistent identifiers, and placed in systems designed for long‑term integrity and accessibility. Provenance gathered earlier provides the context needed for appraisal, authenticity, and future reuse.
+
+FAIR now operates at the level of institutional governance: persistent identifiers, controlled access, preservation metadata, and versioning.
+
+**Audience**: institutional stewards and selected collaborators
+**Focus**: long‑term integrity and contextual understanding
+
+### Published / Preserved — Published Stage — FAIR‑for‑Reuse
+
+**Typical services**: public repositories, DOI registration services, discovery portals.
+
+Selected digital objects are curated for dissemination. They receive rich descriptive metadata, globally resolvable identifiers, and are indexed in discovery portals. Provenance becomes critical for external users assessing quality and fitness for reuse.
+
+Here FAIR reaches full scope: discoverability, standardised access, community vocabularies, licensing, and documentation that supports meaningful reuse.
+
+**Audience**: global research community
+**Focus**: discovery, citation, and reuse
+
+## Diagram: FAIR Scopes Across the Life Cycle
 
 ```{mermaid}
 %%| label: fig-data-states
@@ -231,163 +230,18 @@ flowchart TB
     P --- FR1
 ```
 
-## FAIR Responsibilities at Each Data State
-
-Below, each data state is described in terms of the services used and the FAIR responsibilities at that stage.
-
-### 1. Active — Process Stage (FAIR‑for‑Teams)
-
-**Typical services**
-
-- HPC scratch space  
-- Project storage (NAS/SAN)  
-- Electronic Lab Notebooks (ELNs)  
-- Version control platforms (GitLab, GitHub Enterprise)
-
-**Purpose**  
-Support rapid iteration, exploration, and collaboration during active research. At this stage, data is highly dynamic: files are created, modified, and discarded quickly as analyses evolve.
-
-A crucial part of this phase is **capturing provenance metadata**, information about how data was collected, processed, and transformed. Because working files change rapidly, provenance is often the only reliable record of *what happened*, *when*, and *why*. ELNs, workflow notes, and version control systems play a central role here.
-
-**FAIR at this stage**  
-FAIR applies internally and focuses on enabling the research team to work efficiently and reproducibly:
-
-- **Findable**: meaningful filenames, clear folder structures, internal searchability  
-- **Accessible**: team‑level permissions, shared drives, consistent access points  
-- **Interoperable**: open formats, consistent units, standard vocabularies  
-- **Reusable**: well‑maintained notebooks, workflow notes, code comments, and critically **provenance metadata**  
-
-Provenance is especially important for reuse: without a record of how data was generated or transformed, even the research team may struggle to reproduce earlier steps or understand the origins of a dataset.
-
-**Audience:** the research team  
-**Goal:** efficient collaboration, internal reproducibility, and early capture of provenance to support later FAIRness
-
-
-### 2. Closed — Analyse Stage (FAIR‑for‑Teams + FAIR‑for‑Stewardship)
-
-**Typical services**
-
-- Project storage with lifecycle rules  
-- Workflow engines (Snakemake, Nextflow)  
-- Metadata templates  
-- Controlled vocabularies
-
-**Purpose**  
-During the Closed stage, the focus shifts from rapid experimentation to **stabilising results**. Files that were volatile in the Active stage begin to settle into more structured forms: cleaned datasets, canonical scripts, derived outputs, and intermediate results that may later become digital objects. This is also the point where researchers start preparing data for long‑term retention, even if it is not yet ready for archiving.
-
-A key activity in this stage is **consolidating provenance metadata**. While provenance is first captured during the Active stage, it becomes especially important here: workflows, parameters, software versions, and transformation steps must be recorded clearly so that stabilised datasets can be understood and trusted later. Workflow engines and metadata templates help standardise this process.
-
-**FAIR at this stage**  
-FAIR begins to serve both the research team and the institution:
-
-- **Findable**: internal identifiers, metadata templates, and consistent naming help stabilised files become easier to locate  
-- **Accessible**: controlled access ensures collaborators can retrieve data while maintaining integrity  
-- **Interoperable**: standard formats and domain vocabularies support future integration and reuse  
-- **Reusable**: provenance, quality checks, and early documentation ensure that stabilised datasets can be interpreted correctly later  
-
-This is where FAIR starts to transition from **FAIR‑for‑Teams** to **FAIR‑for‑Stewardship**, laying the groundwork for eventual archiving.
-
-**Audience:** research team + institutional stewards  
-**Goal:** stabilise data, consolidate provenance, and prepare files for long‑term retention
-
-
-### 3. Locked — Transition Stage (FAIR‑for‑Stewardship Light)
-
-**Typical services**
-
-- Tape libraries  
-- Cold‑storage environments  
-- Institutional retention systems
-
-**Purpose**  
-The Locked stage serves as a **protective buffer** between active research and long‑term preservation. At this point, the data is no longer being updated or analysed, but it has not yet been curated or transformed into formal digital objects. The primary goal is to **freeze the data in a stable, read‑only state** to prevent accidental modification or loss while decisions about long‑term retention, appraisal, or archiving are made.
-
-Because the data is no longer changing, this is also the moment when **provenance metadata becomes especially valuable**. The information captured earlier—about how the data was generated, processed, and transformed—now provides essential context for institutional stewards who must assess the data’s long‑term value and determine how it should be preserved.
-
-**FAIR at this stage**  
-FAIR applies in a limited but important way:
-
-- **Findable**: stable storage locations and internal persistent identifiers ensure the data can be located reliably  
-- **Accessible**: read‑only access protects integrity while still allowing authorised users to retrieve the data  
-- **Interoperable**: preservation‑friendly formats are preferred to support future migration or archiving  
-- **Reusable**: provenance is retained, but no publication‑level metadata is added yet  
-
-This is **FAIR‑for‑Stewardship Light**: the focus is on internal management and protection rather than public reuse.
-
-**Audience:** institutional stewards  
-**Goal:** safeguard inactive data, supported by provenance, until it can be appraised and prepared for long‑term preservation
-
-
-### 4. Archived / Preserved — Archived Stage (FAIR‑for‑Stewardship)
-
-**Typical services**
-
-- Institutional repositories  
-- Preservation systems (e.g., Archivematica)
-
-
-**Purpose**  
-In the Archived stage, data transitions from being a frozen snapshot to becoming a **fully managed digital object**. This is where institutional stewardship begins in earnest. Files are packaged with structured metadata, assigned persistent identifiers, and placed in preservation‑oriented systems designed to ensure long‑term integrity, authenticity, and accessibility.
-
-At this point, **provenance metadata gathered earlier becomes essential**. It provides the contextual information needed to understand how the data was produced, processed, and validated. Preservation systems rely on this provenance—alongside technical and administrative metadata—to support appraisal, long‑term management, and future reuse.
-
-**FAIR at this stage**  
-FAIR now operates at the level of institutional stewardship:
-
-- **Findable**: persistent identifiers (internal or external) and indexed metadata ensure that digital objects can be reliably located  
-- **Accessible**: stable access protocols and clear access conditions support controlled retrieval  
-- **Interoperable**: preservation metadata, controlled vocabularies, and standard formats enable long‑term compatibility  
-- **Reusable**: provenance, retention policies, and versioning provide the context needed for meaningful reuse  
-
-This is **FAIR‑for‑Stewardship**, where the institution ensures that data remains usable and trustworthy over time.
-
-**Audience:** institutional stewards and selected collaborators  
-**Goal:** maintain digital objects with long‑term integrity, supported by rich provenance and preservation metadata
-
-
-I’ve strengthened the flow, clarified the purpose of this stage, and emphasised how provenance and earlier stewardship efforts culminate here.
-
-### 5. Published / Preserved — Published Stage (FAIR‑for‑Reuse)
-
-**Typical services**
-
-- Public data repositories (EASY, 4TU.ResearchData, Zenodo, Dataverse)  
-- DOI registration services (e.g., DataCite)  
-- Discovery portals (e.g., OpenAIRE)
-
-**Purpose**  
-The Published stage is where selected digital objects become part of the **scholarly record**. After curation and quality checks, datasets are enriched with descriptive metadata, assigned globally resolvable identifiers, and made available through trusted repositories. The goal is not only to share data, but to ensure that it can be **found, understood, cited, and reused** by others—sometimes years or decades later.
-
-At this point, all the provenance metadata gathered earlier becomes essential. Provenance explains how the data was generated, processed, and validated, enabling external users to assess its quality and fitness for reuse. Without this context, even well‑formatted data may be unusable.
-
-**FAIR at this stage**  
-FAIR reaches its fullest expression here:
-
-- **Findable**: DOIs, rich descriptive metadata, and indexing in discovery portals  
-- **Accessible**: standardised access protocols and clear licensing conditions  
-- **Interoperable**: community standards, ontologies, and machine‑readable metadata  
-- **Reusable**: documentation, licensing, provenance, and quality indicators that support meaningful reuse  
-
-This is **FAIR‑for‑Reuse**, where data is prepared not just for preservation, but for integration into new research, teaching, policy, and innovation.
-
-**Audience:** the global research community  
-**Goal:** enable discovery, citation, and reuse through high‑quality metadata, clear licensing, and well‑documented provenance
-
-
-
-
-## Summary: How RDM Services and FAIR Work Together
+## Summary
 
 - The **RDM life cycle** describes how data evolves from volatile working files to curated, citable outputs.  
-- **RDM services** provide the storage, tools, and governance needed at each stage.  
-- The **FAIR principles** guide how data should behave — but the *scope* of FAIR changes as the data matures:  
-  - **FAIR‑for‑Teams** in the Active and Closed stages  
-  - **FAIR‑for‑Stewardship** in the Locked and Archived stages  
-  - **FAIR‑for‑Reuse** in the Published stage  
+- The **states of a digital object** determine which storage, tools, and governance mechanisms apply at each stage.
+- The **FAIR principles** guide how data should behave, their emphasis shifts as data matures: 
+  - **FAIR‑for‑Teams** in the Active and Closed states  
+  - **FAIR‑for‑Stewardship** in the Locked and Archived states  
+  - **FAIR‑for‑Reuse** in the Published state  
 
 Together, these elements form a coherent framework for managing data from creation to long‑term reuse.
 
-As data progresses through the life cycle, it becomes increasingly clear that **we can no longer think of files in isolation**. A file without context is difficult to interpret, impossible to trust, and often unusable. To be managed, preserved, and reused, data needs:
+As data progresses through the life cycle, it becomes increasingly clear that **files alone are not enough**. A file without context is difficult to interpret, impossible to trust, and often unusable. To be managed, preserved, and reused, data needs:
 
 - **metadata** that describes what it is,  
 - **provenance** that explains how it came to be,  
@@ -395,7 +249,7 @@ As data progresses through the life cycle, it becomes increasingly clear that **
 - **relationships** that connect it to other data, code, and publications.
 
 In other words, data must be packaged and understood as a **digital object**, not just a collection of files.  
-This shift from files to digital objects is essential for FAIR stewardship and long‑term preservation.
+This shift is essential for FAIR stewardship and long‑term preservation.
 
 The next chapter [The Digital Object](digital-objects.qmd) explores this concept in depth:  
-**what digital objects are, how they are constructed, and why they are the foundation of modern research data management.**
+what digital objects are, how they are constructed, and why they are the foundation of modern research data management.
