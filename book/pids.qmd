@@ -7,7 +7,7 @@ Like with your own ID card, you need to update that metadata. For example, if th
 
 By providing stable, machine-readable references, PIDs help ensure that digital resources remain accessible, traceable, and properly attributed over time.
 
-::: {.callout-note title="Examples"}
+::: {.callout-tip title="Examples"}
 Articles & Datasets: [Digital Object Identifiers (DOI)](https://www.doi.org/the-identifier/what-is-a-doi/)
 
 People: [ORCID iD](https://orcid.org/)
@@ -30,7 +30,7 @@ A **URL (Uniform Resource Locator)** is a specific kind of URI that points to th
 | **PID (Persistent Identifier)**       | `10.1038/nphys1170` (a Digital Object Identifier (DOI)) | A **long-lasting identifier** for a digital object such as a research article. It stays the same even if the location of the object changes. |
 
 
-::: {.callout-note title="PIDs in a nutshell"}
+::: {.callout-tip title="PIDs in a nutshell"}
 The *persistent* aspect of a PID is the identifier, it **MUST NOT** change. The location even the content of the object it identifies can change over time. Also when the object is deleted, the PID continues to exist.
 :::
 
@@ -322,8 +322,8 @@ In these cases, the PID identifies the object and resolves to **documentation ab
 Some identifier schemes are designed primarily for **identification rather than web resolution**, such as identifiers based on the Handle System or URN-based schemes. These identifiers can still be stored and exchanged in metadata systems even when direct web access is not possible. We will give some examples in the section [PID services](pid-services.qmd).
 
 
-::: {.callout-note}
-A PID does not require the underlying object to be directly accessible online. Instead, the PID provides a **stable identifier and a metadata record**, ensuring that the object can still be **found, cited, and described**, even if access requires special permissions or occurs outside the web.
+::: {.callout-tip title="Persistent Identification Without Public Access"}
+A PID does not require the underlying object to be directly accessible online. Instead, the PID provides a **stable identifier and a metadata record**, ensuring that the object can still be **found, cited, and described**, even when access is restricted or occurs outside the web.
 :::
 
 Assigning a PID marks the moment when a dataset enters the scholarly record. From here, the responsibility shifts to the systems that keep that identifier usable over time. In the following chapter, we look at the [**PID services**](pid-services.qmd) that mint identifiers, store their metadata, and ensure that they continue to resolve even as data and infrastructures evolve.
