@@ -78,6 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
+<link rel="stylesheet" href="css_files/callout.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -287,13 +288,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Persistent Identifiers (PIDs) are long-lasting references used to uniquely identify digital objects such as research papers, datasets, software, or even researchers. Unlike regular web links that may break or change over time, PIDs are designed to remain stable and consistently point to the correct resource location, even if its location on the internet changes.</p>
 <p>A PID works by assigning a unique identifier to an object and linking it to a record that stores important information about that object, such as its title, creator, and <strong>most importantly its current location</strong>. You can think of the so-called PID entry as an ID card or at least an address book for the object. Like with your own ID card, you need to update that metadata. For example, if the object moves to a different website or repository, the metadata behind the PID needs to be updated so that the identifier continues to point to the correct place.</p>
 <p>By providing stable, machine-readable references, PIDs help ensure that digital resources remain accessible, traceable, and properly attributed over time.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Examples">
+<div class="callout callout-style-default callout-tip callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Examples
+<span class="screen-reader-only">Tip</span>Examples
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -337,13 +338,13 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-note callout-titled" title="PIDs in a nutshell">
+<div class="callout callout-style-default callout-tip callout-titled" title="PIDs in a nutshell">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>PIDs in a nutshell
+<span class="screen-reader-only">Tip</span>PIDs in a nutshell
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -639,17 +640,17 @@ Figure&nbsp;7.4: PIDs for non-resolvable resources.
 <section id="use-persistent-identifier-schemes-that-do-not-depend-on-http" class="level4">
 <h4 class="anchored" data-anchor-id="use-persistent-identifier-schemes-that-do-not-depend-on-http">4. Use Persistent Identifier Schemes That Do Not Depend on HTTP</h4>
 <p>Some identifier schemes are designed primarily for <strong>identification rather than web resolution</strong>, such as identifiers based on the Handle System or URN-based schemes. These identifiers can still be stored and exchanged in metadata systems even when direct web access is not possible. We will give some examples in the section <a href="./pid-services.html">PID services</a>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled" title="Persistent Identification Without Public Access">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Tip</span>Persistent Identification Without Public Access
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A PID does not require the underlying object to be directly accessible online. Instead, the PID provides a <strong>stable identifier and a metadata record</strong>, ensuring that the object can still be <strong>found, cited, and described</strong>, even if access requires special permissions or occurs outside the web.</p>
+<p>A PID does not require the underlying object to be directly accessible online. Instead, the PID provides a <strong>stable identifier and a metadata record</strong>, ensuring that the object can still be <strong>found, cited, and described</strong>, even when access is restricted or occurs outside the web.</p>
 </div>
 </div>
 <p>Assigning a PID marks the moment when a dataset enters the scholarly record. From here, the responsibility shifts to the systems that keep that identifier usable over time. In the following chapter, we look at the <a href="./pid-services.html"><strong>PID services</strong></a> that mint identifiers, store their metadata, and ensure that they continue to resolve even as data and infrastructures evolve.</p>
