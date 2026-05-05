@@ -230,8 +230,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#research-data-management" id="toc-research-data-management" class="nav-link active" data-scroll-target="#research-data-management">Research Data Management</a></li>
+  <li><a href="#data-governance" id="toc-data-governance" class="nav-link" data-scroll-target="#data-governance">Data Governance</a></li>
+  <li><a href="#data-stewardship-and-data-stewards" id="toc-data-stewardship-and-data-stewards" class="nav-link" data-scroll-target="#data-stewardship-and-data-stewards">Data Stewardship and Data Stewards</a></li>
+  <li><a href="#rdm-life-cycle" id="toc-rdm-life-cycle" class="nav-link" data-scroll-target="#rdm-life-cycle">RDM Life Cycle</a></li>
+  <li><a href="#fair" id="toc-fair" class="nav-link" data-scroll-target="#fair">FAIR</a>
+  <ul class="collapse">
+  <li><a href="#open-science-open-research" id="toc-open-science-open-research" class="nav-link" data-scroll-target="#open-science-open-research">Open Science / Open Research</a></li>
+  </ul></li>
+  <li><a href="#open-data" id="toc-open-data" class="nav-link" data-scroll-target="#open-data">Open Data</a>
+  <ul class="collapse">
+  <li><a href="#big-data" id="toc-big-data" class="nav-link" data-scroll-target="#big-data">Big Data</a></li>
+  <li><a href="#data-integrity" id="toc-data-integrity" class="nav-link" data-scroll-target="#data-integrity">Data Integrity</a></li>
+  <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research">Reproducible Research</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -255,8 +275,185 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Understanding research data requires a shared vocabulary. Before we can describe how data evolves, how it becomes a digital object, or how FAIR principles apply at different stages, we need clear definitions of the core concepts that shape modern research data management. These terms, Research Data Management, stewardship, governance, FAIR, reproducibility, form the conceptual scaffolding for everything that follows in this book.</p>
+<p>The definitions below provide the foundation for that discussion. They establish the key ideas that will be expanded, operationalised, and connected to infrastructure design in the chapters ahead.</p>
+<section id="research-data-management" class="level3">
+<h3 class="anchored" data-anchor-id="research-data-management">Research Data Management</h3>
+<p><strong>Research Data Management (RDM)</strong> refers to the coordinated activities that support the creation, organisation, documentation, storage, preservation, and sharing of digital research data.<br>
+It ensures that data remains <strong>usable, trustworthy, and well‑governed</strong> throughout its evolution, from volatile working files to curated, citable digital objects.</p>
+<p><strong>In this book</strong> we align the with the idea that data moves through <strong>distinct operational states</strong> (Active, Closed, Locked, Archived, Published), each requiring different services, metadata, and governance.</p>
+</section>
+<section id="data-governance" class="level3">
+<h3 class="anchored" data-anchor-id="data-governance">Data Governance</h3>
+<p><strong>Data Governance</strong> is the organisational framework that defines how data is managed across its lifecycle.<br>
+It includes policies, roles, responsibilities, standards, and decision‑making processes that ensure data is handled <strong>consistently, securely, and ethically</strong>.</p>
+<p>In the context of the lifecycle, governance determines:</p>
+<ul>
+<li>who can access data at each state<br>
+</li>
+<li>how metadata and provenance must be captured<br>
+</li>
+<li>which data should be preserved or published<br>
+</li>
+<li>how FAIR responsibilities are distributed</li>
+</ul>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Data_governance" class="uri">https://en.wikipedia.org/wiki/Data_governance</a></li>
+</ul>
+</section>
+<section id="data-stewardship-and-data-stewards" class="level3">
+<h3 class="anchored" data-anchor-id="data-stewardship-and-data-stewards">Data Stewardship and Data Stewards</h3>
+<p><strong>Data Stewardship</strong> is the ongoing care and oversight of research data to ensure its quality, accessibility, and long‑term value.</p>
+<p>A <strong>Data Steward</strong> supports researchers by:</p>
+<ul>
+<li>advising on metadata and standards<br>
+</li>
+<li>ensuring provenance is captured early<br>
+</li>
+<li>guiding transitions between data states<br>
+</li>
+<li>preparing data for archiving or publication<br>
+</li>
+<li>ensuring FAIR principles are applied appropriately</li>
+</ul>
+<p>Stewardship becomes increasingly important as data moves from <strong>Active</strong> to <strong>Closed</strong>, <strong>Locked</strong>, and <strong>Archived</strong> states.</p>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://web.archive.org/web/20220121022346/https://www.simplilearn.com/what-is-data-stewardship-article" class="uri">https://web.archive.org/web/20220121022346/https://www.simplilearn.com/what-is-data-stewardship-article</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Data_steward" class="uri">https://en.wikipedia.org/wiki/Data_steward</a></li>
+</ul>
+</section>
+<section id="rdm-life-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="rdm-life-cycle">RDM Life Cycle</h3>
+<p>The <strong>RDM Life Cycle</strong> describes how data evolves from volatile working files to curated, citable outputs.<br>
+Although models vary, the lifecycle can be understood through the four conceptual stages used in the next chapter:</p>
+<ol type="1">
+<li><strong>Process</strong> — active research, working files, rapid iteration<br>
+</li>
+<li><strong>Analyse</strong> — stabilising results, consolidating provenance<br>
+</li>
+<li><strong>Archived</strong> — digital objects under institutional stewardship<br>
+</li>
+<li><strong>Published</strong> — curated, citable outputs for global reuse</li>
+</ol>
+<p>These stages correspond directly to the <strong>five operational data states</strong> (Active → Closed → Locked → Archived → Published) described in the following chapter.</p>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://doi.org/10.1145/1378889.1378998" class="uri">https://doi.org/10.1145/1378889.1378998</a></li>
+</ul>
+</section>
+<section id="fair" class="level2">
+<h2 class="anchored" data-anchor-id="fair">FAIR</h2>
+<p><strong>FAIR</strong> describes the <em>desired behaviour</em> of data and metadata so they can be discovered, accessed, combined, and reused by humans and machines.<br>
+It stands for <strong>Findable, Accessible, Interoperable, Reusable</strong>.</p>
+<p>FAIR is not a binary property and not limited to published data.<br>
+In this book we explain how FAIR applies differently across the lifecycle:</p>
+<ul>
+<li><strong>FAIR‑for‑Teams</strong> in the Active/Closed stages<br>
+</li>
+<li><strong>FAIR‑for‑Stewardship</strong> in the Locked/Archived stages<br>
+</li>
+<li><strong>FAIR‑for‑Reuse</strong> in the Published stage</li>
+</ul>
+<p>FAIRness grows as data matures and becomes more stable.</p>
+<p>We will dive deeper into the relationship between the FAIR principles and the Research Data Life Cycle in the next chapter.</p>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://www.go-fair.org/fair-principles/" class="uri">https://www.go-fair.org/fair-principles/</a></li>
+<li><a href="https://www.nature.com/articles/sdata201618" class="uri">https://www.nature.com/articles/sdata201618</a></li>
+</ul>
+<section id="open-science-open-research" class="level3">
+<h3 class="anchored" data-anchor-id="open-science-open-research">Open Science / Open Research</h3>
+<p><strong>Open Science</strong> is a movement promoting transparency, accessibility, and collaboration in research.<br>
+It includes open data, open methods, open access publishing, and open educational resources.</p>
+<p>Open Science intersects with FAIR but is not identical:<br>
+FAIR describes <em>how</em> data should behave; Open Science describes <em>how research should be shared</em>.</p>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Open_science" class="uri">https://en.wikipedia.org/wiki/Open_science</a></li>
+<li><a href="https://book.the-turing-way.org/reproducible-research/open/" class="uri">https://book.the-turing-way.org/reproducible-research/open/</a></li>
+</ul>
+</section>
+</section>
+<section id="open-data" class="level2">
+<h2 class="anchored" data-anchor-id="open-data">Open Data</h2>
+<p><strong>Open Data</strong> refers to datasets that are freely accessible and reusable by anyone, typically under an open licence.<br>
+Open data is one possible outcome of the lifecycle—specifically the <strong>Published</strong> state—but not all FAIR data is open.</p>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://book.the-turing-way.org/reproducible-research/open/open-data/" class="uri">https://book.the-turing-way.org/reproducible-research/open/open-data/</a></li>
+</ul>
+<section id="big-data" class="level3">
+<h3 class="anchored" data-anchor-id="big-data">Big Data</h3>
+<p><strong>Big Data</strong> refers to datasets that are large, fast‑growing, or highly complex.<br>
+Their characteristics (volume, velocity, variety, etc.) influence:</p>
+<ul>
+<li>storage choices in the <strong>Active</strong> and <strong>Closed</strong> states<br>
+</li>
+<li>compute requirements<br>
+</li>
+<li>metadata capture<br>
+</li>
+<li>long‑term preservation strategies</li>
+</ul>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Big_data" class="uri">https://en.wikipedia.org/wiki/Big_data</a></li>
+</ul>
+</section>
+<section id="data-integrity" class="level3">
+<h3 class="anchored" data-anchor-id="data-integrity">Data Integrity</h3>
+<p><strong>Data Integrity</strong> means that data remains accurate, complete, and consistent throughout its lifecycle.<br>
+It is protected through:</p>
+<ul>
+<li>provenance metadata<br>
+</li>
+<li>version control<br>
+</li>
+<li>fixity checks<br>
+</li>
+<li>controlled transitions between data states</li>
+</ul>
+<p>Integrity is essential for both stewardship and reuse.</p>
+</section>
+<section id="reproducible-research" class="level3">
+<h3 class="anchored" data-anchor-id="reproducible-research">Reproducible Research</h3>
+<p><strong>Reproducible Research</strong> is research where results can be recreated using the same data, code, and methods.<br>
+Reproducibility depends on:</p>
+<ul>
+<li>early provenance capture (Active/Closed)<br>
+</li>
+<li>stable digital objects (Archived)<br>
+</li>
+<li>transparent publication (Published)</li>
+</ul>
+<p>It is a core motivation for FAIR‑for‑Teams and FAIR‑for‑Reuse.</p>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/" class="uri">https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Reproducibility" class="uri">https://en.wikipedia.org/wiki/Reproducibility</a></li>
+</ul>
+</section>
+<section id="data-wrangling" class="level3">
+<h3 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h3>
+<p><strong>Data Wrangling</strong> is the process of cleaning, transforming, and structuring raw data.<br>
+It is a central activity in the <strong>Process</strong> and <strong>Analyse</strong> stages and contributes to:</p>
+<ul>
+<li>provenance<br>
+</li>
+<li>internal FAIRness<br>
+</li>
+<li>preparation for later stewardship</li>
+</ul>
+<p><em>References</em></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Data_wrangling" class="uri">https://en.wikipedia.org/wiki/Data_wrangling</a></li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
