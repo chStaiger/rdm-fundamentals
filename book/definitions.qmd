@@ -8,7 +8,7 @@ The definitions below provide the foundation for that discussion. They establish
 **Research Data Management (RDM)** refers to the coordinated activities that support the creation, organisation, documentation, storage, preservation, and sharing of digital research data.  
 It ensures that data remains **usable, trustworthy, and well‑governed** throughout its evolution, from volatile working files to curated, citable digital objects.
 
-**In this book** we align the with the idea that data moves through **distinct operational states** (Active, Closed, Locked, Archived, Published), each requiring different services, metadata, and governance.
+**In this book** we align Research Data Management with the idea that data moves through **distinct operational states** (Active, Closed, Locked, Archived, Published), each requiring different services, metadata, and governance.
 
 ### Data Governance
 **Data Governance** is the organisational framework that defines how data is managed across its lifecycle.  
