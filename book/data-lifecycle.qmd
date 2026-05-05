@@ -35,7 +35,7 @@ Data should use well‑defined formats, vocabularies, and standards so it can be
 ### **Reusable**  
 Data should be richly described, licensed, and documented so it can be reused in new contexts. Provenance and quality information are essential.
 
-FAIR is about **maximising the value and usability of data**, not necessarily making it open.  
+The FAIR Principles are about **maximising the value and usability of data**, not necessarily making it open.  
 It applies to all data, regardless of access level.
 
 
