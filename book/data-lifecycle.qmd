@@ -5,7 +5,7 @@
 The **Research Data Management (RDM) life cycle** describes how research data develops from its initial creation to its long‑term preservation and potential reuse. It emphasises that data is not static: it moves through stages of increasing stability, documentation, and governance. Although different models use slightly different terminology, four core stages are widely recognised.
 
 ### **1. Process (Active Research and Working Files)**  
-In the early phase of a project, data is created, collected, cleaned, and transformed. Files exist as **working copies** on local machines or compute systems. They are volatile, frequently modified, and organised primarily for workflow convenience rather than long‑term stewardship.
+In the early phase of a project, data is created, cleaned, and transformed. Files exist as **working copies** on local machines or compute systems. They are volatile, frequently modified, and organised primarily for workflow convenience rather than long‑term stewardship.
 
 ### **2. Analyse (Derivation and Modelling)**  
 As the project progresses, files begin to stabilise. Cleaned datasets, model outputs, calibration files, and canonical scripts emerge. At this point, some files start to gain **scientific identity** and become candidates for long‑term retention.
