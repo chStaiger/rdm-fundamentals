@@ -374,7 +374,6 @@ This is **FAIR‑for‑Reuse**, where data is prepared not just for preservation
 **Goal:** enable discovery, citation, and reuse through high‑quality metadata, clear licensing, and well‑documented provenance
 
 
-Here is an expanded, smoother, and more forward‑looking **Summary** that naturally introduces the idea that *files alone are no longer sufficient* and that the next chapter will focus on **digital objects**.
 
 
 ## Summary: How RDM Services and FAIR Work Together
