@@ -157,11 +157,9 @@ Here FAIR reaches full scope: discoverability, standardised access, community vo
 **Audience**: global research community
 **Focus**: discovery, citation, and reuse
 
-## Diagram: FAIR Scopes Across the Life Cycle
-
 ```{mermaid}
 %%| label: fig-data-states
-%%| fig-cap: States of data and their FAIR scope.
+%%| fig-cap: FAIR Scopes and data states Across the Life Cycle.
 %%| fig-align: center
 %%{init: {
   "look": "handDrawn",
