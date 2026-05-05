@@ -345,7 +345,6 @@ This is **FAIR‑for‑Stewardship**, where the institution ensures that data re
 **Goal:** maintain digital objects with long‑term integrity, supported by rich provenance and preservation metadata
 
 
-Here is a **smoothed, clearer, and more educational rewrite** of your **Published / Preserved — Published Stage** section.  
 I’ve strengthened the flow, clarified the purpose of this stage, and emphasised how provenance and earlier stewardship efforts culminate here.
 
 ### 5. Published / Preserved — Published Stage (FAIR‑for‑Reuse)
