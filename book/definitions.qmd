@@ -21,6 +21,9 @@ In the context of the lifecycle, governance determines:
 - which data should be preserved or published  
 - how FAIR responsibilities are distributed  
 
+*References*
+
+- <https://en.wikipedia.org/wiki/Data_governance>
 
 ### Data Stewardship and Data Stewards
 **Data Stewardship** is the ongoing care and oversight of research data to ensure its quality, accessibility, and long‑term value.
