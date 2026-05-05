@@ -2,21 +2,22 @@
 
 ## What Are Files in Research Data Management?
 
-In Research Data Management (RDM), **files** are the concrete digital artefacts that contain the content of a digital object. They are the *bitstreams* that encode information in specific formats such as CSV, TIFF, MP4, NetCDF, or PDF.
+Every digital research project begins with files. They are the most immediate and tangible artefacts researchers work with: a CSV exported from an instrument, a TIFF image from a microscope, a NetCDF model output, a PDF protocol, or a collection of scripts and notebooks. In Research Data Management (RDM), files are the **basic units of digital content** — the raw material from which more structured research outputs are eventually created.
 
-Files represent the **content layer** of a digital object. They are essential, but they are also incomplete on their own: without metadata, identifiers, and a managed environment, files cannot be reliably interpreted, preserved, or reused.
+At this early stage, files function simply as containers of information. They are produced quickly, modified frequently, and organised in ways that suit the researcher’s workflow. Their purpose is to support active work rather than long‑term preservation. As a result:
 
-Files typically capture:
+- their organisation reflects **workflow convenience**,  
+- they rarely have **persistent identifiers**,  
+- they are not yet accompanied by curated metadata,  
+- but **metadata and provenance still need to be captured from the start**.
 
-- **Content** — the actual data, text, images, or code  
-- **Structure** — how the information is organised (e.g., tables, layers, channels)  
-- **Format** — the encoding and technical specifications  
-- **Dependencies** — software, libraries, or hardware needed to interpret them  
+This is where FAIR already matters. Even though files are not yet curated or published, early decisions about naming, formats, folder structures, and documentation directly influence how findable, accessible, interoperable, and reusable the data will be later.
 
-In short, files are the *material carriers* of digital information.
+A key distinction emerges: files can be understood either as **working materials** — temporary, flexible, and often messy — or as **components of a future digital object**, which will eventually be curated, described, and preserved. Recognising when a file transitions from one category to the other is central to good RDM practice.
 
+---
 
-### A fictive example of a dataset’s file components
+## A Fictive Example of a Dataset’s File Components
 
 | File Type | Example | Purpose |
 |----------|---------|---------|
@@ -25,207 +26,122 @@ In short, files are the *material carriers* of digital information.
 | **Code** | `cleaning_script.R` | Preprocessing and validation |
 | **Configuration** | `sensor_metadata.json` | Sensor IDs, calibration, sampling frequency |
 
-Each of these files can function as part of an **independent digital object** with its own metadata and persistent identifier. Alternatively, they can be treated collectively as a **file bundle**, forming the complete content component of a single digital object.  
-The appropriate choice depends on the **stage of the research data life cycle** and the intended use of the files.
+Each file plays a different role. Some — such as raw data or calibration metadata — may have value on their own. Others only make sense in combination with the rest.
 
+Depending on the stage of the research data life cycle, these files may be treated as:
+
+- **separate digital objects**, each with its own metadata and persistent identifier, or  
+- a **file bundle**, representing a single conceptual dataset.
+
+The appropriate choice depends on how the files will be used, shared, and preserved.
 
 ## Files as Separate Digital Objects vs. a File Bundle
 
-### When files become separate digital objects
+### When Files Become Separate Digital Objects
 
-Some files have value, identity, and reuse potential **independent of the dataset**. In these cases, they are best treated as their own digital objects, each with:
+Some files have scientific value **independent of the dataset they belong to**. They stand on their own as research outputs and therefore deserve their own metadata, identifier, and citation. This is especially true for primary research artefacts, such as:
 
-- its own metadata,
-- its own PID,
-- and its own citation.
+- a single `.tif` microscopy image,  
+- a `.fastq` sequencing file,  
+- a `.nc` climate model output,  
+- a `.bin` instrument dump from a field sensor.
 
-This is especially true when the generated file is a primary research output.
+These files are not merely components; they are **scientific objects** in their own right.
 
-Examples:
+### When Files Form a Single Bundled Digital Object
 
-- A single .tif microscopy image
-- A .fastq sequencing file
-- A .nc climate model output
-- A .bin instrument dump from a field sensor
+In other cases, files are tightly interdependent and only make sense **together** as a coherent whole. Examples include:
 
-These files are not just “components”; they are scientific artefacts.
+- a dataset and its README,  
+- a set of interdependent CSV files,  
+- a collection of images forming a single study,  
+- a dataset accompanied by a helper script.
 
-### When files form a single bundled digital object
-
-In other cases, files are tightly coupled and only meaningful **together**. For example:
-
-- A dataset and its README  
-- A set of interdependent CSV files  
-- A collection of images forming a single study  
-- A dataset accompanied by a small helper script  
-
-Here, the files collectively represent one conceptual unit and are best deposited as a **file bundle**.
+Here, the files collectively represent one conceptual unit and are best deposited as a **file bundle** — a single digital object with multiple components.
 
 ## The Link to the Research Data Life Cycle
 
-Understanding when files should be treated as **separate digital objects** and when they belong together as a **file bundle** becomes much clearer when viewed through the lens of the research data life cycle. Across the stages **Process**, **Analyse**, **Archived**, and **Published** files evolve from volatile working copies into curated, citable digital objects.
+The question of when files should be treated as **digital objects** becomes clearer when viewed through the research data life cycle. As files move through the stages — **Process**, **Analyse**, **Archived**, and **Published** — they evolve from volatile working copies into curated, citable digital objects.
 
-### **Process** (active research and working copies)
+### Process — Active Research and Working Copies
 
-During the **process** stage data collection, cleaning, and early transformation researchers already handle files as **individual objects** in a practical, workflow‑driven sense:
+During the **Process** stage, researchers generate and modify files rapidly: raw instrument outputs, logs, temporary results, scripts, and notebooks. These files typically live on local machines, lab servers, or compute systems such as HPC clusters or cloud VMs.
 
-- **Raw instrument outputs**, log files, and intermediate results are created as distinct files (e.g. one file per run, per day, per sensor).  
-- **Scripts and notebooks** are saved, copied, and modified as separate artefacts.  
-- Files are frequently duplicated, renamed, reorganised, and overwritten as work progresses.
+At this point:
 
-However, these files typically exist as **working copies** stored on:
+- files are **provisional** and organised for workflow convenience,  
+- they have **no persistent identifiers**,  
+- and although **metadata and provenance must already be captured**, these records usually live in separate systems (ELNs, notebooks, workflow logs, version control).
 
-- local machines (laptops, desktops),  
-- lab servers,  
-- or **compute systems** such as HPC clusters or cloud VMs
+This is also where **FAIR begins**. Early choices about naming, formats, and documentation shape later reuse.
 
-In this phase:
+A key distinction exists between:
 
-- Files are **provisional** and may change without formal versioning.  
-- Their organisation reflects **workflow convenience**, not long‑term stewardship.  
-- They are usually not yet associated with **persistent identifiers** or curated metadata. Nevertheless, metadata and provenance information needs to be logged along side (see chapter [Metadata](metadata.qmd)).
+- **working copies** on fast, ephemeral compute storage, and  
+- **more durable storage** (project shares, institutional storage, version‑controlled repositories).
 
-A defining characteristic of the process stage is the distinction between:
+Working copies support efficient computation, but they are **not a substitute** for durable storage. Files left only on scratch space are at high risk of loss.
 
-- **Working copies** on compute systems (fast, ephemeral, optimised for active use), and  
-- **More permanent storage** (institutional storage, project shares, version‑controlled repositories) where important intermediate results are periodically copied or synchronised.
+## Analyse — Derivation, Modelling, Transformation
 
-Working copies are essential for efficient computation, but they are **not a substitute** for durable storage. If results remain only on a compute node or scratch space, they are at high risk of loss.
+In the **Analyse** stage, files begin to stabilise and gain **scientific identity**. Cleaned datasets, model outputs, and refined scripts emerge from raw materials. Researchers now distinguish between:
 
+- **working files** (temporary outputs, debug runs, scratch data), and  
+- **results worth keeping**, which are moved into more durable storage.
 
-### **Analyse** (derivation, modelling, transformation)
+Some files now **cross the threshold** into **candidate digital objects** — for example, a cleaned dataset used in a figure, a reusable model output, a calibration file, or a canonical analysis script.
 
-During the **analyse** stage, files begin to stabilise and gain **scientific identity**:
+These files may still lack full metadata or a PID, but they are now:
 
-- **Cleaned datasets** (e.g., `soil_moisture_cleaned.csv`) emerge from raw generated files.  
-- **Model outputs**, derived products, and aggregated tables are produced.  
-- **Analysis scripts**, workflows, and notebooks become more stable and reusable.
+- **stabilised**,  
+- **relocated** to managed storage,  
+- and **recognised** as research outputs.
 
-At this point, researchers start to distinguish between:
+This is the ideal moment to begin linking files, metadata, and persistent identifiers by coordinating storage solutions with metadata services, workflow engines, and institutional catalogues. Early alignment makes later archiving and publication far smoother.
 
-- **Ephemeral working files** (temporary outputs, debug runs, scratch data on compute systems), and  
-- **Results worth keeping**, which are copied from compute environments to **more permanent storage** (project folders, version control, lab repositories).
+## Archived — Long‑Term Retention as Digital Objects
 
-This is the stage where some files **cross the threshold** from “just a working file” to a candidate **digital object**:
+By the **Archived** stage, key files have stabilised and are formally assembled into **digital objects**, marking the first step of the archiving process. The focus shifts from active analysis to **durability, integrity, and long‑term stewardship**. Files move into preservation‑oriented storage, while their metadata and persistent identifiers are registered and linked so the digital object remains coherent across systems.
 
-- A cleaned dataset that will underpin a figure or publication.  
-- A model output that will be reused in multiple studies.  
-- A calibration file documenting instrument behaviour.  
-- An analysis script that becomes the canonical workflow.
+Archived files emphasise:
 
-These files may still lack full metadata or a public PID, but they are:
+- long‑term retention,  
+- stable internal structure,  
+- fixity,  
+- migration to preservation‑oriented storage.
 
-- **stabilised** (no longer casually overwritten),  
-- **relocated** (from compute systems to durable, managed storage),  
-- and **recognised** as distinct research outputs.
+Storage systems such as tape or object stores hold the **files**, while metadata, provenance, and persistent identifiers are maintained in separate services. Because these components live in different places, they must be carefully coordinated.
 
-In short:
+At this stage, the digital object is fully defined, but its future — **publish**, **keep internal**, or **retire** — is still open.
 
-- **Process** → files are volatile working artefacts.  
-- **Analyse** → selected files stabilise and begin to take shape as **future digital objects**.
+## Published — Public Dissemination and Citation
 
-### **Archived** (long‑term retention as digital objects)
+In the **Published** stage, digital objects move from internal stewardship to **public, citable research outputs**. The emphasis shifts to **discoverability, transparency, and reuse**.
 
-When data enters the **archived** stage, it has already stabilised into one or more **digital objects**, each consisting of files, metadata, and a persistent identifier. The focus now shifts from active research to **durability, integrity, and long‑term stewardship**.
+At this point:
 
-Typical characteristics of the archived stage include:
+- **FAIR principles guide the final structure** and metadata,  
+- digital objects receive **globally resolvable persistent identifiers** (often DOIs),  
+- components with independent value *may* be published as **separate digital objects**,  
+- datasets are typically released as **coherent bundles**,  
+- relationships between digital objects are made explicit.
 
-- **Durability over dissemination** — the goal is to ensure that digital objects remain readable, intact, and recoverable for many years, even if they are not yet publicly shared.  
-- **Preservation of structure** — digital objects are often stored as **bundles** that reflect the project’s organisation at the time of deposit (e.g., raw data object, processed data object, software object).  
-- **Internal provenance and fixity** — checksums, logs, and internal metadata ensure authenticity and detect corruption.  
-- **Migration to preservation‑oriented storage systems** — digital objects are moved from compute systems and project storage into long‑term environments designed for retention.
+A crucial element of publication is **findability**. Metadata portals, institutional catalogues, and disciplinary registries index the digital object’s metadata and expose it to search engines and aggregators. Discoverability comes from the **metadata**, not the files themselves.
 
-A key example is **tape storage**:
+In practice:
 
-- Tape systems provide **high durability**,  
-- **low cost per terabyte**,  
-- and **excellent longevity**,  
-but they have **slow access times**, making them unsuitable for active analysis.  
-Tape is ideal for storing digital objects that must be preserved but are not frequently accessed such as raw experimental outputs, processed datasets, or calibration files.
+- files live on managed durable storage,  
+- metadata lives in a catalogue or portal,  
+- and the persistent identifier links the two.
 
-At this stage, the digital object is **already defined**, but decisions about whether it will be **published**, **kept internal**, or **retired** still lie ahead.
+Published digital objects are therefore more than preserved files: they are **curated, documented, and discoverable research outputs**, integrated into the wider scholarly ecosystem and ready for reuse.
 
-
-### **Published** (public dissemination and citation)
-
-When data reaches the **published** stage, digital objects transition from internal preservation to **public, citable research outputs**. The emphasis shifts to **discoverability, transparency, and reuse**.
-
-In this stage:
-
-- **FAIR principles** guide decisions about structure, metadata, and identifiers.  
-- Digital objects receive **globally resolvable, citable identifiers**, most commonly **DOIs**.  
-- Components with **independent scientific value**—such as raw generated files, processed datasets, software, or calibration files—are published as **separate digital objects**, each with its own metadata and persistent identifier.  
-- The dataset itself is typically published as a **coherent bundle**, containing all files necessary for interpretation and reuse (e.g., data + README + codebook).  
-- Relationships between digital objects (e.g., raw → processed → analysed) are made explicit through metadata and identifiers.
-
-This is the stage where the distinction between:
-
-- **“one digital object”** (a dataset with supporting files)  
-and  
-- **“several digital objects”** (raw data object, processed data object, software object, documentation object)
-
-becomes most important for **citation, provenance, and reuse**.
-
-Published digital objects are no longer just preserved—they are **curated, documented, and openly accessible research outputs** that can be discovered, cited, and integrated into new work.
-
-
-```{mermaid}
-%%| label: lifecycle-storage
-%%| fig-cap: Transition from working files to digital objects across the research data life cycle.
-%%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
-
-flowchart TB
-
-    %% PROCESS
-    subgraph PROC["Process (working stage)"]
-        direction TB
-        WC["Working Copies"]
-        TMP["Temporary Outputs"]
-    end
-
-    %% ANALYSE
-    subgraph ANAL["Analyse (derivation)"]
-        direction TB
-        STAB["Stabilised Results"]
-        DO_CAND["Candidate Digital Objects<br/>(files gaining identity)"]
-    end
-
-    %% ARCHIVED
-    subgraph ARCH["Archived (long-term)"]
-        direction TB
-        DO_ARCH["Digital Objects<br/>(files + metadata + PID)"]
-        ARCHIVE["Archival Storage<br/>(tape, object store, cold storage)"]
-    end
-    
-
-    %% PUBLISHED
-    subgraph PUB["Published (dissemination)"]
-        direction TB
-        DO_PUB["Published Digital Objects<br/>(DOIs, rich metadata,<br/>public access)"]
-    end
-
-    %% FLOWS
-    WC --> TMP
-    TMP --> STAB
-    STAB --> DO_CAND
-    DO_CAND --> DO_ARCH
-    DO_ARCH --> ARCHIVE
-    DO_ARCH --> DO_PUB
-```
 
 ## A Note on Terminology: From Files to Digital Objects
 
-Although this chapter focuses on **files**, the discussion naturally expands into the broader concept of **digital objects**. This shift is intentional. In research practice, files rarely exist in isolation: as soon as they stabilise, are moved to durable storage, or enter archival workflows, they become part of a **digital object** an entity consisting of:
+Although this chapter focuses on **files**, the discussion naturally expands into the broader concept of **digital objects**. This shift is intentional. In research practice, files rarely exist in isolation: once they stabilise, are moved to durable storage, or enter archival workflows, they become part of a **digital object**.
 
-- **files** (the content),  
-- **metadata** (the context), and  
-- a **persistent identifier** (the identity).
-
-During the *process* and *analyse* stages, it is appropriate to speak primarily about **files**, because researchers interact with them as working artefacts on compute systems and local storage. But once these files are stabilised, preserved, or prepared for dissemination, they transition into **digital objects**.  
+During the *Process* and *Analyse* stages, it is appropriate to speak primarily about **files**, because researchers interact with them as working artefacts. But once these files are stabilised, preserved, or prepared for dissemination, they transition into **digital objects**.
 
 This conceptual shift reflects the reality of the research data life cycle:  
 **files are the raw materials; digital objects are the curated, managed, and preservable units that persist beyond the immediate research workflow.**
@@ -234,36 +150,41 @@ By acknowledging this transition, the chapter can describe both the practical ha
 
 ## Summary
 
-- **Process / Analyse** → files evolve, diverge, and may gain independent value.  
-- **Archived** → files are stabilised and preserved as parts of digital objects.  
-- **Published** → files with distinct roles or reuse potential become separate digital objects; others remain part of a bundle.
+- **Process / Analyse** → Files are created, transformed, and refined. Some begin to stabilise and may gain independent scientific value. 
+- **Archived** → Stabilised files are preserved as parts of well‑defined digital objects, with coordinated storage, metadata, and persistent identifiers.  
+- **Published** → Files with distinct roles or reuse potential are released as **separate digital objects**, while tightly interdependent files are published together as a **coherent bundle**.
 
-This perspective helps determine when a file is simply a component of a dataset, and when it should be recognised as a **digital object in its own right**.
+This perspective clarifies when a file is simply a component of a dataset, and when it should be recognised as a **digital object in its own right**, complete with metadata, identity, and long‑term value.
 
-## Storage Infrastructure
 
-**Storage infrastructure** is the technical environment where **files** are physically stored, replicated, and protected. Its role is deliberately narrow: storage systems manage **bitstreams**, not digital objects. They ensure that files persist, but they do not provide the metadata, identifiers, or policies required to turn those files into fully managed digital objects.
+Here is your revised *Storage Infrastructure* chapter with **Option 3 fully integrated**.  
+I’ve inserted the clarification exactly where the term first appears and ensured the surrounding text flows naturally.
+
+---
+
+# Storage Infrastructure
+
+**Storage infrastructure** is the technical environment where **files** are physically stored, replicated, and protected. Its role is intentionally narrow: storage systems manage **the underlying bits that make up a file (often called bitstreams)**, not digital objects. They ensure that files persist, but they do not provide the metadata, identifiers, or policies required to turn those files into fully managed digital objects.
 
 Storage systems ensure that:
 
-- Files remain **intact** (fixity, integrity checking)  
-- Files remain **available** (redundancy, replication)  
-- Files remain **secure** (access control, encryption)  
-- Files remain **usable** (format migration, media refresh)  
+- files remain **intact** (fixity and integrity checking)  
+- files remain **available** (redundancy and replication)  
+- files remain **secure** (access control and encryption)  
+- files remain **usable** (format migration and media refresh)  
 
 Storage is therefore the **technical substrate** of preservation. It keeps the bits safe.  
 But it does **not**:
 
-- assign or manage persistent identifiers,  
-- maintain metadata,  
-- track provenance,  
-- enforce access policies,  
-- or implement preservation workflows.
+- assign or manage persistent identifiers  
+- maintain metadata  
+- track provenance  
+- enforce access policies  
+- implement preservation workflows  
 
 Those functions belong to **repository software** or other **policy engines**, which sit *above* storage and configure files into **digital objects**.
 
-
-### Types of Storage in RDM
+## Storage Types Commonly Used in RDM
 
 | Storage Type | Characteristics | Typical Use |
 |--------------|----------------|-------------|
@@ -274,30 +195,31 @@ Those functions belong to **repository software** or other **policy engines**, w
 
 Each storage type has different strengths. Most institutions use a **tiered storage model**, combining fast storage for active use with slower, cheaper storage such as **tape** for long‑term retention.
 
-But across all tiers, the principle remains the same:
+Across all tiers, the principle remains the same:  
 **Storage systems store files. They do not manage digital objects.**
 
 ## Why Storage Infrastructure Matters
 
 Storage infrastructure underpins the **durability** and **trustworthiness** of research files. It enables:
 
-- **Fixity checking** — detecting corruption or tampering  
-- **Redundant copies** — protecting against hardware failure or disasters  
-- **Scalable capacity** — accommodating growing datasets  
-- **Secure access** — supporting sensitive or embargoed data  
-- **Format and media migration** — ensuring files remain usable as technologies evolve  
+- **fixity checking** — detecting corruption or tampering  
+- **redundant copies** — protecting against hardware failure or disasters  
+- **scalable capacity** — accommodating growing datasets  
+- **secure access** — supporting sensitive or embargoed data  
+- **format and media migration** — ensuring files remain usable as technologies evolve  
 
 Without robust storage, even the best‑described digital objects are at risk of loss or degradation.
 
 But storage alone is not enough.  
 To become a **digital object**, a file must be:
 
-- registered in a repository or policy engine,  
-- associated with metadata,  
-- assigned a persistent identifier,  
-- and managed through defined workflows.
+- registered in a repository or policy engine  
+- associated with metadata  
+- assigned a persistent identifier  
+- managed through defined workflows  
 
 Storage provides the **where**; repositories provide the **what**, **how**, and **why**.
+
 
 ## A Simple Analogy
 
@@ -308,17 +230,10 @@ Storage provides the **where**; repositories provide the **what**, **how**, and 
 
 Storage protects the content; repositories provide the meaning, identity, and governance.
 
+
 ## A Diagrammatic View
 
-```{mermaid}
-%%| label: storage-stack
-%%| fig-cap: Files stored within a layered storage infrastructure. Digital objects emerge only when files are managed by a repository or policy engine.
-%%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
-
+```mermaid
 flowchart TB
 
     F["Files (bitstreams)"]
@@ -345,10 +260,10 @@ This illustrates the essential separation:
 
 ## Bringing It All Together
 
-- **Storage systems only manage files.**  
-- **Digital objects** arise when files are combined with metadata and persistent identifiers under a **repository or policy engine**.  
-- Storage ensures durability and integrity; repositories ensure identity, meaning, and governance.
+- **Storage systems manage files**, ensuring durability, integrity, and security.  
+- **Repositories and policy engines manage digital objects**, providing metadata, identifiers, workflows, and lifecycle governance.  
+- Storage ensures the persistence of bits; repositories ensure the persistence of meaning.
 
 This separation of responsibilities is fundamental to modern research data management.
 
-IOn the chapter [Data Repositories and Policy engines](data-repositories.qmd), we explore how repositories build on top of storage systems to provide metadata, identifiers, workflows, and the full lifecycle management that digital objects require.
+In the chapter [Data Repositories and Policy Engines](data-repositories.qmd), we explore how repositories build on top of storage systems to provide the metadata, identifiers, and workflows that digital objects require.
