@@ -59,7 +59,7 @@ These stages correspond directly to the **five operational data states** (Active
 
 - <https://doi.org/10.1145/1378889.1378998>
 
-## FAIR
+### FAIR
 **FAIR** describes the *desired behaviour* of data and metadata so they can be discovered, accessed, combined, and reused by humans and machines.  
 It stands for **Findable, Accessible, Interoperable, Reusable**.
 
@@ -91,7 +91,7 @@ FAIR describes *how* data should behave; Open Science describes *how research sh
 - <https://en.wikipedia.org/wiki/Open_science>
 - <https://book.the-turing-way.org/reproducible-research/open/>
 
-## Open Data
+### Open Data
 **Open Data** refers to datasets that are freely accessible and reusable by anyone, typically under an open licence.  
 Open data is one possible outcome of the lifecycle—specifically the **Published** state—but not all FAIR data is open.
 
