@@ -1,4 +1,8 @@
-# Files and Storage Infrastructure
+# Files and Storage infrastructure
+
+---
+
+# Files
 
 ## What Are Files in Research Data Management?
 
@@ -233,7 +237,14 @@ Storage protects the content; repositories provide the meaning, identity, and go
 
 ## A Diagrammatic View
 
-```mermaid
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: Files reside across multiple storage layers, but only repositories and policy engines turn them into digital objects.
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
 flowchart TB
 
     F["Files (bitstreams)"]
