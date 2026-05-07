@@ -1,55 +1,54 @@
 # Data Repositories and Policy Engines
 
-In the chapter on [Files and Storage Infrastructure](files.qmd), we saw that storage alone is not enough to manage research data. Storage systems keep **files** safe, but they do not coordinate:
+In the chapter on *Files and Storage Infrastructure*, we saw that storage systems alone are not enough to manage research data. Storage keeps **files** safe, but it does not coordinate:
 
 - the **files** themselves  
 - their **replicas** across different storage systems  
 - their **metadata**  
-- their **persistent identifiers**
+- their **persistent identifiers**  
 
-This coordination is needed **throughout the entire data lifecycle**, not only in the archived or published stages. In fact, the **volatile stages** *Process* and *Analyse*  are where researchers generate, transform, and stabilise files, yet these stages often lack infrastructure capable of treating files as emerging **digital objects**.
+This coordination is needed **throughout the entire data lifecycle**, not only in the archived or published stages. In fact, the **volatile stages**—*Process* and *Analyse*—are where researchers generate, transform, and stabilise files, yet these stages often lack infrastructure capable of treating files as emerging **digital objects**.
 
-To support digital objects across their full lifecycle, we need systems that operate *above* storage. These systems fall into two broad categories:
+To support digital objects across their full lifecycle, we need systems that operate *above* storage. In this chapter, we distinguish between two such systems:
 
 - **Data repositories**, which manage publication workflows and curate data for dissemination  
-- **systems that we refer to in this book as Policy engines**, which coordinate files, metadata, and storage across distributed infrastructures, including during active research
+- **Policy engines**, which coordinate files, metadata, and storage across distributed infrastructures, including during active research  
 
+Both are essential, but they serve very different purposes.
+
+---
 
 ## Data Repositories
 
-Data repositories are designed to support the **publication** and **archival packaging** of research data. Their primary role is to take stabilised files and assemble them into a **publishable dataset** — a curated digital object with metadata, identifiers, and access controls.
+Data repositories are designed to support the **publication** and **archival packaging** of research data. Their primary role is to take stabilised files and assemble them into a **publishable dataset**—a curated digital object with metadata, identifiers, and access controls.
 
-Although repositories are best known for their role in publication, they also provide structure and governance that can support earlier lifecycle stages, especially when stabilised files begin to take shape as digital objects.
+A defining characteristic of repositories is that they focus on the **dataset as a whole**, not on elevating individual files into independent digital objects. Most repositories expect researchers to create a coherent data bundle with:
 
-A defining characteristic of repositories is that they focus on the **dataset as a whole**, not on elevating individual files into independent digital objects. Most repositories expect researchers to create a **coherent data bundle** with:
+- one metadata record  
+- one persistent identifier  
+- one landing page  
 
-- one **metadata record**,  
-- one **persistent identifier**, and  
-- one **landing page** for discovery and citation.
-
-File‑level metadata may exist, but it is typically **secondary** and not the main unit of publication. 
+File‑level metadata may exist, but it is typically **secondary**.
 
 Repositories typically provide:
 
-- **Publication workflows** — draft → review → published  
-- **Defined roles** — depositors, curators, administrators  
-- **Access rights aligned with publication** — collaboration, embargo, controlled access  
-- **Archival packaging** — dataset bundles, BagIt, collection‑level metadata  
-- **Limited storage coordination** — usually a single backend, no replication or policy‑driven placement
+- publication workflows (draft → review → publish)  
+- defined roles (depositors, curators, administrators)  
+- access rights aligned with publication  
+- archival packaging (BagIt, dataset bundles)  
+- limited storage coordination (usually a single backend)  
 
-Repositories excel at **curation, metadata, identifiers, and publication**, but they are not designed to orchestrate large‑scale or volatile data. Their APIs are also primarily oriented toward the publication workflow and offer only limited support for the needs of the volatile stages — such as rapidly annotating individual files, inspecting or extracting file contents for use in compute workflows, or integrating tightly with active processing environments.
+Repositories excel at **curation, governance, and dissemination**, but they are not designed to orchestrate volatile or large‑scale data during active research.
 
-### The Repository workflow
+---
+
+### The Repository Workflow
 
 ```{mermaid}
 %%| label: fig-1
 %%| fig-cap: Data repositories implement a structured publication workflow that transforms a bundle of stabilised files into a single governed digital object. The workflow focuses on dataset‑level metadata, packaging, and persistent identifiers rather than elevating individual files to independent objects.
 %%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
-
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
 flowchart TB
 
     subgraph R["Data Repository Workflow"]
@@ -65,129 +64,98 @@ flowchart TB
     A --> B --> C --> D --> E
 ```
 
-A data repository provides a structured environment where researchers can turn a **bundle of files** into a publishable dataset. The process begins with a deposit, where files and metadata are assembled. During curation, repository staff or automated checks ensure that metadata is complete, formats are appropriate, and the dataset meets institutional or disciplinary standards.
-
-Once approved, the repository assigns a persistent identifier, freezes the version, and generates a landing page that exposes metadata for discovery. After publication, the dataset enters a stable but updatable state, where new versions can be created and access can be managed.
-
-This workflow is the core function of a repository:  
-**it transforms a curated bundle of files into a citable, discoverable, governed digital object — not a collection of independent file‑objects.**
-
-## Dataverse 
-Dataverse is a repository platform designed around the idea of a **structured dataset**. A dataset in Dataverse is not just a bag of files — it is a curated digital object with:
-
-- a metadata record based on rich disciplinary templates,  
-- versioning that tracks changes across drafts and releases,  
-- a clear publication workflow, and  
-- a stable persistent identifier (usually a DOI).
-
-### How Dataverse supports the publication workflow  
-Dataverse implements a **draft → review → publish** model:
-
-- Researchers upload files and fill in metadata while the dataset is in **draft**.  
-- Curators can review, request changes, or enhance metadata.  
-- Once approved, the dataset is **published**, assigned a DOI, and becomes immutable.  
-- Any later changes create a **new version**, preserving the scholarly record.
-
-Dataverse also supports:
-
-- **embargoes**,  
-- **restricted files** with request workflows,  
-- **file‑level metadata**,  
-- **tabular data ingest** (extracting variables, labels, and formats),  
-- and **dataset‑level citations**.
-
-It is particularly strong for institutions that want a **curation‑centric** repository with well‑defined roles and governance.
+A repository transforms a bundle of files into a **citable, discoverable, governed digital object**—not a collection of independent file‑objects.
 
 ---
 
-## Figshare  
-Figshare is a publication‑oriented platform focused on **ease of deposit**, **visual presentation**, and **broad dissemination**. It is widely used by universities and publishers because it lowers the barrier for researchers to publish research outputs quickly.
+## Repository Platforms
 
-### How Figshare supports the publication workflow  
-Figshare emphasises a **lightweight, researcher‑friendly workflow**:
+### Dataverse
 
-- Researchers drag‑and‑drop files into a private workspace.  
-- They add minimal metadata (title, authors, categories).  
-- They can keep items private, share them with collaborators, or mark them as **ready for review**.  
-- When published, Figshare assigns a DOI and generates a **clean, human‑readable landing page**.
+Dataverse is built around the idea of a **structured dataset**. A dataset is a curated digital object with:
 
-Figshare’s strengths include:
+- a metadata record based on disciplinary templates  
+- versioning across drafts and releases  
+- a clear publication workflow  
+- a DOI  
 
-- **support for many output types** (datasets, posters, images, code, videos),  
-- **institutional branding** for university repositories,  
-- **metrics dashboards** (views, downloads, citations),  
-- **embargoes and controlled access**,  
-- **integration with ORCID**,  
-- and a strong focus on **public visibility**.
+Dataverse supports:
 
-Figshare is ideal when the goal is to make research outputs **easy to publish and easy to find**, with minimal friction.
+- embargoes  
+- restricted files with request workflows  
+- file‑level metadata  
+- tabular data ingest (extracting variables, labels, formats)  
+- dataset‑level citations  
+
+It is ideal for institutions that want a **curation‑centric** repository with well‑defined roles and governance.
 
 ---
 
-## Invenio / Zenodo  
-**Invenio** is a modular repository framework developed by CERN and partners.  
-**Zenodo** is a public repository service built on Invenio, offering free, long‑term hosting for research outputs.
+### Figshare
 
-### How Invenio supports publication workflows  
-Invenio provides the building blocks for:
+Figshare focuses on **ease of deposit** and **broad dissemination**. It supports many output types and provides:
 
-- deposit forms,  
-- metadata schemas,  
-- review and curation workflows,  
-- DOI registration,  
-- access control,  
-- and landing pages.
+- drag‑and‑drop upload  
+- minimal required metadata  
+- private workspaces  
+- clean landing pages  
+- metrics dashboards (views, downloads, citations)  
+- embargoes and controlled access  
+- ORCID integration  
 
-Institutions can configure their own workflows, metadata models, and policies. Invenio is highly extensible and is often used to build **disciplinary repositories** or **institutional repositories** with custom requirements.
+Figshare is ideal when the goal is to make research outputs **easy to publish and easy to find**.
 
-### How Zenodo supports publication workflows  
-Zenodo implements a **simple but robust publication workflow**:
+---
 
-- Researchers upload files and fill in metadata.  
-- Zenodo automatically assigns a DOI upon publication.  
-- Each upload receives a **concept DOI** (for the whole project) and **version DOIs** (for each release).  
-- Zenodo integrates tightly with GitHub: tagging a release can automatically archive it in Zenodo with a DOI.
+### Invenio / Zenodo
 
-Zenodo is widely used because it:
+**Invenio** is a modular repository framework used to build institutional and disciplinary repositories.  
+**Zenodo**, built on Invenio, is a public repository offering free long‑term hosting.
 
-- supports **any file type**,  
-- provides **long‑term preservation**,  
-- offers **free hosting**,  
-- and is trusted by the global research community.
+Invenio supports:
 
-It is especially strong for **software**, **code releases**, and **small to medium‑sized datasets**.
+- configurable deposit forms  
+- metadata schemas  
+- review and curation workflows  
+- DOI registration  
+- access control  
+- landing pages  
 
-Here is a **smooth, strengthened, manuscript‑ready revision** of the Policy Engines section.  
-I’ve kept your structure, but improved clarity, flow, and conceptual contrast with repositories and synchronisation tools.  
-I also added a few subtle transitions so the section reads as a coherent narrative rather than a list of features.
+Zenodo supports:
 
-You can **drop this in directly**.
+- any file type  
+- automatic DOI assignment  
+- concept DOIs and version DOIs  
+- GitHub integration (archiving releases automatically)  
+- long‑term preservation  
+
+Zenodo is widely used for **software**, **code releases**, and **small to medium‑sized datasets**.
 
 ---
 
 ## Policy Engines
 
-Policy engines operate at a different layer of the RDM ecosystem. They coordinate **files, metadata, and storage systems** across distributed infrastructures and do so in a way that supports both stable and volatile data. Unlike repositories, which focus on preparing a dataset for publication, policy engines operate during the **active, changing, computationally intensive stages** of research.
+Policy engines operate at a different layer of the RDM ecosystem. They coordinate **files, metadata, and storage systems** across distributed infrastructures and do so during the **active, volatile stages** of research.
 
-Policy engines are particularly valuable in the **volatile stages**, where files are created, transformed, and moved across systems. They provide the coordination layer that storage systems lack, helping researchers manage files, metadata, and workflows long before publication is considered. In this book, we use the term *Policy engines* as a pragmatic label for these systems, even though no widely accepted community term exists.
+Where repositories focus on publication, policy engines focus on **orchestration**:
 
-Policy engines provide:
+- coordinating multiple storage systems  
+- attaching and querying metadata  
+- enforcing rules for placement, replication, and retention  
+- integrating with compute environments  
+- supporting workflows that generate and transform data  
 
-- **Coordination of multiple storage systems** — replication, tiering, geographic distribution  
-- **Metadata catalogues linked to files** — checksums, replicas, provenance  
-- **Flexible workflow or policy engines** — rules for placement, retention, triggers  
-- **Integration with compute environments** — HPC, grid, cloud workflows
+Policy engines treat files as **emerging digital objects**, long before they are ready for publication.
 
-They are ideal for **large‑scale, distributed, policy‑driven data management**, not just for long‑term preservation. Their strength lies in orchestrating data as it moves, grows, and changes — something repositories and synchronisation tools cannot do.
+---
+
+### Policy Engine Architecture**
 
 ```{mermaid}
 %%| label: fig-2
-%%| fig-cap: Policy engine coordinates storage for use in compute.
+%%| fig-cap: Policy engines coordinate storage for use in compute environments, enabling metadata‑driven automation and consistent digital‑object management across distributed systems.
 %%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
 flowchart TB
 
     subgraph C["Compute Environments"]
@@ -219,74 +187,76 @@ flowchart TB
     P --> CloudStore
 ```
 
+---
 
-### iRODS  
-iRODS is a rule‑based data management system with a rich metadata catalog and a storage abstraction layer. It allows administrators to define **data policies** that automatically govern data placement, replication, retention, and metadata enrichment. These policies are executed by the iRODS rule engine whenever data is created, moved, or modified.  
-iRODS is widely used in institutional and national infrastructures because it can:
+## Policy Engine Platforms
 
-- unify heterogeneous storage systems under a single namespace  
-- attach and query **metadata tightly bound to files**  
-- trigger workflows when new data arrives  
-- integrate with HPC and cloud environments  
+### iRODS
 
-Its strength lies in orchestrating data during **active research**, where files change frequently and need to be governed by consistent rules.
+iRODS provides:
+
+- a rule engine  
+- a metadata catalog  
+- a storage abstraction layer  
+- integration with HPC and cloud environments  
+
+It can unify heterogeneous storage, attach metadata to files, trigger workflows, and enforce policies for placement, replication, and retention.
 
 ---
 
-### Rucio  
-Rucio is a distributed data management system originally developed at CERN for the ATLAS experiment. It is designed for **petabyte‑ to exabyte‑scale** data replication and policy‑driven workflows across many independent storage sites.  
-Rucio excels in environments where data must be moved according to complex rules, such as:
+### Rucio
+
+Rucio, developed at CERN, manages petabyte‑ to exabyte‑scale data across many sites. It supports:
 
 - geographic replication  
 - storage tiering  
 - quota‑based placement  
-- automated cleanup and retention  
-- provenance tracking across compute workflows  
+- automated cleanup  
+- provenance tracking  
 
-Rucio’s policy model is declarative: users or administrators specify *what* should happen (e.g., “keep two replicas in Europe”), and Rucio determines *how* to satisfy that rule. This makes it ideal for large scientific collaborations with distributed compute and storage infrastructures.
+Its declarative policy model makes it ideal for large scientific collaborations.
 
 ---
 
-### Globus 
-Globus provides a platform for secure file transfer, identity management, and automation across distributed storage and compute systems. It is widely used to connect HPC clusters, cloud storage, and institutional systems into a coherent data movement fabric.  
-Globus supports:
+### Globus
 
-- high‑performance, fault‑tolerant transfers  
-- federated identity and access control  
-- automation flows that trigger actions when data moves  
+Globus provides:
+
+- secure, high‑performance data movement  
+- federated identity  
+- automation flows  
 - integration with notebooks, portals, and workflow engines  
 
-While Globus does not maintain a full metadata catalog like iRODS or Rucio, it excels at **reliable, policy‑driven data movement** and at bridging otherwise incompatible storage environments.
+It excels at **reliable, policy‑driven transfers** across distributed systems.
 
 ---
 
-### Starfish  
-Starfish is a data management and analytics platform designed to provide **visibility, governance, and policy enforcement** across large‑scale storage environments. It focuses on understanding and managing data at rest, especially in complex file system landscapes.  
-Starfish provides:
+### Starfish
 
-- deep **file system analytics** (usage, growth, duplication, aging)  
-- metadata harvesting and enrichment  
-- policy‑driven actions such as tiering, archiving, and cleanup  
-- integration with object, file, and cloud storage  
-- dashboards for administrators to understand data behaviour at scale  
+Starfish focuses on **visibility and governance** across large‑scale storage environments. It provides:
 
-Starfish is particularly strong in environments where organisations need to **analyse and govern large, heterogeneous collections of existing data across many storage systems**, identify candidates for archiving or migration, and enforce storage policies across heterogeneous systems. It complements systems like iRODS and Rucio by focusing on **insight‑driven policy enforcement** rather than workflow‑driven orchestration.
+- file system analytics  
+- metadata harvesting  
+- policy‑driven actions (tiering, archiving, cleanup)  
+- dashboards for administrators  
+
+It complements workflow‑oriented systems by focusing on **insight‑driven policy enforcement**.
+
+---
 
 ## Example Policies
 
-In the following examples, we illustrate common data‑management policies using an infrastructure built around **iRODS**. We use iRODS here because its architecture makes the interaction between users, compute environments, and storage systems especially clear. However, the same types of policies can be enabled by other policy engines, e.g.  Rucio, Globus, or Starfish, each of which implements similar capabilities with a slightly different component layout and operational model. **The goal of these examples is to show how policy engines coordinate files, metadata, and storage systems, regardless of the specific technology used.**
+The following examples illustrate how policy engines operate on **digital objects**—coordinating files, metadata, identifiers, and storage systems during active research.
 
-### File replication
+---
+
+### File Replication
 
 ```{mermaid}
 %%| label: fig-3
-%%| fig-cap: iRODS applies a replication policy across two storage systems in different data centres. When a user uploads a file through iRODS, the policy engine automatically creates a second replica on the other storage system. The user always interacts with iRODS, so the upload path continues to function even if one of the storage systems is temporarily unavailable.
+%%| fig-cap: iRODS applies a replication policy across two storage systems in different data centres. When a user uploads a file, the policy engine automatically creates a second replica and tracks both copies in the metadata catalog.
 %%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
-
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
 flowchart TB
 
     User["User<br/>(interacts with iRODS)"]
@@ -308,21 +278,17 @@ flowchart TB
     A -.replica.-> B
 ```
 
-In this scenario, two storage systems—one in Data Centre A and one in Data Centre B—are managed under the same policy engine. When a user uploads data through iRODS, the **replication policy** automatically creates a second copy on the other storage system.  
-The user always interacts with iRODS, not with the storage systems directly, so the upload path continues to work even if one of the storage systems is temporarily unavailable.
+Replication can also be implemented at the storage layer, but policy‑engine replication ties replicas to **metadata, checksums, provenance, and digital‑object identity**, enabling richer automation and lineage tracking.
 
 ---
 
-### File movement to cold storage
+### File Movement to Cold Storage
 
 ```{mermaid}
 %%| label: fig-4
-%%| fig-cap: iRODS enforces a data‑aging policy across an online and a cold‑storage tier. When a file has not been accessed for a defined period, the policy engine moves it from online storage to cold storage. The logical iRODS path remains unchanged, so the user does not need to track where the file is physically located.
+%%| fig-cap: iRODS enforces a data‑aging policy across an online and a cold‑storage tier. When a file has not been accessed for a defined period, the policy engine moves it to cold storage while preserving its logical path.
 %%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
 flowchart TB
 
     User["User<br/>(interacts with iRODS)"]
@@ -344,22 +310,90 @@ flowchart TB
     Hot -.migrate aged data.-> Cold
 ```
 
-Here, two storage systems are configured: an online tier and a cold‑storage tier (e.g. tape).  
-If data has not been accessed for a long time, an **aging policy** moves it from online storage to cold storage.  
-In the iRODS model, the logical path remains the same, so the user does not need to track where the file physically resides.
+Cold‑storage migration can also be implemented at the storage layer, but policy‑engine migration integrates it into the **digital‑object lifecycle**, linking it to metadata, provenance, and access policies.
 
 ---
 
-### Pull data into a workflow based on metadata
+### Digital‑Object Promotion on Ingest
+
+```{mermaid}
+%%| label: fig-6
+%%| fig-cap: When a user uploads a file, iRODS applies an ingest policy that computes fixity, attaches metadata, assigns an identifier, and registers the digital object.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+flowchart TB
+
+    User["User<br/>(uploads file via iRODS)"]
+
+    subgraph PE["iRODS Policy Engine"]
+        Fixity["Fixity Check<br/>(compute checksum)"]
+        Meta["Metadata Extraction<br/>(provenance, tags, timestamps)"]
+        PID["Identifier Assignment<br/>(PID or local ID)"]
+        Register["Register Digital Object<br/>(catalog entry)"]
+    end
+
+    subgraph Storage["Storage Systems"]
+        Store["Storage Backend<br/>(POSIX/Object/Tape)"]
+    end
+
+    User --> Store
+    Store --> Fixity
+    Fixity --> Meta
+    Meta --> PID
+    PID --> Register
+```
+
+This policy ensures that every file entering the system becomes a **first‑class digital object** with identity, metadata, and fixity—ready for downstream processing and lineage tracking.
+
+---
+
+### Auto‑Link Derived Data
+
+```{mermaid}
+%%| label: fig-7
+%%| fig-cap: When a workflow produces a new file, iRODS detects the parent digital object(s), creates a new digital object for the output, assigns an identifier, and records a provenance link.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+flowchart TB
+
+    subgraph Compute["Compute Environment"]
+        WF["Workflow<br/>(produces new file)"]
+    end
+
+    subgraph PE["iRODS Policy Engine"]
+        Detect["Detect Parent Object(s)<br/>(input metadata)"]
+        NewObj["Create New Digital Object<br/>(output file)"]
+        Link["Add Provenance Link<br/>(created from)"]
+        Prop["Propagate Metadata<br/>(project, licence, context)"]
+        ID["Assign Identifier<br/>(PID or local ID)"]
+        Register["Register in Catalog<br/>(lineage graph)"]
+    end
+
+    subgraph Storage["Storage Systems"]
+        Input["Input Object Storage"]
+        Output["Output Object Storage"]
+    end
+
+    Input --> Detect
+    WF --> NewObj
+    Detect --> Link
+    NewObj --> Prop
+    Prop --> ID
+    ID --> Register
+    Register --> Output
+```
+
+This policy automatically builds a **machine‑readable lineage graph**, allowing researchers to trace how data was produced and transformed.
+
+---
+
+## Metadata‑Driven Access to Digital Objects
 
 ```{mermaid}
 %%| label: fig-5
-%%| fig-cap: Users or workflows query iRODS metadata to identify files that require processing. After locating the file across storage systems, iRODS provides access so the workflow can either stream the content directly or create a working copy on the compute environment. All interactions occur through iRODS; the compute environment never accesses storage directly.
+%%| fig-cap: Users or workflows query iRODS metadata to identify files that require processing. iRODS resolves location and provides access without exposing underlying storage.
 %%| fig-align: center
-%%{init: {
-  "look": "handDrawn",
-  "flowchart": { "htmlLabels": false }
-}}%%
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
 flowchart TB
 
     subgraph Storage["Storage Systems"]
@@ -378,66 +412,50 @@ flowchart TB
         Copy["Workflow B<br/>(stage working copy)"]
     end
 
-    %% Metadata exists for files in storage
     S1 --> Catalog
     S2 --> Catalog
 
-    %% User queries metadata (edge label)
     User -- "User Query<br/>(find newly arrived data by metadata)" --> Catalog
 
-    %% iRODS locates data
     Catalog --> Access
     Access --> S1
     Access --> S2
 
-    %% Compute pulls data
     Access --> Stream
     Access --> Copy
 ```
 
-Files stored in iRODS are annotated with metadata such as provenance, tags, or arrival time.  
-A user or workflow running in the compute environment can issue a **metadata query** to discover files that match certain criteria—for example, newly arrived data that needs processing.
+This is not a policy but a **capability unlocked by representing files as digital objects**.  
+Users and workflows can discover and access data through metadata queries rather than navigating fragmented storage systems.
 
-Once iRODS identifies the relevant files, the workflow can either:
-
-- **stream the file content** directly into a pipeline (A), or  
-- **create a working copy** on compute storage (B).
-
-At no point does the compute environment interact with the storage systems directly; all access is mediated through iRODS.
-
+---
 
 ## Comparison with Synchronisation Tools
 
-Synchronisation services — such as OneDrive, Dropbox, Google Drive, or **Nextcloud‑based platforms like SURFdrive** — are often used during active research because they replicate files across devices and support collaboration. However, they are fundamentally different from both repositories and policy engines.
+While policy engines operate directly on emerging **digital objects**, synchronisation tools serve a different purpose. Services such as OneDrive, Dropbox, Google Drive, or Nextcloud‑based platforms like SURFdrive replicate files across devices for convenience, but they do not manage:
 
-Sync tools:
+- metadata  
+- identifiers  
+- provenance  
+- lineage  
+- policy‑driven placement  
+- multi‑site coordination  
 
-- replicate files for convenience  
-- do not provide fixity guarantees  
-- do not implement workflows  
-- do not coordinate multiple storage systems  
-- do not integrate with metadata or PID services  
-- are not designed for large files or multi‑terabyte datasets  
-- do not manage the three components of a digital object (files + metadata + PID)
+Sync tools solve **convenience and collaboration** problems.  
+Policy engines solve **digital‑object lifecycle** problems.
 
-They are useful for **volatile working data**, but they do not provide the RDM layer needed to support emerging digital objects in the early lifecycle stages.
+
+Here is a **short, clear summary** that still captures the essence of the chapter:
 
 ---
 
 ## Summary
 
-- **Data repositories** support publication, metadata curation, DOIs, and archival packaging.  
-- **Policy engines** coordinate files, metadata, and storage across distributed infrastructures, including during active research.  
-- **Synchronisation tools** support convenience and collaboration, but do not provide preservation, metadata integration, or PID‑driven workflows.
+Storage systems keep files safe, but they cannot manage **metadata**, **replicas**, **identifiers**, or the **volatile stages** where research data is created and transformed. To manage data as **digital objects**, two complementary systems are needed.
 
-Together, repositories and policy engines form the backbone of modern research data management — each addressing different gaps across the **entire** data lifecycle, not only at the end.
+**Data repositories** (Dataverse, Figshare, Invenio/Zenodo) curate and publish **stabilised datasets**. They provide structured workflows, metadata templates, DOIs, and governance, but they operate mainly at the **dataset level** and are not designed for active, changing data.
 
----
+**Policy engines** (iRODS, Rucio, Globus, Starfish) coordinate **files, metadata, and storage** during active research. They support replication, tiering, ingest rules, lineage tracking, and metadata‑driven automation across distributed systems. They treat files as **emerging digital objects** long before publication.
 
-If you want, I can now create a **figure** that visually contrasts:
+Unlike synchronisation tools, which simply replicate files for convenience, policy engines manage the **full digital‑object lifecycle**.
 
-- repositories  
-- policy engines  
-- synchronisation tools  
-
-…in a single conceptual diagram.
