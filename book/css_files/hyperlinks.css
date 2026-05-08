@@ -1,0 +1,25 @@
+/* Default link color (brand green) */
+#quarto-content a {
+  color: #528641 !important;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+/* Hover: bold + darker green */
+#quarto-content a:hover {
+  color: #3d6a31 !important;   /* darker shade derived from #528641 */
+  font-weight: bold;
+  text-decoration: underline;  /* remove if you prefer no underline */
+}
+
+/* Active (clicked) */
+#quarto-content a:active {
+  color: #3d6a31 !important;
+  font-weight: bold;
+}
+
+/* Visited links (keep consistent) */
+#quarto-content a:visited {
+  color: #528641 !important;
+}
+
