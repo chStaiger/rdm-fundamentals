@@ -46,7 +46,7 @@ FAIR describes **how data should behave**.
 A key insight is that **the scope of FAIR changes as data moves through the life cycle**.  
 FAIR is not something that “switches on” only at publication. Instead, it applies throughout, but for **different audiences and purposes**.
 
-> **FAIR applies at every stage — the audience simply changes.**
+> **FAIR applies at every stage — the audience and purpose simply changes.**
 
 
 ## Research Data Management Services Across the Life Cycle and How FAIR Evolves
