@@ -14,7 +14,7 @@ As the project progresses, files begin to stabilise. Cleaned datasets, model out
 Once results stabilise, selected files are combined with metadata and persistent identifiers to form **digital objects**. These objects are stored in preservation‑oriented environments and protected through fixity checks, replication, and retention policies. They may remain internal or restricted, depending on the project’s needs.
 
 ### 4. Published  
-A subset of digital objects are curated for dissemination. These objects are enriched with descriptive metadata, assigned globally resolvable identifiers (such as DOIs), and made available for discovery and reuse. This is the point where data becomes part of the scholarly record.
+A subset of digital objects are curated for dissemination. These objects are further enriched with descriptive metadata, assigned globally resolvable identifiers (such as DOIs), and made available for discovery and reuse. This is the point where data becomes part of the scholarly record.
 
 Together, these stages form the **structural backbone** for understanding how data moves from working files to curated, citable digital objects.
 
