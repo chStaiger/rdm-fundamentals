@@ -200,6 +200,7 @@ This stage supports rapid iteration and collaborative work. Files change frequen
 FAIR here is practical and internal: clear naming, shared access points, open formats, and well‑maintained notebooks that help the team work reproducibly.
 
 **Audience**: research team
+
 **Focus**: efficient collaboration and early capture of provenance
 
 ### Closed — Analyse Stage — FAIR‑for‑Teams transitioning to FAIR‑for‑Stewardship
@@ -211,6 +212,7 @@ The emphasis shifts from exploration to **stabilisation**. Cleaned datasets, can
 FAIR now begins to serve both researchers and stewards: files become easier to locate, access is controlled, and formats and vocabularies are standardised in preparation for long‑term retention.
 
 **Audience**: research team + institutional stewards
+
 **Focus**: stabilising data and consolidating provenance
 
 ### Locked — Transition Stage —FAIR‑for‑Stewardship (Light)
@@ -222,6 +224,7 @@ The Locked stage acts as a **buffer**. Data is frozen in a read‑only state to 
 FAIR here is minimal but essential: stable locations, read‑only access, and preservation‑friendly formats.
 
 **Audience**: research team + institutional stewards
+
 **Focus**: safeguarding inactive data and supporting appraisal
 
 ### Archived / Preserved — Archived Stage — FAIR‑for‑Stewardship
@@ -233,6 +236,7 @@ At this stage, data becomes a **managed digital object**. Files are packaged wit
 FAIR now operates at the level of institutional governance: persistent identifiers, controlled access, preservation metadata, and versioning.
 
 **Audience**: institutional stewards and selected collaborators
+
 **Focus**: long‑term integrity and contextual understanding
 
 ### Published / Preserved — Published Stage — FAIR‑for‑Reuse
@@ -244,6 +248,7 @@ Selected digital objects are curated for dissemination. They receive rich descri
 Here FAIR reaches full scope: discoverability, standardised access, community vocabularies, licensing, and documentation that supports meaningful reuse.
 
 **Audience**: global research community
+
 **Focus**: discovery, citation, and reuse
 
 ## Summary
@@ -258,7 +263,8 @@ This chapter began by presenting the life cycle and FAIR as separate frameworks;
   - **FAIR‑for‑Reuse** in the Published state  
 
 Together, these elements form a coherent framework for managing data from creation to long‑term reuse.
-Understanding this alignment sets the stage for the next step: recognising that what moves through these states is not just a collection of files, but a structured digital object.
+
+This alignment sets the stage for the next step: recognising that what moves through these states is not just a collection of files, but a structured digital object.
 
 As data progresses through the life cycle, it becomes increasingly clear that **files alone are not enough**. A file without context is difficult to interpret, impossible to trust, and often unusable. To be managed, preserved, and reused, data needs:
 
