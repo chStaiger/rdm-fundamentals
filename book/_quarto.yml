@@ -58,6 +58,7 @@ format:
     css: 
       - css_files/callout.css
       - css_files/toc.css
+      - css_files/hyperlinks.css
     number-sections: false
     linkcolor: "#548641"
     mermaid:
