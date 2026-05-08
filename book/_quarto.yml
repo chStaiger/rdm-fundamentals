@@ -57,6 +57,7 @@ format:
     theme: cosmo
     css: 
       - css_files/callout.css
+      - css_files/toc.css
     number-sections: false
     linkcolor: "#548641"
     mermaid:
