@@ -108,7 +108,7 @@ The following sections describe how FAIR plays out in each data state and how th
 
 This stage supports rapid iteration and collaborative work. Files change frequently, so the priority is capturing **provenance**, i.e. records of how data was collected, processed, and transformed. At this point, provenance is often the only reliable account of *what happened, when, and why*.
 
-FFAIR here is practical and internal: clear naming, shared access points, open formats, and well‑maintained notebooks that help the team work reproducibly.
+FAIR here is practical and internal: clear naming, shared access points, open formats, and well‑maintained notebooks that help the team work reproducibly.
 
 **Audience**: research team
 **Focus**: efficient collaboration and early capture of provenance
