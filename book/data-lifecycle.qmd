@@ -100,7 +100,7 @@ This mapping shows how conceptual stages translate into concrete metadata, servi
 
 *Putting it all together*
 
-The following sections describe how FAIR plays out in each data state and hoe that relates to each stage of the RDM Life Cycle.
+The following sections describe how FAIR plays out in each data state and how that relates to each stage of the RDM Life Cycle.
 
 ### Active — Process Stage — FAIR‑for‑Teams
 
