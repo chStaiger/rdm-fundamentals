@@ -278,7 +278,7 @@ This shift is essential for FAIR stewardship and long‑term preservation.
 
 With the life cycle, FAIR, and data states now integrated, the concept of the digital object becomes the natural foundation for modern research data management: the primary entity that infrastructures recognise, preserve, and serve, far beyond the limitations of individual files.
 
-The next chapter [The Digital Object](digital-objects.qmd) explores this concept in depth:  
+The next chapter [The Digital Object](digital-object.qmd) explores this concept in depth:  
 what digital objects are, how they are constructed, and why they function as the core entities that research data infrastructures must support.
 
 ## References
