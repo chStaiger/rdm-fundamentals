@@ -1,0 +1,23 @@
+/* Default TOC text (black) */
+#quarto-margin-sidebar #TOC .nav-link {
+  color: #000000 !important;
+}
+
+/* Hover state (your green) */
+#quarto-margin-sidebar #TOC .nav-link:hover {
+  color: #548641 !important;
+}
+
+/* Active section (your green) */
+#quarto-margin-sidebar #TOC .nav-link.active {
+  color: #548641 !important;
+  font-weight: 600;
+}
+
+/* Override Bootstrap link variables inside this TOC only */
+#quarto-margin-sidebar #TOC {
+  --bs-link-color: #000000;
+  --bs-link-hover-color: #548641;
+  --bs-link-active-color: #548641;
+}
+
