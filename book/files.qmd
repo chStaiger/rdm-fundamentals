@@ -43,7 +43,7 @@ The appropriate choice depends on how the files will be used, shared, and preser
 
 ### When Files Become Separate Digital Objects
 
-Some files have scientific value **independent of the dataset they belong to**. They stand on their own as research outputs and therefore deserve their own metadata, identifier, and citation. This is especially true for primary research artefacts, such as:
+Some files may have scientific value **independent of the dataset they belong to**. They stand on their own as research outputs and therefore deserve their own metadata, identifier, and citation. This is especially true for primary research artefacts, such as:
 
 - a single `.tif` microscopy image,  
 - a `.fastq` sequencing file,  
