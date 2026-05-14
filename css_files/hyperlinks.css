@@ -1,6 +1,6 @@
 /* Default link color (brand green) */
 #quarto-content a {
-  color: #528641 !important;
+  color: #3d6a31 !important;
   font-weight: normal;
   text-decoration: none;
 }
@@ -20,6 +20,5 @@
 
 /* Visited links (keep consistent) */
 #quarto-content a:visited {
-  color: #528641 !important;
+  color: #3d6a31 !important;
 }
-
