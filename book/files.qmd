@@ -15,7 +15,7 @@ At this early stage, files function simply as containers of information. They ar
 - they are not yet accompanied by curated metadata,  
 - but **metadata and provenance still need to be captured from the start**.
 
-This is where FAIR already matters. Even though files are not yet curated or published, early decisions about naming, formats, folder structures, and documentation directly influence how findable, accessible, interoperable, and reusable the data will be later.
+This is where FAIR already matters. Early decisions about naming, formats, folder structures, and documentation directly influence how findable, accessible, interoperable, and reusable the data will be later - when files are eventually curated and published.
 
 A key distinction emerges: files can be understood either as **working materials** — temporary, flexible, and often messy — or as **components of a future digital object**, which will eventually be curated, described, and preserved. Recognising when a file transitions from one category to the other is central to good RDM practice.
 
