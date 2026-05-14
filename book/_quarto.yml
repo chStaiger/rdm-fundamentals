@@ -32,7 +32,7 @@ book:
   
     - part: "THE HOLY TRINITY OF RDM"
       chapters:
-        - data-object.qmd
+        - digital-object.qmd
         - files.qmd
         - metadata.qmd
         - pids.qmd
