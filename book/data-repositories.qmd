@@ -1,1 +1,199 @@
-# Data Repositories
+# Data Repositories and Policy Engines
+
+In the chapter on [Files and Storage Infrastructure](files.qmd), we saw that storage alone is not enough to manage research data. Storage systems keep **files** safe, but they do not coordinate:
+
+- the **files** themselves  
+- their **replicas** across different storage systems  
+- their **metadata**  
+- their **persistent identifiers**
+
+This coordination is needed **throughout the entire data lifecycle**, not only in the archived or published stages. In fact, the **volatile stages** *Process* and *Analyse*  are where researchers generate, transform, and stabilise files, yet these stages often lack infrastructure capable of treating files as emerging **digital objects**.
+
+To support digital objects across their full lifecycle, we need systems that operate *above* storage. These systems fall into two broad categories:
+
+- **Data repositories**, which manage publication workflows and curate data for dissemination  
+- **systems that we refer to in this book as Policy engines**, which coordinate files, metadata, and storage across distributed infrastructures, including during active research
+
+## Data Repositories
+
+Data repositories are designed to support the **publication** and **archival packaging** of research data. Their primary role is to take stabilised files and turn them into **publishable digital objects** with metadata, identifiers, and access controls.
+
+Although repositories are best known for their role in publication, they also provide structure and governance that can support earlier lifecycle stages, especially when stabilised files begin to take shape as digital objects.
+
+Repositories typically provide:
+
+- **Publication workflows** — draft → review → published  
+- **Defined roles** — depositors, curators, administrators  
+- **Access rights aligned with publication** — collaboration, embargo, controlled access  
+- **Archival packaging** — dataset bundles, BagIt, collection‑level metadata  
+- **Limited storage coordination** — usually a single backend, no replication or policy‑driven placement
+
+Repositories excel at **curation, metadata, identifiers, and publication**, but they are not designed to orchestrate large‑scale or volatile data.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: Files reside across multiple storage layers, but only repositories and policy engines turn them into digital objects.
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TB
+
+    subgraph R["Data Repository Workflow"]
+    
+        A["Deposit<br/>(Upload files + enter metadata)"]
+        B["Curation / Review<br/>(Metadata checks, structure, policy compliance)"]
+        C["Approval<br/>(Embargo, access rights, final validation)"]
+        D["Publication<br/>(Assign PID, freeze version, create landing page)"]
+        E["Post‑Publication<br/>(Versioning, access requests, metadata updates)"]
+        
+    end
+
+    A --> B --> C --> D --> E
+```
+
+A data repository provides a structured environment where researchers can turn files into publishable digital objects. The process begins with a deposit, where files and metadata are assembled. During curation, repository staff or automated checks ensure that metadata is complete, formats are appropriate, and the dataset meets institutional or disciplinary standards.
+
+Once approved, the repository assigns a persistent identifier, freezes the version, and generates a landing page that exposes metadata for discovery. After publication, the dataset enters a stable but updatable state, where new versions can be created and access can be managed.
+
+This workflow is the core function of a repository:
+it transforms files into citable, discoverable, governed digital objects.
+
+## Dataverse 
+Dataverse is a repository platform designed around the idea of a **structured dataset**. A dataset in Dataverse is not just a bag of files — it is a curated digital object with:
+
+- a metadata record based on rich disciplinary templates,  
+- versioning that tracks changes across drafts and releases,  
+- a clear publication workflow, and  
+- a stable persistent identifier (usually a DOI).
+
+### How Dataverse supports the publication workflow  
+Dataverse implements a **draft → review → publish** model:
+
+- Researchers upload files and fill in metadata while the dataset is in **draft**.  
+- Curators can review, request changes, or enhance metadata.  
+- Once approved, the dataset is **published**, assigned a DOI, and becomes immutable.  
+- Any later changes create a **new version**, preserving the scholarly record.
+
+Dataverse also supports:
+
+- **embargoes**,  
+- **restricted files** with request workflows,  
+- **file‑level metadata**,  
+- **tabular data ingest** (extracting variables, labels, and formats),  
+- and **dataset‑level citations**.
+
+It is particularly strong for institutions that want a **curation‑centric** repository with well‑defined roles and governance.
+
+---
+
+## Figshare  
+Figshare is a publication‑oriented platform focused on **ease of deposit**, **visual presentation**, and **broad dissemination**. It is widely used by universities and publishers because it lowers the barrier for researchers to publish research outputs quickly.
+
+### How Figshare supports the publication workflow  
+Figshare emphasises a **lightweight, researcher‑friendly workflow**:
+
+- Researchers drag‑and‑drop files into a private workspace.  
+- They add minimal metadata (title, authors, categories).  
+- They can keep items private, share them with collaborators, or mark them as **ready for review**.  
+- When published, Figshare assigns a DOI and generates a **clean, human‑readable landing page**.
+
+Figshare’s strengths include:
+
+- **support for many output types** (datasets, posters, images, code, videos),  
+- **institutional branding** for university repositories,  
+- **metrics dashboards** (views, downloads, citations),  
+- **embargoes and controlled access**,  
+- **integration with ORCID**,  
+- and a strong focus on **public visibility**.
+
+Figshare is ideal when the goal is to make research outputs **easy to publish and easy to find**, with minimal friction.
+
+---
+
+## Invenio / Zenodo  
+**Invenio** is a modular repository framework developed by CERN and partners.  
+**Zenodo** is a public repository service built on Invenio, offering free, long‑term hosting for research outputs.
+
+### How Invenio supports publication workflows  
+Invenio provides the building blocks for:
+
+- deposit forms,  
+- metadata schemas,  
+- review and curation workflows,  
+- DOI registration,  
+- access control,  
+- and landing pages.
+
+Institutions can configure their own workflows, metadata models, and policies. Invenio is highly extensible and is often used to build **disciplinary repositories** or **institutional repositories** with custom requirements.
+
+### How Zenodo supports publication workflows  
+Zenodo implements a **simple but robust publication workflow**:
+
+- Researchers upload files and fill in metadata.  
+- Zenodo automatically assigns a DOI upon publication.  
+- Each upload receives a **concept DOI** (for the whole project) and **version DOIs** (for each release).  
+- Zenodo integrates tightly with GitHub: tagging a release can automatically archive it in Zenodo with a DOI.
+
+Zenodo is widely used because it:
+
+- supports **any file type**,  
+- provides **long‑term preservation**,  
+- offers **free hosting**,  
+- and is trusted by the global research community.
+
+It is especially strong for **software**, **code releases**, and **small to medium‑sized datasets**.
+
+## Policy Engines
+
+Policy engines operate at a different layer. They coordinate **files, metadata, and storage systems** across distributed infrastructures.
+
+Policy engines are particularly valuable in the **volatile stages**, where files are created, transformed, and moved across systems. They provide the coordination layer that storage systems lack, helping researchers manage files, metadata, and workflows long before publication is considered.
+
+Policy engines provide:
+
+- **Coordination of multiple storage systems** — replication, tiering, geographic distribution  
+- **Metadata catalogues linked to files** — checksums, replicas, provenance  
+- **Flexible workflow or policy engines** — rules for placement, retention, triggers  
+- **Integration with compute environments** — HPC, grid, cloud workflows
+
+They are ideal for **large‑scale, distributed, policy‑driven data management**, not just for long‑term preservation.
+
+### **iRODS**  
+A rule‑based data management system with a metadata catalog and storage abstraction layer.
+
+### **Rucio**  
+A distributed data management system developed at CERN, designed for petabyte‑scale replication and policy‑driven workflows.
+
+### **Globus**  
+A platform for secure file transfer, identity management, and automation across distributed storage and compute systems.
+
+---
+
+## **Comparison with Synchronisation Tools**
+
+Synchronisation services — such as OneDrive, Dropbox, Google Drive, or **Nextcloud‑based platforms like SURFdrive** — are often used during active research because they replicate files across devices and support collaboration. However, they are fundamentally different from both repositories and policy engines.
+
+Sync tools:
+
+- replicate files for convenience  
+- do not provide fixity guarantees  
+- do not implement workflows  
+- do not coordinate multiple storage systems  
+- do not integrate with metadata or PID services  
+- are not designed for large files or multi‑terabyte datasets  
+- do not manage the three components of a digital object (files + metadata + PID)
+
+They are useful for **volatile working data**, but they do not provide the RDM layer needed to support emerging digital objects in the early lifecycle stages.
+
+---
+
+## **Summary**
+
+- **Data repositories** support publication, metadata curation, DOIs, and archival packaging.  
+- **Policy engines** coordinate files, metadata, and storage across distributed infrastructures, including during active research.  
+- **Synchronisation tools** support convenience and collaboration, but do not provide preservation, metadata integration, or PID‑driven workflows.
+
+Together, repositories and policy engines form the backbone of modern research data management — each addressing different gaps across the **entire** data lifecycle, not only at the end.

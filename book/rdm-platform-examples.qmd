@@ -1,0 +1,243 @@
+
+# Classification
+
+## **1. Research Data Repositories (Publication & Preservation)**  
+These systems store *final*, curated, publishable datasets.
+
+| Technology | Classification | Notes |
+|-----------|----------------|-------|
+| **Dataverse** | Research data repository | Strong metadata, DOI, curation workflows. |
+| **DANS Data Stations** | Research data repository | Dataverse-based, strong metadata schemas. |
+| **4TU.ResearchData (Djehuty)** | Research data repository | RDF support, strong search. |
+| **Zenodo (Invenio)** | General-purpose repository | Limited metadata flexibility. |
+| **SURF Data Repository (Invenio)** | Institutional repository | Embargo support, curation workflows. |
+| **Figshare** | Proprietary repository | Strong previewing, weaker metadata control. |
+| **OSF, Dryad, DSpace, Mendeley Data** | General-purpose repositories | Mentioned but not deeply evaluated. |
+| **Yoda** | Repository + workflow layer | Built on iRODS; not openly accessible. |
+
+**Document citation:**  
+“Repositories are used to store published data (open and closed)… We investigated Figshare, Invenio, Dataverse, Djehuty…”  
+
+
+---
+
+## **2. Metadata Portals / Catalogs / FAIRification Tools**
+
+| Technology | Classification | Notes |
+|-----------|----------------|-------|
+| **FAIR Data Station** | FAIR metadata creation & RDF generator | Pre‑repository metadata tool. |
+| **CKAN** | Metadata portal / open data catalog | Not suited for large files; strong search. |
+| **Molgenis** | Schema-based metadata catalog | Strong in life sciences; relational backend. |
+| **MetaVox (Nextcloud plugin)** | Early‑stage metadata annotation | Schema-based metadata on files/folders. |
+
+**Document citation:**  
+“CKAN can be best described as a metadata portal for publishing information about datasets.”  
+
+
+---
+
+## **3. Storage Systems (Raw Data Storage)**
+
+| Technology | Classification | Notes |
+|-----------|----------------|-------|
+| **Object Store (S3-like)** | Scalable object storage | Minimal metadata; needs microservices. |
+| **dCache** | Large-scale file/tape storage | Limited metadata; used in physics. |
+| **Nextcloud / ResearchDrive** | Collaborative file storage | Metadata only via plugins. |
+
+**Document citation:**  
+“Object store… metadata can be added ONLY during upload… very limited.”  
+
+
+---
+
+## **4. Data Management & Orchestration Layers (Middleware)**  
+These systems unify storage, metadata, and policies.
+
+| Technology | Classification | Notes |
+|-----------|----------------|-------|
+| **iRODS** | Data management middleware | Metadata, policies, automation. |
+| **Rucio** | Distributed data management | Designed for physics; rule-based replication. |
+| **Globus** | File transfer & automation | Strong for large data movement. |
+| **Starfish** | File system analytics & policy engine | Proprietary; metadata from scans. |
+| **SURF Research Data Connector** | Integration middleware | Bridges Nextcloud → repositories. |
+| **Mango / iBridges** | User interfaces for iRODS | Improve usability. |
+
+**Document citation:**  
+“iRODS is an open source data management framework… combines data storage, metadata and a strong policy engine.”  
+
+
+---
+
+## **5. Workflow & Compute Integration Tools**
+
+| Technology | Classification | Notes |
+|-----------|----------------|-------|
+| **Nextflow, Snakemake, Galaxy, Kubernetes** | Workflow engines | Mentioned as integrations with Molgenis. |
+| **Neptune + Data Access Broker** | Emerging workflow-integrated metadata tools | Under development. |
+
+**Document citation:**  
+“Molgenis… can be interfaced with workflow management systems such as nextflow, Snakemake, Galaxy…”  
+
+
+---
+
+## **6. Collaboration Platforms**
+
+| Technology | Classification | Notes |
+|-----------|----------------|-------|
+| **Nextcloud** | Collaboration & file sharing | Metadata via MetaVox; integrates with SURF RDC. |
+
+**Document citation:**  
+“Nextcloud is an open-source on-premise content collaboration platform… MetaVox allows research teams to manage metadata.”  
+
+
+---
+
+# 🧩 **How These Categories Fit Together in an RDM Architecture**
+
+Here’s a conceptual map:
+
+### **A. Early-stage research (active data)**
+- Nextcloud + MetaVox  
+- FAIR Data Station  
+- CKAN (as metadata registry)  
+- iRODS (as backend)  
+- Object Store / dCache  
+
+### **B. Orchestration & automation**
+- iRODS  
+- Rucio  
+- Globus  
+- Starfish  
+- SURF Research Data Connector  
+
+### **C. Publication & preservation**
+- Dataverse  
+- DANS Data Stations  
+- 4TU.ResearchData  
+- SURF Data Repository  
+- Zenodo  
+- Figshare  
+- Yoda  
+
+```{mermaid}
+
+%%| label: fig-rdm-ecosystem
+%%| fig-cap: Classification of RDM Technologies Across the Data Lifecycle
+%%| fig-align: center
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TD
+
+    %% --- Users ---
+    subgraph Users["Users"]
+        RESEARCHERS["Researchers"]
+        ADMINS["Data Stewards / Sysadmins"]
+    end
+
+    %% --- Active Research Layer ---
+    subgraph Active["Active Research & Collaboration"]
+        NC["Nextcloud / ResearchDrive"]
+        MV["MetaVox<br>(Schema-based Metadata)"]
+        FDS["FAIR Data Station<br>(FAIR Metadata Creation)"]
+        CKAN["CKAN<br>(Metadata Portal)"]
+        MOLG["Molgenis<br>(Schema-based Catalog)"]
+    end
+
+    %% --- Storage Layer ---
+    subgraph Storage["Storage Systems"]
+        OBJ["Object Store"]
+        DCACHE["dCache"]
+        FS["Local / HPC Filesystems"]
+    end
+
+    %% --- Orchestration Layer ---
+    subgraph Orchestration["Data Management & Orchestration"]
+        IRODS["iRODS<br>(Policy Engine + Metadata)"]
+        RUCIO["Rucio<br>(Distributed Data Mgmt)"]
+        GLOB["Globus<br>(Transfer + Automation)"]
+        STAR["Starfish<br>(FS Analytics + Policies)"]
+        RDC["SURF Research Data Connector"]
+        MANGO["Mango / iBridges<br>(iRODS UI Layer)"]
+    end
+
+    %% --- Publication Layer ---
+    subgraph Publication["Publication & Preservation Repositories"]
+        DV["Dataverse / DANS Data Stations"]
+        INV["Invenio / SDR / Zenodo"]
+        FIG["Figshare"]
+        DJE["Djehuty / 4TU.ResearchData"]
+        YODA["Yoda<br>(iRODS-based Repository)"]
+    end
+
+    %% --- User Interactions ---
+    RESEARCHERS -->|"collaborate / annotate"| NC
+    RESEARCHERS -->|"create FAIR metadata"| FDS
+    RESEARCHERS -->|"search / discover"| CKAN
+    ADMINS -->|"configure / manage"| IRODS
+
+    %% --- Data Flow: Active → Storage ---
+    NC -->|"store files"| OBJ
+    NC -->|"store files"| DCACHE
+    NC -->|"store files"| FS
+    MV -->|"attach metadata"| NC
+
+    %% --- Data Flow: Storage → Orchestration ---
+    OBJ -->|"managed by"| IRODS
+    DCACHE -->|"indexed by"| STAR
+    FS -->|"transferred via"| GLOB
+    IRODS -->|"policy-driven workflows"| MANGO
+    IRODS -->|"integrated via"| RDC
+
+    %% --- Data Flow: Orchestration → Publication ---
+    IRODS -->|"curated datasets"| YODA
+    RDC -->|"publish"| DV
+    RDC -->|"publish"| INV
+    RDC -->|"publish"| DJE
+    RDC -->|"publish"| FIG
+
+    %% --- Highlight key nodes ---
+    style DV fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style CKAN fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style IRODS fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style NC fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+    style FDS fill:#d8f3dc,stroke:#1b4332,color:#1b4332
+
+    %% --- Link styles ---
+    linkStyle default labelPosition:0.5, align:top;
+```
+## Decision Tree
+
+```{mermaid}
+%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TD
+
+    %% Root
+    START["What do you need to do?"]
+
+    %% High-level branches
+    START --> A1["Store or collaborate on active research data"]
+    START --> A2["Manage storage, automate workflows, or orchestrate data movement"]
+    START --> A3["Create or manage metadata during research"]
+    START --> A4["Publish, preserve, or share final datasets"]
+    START --> A5["Move very large data between systems"]
+
+    %% --- Branch A1: Active Research Storage ---
+    A1 --> B1["Do you need user-friendly collaboration?"]
+    B1 -->|"Yes"| NC["Nextcloud / ResearchDrive"]
+    B1 -->|"With structured metadata?"| MV["Nextcloud + MetaVox"]
+
+    A1 --> B2["Do you need HPC-scale raw storage?"]
+    B2 -->|"Large files, physics-style"| DCACHE["dCache"]
+    B2 -->|"General object storage"| OBJ["Object Store"]
+
+    %% --- Branch A2: Orchestration ---
+    A2 --> C
+```
