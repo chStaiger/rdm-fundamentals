@@ -16,26 +16,33 @@ book:
             url:  https://github.com/chStaiger/rdm-fundamentals
           - text: Report an issue
             url:  https://github.com/chStaiger/rdm-fundamentals/issues
+
   chapters:
     - index.qmd
     - definitions.qmd
     - data-lifecycle.qmd
+  
     - part: "THE HOLY TRINITY OF RDM"
       chapters:
-      - data-object.qmd
-      - files.qmd
-      - metadata.qmd
-      - pids.qmd
+        - data-object.qmd
+        - files.qmd
+        - metadata.qmd
+        - pids.qmd
+
+    - storage-infrastructure.qmd
+    
     - part: "COMPONENTS OF RDM INFRASTRUCTURE"
       chapters:
-      - rdm-infra-intro.qmd
-      - data-repositories.qmd
-      - metadata-portals.qmd
-      - pid-services.qmd
-      - rdm-platform.qmd
+        - rdm-infra-intro.qmd
+        - data-repositories.qmd
+        - metadata-portals.qmd
+        - pid-services.qmd
+        - rdm-platform.qmd
+  
     - infrastructure-design.qmd
     - summary.qmd
     - references.qmd
+
 
 bibliography: references.bib
 
