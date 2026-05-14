@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Summary – Fundamentals of Research Data Management</title>
+<title>Storage Infrastructure – Fundamentals of Research Data Management</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./infrastructure-design.html" rel="prev">
+<link href="./rdm-infra-intro.html" rel="next">
+<link href="./pids.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -72,6 +72,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="forest">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="css_files/callout.css">
@@ -88,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./storage-infrastructure.html"><span class="chapter-title">Storage Infrastructure</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -178,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./storage-infrastructure.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Storage Infrastructure</span></a>
+  <a href="./storage-infrastructure.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Storage Infrastructure</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -224,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -238,15 +242,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#storage-types-commonly-used-in-rdm" id="toc-storage-types-commonly-used-in-rdm" class="nav-link active" data-scroll-target="#storage-types-commonly-used-in-rdm">Storage Types Commonly Used in RDM</a></li>
+  <li><a href="#why-storage-infrastructure-matters" id="toc-why-storage-infrastructure-matters" class="nav-link" data-scroll-target="#why-storage-infrastructure-matters">Why Storage Infrastructure Matters</a></li>
+  <li><a href="#a-simple-analogy" id="toc-a-simple-analogy" class="nav-link" data-scroll-target="#a-simple-analogy">A Simple Analogy</a></li>
+  <li><a href="#a-diagrammatic-view" id="toc-a-diagrammatic-view" class="nav-link" data-scroll-target="#a-diagrammatic-view">A Diagrammatic View</a></li>
+  <li><a href="#bringing-it-all-together" id="toc-bringing-it-all-together" class="nav-link" data-scroll-target="#bringing-it-all-together">Bringing It All Together</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-title">Storage Infrastructure</span></h1>
 </div>
 
 
@@ -263,9 +277,174 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary, this book has no content whatsoever.</p>
+<p>Now that we have explored the three conceptual pillars of research data management — files, metadata, and persistent identifiers — we can turn to the technical foundation that supports them.</p>
+<p><strong>Storage infrastructure</strong> is the environment in which files physically reside and persist over time. It keeps the underlying bits (bitstream) safe, but it does not create or manage digital objects. That role belongs to repositories and policy engines, which operate above storage and use metadata and PIDs to give files identity, structure, and meaning.</p>
+<p>Storage systems ensure that:</p>
+<ul>
+<li>files remain <strong>intact</strong> (fixity and integrity checking)<br>
+</li>
+<li>files remain <strong>available</strong> (redundancy and replication)<br>
+</li>
+<li>files remain <strong>secure</strong> (access control and encryption)<br>
+</li>
+<li>files remain <strong>usable</strong> (format migration and media refresh)</li>
+</ul>
+<p>Storage is therefore the <strong>technical substrate</strong> of preservation. It keeps the bits safe.<br>
+But it does <strong>not</strong>:</p>
+<ul>
+<li>assign or manage persistent identifiers<br>
+</li>
+<li>maintain metadata<br>
+</li>
+<li>track provenance<br>
+</li>
+<li>enforce access policies<br>
+</li>
+<li>implement preservation workflows</li>
+</ul>
+<p>Those functions belong to <strong>repository software</strong> or other <strong>policy engines</strong>, which sit <em>above</em> storage and configure files into <strong>digital objects</strong>.</p>
+<section id="storage-types-commonly-used-in-rdm" class="level2">
+<h2 class="anchored" data-anchor-id="storage-types-commonly-used-in-rdm">Storage Types Commonly Used in RDM</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 37%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Storage Type</th>
+<th>Characteristics</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Local institutional storage</strong> (NAS/SAN)</td>
+<td>Fast, controlled, campus‑managed</td>
+<td>Active research data, working copies</td>
+</tr>
+<tr class="even">
+<td><strong>Cloud object storage</strong> (S3, Azure Blob)</td>
+<td>Scalable, distributed, API‑driven</td>
+<td>Large datasets, collaborative access</td>
+</tr>
+<tr class="odd">
+<td><strong>Tape archives</strong></td>
+<td>Low cost, long retention, slower access</td>
+<td>Long‑term preservation of files</td>
+</tr>
+<tr class="even">
+<td><strong>Distributed networks</strong> (LOCKSS)</td>
+<td>Multi‑site replication, federation</td>
+<td>High‑resilience preservation of file copies</td>
+</tr>
+</tbody>
+</table>
+<p>Each storage type has different strengths. Most institutions use a <strong>tiered storage model</strong>, combining fast storage for active use with slower, cheaper storage such as <strong>tape</strong> for long‑term retention.</p>
+<p>Across all tiers, the principle remains the same:<br>
+<strong>Storage systems store files. They do not manage digital objects.</strong></p>
+</section>
+<section id="why-storage-infrastructure-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-storage-infrastructure-matters">Why Storage Infrastructure Matters</h2>
+<p>Storage infrastructure underpins the <strong>durability</strong> and <strong>trustworthiness</strong> of research files. It enables:</p>
+<ul>
+<li><strong>fixity checking</strong> — detecting corruption or tampering<br>
+</li>
+<li><strong>redundant copies</strong> — protecting against hardware failure or disasters<br>
+</li>
+<li><strong>scalable capacity</strong> — accommodating growing datasets<br>
+</li>
+<li><strong>secure access</strong> — supporting sensitive or embargoed data<br>
+</li>
+<li><strong>format and media migration</strong> — ensuring files remain usable as technologies evolve</li>
+</ul>
+<p>Without robust storage, even the best‑described digital objects are at risk of loss or degradation.</p>
+<p>But storage alone is not enough.<br>
+To become a <strong>digital object</strong>, a file must be:</p>
+<ul>
+<li>registered in a repository or policy engine<br>
+</li>
+<li>associated with metadata<br>
+</li>
+<li>assigned a persistent identifier<br>
+</li>
+<li>managed through defined workflows</li>
+</ul>
+<p>Storage provides the <strong>where</strong>; repositories provide the <strong>what</strong>, <strong>how</strong>, and <strong>why</strong>.</p>
+</section>
+<section id="a-simple-analogy" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-analogy">A Simple Analogy</h2>
+<ul>
+<li><strong>Files</strong> → the pages of a book<br>
+</li>
+<li><strong>Storage infrastructure</strong> → the shelves, vaults, and climate‑controlled rooms that keep the pages safe<br>
+</li>
+<li><strong>Repository / policy engine</strong> → the library system that catalogues the book, assigns a call number, and manages loans<br>
+</li>
+<li><strong>Metadata and PIDs</strong> → the catalogue record and call number</li>
+</ul>
+<p>Storage protects the content; repositories provide the meaning, identity, and governance.</p>
+</section>
+<section id="a-diagrammatic-view" class="level2">
+<h2 class="anchored" data-anchor-id="a-diagrammatic-view">A Diagrammatic View</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+flowchart TB
+
+    F["Files (bitstreams)"]
+    S1["Active Storage&lt;br/&gt;(fast, local)"]
+    S2["Archive Storage&lt;br/&gt;(tape, cold storage)"]
+    S3["Replicated Storage&lt;br/&gt;(cloud, distributed networks)"]
+
+    R["Repository / Policy Engine&lt;br/&gt;(metadata + PID + workflows)"]
+    DO["Digital Object&lt;br/&gt;(files + metadata + PID)"]
+
+    F --- |"stored on"| S1
+    F --- |"stored on"| S2
+    F --- |"stored on"| S3
+
+    R --- |"manages"| DO
+    DO --- |"contains"| F
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Files reside across multiple storage layers, but only repositories and policy engines turn them into digital objects.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This illustrates the essential separation:</p>
+<ul>
+<li><strong>Storage layers hold files.</strong><br>
+</li>
+<li><strong>Repositories configure files into digital objects.</strong></li>
+</ul>
+</section>
+<section id="bringing-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="bringing-it-all-together">Bringing It All Together</h2>
+<ul>
+<li><strong>Storage systems manage files</strong>, ensuring durability, integrity, and security.<br>
+</li>
+<li><strong>Repositories and policy engines manage digital objects</strong>, providing metadata, identifiers, workflows, and lifecycle governance.<br>
+</li>
+<li>Storage ensures the persistence of bits; repositories ensure the persistence of meaning.</li>
+</ul>
+<p>This separation of responsibilities is fundamental to modern research data management.</p>
+<p>In the chapter <a href="./data-repositories.html">Data Repositories and Policy Engines</a>, we explore how repositories build on top of storage systems to provide the metadata, identifiers, and workflows that digital objects require.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -670,13 +849,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./infrastructure-design.html" class="pagination-link" aria-label="RDM Infrastructure Design">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">RDM Infrastructure Design</span></span>
+      <a href="./pids.html" class="pagination-link" aria-label="Persistent Identifiers">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Persistent Identifiers</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rdm-infra-intro.html" class="pagination-link" aria-label="RDM Infrastructure Introduction and Overview">
+        <span class="nav-page-text"><span class="chapter-title">RDM Infrastructure Introduction and Overview</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

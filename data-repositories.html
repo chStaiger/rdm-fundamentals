@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Repositories – Fundamentals of Research Data Management</title>
+<title>Data Repositories and Policy Engines – Fundamentals of Research Data Management</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-47679cf340da44a7fbb5995c6dc11aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-65e0ae26c9437c5648622ecaec7cfb22.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +72,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="forest">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="css_files/callout.css">
@@ -88,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdm-infra-intro.html">COMPONENTS OF RDM INFRASTRUCTURE</a></li><li class="breadcrumb-item"><a href="./data-repositories.html"><span class="chapter-title">Data Repositories</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdm-infra-intro.html">COMPONENTS OF RDM INFRASTRUCTURE</a></li><li class="breadcrumb-item"><a href="./data-repositories.html"><span class="chapter-title">Data Repositories and Policy Engines</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -176,6 +180,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./storage-infrastructure.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Storage Infrastructure</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
@@ -192,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-repositories.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Repositories</span></a>
+  <a href="./data-repositories.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Repositories and Policy Engines</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -233,15 +242,42 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-repositories" id="toc-data-repositories" class="nav-link active" data-scroll-target="#data-repositories">Data Repositories</a></li>
+  <li><a href="#dataverse" id="toc-dataverse" class="nav-link" data-scroll-target="#dataverse">Dataverse</a>
+  <ul class="collapse">
+  <li><a href="#how-dataverse-supports-the-publication-workflow" id="toc-how-dataverse-supports-the-publication-workflow" class="nav-link" data-scroll-target="#how-dataverse-supports-the-publication-workflow">How Dataverse supports the publication workflow</a></li>
+  </ul></li>
+  <li><a href="#figshare" id="toc-figshare" class="nav-link" data-scroll-target="#figshare">Figshare</a>
+  <ul class="collapse">
+  <li><a href="#how-figshare-supports-the-publication-workflow" id="toc-how-figshare-supports-the-publication-workflow" class="nav-link" data-scroll-target="#how-figshare-supports-the-publication-workflow">How Figshare supports the publication workflow</a></li>
+  </ul></li>
+  <li><a href="#invenio-zenodo" id="toc-invenio-zenodo" class="nav-link" data-scroll-target="#invenio-zenodo">Invenio / Zenodo</a>
+  <ul class="collapse">
+  <li><a href="#how-invenio-supports-publication-workflows" id="toc-how-invenio-supports-publication-workflows" class="nav-link" data-scroll-target="#how-invenio-supports-publication-workflows">How Invenio supports publication workflows</a></li>
+  <li><a href="#how-zenodo-supports-publication-workflows" id="toc-how-zenodo-supports-publication-workflows" class="nav-link" data-scroll-target="#how-zenodo-supports-publication-workflows">How Zenodo supports publication workflows</a></li>
+  </ul></li>
+  <li><a href="#policy-engines" id="toc-policy-engines" class="nav-link" data-scroll-target="#policy-engines">Policy Engines</a>
+  <ul class="collapse">
+  <li><a href="#irods" id="toc-irods" class="nav-link" data-scroll-target="#irods"><strong>iRODS</strong></a></li>
+  <li><a href="#rucio" id="toc-rucio" class="nav-link" data-scroll-target="#rucio"><strong>Rucio</strong></a></li>
+  <li><a href="#globus" id="toc-globus" class="nav-link" data-scroll-target="#globus"><strong>Globus</strong></a></li>
+  </ul></li>
+  <li><a href="#comparison-with-synchronisation-tools" id="toc-comparison-with-synchronisation-tools" class="nav-link" data-scroll-target="#comparison-with-synchronisation-tools"><strong>Comparison with Synchronisation Tools</strong></a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><strong>Summary</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdm-infra-intro.html">COMPONENTS OF RDM INFRASTRUCTURE</a></li><li class="breadcrumb-item"><a href="./data-repositories.html"><span class="chapter-title">Data Repositories</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdm-infra-intro.html">COMPONENTS OF RDM INFRASTRUCTURE</a></li><li class="breadcrumb-item"><a href="./data-repositories.html"><span class="chapter-title">Data Repositories and Policy Engines</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Data Repositories</span></h1>
+<h1 class="title"><span class="chapter-title">Data Repositories and Policy Engines</span></h1>
 </div>
 
 
@@ -258,8 +294,262 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In the chapter on <a href="./files.html">Files and Storage Infrastructure</a>, we saw that storage alone is not enough to manage research data. Storage systems keep <strong>files</strong> safe, but they do not coordinate:</p>
+<ul>
+<li>the <strong>files</strong> themselves<br>
+</li>
+<li>their <strong>replicas</strong> across different storage systems<br>
+</li>
+<li>their <strong>metadata</strong><br>
+</li>
+<li>their <strong>persistent identifiers</strong></li>
+</ul>
+<p>This coordination is needed <strong>throughout the entire data lifecycle</strong>, not only in the archived or published stages. In fact, the <strong>volatile stages</strong> <em>Process</em> and <em>Analyse</em> are where researchers generate, transform, and stabilise files, yet these stages often lack infrastructure capable of treating files as emerging <strong>digital objects</strong>.</p>
+<p>To support digital objects across their full lifecycle, we need systems that operate <em>above</em> storage. These systems fall into two broad categories:</p>
+<ul>
+<li><strong>Data repositories</strong>, which manage publication workflows and curate data for dissemination<br>
+</li>
+<li><strong>systems that we refer to in this book as Policy engines</strong>, which coordinate files, metadata, and storage across distributed infrastructures, including during active research</li>
+</ul>
+<section id="data-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="data-repositories">Data Repositories</h2>
+<p>Data repositories are designed to support the <strong>publication</strong> and <strong>archival packaging</strong> of research data. Their primary role is to take stabilised files and turn them into <strong>publishable digital objects</strong> with metadata, identifiers, and access controls.</p>
+<p>Although repositories are best known for their role in publication, they also provide structure and governance that can support earlier lifecycle stages, especially when stabilised files begin to take shape as digital objects.</p>
+<p>Repositories typically provide:</p>
+<ul>
+<li><strong>Publication workflows</strong> — draft → review → published<br>
+</li>
+<li><strong>Defined roles</strong> — depositors, curators, administrators<br>
+</li>
+<li><strong>Access rights aligned with publication</strong> — collaboration, embargo, controlled access<br>
+</li>
+<li><strong>Archival packaging</strong> — dataset bundles, BagIt, collection‑level metadata<br>
+</li>
+<li><strong>Limited storage coordination</strong> — usually a single backend, no replication or policy‑driven placement</li>
+</ul>
+<p>Repositories excel at <strong>curation, metadata, identifiers, and publication</strong>, but they are not designed to orchestrate large‑scale or volatile data.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">%%{init: {
+  "look": "handDrawn",
+  "flowchart": { "htmlLabels": false }
+}}%%
+
+flowchart TB
+
+    subgraph R["Data Repository Workflow"]
+    
+        A["Deposit&lt;br/&gt;(Upload files + enter metadata)"]
+        B["Curation / Review&lt;br/&gt;(Metadata checks, structure, policy compliance)"]
+        C["Approval&lt;br/&gt;(Embargo, access rights, final validation)"]
+        D["Publication&lt;br/&gt;(Assign PID, freeze version, create landing page)"]
+        E["Post‑Publication&lt;br/&gt;(Versioning, access requests, metadata updates)"]
+        
+    end
+
+    A --&gt; B --&gt; C --&gt; D --&gt; E
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Files reside across multiple storage layers, but only repositories and policy engines turn them into digital objects.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A data repository provides a structured environment where researchers can turn files into publishable digital objects. The process begins with a deposit, where files and metadata are assembled. During curation, repository staff or automated checks ensure that metadata is complete, formats are appropriate, and the dataset meets institutional or disciplinary standards.</p>
+<p>Once approved, the repository assigns a persistent identifier, freezes the version, and generates a landing page that exposes metadata for discovery. After publication, the dataset enters a stable but updatable state, where new versions can be created and access can be managed.</p>
+<p>This workflow is the core function of a repository: it transforms files into citable, discoverable, governed digital objects.</p>
+</section>
+<section id="dataverse" class="level2">
+<h2 class="anchored" data-anchor-id="dataverse">Dataverse</h2>
+<p>Dataverse is a repository platform designed around the idea of a <strong>structured dataset</strong>. A dataset in Dataverse is not just a bag of files — it is a curated digital object with:</p>
+<ul>
+<li>a metadata record based on rich disciplinary templates,<br>
+</li>
+<li>versioning that tracks changes across drafts and releases,<br>
+</li>
+<li>a clear publication workflow, and<br>
+</li>
+<li>a stable persistent identifier (usually a DOI).</li>
+</ul>
+<section id="how-dataverse-supports-the-publication-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="how-dataverse-supports-the-publication-workflow">How Dataverse supports the publication workflow</h3>
+<p>Dataverse implements a <strong>draft → review → publish</strong> model:</p>
+<ul>
+<li>Researchers upload files and fill in metadata while the dataset is in <strong>draft</strong>.<br>
+</li>
+<li>Curators can review, request changes, or enhance metadata.<br>
+</li>
+<li>Once approved, the dataset is <strong>published</strong>, assigned a DOI, and becomes immutable.<br>
+</li>
+<li>Any later changes create a <strong>new version</strong>, preserving the scholarly record.</li>
+</ul>
+<p>Dataverse also supports:</p>
+<ul>
+<li><strong>embargoes</strong>,<br>
+</li>
+<li><strong>restricted files</strong> with request workflows,<br>
+</li>
+<li><strong>file‑level metadata</strong>,<br>
+</li>
+<li><strong>tabular data ingest</strong> (extracting variables, labels, and formats),<br>
+</li>
+<li>and <strong>dataset‑level citations</strong>.</li>
+</ul>
+<p>It is particularly strong for institutions that want a <strong>curation‑centric</strong> repository with well‑defined roles and governance.</p>
+<hr>
+</section>
+</section>
+<section id="figshare" class="level2">
+<h2 class="anchored" data-anchor-id="figshare">Figshare</h2>
+<p>Figshare is a publication‑oriented platform focused on <strong>ease of deposit</strong>, <strong>visual presentation</strong>, and <strong>broad dissemination</strong>. It is widely used by universities and publishers because it lowers the barrier for researchers to publish research outputs quickly.</p>
+<section id="how-figshare-supports-the-publication-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="how-figshare-supports-the-publication-workflow">How Figshare supports the publication workflow</h3>
+<p>Figshare emphasises a <strong>lightweight, researcher‑friendly workflow</strong>:</p>
+<ul>
+<li>Researchers drag‑and‑drop files into a private workspace.<br>
+</li>
+<li>They add minimal metadata (title, authors, categories).<br>
+</li>
+<li>They can keep items private, share them with collaborators, or mark them as <strong>ready for review</strong>.<br>
+</li>
+<li>When published, Figshare assigns a DOI and generates a <strong>clean, human‑readable landing page</strong>.</li>
+</ul>
+<p>Figshare’s strengths include:</p>
+<ul>
+<li><strong>support for many output types</strong> (datasets, posters, images, code, videos),<br>
+</li>
+<li><strong>institutional branding</strong> for university repositories,<br>
+</li>
+<li><strong>metrics dashboards</strong> (views, downloads, citations),<br>
+</li>
+<li><strong>embargoes and controlled access</strong>,<br>
+</li>
+<li><strong>integration with ORCID</strong>,<br>
+</li>
+<li>and a strong focus on <strong>public visibility</strong>.</li>
+</ul>
+<p>Figshare is ideal when the goal is to make research outputs <strong>easy to publish and easy to find</strong>, with minimal friction.</p>
+<hr>
+</section>
+</section>
+<section id="invenio-zenodo" class="level2">
+<h2 class="anchored" data-anchor-id="invenio-zenodo">Invenio / Zenodo</h2>
+<p><strong>Invenio</strong> is a modular repository framework developed by CERN and partners.<br>
+<strong>Zenodo</strong> is a public repository service built on Invenio, offering free, long‑term hosting for research outputs.</p>
+<section id="how-invenio-supports-publication-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="how-invenio-supports-publication-workflows">How Invenio supports publication workflows</h3>
+<p>Invenio provides the building blocks for:</p>
+<ul>
+<li>deposit forms,<br>
+</li>
+<li>metadata schemas,<br>
+</li>
+<li>review and curation workflows,<br>
+</li>
+<li>DOI registration,<br>
+</li>
+<li>access control,<br>
+</li>
+<li>and landing pages.</li>
+</ul>
+<p>Institutions can configure their own workflows, metadata models, and policies. Invenio is highly extensible and is often used to build <strong>disciplinary repositories</strong> or <strong>institutional repositories</strong> with custom requirements.</p>
+</section>
+<section id="how-zenodo-supports-publication-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="how-zenodo-supports-publication-workflows">How Zenodo supports publication workflows</h3>
+<p>Zenodo implements a <strong>simple but robust publication workflow</strong>:</p>
+<ul>
+<li>Researchers upload files and fill in metadata.<br>
+</li>
+<li>Zenodo automatically assigns a DOI upon publication.<br>
+</li>
+<li>Each upload receives a <strong>concept DOI</strong> (for the whole project) and <strong>version DOIs</strong> (for each release).<br>
+</li>
+<li>Zenodo integrates tightly with GitHub: tagging a release can automatically archive it in Zenodo with a DOI.</li>
+</ul>
+<p>Zenodo is widely used because it:</p>
+<ul>
+<li>supports <strong>any file type</strong>,<br>
+</li>
+<li>provides <strong>long‑term preservation</strong>,<br>
+</li>
+<li>offers <strong>free hosting</strong>,<br>
+</li>
+<li>and is trusted by the global research community.</li>
+</ul>
+<p>It is especially strong for <strong>software</strong>, <strong>code releases</strong>, and <strong>small to medium‑sized datasets</strong>.</p>
+</section>
+</section>
+<section id="policy-engines" class="level2">
+<h2 class="anchored" data-anchor-id="policy-engines">Policy Engines</h2>
+<p>Policy engines operate at a different layer. They coordinate <strong>files, metadata, and storage systems</strong> across distributed infrastructures.</p>
+<p>Policy engines are particularly valuable in the <strong>volatile stages</strong>, where files are created, transformed, and moved across systems. They provide the coordination layer that storage systems lack, helping researchers manage files, metadata, and workflows long before publication is considered.</p>
+<p>Policy engines provide:</p>
+<ul>
+<li><strong>Coordination of multiple storage systems</strong> — replication, tiering, geographic distribution<br>
+</li>
+<li><strong>Metadata catalogues linked to files</strong> — checksums, replicas, provenance<br>
+</li>
+<li><strong>Flexible workflow or policy engines</strong> — rules for placement, retention, triggers<br>
+</li>
+<li><strong>Integration with compute environments</strong> — HPC, grid, cloud workflows</li>
+</ul>
+<p>They are ideal for <strong>large‑scale, distributed, policy‑driven data management</strong>, not just for long‑term preservation.</p>
+<section id="irods" class="level3">
+<h3 class="anchored" data-anchor-id="irods"><strong>iRODS</strong></h3>
+<p>A rule‑based data management system with a metadata catalog and storage abstraction layer.</p>
+</section>
+<section id="rucio" class="level3">
+<h3 class="anchored" data-anchor-id="rucio"><strong>Rucio</strong></h3>
+<p>A distributed data management system developed at CERN, designed for petabyte‑scale replication and policy‑driven workflows.</p>
+</section>
+<section id="globus" class="level3">
+<h3 class="anchored" data-anchor-id="globus"><strong>Globus</strong></h3>
+<p>A platform for secure file transfer, identity management, and automation across distributed storage and compute systems.</p>
+<hr>
+</section>
+</section>
+<section id="comparison-with-synchronisation-tools" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-with-synchronisation-tools"><strong>Comparison with Synchronisation Tools</strong></h2>
+<p>Synchronisation services — such as OneDrive, Dropbox, Google Drive, or <strong>Nextcloud‑based platforms like SURFdrive</strong> — are often used during active research because they replicate files across devices and support collaboration. However, they are fundamentally different from both repositories and policy engines.</p>
+<p>Sync tools:</p>
+<ul>
+<li>replicate files for convenience<br>
+</li>
+<li>do not provide fixity guarantees<br>
+</li>
+<li>do not implement workflows<br>
+</li>
+<li>do not coordinate multiple storage systems<br>
+</li>
+<li>do not integrate with metadata or PID services<br>
+</li>
+<li>are not designed for large files or multi‑terabyte datasets<br>
+</li>
+<li>do not manage the three components of a digital object (files + metadata + PID)</li>
+</ul>
+<p>They are useful for <strong>volatile working data</strong>, but they do not provide the RDM layer needed to support emerging digital objects in the early lifecycle stages.</p>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary"><strong>Summary</strong></h2>
+<ul>
+<li><strong>Data repositories</strong> support publication, metadata curation, DOIs, and archival packaging.<br>
+</li>
+<li><strong>Policy engines</strong> coordinate files, metadata, and storage across distributed infrastructures, including during active research.<br>
+</li>
+<li><strong>Synchronisation tools</strong> support convenience and collaboration, but do not provide preservation, metadata integration, or PID‑driven workflows.</li>
+</ul>
+<p>Together, repositories and policy engines form the backbone of modern research data management — each addressing different gaps across the <strong>entire</strong> data lifecycle, not only at the end.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
