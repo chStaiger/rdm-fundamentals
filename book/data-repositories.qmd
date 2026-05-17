@@ -50,10 +50,9 @@ flowchart TB
     A --> B --> C --> D --> E
 ```
 
-A repository transforms a bundle of files into a **citable, discoverable, governed digital object**.
+This workflow is implemented differently across repository platforms, but the underlying logic is the same: stabilised files are transformed into a governed dataset with metadata, identifiers, and access controls. The following platforms illustrate how these principles appear in real systems.
 
 ## Repository Platforms
-The following platforms illustrate how these repository principles are implemented in practice.
 
 ### Dataverse
 
@@ -122,6 +121,12 @@ Data repositories do more than curate and publish datasets—they also support t
 
 The most widely used frameworks in this space include **BagIt**, **OAIS**, **PREMIS**, **METS**, and **RO‑Crate**.  
 Each addresses a different part of the preservation problem.
+
+- BagIt — a packaging format for file transfer and fixity
+- OAIS — a conceptual model for long‑term preservation
+- PREMIS — a metadata standard for preservation events and provenance
+- METS — an XML framework for structuring digital objects
+- RO‑Crate — a JSON‑LD format for research objects and workflows
 
 ### BagIt: Packaging Files for Transfer and Fixity
 
@@ -344,21 +349,24 @@ RO‑Crate is designed for:
 
 It complements, rather than replaces, traditional archival formats like BagIt.
 
-
 ## How These Standards Fit Together
 
 These standards address different layers of preservation:
 
-- **BagIt** — packages files and ensures fixity  
-- **OAIS** — defines the conceptual preservation lifecycle  
-- **PREMIS** — records preservation events and provenance  
-- **METS** — structures complex digital objects and links metadata  
-- **RO‑Crate** — packages research objects with rich, machine‑actionable metadata  
+| Standard | Purpose | Typical Use |
+| --- | --- | --- |
+| BagIt | Package + fixity | Transfer, export, AIP packaging |
+| OAIS | Conceptual model | Preservation planning, repository design |
+| PREMIS | Preservation metadata | Fixity checks, migrations, provenance |
+| METS | Structural metadata | AIP structure, digital libraries |
+| RO‑Crate | Research object packaging | Workflows, software, FAIR pipelines |
+
+Most repositories do not expose these standards directly to end‑users. Instead, they use them internally for archival export, preservation workflows, or integration with institutional archives.
 
 Repositories may use one or several of these standards depending on their role:
 
 - **Publication‑oriented repositories** often use BagIt for export and basic fixity.  
 - **Preservation‑oriented repositories** may combine BagIt + METS + PREMIS.  
-- **Workflow‑oriented systems** and **policy engines** increasingly adopt RO‑Crate for computational provenance.
+- **Workflow‑oriented systems** increasingly adopt RO‑Crate for computational provenance.
 
 Together, these standards form the **technical backbone** that allows repositories to preserve digital objects reliably and integrate with institutional or national preservation infrastructures.
