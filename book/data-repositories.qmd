@@ -239,6 +239,26 @@ METS is commonly used in:
 
 Repositories may use METS internally or for archival export.
 
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: How METS and PREMIS Fit into OAIS SIP / AIP / DIP.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+
+flowchart LR
+    SIP["Submission Information Package (SIP)"] -->|Ingest| AIP["Archival Information Package (AIP)"]
+    AIP -->|Access| DIP["Dissemination Information Package (DIP)"]
+
+    subgraph AIP_Contents["Inside the AIP"]
+        METS["METS<br/>Structural Map + File Inventory"]
+        PREMIS["PREMIS<br/>Preservation Metadata<br/>(Events, Agents, Rights)"]
+    end
+
+    AIP --> AIP_Contents
+
+```
+
 ### RO‑Crate: Lightweight, Web‑Native Research Object Packaging
 
 **RO‑Crate** is a modern, web‑native packaging format designed for **research objects**, especially those involving workflows, software, and computational provenance.
@@ -249,6 +269,72 @@ An RO‑Crate consists of:
 - a **JSON‑LD metadata file** describing all files and their relationships  
 - optional workflow, provenance, or software metadata  
 
+Below we illustrate an example:
+
+```
+my-crate/
+├── ro-crate-metadata.json
+├── ro-crate-preview.html
+├── results.csv
+├── readme.txt
+├── input-data.json
+└── workflow.cwl
+```
+
+The file `ro-crate-metadata.json` is a JSON-LD file, a file which uses linked data to describe the relationship between the files in the package:
+
+```{xml}
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Example Dataset with Workflow",
+      "description": "A dataset demonstrating RO-Crate with workflow and input/output relationships.",
+      "hasPart": [
+        { "@id": "results.csv" },
+        { "@id": "readme.txt" },
+        { "@id": "input-data.json" },
+        { "@id": "workflow.cwl" }
+      ]
+    },
+
+    {
+      "@id": "results.csv",
+      "@type": "File",
+      "encodingFormat": "text/csv",
+      "name": "Analysis Results",
+      "wasGeneratedBy": { "@id": "workflow.cwl" }
+    },
+
+    {
+      "@id": "input-data.json",
+      "@type": "File",
+      "encodingFormat": "application/json",
+      "name": "Input Data for Workflow",
+      "usedByWorkflow": { "@id": "workflow.cwl" }
+    },
+
+    {
+      "@id": "workflow.cwl",
+      "@type": "SoftwareSourceCode",
+      "name": "Analysis Workflow",
+      "programmingLanguage": "CWL",
+      "url": "workflow.cwl",
+      "input": { "@id": "input-data.json" },
+      "output": { "@id": "results.csv" }
+    },
+
+    {
+      "@id": "readme.txt",
+      "@type": "File",
+      "encodingFormat": "text/plain"
+    }
+  ]
+}
+```
+
 RO‑Crate is designed for:
 
 - FAIR workflows  
@@ -258,7 +344,6 @@ RO‑Crate is designed for:
 
 It complements, rather than replaces, traditional archival formats like BagIt.
 
----
 
 ## How These Standards Fit Together
 
