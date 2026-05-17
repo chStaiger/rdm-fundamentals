@@ -1,0 +1,333 @@
+
+## Policy Engines
+
+Policy engines operate at a different layer of the RDM ecosystem. They coordinate **files, metadata, and storage systems** across distributed infrastructures and do so during the **active, volatile stages** of research.
+
+Where repositories focus on publication, policy engines focus on **orchestration**:
+
+- coordinating multiple storage systems  
+- attaching and querying metadata  
+- enforcing rules for placement, replication, and retention  
+- integrating with compute environments  
+- supporting workflows that generate and transform data  
+
+Policy engines treat files as **emerging digital objects**, long before they are ready for publication.
+
+---
+
+### Policy Engine Architecture
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: Policy engines coordinate storage, enabling metadata‑driven automation and consistent digital‑object management across distributed systems.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+%%| label: fig-2
+%%| fig-cap: The user interacts with the policy engine, which executes both user commands and automated policies while coordinating all access to storage.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+
+flowchart TB
+
+    User["User<br/>(commands, queries)"]
+
+    subgraph P["Policy Engine"]
+        Rules["Policy Rules<br/>(placement, replication, retention)"]
+        Catalog["Metadata Catalog<br/>(checksums, replicas, provenance)"]
+        Orchestration["Data Orchestration<br/>(movement, triggers, automation)"]
+    end
+
+    subgraph S["Storage Systems"]
+        POSIX["POSIX File Systems"]
+        Object["Object Stores"]
+        Tape["Tape / Cold Storage"]
+        CloudStore["Cloud Storage"]
+    end
+
+    %% User interacts with Policy Engine
+    User --> P
+
+    %% Policy Engine interacts with storage
+    P --> POSIX
+    P --> Object
+    P --> Tape
+    P --> CloudStore
+```
+
+The policy engine is the central point of interaction. Users issue commands—such as uploading files, querying metadata, or initiating workflows—to the policy engine, not to storage systems directly. The policy engine then applies relevant policies (for replication, placement, retention, lineage, etc.) and carries out the requested action. All communication with underlying storage systems happens through the policy engine, ensuring that digital objects remain consistently governed, discoverable, and traceable across the entire infrastructure.
+
+## Policy Engine Platforms
+
+### iRODS
+
+iRODS provides:
+
+- a rule engine  
+- a metadata catalog  
+- a storage abstraction layer  
+- integration with HPC and cloud environments  
+
+It can unify heterogeneous storage, attach metadata to files, trigger workflows, and enforce policies for user access, metadata handling, file replication, and retention.
+
+---
+
+### Rucio
+
+Rucio, developed at CERN, manages petabyte‑ to exabyte‑scale data across many sites. It supports:
+
+- geographic replication  
+- storage tiering  
+- quota‑based placement  
+- automated cleanup  
+- provenance tracking  
+
+Its declarative policy model makes it ideal for large scientific collaborations.
+
+### Globus
+
+Globus provides:
+
+- secure, high‑performance data movement  
+- federated identity  
+- automation flows  
+- integration with notebooks, portals, and workflow engines  
+
+It excels at **reliable, policy‑driven transfers** across distributed systems.
+
+### Starfish
+
+Starfish focuses on **visibility and governance** across large‑scale storage environments. It provides:
+
+- file system analytics  
+- metadata harvesting  
+- policy‑driven actions (tiering, archiving, cleanup)  
+- dashboards for administrators  
+
+It complements workflow‑oriented systems by focusing on **insight‑driven policy enforcement**.
+
+## Example Policies
+
+The following examples illustrate how policy engines operate on **digital objects** by coordinating files, metadata, identifiers, and storage systems during active research.
+
+---
+
+### File Replication
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: A user uploads a file to the policy engine. A replication policy is triggered, causing the policy engine to write the file to multiple storage systems and track both copies in the metadata catalog.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+
+flowchart TB
+
+    User["User"]
+
+    subgraph PE["Policy Engine"]
+        Upload["Receive File"]
+        Policy["Replication Policy<br/>(e.g., 2 replicas)"]
+        Catalog["Metadata Catalog<br/>(checksums, replica state)"]
+    end
+
+    subgraph Storage["Storage Systems"]
+        A["Storage A"]
+        B["Storage B"]
+    end
+
+    %% User uploads file to Policy Engine
+    User -- "upload file" --> Upload
+
+    %% Policy triggers replication
+    Upload -- "replication policy triggers" --> Policy
+
+    %% Policy Engine writes primary and replica
+    Policy --"store file"--> A
+
+    %% Optional visual cue for replication relationship
+    Policy --"store file"--> B
+```
+
+A user uploads a file to the **policy engine**, which applies a replication policy requiring multiple copies. The policy engine writes the primary copy to one storage system and automatically creates a replica on another. Both copies are registered in the metadata catalog, allowing the system to track checksums, replica state, and digital‑object identity. This approach ties replication directly to metadata and governance, enabling richer automation and provenance tracking than storage‑level replication alone.
+
+### File Movement to Cold Storage
+
+```{mermaid}
+%%| label: fig-4
+%%| fig-cap: The policy engine monitors file metadata. When a data‑aging policy triggers, the policy engine moves aged data from online storage to cold storage while preserving its logical path.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+
+flowchart TB
+
+    subgraph PE["Policy Engine"]
+        Monitor["Monitor Metadata<br/>(timestamps, access times)"]
+        AgePolicy["Data‑Aging Policy<br/>(move after X days)"]
+        Catalog["Metadata Catalog<br/>(location, timestamps)"]
+    end
+
+    subgraph Storage["Storage Systems"]
+        Hot["Online Storage"]
+        Cold["Cold Storage"]
+    end
+
+    %% Policy Engine monitors metadata
+    Monitor --> Catalog
+
+    %% Aging policy triggers automatically
+    Catalog -- "aging policy triggers" --> AgePolicy
+
+    %% Policy Engine moves data
+    AgePolicy --"send trigger to migrate"--> Storage
+
+    %% Visual cue for migration
+    Hot -. "migrate aged data" .-> Cold
+```
+
+The policy engine continuously monitors file metadata, such as access times and modification timestamps. When a file exceeds the threshold defined by the data‑aging policy, the policy is automatically triggered. The policy engine then moves the file from online storage to a cold‑storage tier and updates the metadata catalog accordingly. This ensures that tiering and long‑term retention are governed consistently as part of the digital‑object lifecycle, without requiring any user action.
+
+---
+
+### Digital‑Object Promotion on Ingest
+
+```{mermaid}
+%%| label: fig-6
+%%| fig-cap: When a user uploads a file, iRODS applies an ingest policy that computes fixity, attaches metadata, assigns an identifier, and registers the digital object.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+flowchart TB
+
+    User["User<br/>(uploads file via iRODS)"]
+
+    subgraph PE["iRODS Policy Engine"]
+        Fixity["Fixity Check<br/>(compute checksum)"]
+        Meta["Metadata Extraction<br/>(provenance, tags, timestamps)"]
+        PID["Identifier Assignment<br/>(PID or local ID)"]
+        Register["Register Digital Object<br/>(catalog entry)"]
+    end
+
+    subgraph Storage["Storage Systems"]
+        Store["Storage Backend<br/>(POSIX/Object/Tape)"]
+    end
+
+    User --> Store
+    Store --> Fixity
+    Fixity --> Meta
+    Meta --> PID
+    PID --> Register
+```
+
+This policy ensures that every file entering the system becomes a **first‑class digital object** with identity, metadata, and fixity—ready for downstream processing and lineage tracking.
+
+---
+
+### Auto‑Link Derived Data
+
+```{mermaid}
+%%| label: fig-7
+%%| fig-cap: When a workflow produces a new file, iRODS detects the parent digital object(s), creates a new digital object for the output, assigns an identifier, and records a provenance link.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+flowchart TB
+
+    subgraph Compute["Compute Environment"]
+        WF["Workflow<br/>(produces new file)"]
+    end
+
+    subgraph PE["iRODS Policy Engine"]
+        Detect["Detect Parent Object(s)<br/>(input metadata)"]
+        NewObj["Create New Digital Object<br/>(output file)"]
+        Link["Add Provenance Link<br/>(created from)"]
+        Prop["Propagate Metadata<br/>(project, licence, context)"]
+        ID["Assign Identifier<br/>(PID or local ID)"]
+        Register["Register in Catalog<br/>(lineage graph)"]
+    end
+
+    subgraph Storage["Storage Systems"]
+        Input["Input Object Storage"]
+        Output["Output Object Storage"]
+    end
+
+    Input --> Detect
+    WF --> NewObj
+    Detect --> Link
+    NewObj --> Prop
+    Prop --> ID
+    ID --> Register
+    Register --> Output
+```
+
+This policy automatically builds a **machine‑readable lineage graph**, allowing researchers to trace how data was produced and transformed.
+
+---
+
+## Metadata‑Driven Access to Digital Objects
+
+```{mermaid}
+%%| label: fig-5
+%%| fig-cap: Users or workflows query iRODS metadata to identify files that require processing. iRODS resolves location and provides access without exposing underlying storage.
+%%| fig-align: center
+%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+flowchart TB
+
+    subgraph Storage["Storage Systems"]
+        S1["Storage Backend 1"]
+        S2["Storage Backend 2"]
+    end
+
+    subgraph PE["iRODS Policy Engine"]
+        Catalog["Metadata Catalog<br/>(provenance, tags, arrival time)"]
+        Access["Data Access<br/>(stream or stage)"]
+    end
+
+    subgraph Compute["Compute Environment"]
+        User["User / Workflow<br/>(queries iRODS)"]
+        Stream["Workflow A<br/>(stream file content)"]
+        Copy["Workflow B<br/>(stage working copy)"]
+    end
+
+    S1 --> Catalog
+    S2 --> Catalog
+
+    User -- "User Query<br/>(find newly arrived data by metadata)" --> Catalog
+
+    Catalog --> Access
+    Access --> S1
+    Access --> S2
+
+    Access --> Stream
+    Access --> Copy
+```
+
+This is not a policy but a **capability unlocked by representing files as digital objects**.  
+Users and workflows can discover and access data through metadata queries rather than navigating fragmented storage systems.
+
+---
+
+## Comparison with Synchronisation Tools
+
+While policy engines operate directly on emerging **digital objects**, synchronisation tools serve a different purpose. Services such as OneDrive, Dropbox, Google Drive, or Nextcloud‑based platforms like SURFdrive replicate files across devices for convenience, but they do not manage:
+
+- metadata  
+- identifiers  
+- provenance  
+- lineage  
+- policy‑driven placement  
+- multi‑site coordination  
+
+Sync tools solve **convenience and collaboration** problems.  
+Policy engines solve **digital‑object lifecycle** problems.
+
+
+Here is a **short, clear summary** that still captures the essence of the chapter:
+
+---
+
+## Summary
+
+Storage systems keep files safe, but they cannot manage **metadata**, **replicas**, **identifiers**, or the **volatile stages** where research data is created and transformed. To manage data as **digital objects**, two complementary systems are needed.
+
+**Data repositories** (Dataverse, Figshare, Invenio/Zenodo) curate and publish **stabilised datasets**. They provide structured workflows, metadata templates, DOIs, and governance, but they operate mainly at the **dataset level** and are not designed for active, changing data.
+
+**Policy engines** (iRODS, Rucio, Globus, Starfish) coordinate **files, metadata, and storage** during active research. They support replication, tiering, ingest rules, lineage tracking, and metadata‑driven automation across distributed systems. They treat files as **emerging digital objects** long before publication.
+
+Unlike synchronisation tools, which simply replicate files for convenience, policy engines manage the **full digital‑object lifecycle**.

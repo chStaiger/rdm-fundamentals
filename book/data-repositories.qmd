@@ -1,56 +1,32 @@
-# Data Repositories and Policy Engines
-
-In the chapter on *Files and Storage Infrastructure*, we saw that storage systems alone are not enough to manage research data. Storage keeps **files** safe, but it does not coordinate:
-
-- the **files** themselves  
-- their **replicas** across different storage systems  
-- their **metadata**  
-- their **persistent identifiers**  
-
-This coordination is needed **throughout the entire data lifecycle**, not only in the archived or published stages. In fact, the **volatile stages**, i.e. *Process* and *Analyse*, are where researchers generate, transform, and stabilise files, yet these stages often lack infrastructure capable of treating files as emerging **digital objects**.
-
-To support digital objects across their full lifecycle, we need systems that operate *above* storage. In this chapter, we distinguish between two such systems:
-
-- **Data repositories**, which manage publication workflows and curate data for dissemination  
-- **Policy engines**, which coordinate files, metadata, and storage across distributed infrastructures, including during active research  
-
-Both are essential, but they serve very different purposes.
-
-::: {.callout-tip title="How the Meaning of *Data Repository* Has Shifted Over Time"}
-
-Historically, the term **data repository** referred to systems that *actively managed digital objects* using policies for storage, metadata, persistent identifiers and access. Early repository designs assumed that digital objects were created, governed, and preserved **inside** the repository itself.
-
-Over time, the meaning has shifted.  
-In contemporary research infrastructures, *data repository* usually refers to platforms that manage **digital objects in their archived or published state**, after files have stabilised and are ready for curation, dissemination, and long‑term preservation.
-
-There is currently no established term for software platforms that manage digital objects during the active, volatile stages of research. These systems sit above storage, coordinate files and metadata, and apply rules long before data reaches a repository.
-
-To describe this class of platforms clearly and consistently, this book adopts the term *policy engines* for software and platforms which manage digital objects during active research.
-This distinction is central to understanding why repositories and policy engines play complementary roles in the modern data lifecycle.
-
-:::
-
 ## Data Repositories
 
-Data repositories are designed to support the **publication** and **archival packaging** of research data. Their primary role is to take stabilised files and assemble them into a **publishable dataset**, a curated digital object with metadata, identifiers, and access controls.
+**Data repositories** support the **archiving**, **curation**, and **publication** of research data. Their core function is to take **stabilised files** and assemble them into a governed **digital object** with structured metadata, a persistent identifier, and controlled access.
 
-A defining characteristic of repositories is that they focus on the **dataset as a whole**, not on elevating individual files into independent digital objects. Most repositories expect researchers to create a coherent data bundle with:
+In principle, repository *software* can support **archiving without full publication**, for example by keeping files dark or access‑restricted. In practice, however, many repository *services* are designed with **publication as the default outcome**. To soften this, they typically offer:
 
-- one metadata record  
-- one persistent identifier  
-- one landing page  
+- **embargo periods**, during which files are not yet openly accessible  
+- **restricted files**, where access requires approval  
 
-File‑level metadata may exist, but it is typically **secondary**.
+Even in these cases, the **repository entry (landing page)** and its basic metadata are usually **publicly visible**, while the underlying files may be delayed or restricted.
+
+Repositories operate primarily at the **dataset level**. They expect researchers to prepare a coherent data package consisting of:
+
+- one **metadata record**  
+- one **persistent identifier**  
+- one **landing page**  
+
+File‑level metadata may be supported, but it is typically **secondary**. Repositories are therefore optimised for **curation, governance, and long‑term retention of stabilised datasets**, not for managing the volatile, rapidly changing files produced during active research.
 
 Repositories typically provide:
 
-- publication workflows (draft → review → publish)  
-- defined roles (depositors, curators, administrators)  
-- access rights aligned with the publication workflow
-- archival packaging (BagIt, dataset bundles)  
-- limited storage coordination (usually a single backend)  
+- structured **publication workflows** (draft → review → publish)  
+- **embargo** and **restricted‑access** options  
+- defined **roles** (depositors, curators, administrators)  
+- **access controls** aligned with institutional or funder policies  
+- **archival packaging** (e.g., BagIt, dataset bundles)  
+- limited or single‑backend **storage coordination**  
 
-Repositories excel at **curation, governance, and dissemination**, but they are not designed to orchestrate volatile or large‑scale data during active research.
+In short, repositories excel at turning stabilised files into **citable, discoverable, and preservable digital objects**, but they are not designed to orchestrate large‑scale or frequently changing data during **active research**. That role belongs to **policy engines**, which operate earlier in the lifecycle.
 
 ### The Repository Workflow
 
@@ -77,10 +53,11 @@ flowchart TB
 A repository transforms a bundle of files into a **citable, discoverable, governed digital object**.
 
 ## Repository Platforms
+The following platforms illustrate how these repository principles are implemented in practice.
 
 ### Dataverse
 
-Dataverse is built around the idea of a **structured dataset**. A dataset is a curated digital object with:
+Dataverse is strongly dataset‑centric: the dataset is the primary digital object, and all files are organised within that structure.
 
 - a metadata record based on disciplinary templates  
 - versioning across drafts and releases  
@@ -139,341 +116,164 @@ Zenodo supports:
 
 Zenodo is widely used for **software**, **code releases**, and **small to medium‑sized datasets**.
 
----
+## Archival Packaging and Preservation Standards
 
-## Policy Engines
+Data repositories do more than curate and publish datasets—they also support the **long‑term preservation** of digital objects. To do this reliably, repositories rely on a set of **archival packaging formats**, **metadata standards**, and **preservation models** that ensure data remains interpretable, verifiable, and transferable over decades.
 
-Policy engines operate at a different layer of the RDM ecosystem. They coordinate **files, metadata, and storage systems** across distributed infrastructures and do so during the **active, volatile stages** of research.
+The most widely used frameworks in this space include **BagIt**, **OAIS**, **PREMIS**, **METS**, and **RO‑Crate**.  
+Each addresses a different part of the preservation problem.
 
-Where repositories focus on publication, policy engines focus on **orchestration**:
+### BagIt: Packaging Files for Transfer and Fixity
 
-- coordinating multiple storage systems  
-- attaching and querying metadata  
-- enforcing rules for placement, replication, and retention  
-- integrating with compute environments  
-- supporting workflows that generate and transform data  
+**BagIt** is a simple, robust packaging format used to bundle files together with the metadata needed to verify their integrity.
 
-Policy engines treat files as **emerging digital objects**, long before they are ready for publication.
+A BagIt “bag” contains:
 
----
+- a **data/** directory with the files  
+- **manifest files** with checksums (fixity information)  
+- optional **tag files** with descriptive or administrative metadata  
 
-### Policy Engine Architecture
-
-```{mermaid}
-%%| label: fig-2
-%%| fig-cap: Policy engines coordinate storage, enabling metadata‑driven automation and consistent digital‑object management across distributed systems.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
-%%| label: fig-2
-%%| fig-cap: The user interacts with the policy engine, which executes both user commands and automated policies while coordinating all access to storage.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
-
-flowchart TB
-
-    User["User<br/>(commands, queries)"]
-
-    subgraph P["Policy Engine"]
-        Rules["Policy Rules<br/>(placement, replication, retention)"]
-        Catalog["Metadata Catalog<br/>(checksums, replicas, provenance)"]
-        Orchestration["Data Orchestration<br/>(movement, triggers, automation)"]
-    end
-
-    subgraph S["Storage Systems"]
-        POSIX["POSIX File Systems"]
-        Object["Object Stores"]
-        Tape["Tape / Cold Storage"]
-        CloudStore["Cloud Storage"]
-    end
-
-    %% User interacts with Policy Engine
-    User --> P
-
-    %% Policy Engine interacts with storage
-    P --> POSIX
-    P --> Object
-    P --> Tape
-    P --> CloudStore
+A minimal BagIt directory might look like this:
 ```
+mydataset-bag/
+├── bagit.txt
+├── bag-info.txt
+├── manifest-sha256.txt
+└── data/
+    ├── results.csv
+    └── readme.txt
 
-The policy engine is the central point of interaction. Users issue commands—such as uploading files, querying metadata, or initiating workflows—to the policy engine, not to storage systems directly. The policy engine then applies relevant policies (for replication, placement, retention, lineage, etc.) and carries out the requested action. All communication with underlying storage systems happens through the policy engine, ensuring that digital objects remain consistently governed, discoverable, and traceable across the entire infrastructure.
-
-## Policy Engine Platforms
-
-### iRODS
-
-iRODS provides:
-
-- a rule engine  
-- a metadata catalog  
-- a storage abstraction layer  
-- integration with HPC and cloud environments  
-
-It can unify heterogeneous storage, attach metadata to files, trigger workflows, and enforce policies for user access, metadata handling, file replication, and retention.
-
----
-
-### Rucio
-
-Rucio, developed at CERN, manages petabyte‑ to exabyte‑scale data across many sites. It supports:
-
-- geographic replication  
-- storage tiering  
-- quota‑based placement  
-- automated cleanup  
-- provenance tracking  
-
-Its declarative policy model makes it ideal for large scientific collaborations.
-
-### Globus
-
-Globus provides:
-
-- secure, high‑performance data movement  
-- federated identity  
-- automation flows  
-- integration with notebooks, portals, and workflow engines  
-
-It excels at **reliable, policy‑driven transfers** across distributed systems.
-
-### Starfish
-
-Starfish focuses on **visibility and governance** across large‑scale storage environments. It provides:
-
-- file system analytics  
-- metadata harvesting  
-- policy‑driven actions (tiering, archiving, cleanup)  
-- dashboards for administrators  
-
-It complements workflow‑oriented systems by focusing on **insight‑driven policy enforcement**.
-
-## Example Policies
-
-The following examples illustrate how policy engines operate on **digital objects** by coordinating files, metadata, identifiers, and storage systems during active research.
-
----
-
-### File Replication
-
-```{mermaid}
-%%| label: fig-3
-%%| fig-cap: A user uploads a file to the policy engine. A replication policy is triggered, causing the policy engine to write the file to multiple storage systems and track both copies in the metadata catalog.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
-
-flowchart TB
-
-    User["User"]
-
-    subgraph PE["Policy Engine"]
-        Upload["Receive File"]
-        Policy["Replication Policy<br/>(e.g., 2 replicas)"]
-        Catalog["Metadata Catalog<br/>(checksums, replica state)"]
-    end
-
-    subgraph Storage["Storage Systems"]
-        A["Storage A"]
-        B["Storage B"]
-    end
-
-    %% User uploads file to Policy Engine
-    User -- "upload file" --> Upload
-
-    %% Policy triggers replication
-    Upload -- "replication policy triggers" --> Policy
-
-    %% Policy Engine writes primary and replica
-    Policy --"store file"--> A
-
-    %% Optional visual cue for replication relationship
-    Policy --"store file"--> B
 ```
+- bagit.txt declares the BagIt version and encoding:
+	
+	```
+	BagIt-Version: 1.0
+	Tag-File-Character-Encoding: UTF-8
+	```
+	
+- bag-info.txt conatins high-level metadata about the "bag"
+	
+	```
+	Bag-Software-Agent: Example BagIt Creator 1.0
+	Bagging-Date: 2024-05-01
+	Contact-Name: Research Data Team
+	``` 
+- manifest-sha256.txt contains the checksums for all files in `/data`:
+ 
+ 	```
+ 	3a7bd3e2360a3d...  data/results.csv
+	b1946ac92492d...  data/readme.txt
+ 	```
 
-A user uploads a file to the **policy engine**, which applies a replication policy requiring multiple copies. The policy engine writes the primary copy to one storage system and automatically creates a replica on another. Both copies are registered in the metadata catalog, allowing the system to track checksums, replica state, and digital‑object identity. This approach ties replication directly to metadata and governance, enabling richer automation and provenance tracking than storage‑level replication alone.
+Repositories use BagIt because it:
 
-### File Movement to Cold Storage
+- ensures **fixity** through checksums  
+- supports **validation** after transfer  
+- is **storage‑agnostic**  
+- works well for **large datasets**  
 
-```{mermaid}
-%%| label: fig-4
-%%| fig-cap: The policy engine monitors file metadata. When a data‑aging policy triggers, the policy engine moves aged data from online storage to cold storage while preserving its logical path.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
+Many repositories generate BagIt packages for archival export or transfer to preservation systems.
 
-flowchart TB
 
-    subgraph PE["Policy Engine"]
-        Monitor["Monitor Metadata<br/>(timestamps, access times)"]
-        AgePolicy["Data‑Aging Policy<br/>(move after X days)"]
-        Catalog["Metadata Catalog<br/>(location, timestamps)"]
-    end
+### OAIS: The Conceptual Model Behind Preservation
 
-    subgraph Storage["Storage Systems"]
-        Hot["Online Storage"]
-        Cold["Cold Storage"]
-    end
+The **OAIS Reference Model** (Open Archival Information System) is the foundational conceptual framework for digital preservation. It defines six functional entities that together define how a trustworthy digital archive operates.
 
-    %% Policy Engine monitors metadata
-    Monitor --> Catalog
+- Ingest handles the acceptance of Submission Information Packages (SIPs) from producers. It performs quality checks, prepares Archival Information Packages (AIPs) according to the archive’s standards, creates or gathers descriptive metadata, and coordinates the transfer of AIPs into archival storage.
 
-    %% Aging policy triggers automatically
-    Catalog -- "aging policy triggers" --> AgePolicy
+- Archival Storage is responsible for the storage, maintenance, and retrieval of AIPs. It adds new AIPs to long‑term storage, manages storage hierarchies, performs fixity checks and media refreshment, supports disaster recovery, and supplies AIPs to the Access function when requested.
 
-    %% Policy Engine moves data
-    AgePolicy --"send trigger to migrate"--> Storage
+- Data Management maintains the archive’s descriptive metadata and administrative information. It manages database schemas, loads new metadata, executes queries, and produces reports needed for discovery, administration, and audit.
 
-    %% Visual cue for migration
-    Hot -. "migrate aged data" .-> Cold
-```
+- Administration oversees the operation and governance of the archive. It negotiates submission agreements, audits incoming SIPs, manages system configuration, monitors performance, maintains policies and standards, and supports users and producers.
 
-The policy engine continuously monitors file metadata, such as access times and modification timestamps. When a file exceeds the threshold defined by the data‑aging policy, the policy is automatically triggered. The policy engine then moves the file from online storage to a cold‑storage tier and updates the metadata catalog accordingly. This ensures that tiering and long‑term retention are governed consistently as part of the digital‑object lifecycle, without requiring any user action.
+- Preservation Planning monitors the technology environment and the needs of the designated community. It recommends format migrations, updates to AIPs, risk assessments, and preservation strategies. It also designs templates for SIPs and AIPs and develops plans and prototypes to ensure long‑term accessibility.
 
----
+- Access provides services that allow consumers to discover, request, and obtain information from the archive. It manages user requests, applies access controls, coordinates the delivery of Dissemination Information Packages (DIPs), and generates query responses and reports.
 
-### Digital‑Object Promotion on Ingest
+![OAIS Model](img/oais.png)
 
-```{mermaid}
-%%| label: fig-6
-%%| fig-cap: When a user uploads a file, iRODS applies an ingest policy that computes fixity, attaches metadata, assigns an identifier, and registers the digital object.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
-flowchart TB
+Most repositories implicitly follow OAIS principles, even if they do not implement the full model.
 
-    User["User<br/>(uploads file via iRODS)"]
+*References*
+- https://ccsds.org/Pubs/650x0m3.pdf, pp. 4-1
 
-    subgraph PE["iRODS Policy Engine"]
-        Fixity["Fixity Check<br/>(compute checksum)"]
-        Meta["Metadata Extraction<br/>(provenance, tags, timestamps)"]
-        PID["Identifier Assignment<br/>(PID or local ID)"]
-        Register["Register Digital Object<br/>(catalog entry)"]
-    end
 
-    subgraph Storage["Storage Systems"]
-        Store["Storage Backend<br/>(POSIX/Object/Tape)"]
-    end
+### PREMIS: Preservation Metadata for Long‑Term Stewardship
 
-    User --> Store
-    Store --> Fixity
-    Fixity --> Meta
-    Meta --> PID
-    PID --> Register
-```
+**PREMIS** (Preservation Metadata: Implementation Strategies) is the most widely adopted standard for **preservation metadata**, i.e. information needed to ensure long‑term usability and authenticity.
 
-This policy ensures that every file entering the system becomes a **first‑class digital object** with identity, metadata, and fixity—ready for downstream processing and lineage tracking.
+PREMIS describes:
 
----
+- **objects** (files, bitstreams, representations)  
+- **events** (ingest, fixity checks, migrations)  
+- **agents** (people, software, systems)  
+- **rights** (permissions, licenses)  
 
-### Auto‑Link Derived Data
+Repositories and preservation systems use PREMIS to document:
 
-```{mermaid}
-%%| label: fig-7
-%%| fig-cap: When a workflow produces a new file, iRODS detects the parent digital object(s), creates a new digital object for the output, assigns an identifier, and records a provenance link.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
-flowchart TB
+- fixity checks  
+- format migrations  
+- provenance events  
+- authenticity and integrity  
+- preservation actions over time  
 
-    subgraph Compute["Compute Environment"]
-        WF["Workflow<br/>(produces new file)"]
-    end
+PREMIS is expressed in XML and often embedded inside METS or other packaging formats.
 
-    subgraph PE["iRODS Policy Engine"]
-        Detect["Detect Parent Object(s)<br/>(input metadata)"]
-        NewObj["Create New Digital Object<br/>(output file)"]
-        Link["Add Provenance Link<br/>(created from)"]
-        Prop["Propagate Metadata<br/>(project, licence, context)"]
-        ID["Assign Identifier<br/>(PID or local ID)"]
-        Register["Register in Catalog<br/>(lineage graph)"]
-    end
+### METS: Structuring Complex Digital Objects
 
-    subgraph Storage["Storage Systems"]
-        Input["Input Object Storage"]
-        Output["Output Object Storage"]
-    end
+**METS** (Metadata Encoding and Transmission Standard) is an XML‑based framework for describing the **structure** of complex digital objects and linking them to metadata.
 
-    Input --> Detect
-    WF --> NewObj
-    Detect --> Link
-    NewObj --> Prop
-    Prop --> ID
-    ID --> Register
-    Register --> Output
-```
+A METS document can include:
 
-This policy automatically builds a **machine‑readable lineage graph**, allowing researchers to trace how data was produced and transformed.
+- **structural maps** (how files relate to each other)  
+- **administrative metadata** (technical, rights, provenance)  
+- **descriptive metadata** (often embedded or referenced)  
+- **file inventories**  
 
----
+METS is commonly used in:
 
-## Metadata‑Driven Access to Digital Objects
+- digital libraries  
+- institutional archives  
+- preservation systems that need rich structural description  
 
-```{mermaid}
-%%| label: fig-5
-%%| fig-cap: Users or workflows query iRODS metadata to identify files that require processing. iRODS resolves location and provides access without exposing underlying storage.
-%%| fig-align: center
-%%{init: {"look": "handDrawn","flowchart": { "htmlLabels": false }}}%%
-flowchart TB
+Repositories may use METS internally or for archival export.
 
-    subgraph Storage["Storage Systems"]
-        S1["Storage Backend 1"]
-        S2["Storage Backend 2"]
-    end
+### RO‑Crate: Lightweight, Web‑Native Research Object Packaging
 
-    subgraph PE["iRODS Policy Engine"]
-        Catalog["Metadata Catalog<br/>(provenance, tags, arrival time)"]
-        Access["Data Access<br/>(stream or stage)"]
-    end
+**RO‑Crate** is a modern, web‑native packaging format designed for **research objects**, especially those involving workflows, software, and computational provenance.
 
-    subgraph Compute["Compute Environment"]
-        User["User / Workflow<br/>(queries iRODS)"]
-        Stream["Workflow A<br/>(stream file content)"]
-        Copy["Workflow B<br/>(stage working copy)"]
-    end
+An RO‑Crate consists of:
 
-    S1 --> Catalog
-    S2 --> Catalog
+- a **crate directory**  
+- a **JSON‑LD metadata file** describing all files and their relationships  
+- optional workflow, provenance, or software metadata  
 
-    User -- "User Query<br/>(find newly arrived data by metadata)" --> Catalog
+RO‑Crate is designed for:
 
-    Catalog --> Access
-    Access --> S1
-    Access --> S2
+- FAIR workflows  
+- reproducible research  
+- machine‑actionable metadata  
+- integration with workflow engines and policy engines  
 
-    Access --> Stream
-    Access --> Copy
-```
-
-This is not a policy but a **capability unlocked by representing files as digital objects**.  
-Users and workflows can discover and access data through metadata queries rather than navigating fragmented storage systems.
+It complements, rather than replaces, traditional archival formats like BagIt.
 
 ---
 
-## Comparison with Synchronisation Tools
+## How These Standards Fit Together
 
-While policy engines operate directly on emerging **digital objects**, synchronisation tools serve a different purpose. Services such as OneDrive, Dropbox, Google Drive, or Nextcloud‑based platforms like SURFdrive replicate files across devices for convenience, but they do not manage:
+These standards address different layers of preservation:
 
-- metadata  
-- identifiers  
-- provenance  
-- lineage  
-- policy‑driven placement  
-- multi‑site coordination  
+- **BagIt** — packages files and ensures fixity  
+- **OAIS** — defines the conceptual preservation lifecycle  
+- **PREMIS** — records preservation events and provenance  
+- **METS** — structures complex digital objects and links metadata  
+- **RO‑Crate** — packages research objects with rich, machine‑actionable metadata  
 
-Sync tools solve **convenience and collaboration** problems.  
-Policy engines solve **digital‑object lifecycle** problems.
+Repositories may use one or several of these standards depending on their role:
 
+- **Publication‑oriented repositories** often use BagIt for export and basic fixity.  
+- **Preservation‑oriented repositories** may combine BagIt + METS + PREMIS.  
+- **Workflow‑oriented systems** and **policy engines** increasingly adopt RO‑Crate for computational provenance.
 
-Here is a **short, clear summary** that still captures the essence of the chapter:
-
----
-
-## Summary
-
-Storage systems keep files safe, but they cannot manage **metadata**, **replicas**, **identifiers**, or the **volatile stages** where research data is created and transformed. To manage data as **digital objects**, two complementary systems are needed.
-
-**Data repositories** (Dataverse, Figshare, Invenio/Zenodo) curate and publish **stabilised datasets**. They provide structured workflows, metadata templates, DOIs, and governance, but they operate mainly at the **dataset level** and are not designed for active, changing data.
-
-**Policy engines** (iRODS, Rucio, Globus, Starfish) coordinate **files, metadata, and storage** during active research. They support replication, tiering, ingest rules, lineage tracking, and metadata‑driven automation across distributed systems. They treat files as **emerging digital objects** long before publication.
-
-Unlike synchronisation tools, which simply replicate files for convenience, policy engines manage the **full digital‑object lifecycle**.
-
-## References
-
-- https://book.the-turing-way.org/reproducible-research/rdm/rdm-repository/
+Together, these standards form the **technical backbone** that allows repositories to preserve digital objects reliably and integrate with institutional or national preservation infrastructures.
