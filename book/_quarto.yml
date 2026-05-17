@@ -29,12 +29,16 @@ book:
     - index.qmd
     - definitions.qmd
     - data-lifecycle.qmd
+  
     - part: "THE HOLY TRINITY OF RDM"
       chapters:
-      - digital-object.qmd
-      - files.qmd
-      - metadata.qmd
-      - pids.qmd
+        - digital-object.qmd
+        - files.qmd
+        - metadata.qmd
+        - pids.qmd
+
+    - storage-infrastructure.qmd
+    
     - part: "COMPONENTS OF RDM INFRASTRUCTURE"
       chapters:
       - rdm-infra-intro.qmd
@@ -59,8 +63,9 @@ format:
     theme: cosmo
     css: 
       - css_files/callout.css
+      - css_files/toc.css
+      - css_files/hyperlinks.css
     number-sections: false
-    linkcolor: "#548641"
     mermaid:
       theme: forest
 
