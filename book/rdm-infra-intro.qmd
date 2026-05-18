@@ -23,33 +23,45 @@ Just as a digital object consists of three interdependent components, the infras
 - **Compute Interoperability** — the ability of digital objects to flow into and out of compute systems (HPC, cloud, VMs, workflow engines) while preserving identity, metadata, and provenance.
 
 ```{mermaid}
-%%| label: fig-1
-%%| fig-cap: The layers of RDM infrastructure work together to support digital objects across their lifecycle, including interoperability with compute systems.
+%%| label: fig-rdm-layers
+%%| fig-cap: Core RDM infrastructure layers and how they contribute to forming, exposing, and using digital objects.
 %%| fig-align: center
 %%{init: {
   "look": "handDrawn",
   "flowchart": { "htmlLabels": false }
 }}%%
 
-flowchart TB
+flowchart BT
 
+    %% Top: Digital Objects
     DO["Digital Objects<br/>(files + metadata + PID)"]
 
-    subgraph Infra["RDM Infrastructure"]
-        direction TB
-        S["Storage Infrastructure"]
-        PE["Policy Engines"]
-        R["Data Repositories"]
+    %% Exposure Layer
+    subgraph Exposure["Exposure and Interoperability Layer"]
+        direction LR
         M["Metadata Portals"]
         P["PID Services"]
-        C["Compute Interoperability"]
     end
 
-    S --> PE --> R --> M --> P
-    R --> DO
-    M --> DO
-    P --> DO
-    C --> DO
+    %% Management Layer
+    subgraph Management["Digital Object Formation and Management Layer"]
+        direction LR
+        R["Data Repositories"]
+        PE["Policy Engines"]
+    end
+
+    %% Storage Layer
+    S["Storage Infrastructure"]
+
+    %% Compute Interoperability (side)
+    C["Compute Interoperability"]
+
+    %% Minimal connections
+    S -- "Managed by" --> Management
+    Management -- "Export Metadata" --> Exposure
+    Management -- "Create" --> DO
+    C -- "Discover and use" --> DO
+
 ```
 
 ## Interoperability with Compute Systems
